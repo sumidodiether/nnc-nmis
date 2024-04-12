@@ -1,47 +1,91 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.app', [
+    'namePage' => 'Login page',
+    'class' => 'login-page sidebar-mini ',
+    'activePage' => 'login',
+    'backgroundImage' => asset('assets') . "/img/bg14.jpg",
+])
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+@section('content')
+    <div class="content">
+        <div class="container">
+        <div class="col-md-12 ml-auto mr-auto">
+            <div class="header bg-gradient-primary py-10 py-lg-2 pt-lg-12">
+                <div class="container">
+                    <div class="header-body text-center mb-7">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-12 col-md-9">
+                                <p class="text-lead text-light mt-3 mb-0">
+                                    @include('alerts.migrations_check')
+                                </p>
+                            </div>
+                            <div class="col-lg-5 col-md-6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="col-md-4 ml-auto mr-auto">
+            <form role="form" method="POST" action="{{ route('login') }}">
+                @csrf
+            <div class="card card-login card-plain">
+                <div class="card-header ">
+                <div class="logo-container">
+                    <img src="{{ asset('assets/img/now-logo.png') }}" alt="">
+                </div>
+                </div>
+                <div class="card-body ">
+                <div class="input-group no-border form-control-lg {{ $errors->has('email') ? ' has-danger' : '' }}">
+                    <span class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="now-ui-icons users_circle-08"></i>
+                    </div>
+                    </span>
+                    <input class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ old('email', 'admin@nowui.com') }}" required autofocus>
+                </div>
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback" style="display: block;" role="alert">
+                    <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
+                <div class="input-group no-border form-control-lg {{ $errors->has('password') ? ' has-danger' : '' }}">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="now-ui-icons objects_key-25"></i></i>
+                    </div>
+                    </div>
+                    <input placeholder="Password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" value="secret" required>
+                </div>
+                @if ($errors->has('password'))
+                    <span class="invalid-feedback" style="display: block;" role="alert">
+                    <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
+                </div>
+                <div class="card-footer ">
+                <button  type = "submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">{{ __('Get Started') }}</button>
+                <div class="pull-left">
+                    <h6>
+                    <a href="{{ route('register') }}" class="link footer-link">{{ __('Create Account') }}</a>
+                    </h6>
+                </div>
+                <div class="pull-right">
+                    <h6>
+                    <a href="{{ route('password.request') }}" class="link footer-link">{{ __('Forgot Password?') }}</a>
+                    </h6>                
+                </div>
+                </div>
+            </div>
+            </form>
         </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
         </div>
+    </div>
+@endsection
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+@push('js')
+    <script>
+        $(document).ready(function() {
+        demo.checkFullPageBackgroundImage();
+        });
+    </script>
+@endpush
