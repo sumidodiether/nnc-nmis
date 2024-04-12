@@ -22,7 +22,7 @@ return new class extends Migration
             $table->float('performance_level', 8, 2);
             $table->float('current_rating', 8, 2);
             $table->float('performance_rating', 8, 2);
-
+            $table->integer('diagram_for_changes_in_ns');
             $table->float('summary_of_ratings_per_dimension', 8, 2);
             $table->text('remarks');
             $table->timestamps();

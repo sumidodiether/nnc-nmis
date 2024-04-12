@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('income_class', 225);
             $table->date('date_of_monitoring');
             $table->year('period_covered');
-
+            $table->integer('diagram');
             $table->float('total_score', 8, 2);
             $table->text('major_findings');
             $table->text('recommendations');
