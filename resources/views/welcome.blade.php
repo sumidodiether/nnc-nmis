@@ -2,7 +2,7 @@
     'namePage' => 'Welcome',
     'class' => 'login-page sidebar-mini ',
     'activePage' => 'welcome',
-    'backgroundImage' => asset('assets') . "/img/bg14.jpg",
+    'backgroundImage' => asset('assets') . "/img/background1.png",
 ])
 
 @section('content')
@@ -13,8 +13,8 @@
               <div class="container">
                   <div class="header-body text-center mb-7">
                       <div class="row justify-content-center">
-                          <div class="col-lg-12 col-md-9">
-                              <h3 class="text-white">{{ __('Welcome to Now Ui Dashboard Free Laravel Live Preview.') }}</h3>
+                          <div class="col-lg-5 col-md-9">
+                            <img class="rounded-circle bg-white p-3" src="{{ asset('assets/img/logo.png') }}" alt="">
                               <p class="text-lead text-light mt-3 mb-0">
                                   @include('alerts.migrations_check')
                               </p>
