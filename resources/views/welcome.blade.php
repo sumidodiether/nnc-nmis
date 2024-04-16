@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'namePage' => 'Welcome',
+    'namePage' => 'NMIS',
     'class' => 'login-page sidebar-mini ',
     'activePage' => 'welcome',
     'backgroundImage' => asset('assets') . "/img/background1.png",

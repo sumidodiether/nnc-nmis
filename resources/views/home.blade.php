@@ -14,8 +14,8 @@
       <div class="col-lg-4">
         <div class="card card-chart">
           <div class="card-header">
-            <h5 class="card-category">Global Sales</h5>
-            <h4 class="card-title">Shipped Products</h4>
+            <h5 class="card-category">NMIS</h5>
+            <h4 class="card-title">Sample graph</h4>
             <div class="dropdown">
               <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
                 <i class="now-ui-icons loader_gear"></i>
@@ -43,8 +43,8 @@
       <div class="col-lg-4 col-md-6">
         <div class="card card-chart">
           <div class="card-header">
-            <h5 class="card-category">2018 Sales</h5>
-            <h4 class="card-title">All products</h4>
+            <h5 class="card-category">NMIS</h5>
+            <h4 class="card-title">Sample graph</h4>
             <div class="dropdown">
               <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
                 <i class="now-ui-icons loader_gear"></i>
@@ -72,8 +72,8 @@
       <div class="col-lg-4 col-md-6">
         <div class="card card-chart">
           <div class="card-header">
-            <h5 class="card-category">Email Statistics</h5>
-            <h4 class="card-title">24 Hours Performance</h4>
+            <h5 class="card-category">NMIS</h5>
+            <h4 class="card-title">Sample graph</h4>
           </div>
           <div class="card-body">
             <div class="chart-area">
@@ -93,7 +93,7 @@
         <div class="card  card-tasks">
           <div class="card-header ">
             <h5 class="card-category">Backend development</h5>
-            <h4 class="card-title">Tasks</h4>
+            <h4 class="card-title">Sample list</h4>
           </div>
           <div class="card-body ">
             <div class="table-full-width table-responsive">
@@ -173,7 +173,7 @@
         <div class="card">
           <div class="card-header">
             <h5 class="card-category">All Persons List</h5>
-            <h4 class="card-title"> Employees Stats</h4>
+            <h4 class="card-title"> Sample list</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">

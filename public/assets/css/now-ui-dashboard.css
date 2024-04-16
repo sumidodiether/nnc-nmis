@@ -3897,12 +3897,12 @@ Created using IcoMoon - icomoon.io
 .sidebar .nav li:focus:not(.active)>a i,
 .off-canvas-sidebar .nav li:hover:not(.active)>a i,
 .off-canvas-sidebar .nav li:focus:not(.active)>a i {
-    color: #FFFFFF;
+    color: #64987e;
 }
 
 .sidebar .nav li.active>a,
 .off-canvas-sidebar .nav li.active>a {
-    background-color: #FFFFFF;
+    background-color: #64987e;
     box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
 }
 
@@ -3924,7 +3924,7 @@ Created using IcoMoon - icomoon.io
     line-height: 30px;
     width: 34px;
     text-align: center;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.5);
     position: relative;
 }
 
@@ -3986,7 +3986,7 @@ Created using IcoMoon - icomoon.io
     right: 15px;
     height: 1px;
     width: calc(100% - 30px);
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: #64987e;
 }
 
 .sidebar .logo p,
@@ -4124,6 +4124,34 @@ Created using IcoMoon - icomoon.io
 .sidebar[data-color="yellow"] .nav li.active>a:not([data-toggle="collapse"]) i,
 .off-canvas-sidebar[data-color="yellow"] .nav li.active>a:not([data-toggle="collapse"]) i {
     color: #FFB236;
+}
+.sidebar[data-color="darkgreen"]:after,
+.off-canvas-sidebar[data-color="darkgreen"]:after {
+    background: #64987e;
+}
+
+.sidebar[data-color="darkgreen"] .nav li.active>a:not([data-toggle="collapse"]),
+.off-canvas-sidebar[data-color="darkgreen"] .nav li.active>a:not([data-toggle="collapse"]) {
+    color: #64987e;
+}
+
+.sidebar[data-color="darkgreen"] .nav li.active>a:not([data-toggle="collapse"]) i,
+.off-canvas-sidebar[data-color="darkgreen"] .nav li.active>a:not([data-toggle="collapse"]) i {
+    color: #64987e;
+}
+.sidebar[data-color="white"]:after,
+.off-canvas-sidebar[data-color="white"]:after {
+    background: #fff;
+}
+
+.sidebar[data-color="white"] .nav li.active>a:not([data-toggle="collapse"]),
+.off-canvas-sidebar[data-color="white"] .nav li.active>a:not([data-toggle="collapse"]) {
+    color: #fff;
+}
+
+.sidebar[data-color="white"] .nav li.active>a:not([data-toggle="collapse"]) i,
+.off-canvas-sidebar[data-color="white"] .nav li.active>a:not([data-toggle="collapse"]) i {
+    color: #fff;
 }
 
 .visible-on-sidebar-regular {
