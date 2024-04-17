@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'namePage' => 'Register page',
     'activePage' => 'register',
-    'backgroundImage' => asset('assets') . "/img/bg16.jpg",
+    'backgroundImage' => asset('assets') . "/img/background1.png",
 ])
 
 @section('content')
@@ -9,7 +9,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-5 ml-auto">
-          <div class="info-area info-horizontal mt-5">
+          <div class="info-area info-horizontal mt-2">
             <div class="icon icon-primary">
               <i class="now-ui-icons media-2_sound-wave"></i>
             </div>
