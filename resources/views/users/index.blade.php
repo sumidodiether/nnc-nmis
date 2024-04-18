@@ -1,5 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+  /*label color start*/
+  .sidebar .nav p {
+    color: #000;
+  }
+  .sidebar .nav p:hover{
+    color: #64987e;
+  }
+  .sidebar .nav .active p:hover{
+    color: #fff;
+  }
+  /* .sidebar .nav p:hover{
+    color: #64987e;
+  } */
+  /*end */
+  /*icon color start */
+  /* .sidebar .nav i {
+    color: #000;
+  } */
+  /*end */
+  /*logo color start */
+  .sidebar .logo-normal {
+    color: #000 !important;
+  }
+  .sidebar .logo-normal:hover {
+    color: #64987e !important;
+  }
+  /*end*/
+
+
+</style>
 
 <head>
   <meta charset="utf-8" />
@@ -147,7 +178,7 @@
         </div>
       <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
     @csrf</form>
-    <div class="sidebar" data-color="darkgreen">
+    <div class="sidebar" data-color="white">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
@@ -164,15 +195,64 @@
         <ul class="nav">
           <li >
             <a href="{{ route('home') }}">
-              <i class="now-ui-icons business_chart-bar-32"></i>
+              <i class="now-ui-icons business_chart-pie-36"></i>
               <p>{{ __('Dashboard') }}</p>
+            </a>
+          </li>
+          
+          <li >
+            <a href="{{ route('page.index','icons') }}">
+              <i class="now-ui-icons business_chart-bar-32"></i>
+              <p>{{ __('LGU Demographics') }}</p>
+            </a>
+          </li>
+          <li >
+            <a href="{{ route('page.index','maps') }}">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>{{ __('Local Nutrition Profile') }}</p>
+            </a>
+          </li>
+          <li >
+            <a href="{{ route('page.index','notifications') }}">
+              <i class="now-ui-icons files_single-copy-04"></i>
+              <p>{{ __('Available Program Resource') }}</p>
+            </a>
+          </li>
+          <li >
+            <a href="{{ route('page.index','table') }}">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Human Resource Profile</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('page.index','typography') }}">
+              <i class="now-ui-icons business_money-coins"></i>
+              <p>{{ __('Budget Allocation') }}</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('page.index','typography') }}">
+              <i class="now-ui-icons design_palette"></i>
+              <p>{{ __('Structure') }}</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('page.index','typography') }}">
+              <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
+              <p>{{ __('Upload') }}</p>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('page.index','typography') }}">
+              <i class="now-ui-icons health_ambulance"></i>
+              <p>{{ __('Request') }}</p>
             </a>
           </li>
           <li>
               <a data-toggle="collapse" href="#laravelExamples">
-                  <i class="fab fa-laravel"></i>
+                  <i class="now-ui-icons ui-1_settings-gear-63"></i>
                 <p>
-                  {{ __("Laravel Examples") }}
+                  {{ __("Settings") }}
                   <b class="caret"></b>
                 </p>
               </a>
@@ -192,42 +272,12 @@
                   </li>
                 </ul>
               </div>
-          <li >
-            <a href="{{ route('page.index','icons') }}">
-              <i class="now-ui-icons education_atom"></i>
-              <p>{{ __('Icons') }}</p>
-            </a>
-          </li>
-          <li >
-            <a href="{{ route('page.index','maps') }}">
-              <i class="now-ui-icons location_map-big"></i>
-              <p>{{ __('Maps') }}</p>
-            </a>
-          </li>
-          <li >
-            <a href="{{ route('page.index','notifications') }}">
-              <i class="now-ui-icons ui-1_bell-53"></i>
-              <p>{{ __('Notifications') }}</p>
-            </a>
-          </li>
-          <li >
-            <a href="{{ route('page.index','table') }}">
-              <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Table List</p>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route('page.index','typography') }}">
-              <i class="now-ui-icons text_caps-small"></i>
-              <p>{{ __('Typography') }}</p>
-            </a>
-          </li>
-          <li class = "">
+          <!-- <li class = "">
             <a href="{{ route('page.index','upgrade') }}" class="bg-info">
               <i class="now-ui-icons arrows-1_cloud-download-93"></i>
               <p>{{ __('Upgrade to PRO') }}</p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div><div class="main-panel">
@@ -319,6 +369,7 @@
             <div class="toolbar">
               <!--        Here you can write extra buttons/actions for the toolbar              -->
             </div>
+
             <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
               <thead>
                 <tr>
@@ -363,10 +414,10 @@
       </div>
       <!-- end col-md-12 -->
     </div>
-    <div class="alert alert-danger">
+    <!-- <div class="alert alert-danger">
       <span>
         <b></b> This is a PRO feature!</span>
-    </div>
+    </div> -->
     <!-- end row -->
   </div>
     <footer class="footer">

@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    //list all users fuction
+    // function userManagement() {
+    //     $userData = array(
+    //         $usersList = DB::table('users')
+    //         ->get()
+    //     );
+    //     return view('index.blade.php', $userData);
+    // }
     /**
      * Display a listing of the users
      *
