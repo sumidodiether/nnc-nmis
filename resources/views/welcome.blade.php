@@ -45,22 +45,22 @@
   opacity: 1;
 }
 .menu-toggler:checked ~ ul .menu-item:nth-child(1) {
-  transform: rotate(0deg) translate(-110px);
+  transform: rotate(29deg) translate(-110px);
 }
 .menu-toggler:checked ~ ul .menu-item:nth-child(2) {
-  transform: rotate(60deg) translateX(-110px);
+  transform: rotate(85deg) translateX(-110px);
 }
 .menu-toggler:checked ~ ul .menu-item:nth-child(3) {
-  transform: rotate(120deg) translateX(-110px);
+  transform: rotate(149deg) translateX(-110px);
 }
 .menu-toggler:checked ~ ul .menu-item:nth-child(4) {
-  transform: rotate(180deg) translateX(-110px);
+  transform: rotate(210deg) translateX(-110px);
 }
 .menu-toggler:checked ~ ul .menu-item:nth-child(5) {
-  transform: rotate(240deg) translateX(-110px);
+  transform: rotate(274deg) translateX(-110px);
 }
 .menu-toggler:checked ~ ul .menu-item:nth-child(6) {
-  transform: rotate(300deg) translateX(-110px);
+  transform: rotate(328deg) translateX(-110px);
 }
 .menu-toggler:checked ~ ul .menu-item a {
   pointer-events:auto;
@@ -102,22 +102,22 @@
   top: -10px;
 }
 .menu-item:nth-child(1) a {
-  transform: rotate(0deg);
+  transform: rotate(-28deg);
 }
 .menu-item:nth-child(2) a {
-  transform: rotate(-60deg);
+  transform: rotate(-85deg);
 }
 .menu-item:nth-child(3) a {
-  transform: rotate(-120deg);
+  transform: rotate(-149deg);
 }
 .menu-item:nth-child(4) a {
-  transform: rotate(-180deg);
+  transform: rotate(-209deg);
 }
 .menu-item:nth-child(5) a {
-  transform: rotate(-240deg);
+  transform: rotate(-273deg);
 }
 .menu-item:nth-child(6) a {
-  transform: rotate(-300deg);
+  transform: rotate(-328deg);
 }
 .menu-item {
   position: absolute;
@@ -138,8 +138,8 @@
   width: inherit;
   height: inherit;
   line-height: 150px;
-  color: rgba(255, 255, 255, 0.7);
-  background: rgba(230, 230, 250, 0.7);
+  color: rgba(0, 0, 0, 1);
+  background: rgba(255, 255, 255, 1);
   border-radius: 50%;
   text-align: center;
   text-decoration: none;
@@ -152,6 +152,12 @@
   color: white;
   background: rgba(255, 255, 255, 0.3);
   font-size: 44.44px
+}
+
+.icon-nmis {
+  width: 50%;
+  position: relative;
+  top: 22%;
 }
 
 </style>
@@ -180,23 +186,35 @@
                           
                           
                               <ul>
-                                <li class="menu-item">
-                                  <a class="fas fa-cat" href=""></a>
+                                <li class="menu-item">                                  
+                                  <a class="nmis-icon" href="">
+                                    <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Demographics.png') }}" alt="">
+                                  </a>
                                 </li>
                                 <li class="menu-item">
-                                  <a class="fas fa-cookie-bite" href="#"></a>
+                                  <a class="nmis-icon" href="#">
+                                    <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Puzzle.png') }}" alt="">
+                                  </a>
+                                </li>
+                                <li class="menu-item">                                  
+                                  <a class="nmis-icon" href="#">
+                                    <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Accounting.png') }}" alt="">
+                                  </a>
                                 </li>
                                 <li class="menu-item">
-                                  <a class="fab fa-earlybirds" href="#"></a>
+                                  <a class="icon-nmis" class="nmis-icon"href="#">
+                                    <img class="icon-nmis" src="{{ asset('assets/img/nmicon/People.png') }}" alt="">
+                                  </a>
                                 </li>
                                 <li class="menu-item">
-                                  <a class="fab fa-fly"href="#"></a>
+                                  <a class ="nmis-icon" href="#">
+                                    <img class="icon-nmis" src="{{ asset('assets/img/nmicon/User Groups.png') }}" alt="">
+                                  </a>
                                 </li>
                                 <li class="menu-item">
-                                  <a class ="far fa-gem" href="#"></a>
-                                </li>
-                                <li class="menu-item">
-                                  <a class="fas fa-glass-cheers" href="#"></a>
+                                  <a class="nmis-icon" href="#">
+                                    <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Profile.png') }}" alt="">
+                                  </a>
                                 </li>
                               </ul>
                             </nav>
