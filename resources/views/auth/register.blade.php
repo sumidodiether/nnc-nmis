@@ -21,17 +21,6 @@
             </div>
           </div>
           <div class="info-area info-horizontal">
-            <div class="icon icon-primary">
-              <i class="now-ui-icons media-1_button-pause"></i>
-            </div>
-            <div class="description">
-              <h5 class="info-title">{{ __('Fully Coded in HTML5') }}</h5>
-              <p class="description">
-                {{ __("We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.") }}
-              </p>
-            </div>
-          </div>
-          <div class="info-area info-horizontal">
             <div class="icon icon-info">
               <i class="now-ui-icons users_single-02"></i>
             </div>
@@ -47,18 +36,6 @@
           <div class="card card-signup text-center">
             <div class="card-header ">
               <h4 class="card-title">{{ __('Register') }}</h4>
-              <div class="social">
-                <button class="btn btn-icon btn-round btn-twitter">
-                  <i class="fab fa-twitter"></i>
-                </button>
-                <button class="btn btn-icon btn-round btn-dribbble">
-                  <i class="fab fa-dribbble"></i>
-                </button>
-                <button class="btn btn-icon btn-round btn-facebook">
-                  <i class="fab fa-facebook-f"></i>
-                </button>
-                <h5 class="card-description">  {{ __('or be classical') }}</h5>
-              </div>
             </div>
             <div class="card-body ">
               <form method="POST" action="{{ route('register') }}">
