@@ -580,10 +580,17 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 .show>.btn-primary.dropdown-toggle,
 .show>.btn-primary.dropdown-toggle:focus,
 .show>.btn-primary.dropdown-toggle:hover {
+<<<<<<< HEAD
     background-color: #2b9e67;
     color: #FFFFFF;
     box-shadow: none;
     border-color: #64987e;
+=======
+    background-color: #59987e;
+    color: #FFFFFF;
+    box-shadow: none;
+    border-color: #59987e;
+>>>>>>> 57de86c (nmis: Remove NOW UI Background Tint)
 }
 
 .btn-primary:not([data-action]):not([class*="btn-outline-"]):hover {
@@ -5618,7 +5625,6 @@ Created using IcoMoon - icomoon.io
     left: 0;
     top: 0;
     content: "";
-    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .section-image {
@@ -5685,7 +5691,6 @@ Created using IcoMoon - icomoon.io
     left: 0;
     top: 0;
     content: "";
-    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .section-image .container {
