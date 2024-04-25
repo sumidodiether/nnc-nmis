@@ -45,22 +45,16 @@
   opacity: 1;
 }
 .menu-toggler:checked ~ ul .menu-item:nth-child(1) {
-  transform: rotate(29deg) translate(-110px);
+  transform: rotate(15deg) translate(-110px);
 }
 .menu-toggler:checked ~ ul .menu-item:nth-child(2) {
-  transform: rotate(85deg) translateX(-110px);
+  transform: rotate(99deg) translateX(-110px);
 }
 .menu-toggler:checked ~ ul .menu-item:nth-child(3) {
-  transform: rotate(149deg) translateX(-110px);
+  transform: rotate(200deg) translateX(-110px);
 }
 .menu-toggler:checked ~ ul .menu-item:nth-child(4) {
-  transform: rotate(210deg) translateX(-110px);
-}
-.menu-toggler:checked ~ ul .menu-item:nth-child(5) {
-  transform: rotate(274deg) translateX(-110px);
-}
-.menu-toggler:checked ~ ul .menu-item:nth-child(6) {
-  transform: rotate(328deg) translateX(-110px);
+  transform: rotate(278deg) translateX(-95px);
 }
 .menu-toggler:checked ~ ul .menu-item a {
   pointer-events:auto;
@@ -102,22 +96,16 @@
   top: -10px;
 }
 .menu-item:nth-child(1) a {
-  transform: rotate(-28deg);
+  transform: rotate(-15deg);
 }
 .menu-item:nth-child(2) a {
-  transform: rotate(-85deg);
+  transform: rotate(-99deg);
 }
 .menu-item:nth-child(3) a {
-  transform: rotate(-149deg);
+  transform: rotate(-200deg);
 }
 .menu-item:nth-child(4) a {
-  transform: rotate(-209deg);
-}
-.menu-item:nth-child(5) a {
-  transform: rotate(-273deg);
-}
-.menu-item:nth-child(6) a {
-  transform: rotate(-328deg);
+  transform: rotate(-278deg);
 }
 .menu-item {
   position: absolute;
@@ -191,24 +179,14 @@
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Demographics.png') }}" alt="">
                                   </a>
                                 </li>
-                                <li class="menu-item">
-                                  <a class="nmis-icon" href="#">
-                                    <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Puzzle.png') }}" alt="">
-                                  </a>
-                                </li>
                                 <li class="menu-item">                                  
                                   <a class="nmis-icon" href="#">
-                                    <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Accounting.png') }}" alt="">
+                                    <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Test Passed.png') }}" alt="">
                                   </a>
                                 </li>
                                 <li class="menu-item">
                                   <a class="icon-nmis" class="nmis-icon"href="#">
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/People.png') }}" alt="">
-                                  </a>
-                                </li>
-                                <li class="menu-item">
-                                  <a class ="nmis-icon" href="#">
-                                    <img class="icon-nmis" src="{{ asset('assets/img/nmicon/User Groups.png') }}" alt="">
                                   </a>
                                 </li>
                                 <li class="menu-item">
