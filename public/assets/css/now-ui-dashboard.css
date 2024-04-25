@@ -447,6 +447,10 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
     border-color: #888;
 }
 
+.btn-danger {
+    color: red;
+}
+
 .btn.btn-link,
 .navbar .navbar-nav>a.btn.btn-link {
     color: #888;
@@ -580,17 +584,10 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 .show>.btn-primary.dropdown-toggle,
 .show>.btn-primary.dropdown-toggle:focus,
 .show>.btn-primary.dropdown-toggle:hover {
-<<<<<<< HEAD
-    background-color: #2b9e67;
-    color: #FFFFFF;
-    box-shadow: none;
-    border-color: #64987e;
-=======
     background-color: #59987e;
     color: #FFFFFF;
     box-shadow: none;
     border-color: #59987e;
->>>>>>> 57de86c (nmis: Remove NOW UI Background Tint)
 }
 
 .btn-primary:not([data-action]):not([class*="btn-outline-"]):hover {
@@ -4218,9 +4215,9 @@ Created using IcoMoon - icomoon.io
     height: 260px;
     padding-top: 80px;
     padding-bottom: 45px;
-    background: #141E30;
+    background: #64987e;
     /* fallback for old browsers */
-    background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
+    /* background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%); */
     position: relative;
     overflow: hidden;
 }
@@ -6011,4 +6008,88 @@ Created using IcoMoon - icomoon.io
 .btn.btn-dribbble.btn-neutral:focus,
 .btn.btn-dribbble.btn-neutral:active {
     color: #ed679b !important;
+}
+
+/* Modal */
+.modal-confirm {		
+	color: #636363;
+	width: 400px;
+}
+.modal-confirm .modal-content {
+	padding: 20px;
+	border-radius: 5px;
+	border: none;
+	text-align: center;
+	font-size: 14px;
+}
+.modal-confirm .modal-header {
+	border-bottom: none;   
+	position: relative;
+}
+.modal-confirm h4 {
+	text-align: center;
+	font-size: 26px;
+	margin: 30px 0 -10px;
+}
+.modal-confirm .close {
+	position: absolute;
+	top: -5px;
+	right: -2px;
+}
+.modal-confirm .modal-body {
+	color: #999;
+}
+.modal-confirm .modal-footer {
+	border: none;
+	text-align: center;		
+	border-radius: 5px;
+	font-size: 13px;
+	padding: 10px 15px 25px;
+}
+.modal-confirm .modal-footer a {
+	color: #999;
+}		
+.modal-confirm .icon-box {
+	width: 80px;
+	height: 80px;
+	margin: 0 auto;
+	border-radius: 50%;
+	z-index: 9;
+	text-align: center;
+	border: 3px solid #f15e5e;
+}
+.modal-confirm .icon-box i {
+	color: #f15e5e;
+	font-size: 46px;
+	display: inline-block;
+	margin-top: 13px;
+}
+.modal-confirm .btn, .modal-confirm .btn:active {
+	color: #fff;
+	border-radius: 4px;
+	background: #60c7c1;
+	text-decoration: none;
+	transition: all 0.4s;
+	line-height: normal;
+	min-width: 120px;
+	border: none;
+	min-height: 40px;
+	border-radius: 3px;
+	margin: 0 5px;
+}
+.modal-confirm .btn-secondary {
+	background: #c1c1c1;
+}
+.modal-confirm .btn-secondary:hover, .modal-confirm .btn-secondary:focus {
+	background: #a8a8a8;
+}
+.modal-confirm .btn-danger {
+	background: #f15e5e;
+}
+.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+	background: #ee3535;
+}
+.trigger-btn {
+	display: inline-block;
+	margin: 100px auto;
 }

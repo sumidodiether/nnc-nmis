@@ -14,7 +14,7 @@
       <div class="col-lg-4">
         <div class="card card-chart">
           <div class="card-header">
-            <h5 class="card-category">NMIS</h5>
+            <h5 class="card-category">National Nutrition Council</h5>
             <h4 class="card-title">Sample graph</h4>
             <div class="dropdown">
               <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
@@ -43,7 +43,7 @@
       <div class="col-lg-4 col-md-6">
         <div class="card card-chart">
           <div class="card-header">
-            <h5 class="card-category">NMIS</h5>
+            <h5 class="card-category">National Nutrition Council</h5>
             <h4 class="card-title">Sample graph</h4>
             <div class="dropdown">
               <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
@@ -72,8 +72,8 @@
       <div class="col-lg-4 col-md-6">
         <div class="card card-chart">
           <div class="card-header">
-            <h5 class="card-category">NMIS</h5>
-            <h4 class="card-title">Sample graph</h4>
+            <h5 class="card-category">National Nutrition Council</h5>
+            <h4 class="card-title">Budget Allocation</h4>
           </div>
           <div class="card-body">
             <div class="chart-area">
@@ -82,7 +82,7 @@
           </div>
           <div class="card-footer">
             <div class="stats">
-              <i class="now-ui-icons ui-2_time-alarm"></i> Last 7 days
+              <i class="now-ui-icons ui-2_time-alarm"></i> ...
             </div>
           </div>
         </div>

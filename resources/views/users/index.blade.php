@@ -120,6 +120,9 @@
       console.log('Facebook Track Error:', err);
     }
   </script>
+
+
+
 </head>
 <body class="sidebar-mini clickup-chrome-ext_installed">
   <noscript>
@@ -201,51 +204,30 @@
           </li>
           
           <li >
-            <a href="{{ route('page.index','icons') }}">
+            <a href="#">
               <i class="now-ui-icons business_chart-bar-32"></i>
-              <p>{{ __('LGU Demographics') }}</p>
+              <p>{{ __('LGU Performance') }}</p>
             </a>
           </li>
+          
           <li >
-            <a href="{{ route('page.index','maps') }}">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>{{ __('Local Nutrition Profile') }}</p>
-            </a>
-          </li>
-          <li >
-            <a href="{{ route('page.index','notifications') }}">
+            <a href="#">
               <i class="now-ui-icons files_single-copy-04"></i>
-              <p>{{ __('Available Program Resource') }}</p>
+              <p>{{ __('Resources') }}</p>
             </a>
           </li>
-          <li >
-            <a href="{{ route('page.index','table') }}">
-              <i class="now-ui-icons users_single-02"></i>
-              <p>Human Resource Profile</p>
-            </a>
-          </li>
+
           <li>
-            <a href="{{ route('page.index','typography') }}">
-              <i class="now-ui-icons business_money-coins"></i>
-              <p>{{ __('Budget Allocation') }}</p>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route('page.index','typography') }}">
+            <a href="#">
               <i class="now-ui-icons design_palette"></i>
-              <p>{{ __('Structure') }}</p>
+              <p>{{ __('Operation Timbang Plus') }}</p>
             </a>
           </li>
+
           <li>
-            <a href="{{ route('page.index','typography') }}">
-              <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
-              <p>{{ __('Upload') }}</p>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route('page.index','typography') }}">
-              <i class="now-ui-icons health_ambulance"></i>
-              <p>{{ __('Request') }}</p>
+            <a href="#">
+              <i class="now-ui-icons files_single-copy-04"></i>
+              <p>{{ __('Request Approval') }}</p>
             </a>
           </li>
           <li>
@@ -373,6 +355,7 @@
             <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
               <thead>
                 <tr>
+                <td><input type="checkbox" name="" id=""></td>
                   <th>Profile</th>
                   <th>Name</th>
                   <th>Email</th>
@@ -382,6 +365,7 @@
               </thead>
               <tfoot>
                 <tr>
+                <th></th>
                   <th>Profile</th>
                   <th>Name</th>
                   <th>Email</th>
@@ -392,6 +376,7 @@
               <tbody>
               @foreach ($usersList as $users)
                   <tr>
+                    <td><input type="checkbox" name="" id=""></td>
                     <td>
                       <span class="avatar avatar-sm rounded-circle">
                         <img src="{{asset('assets')}}/img/default-avatar.png" alt="" style="max-width: 80px; border-radiu: 100px">
@@ -401,10 +386,16 @@
                     <td>{{ $users->email }}</td>
                     <td>{{ $users->created_at }}</td>
                       <td class="text-right">
+                        <!-- <a type="button" href="#" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="" title="">
+                          <i class="now-ui-icons ui-2_settings-90"></i>
+                        </a> -->
                         <a type="button" href="#" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="" title="">
-                        <i class="now-ui-icons ui-2_settings-90"></i>
-                      </a>
-                    </td>
+                          <i class="now-ui-icons design-2_ruler-pencil"></i>
+                        </a>
+                        <a type="button" href='#DeleteUserModal' rel="tooltip" class="btn btn-success btn-icon btn-sm btn-danger" data-original-title="" title="" data-toggle="modal">
+                          <i class="now-ui-icons files_box"></i>
+                        </a>
+                      </td>
                   </tr>
               @endforeach
               </tbody>
@@ -423,7 +414,7 @@
     <!-- end row -->
   </div>
     <footer class="footer">
-  <div class=" container-fluid ">
+  <!-- <div class=" container-fluid ">
     <nav>
       <ul>
         <li>
@@ -456,7 +447,7 @@
       <a href="https://www.creative-tim.com" target="_blank"> Creative Tim </a>&amp;
       <a href="https://www.updivision.com" target="_blank"> Updivision</a>
     </div>
-  </div>
+  </div> -->
 </footer></div>                    </div>
   <!--   Core JS Files   -->
   <script src="{{ asset('assets') }}/js/core/jquery.min.js"></script>
@@ -474,6 +465,28 @@
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="{{ asset('assets') }}/demo/demo.js"></script>
   @stack('js')
+
+<!-- Delete User Modal -->
+<div id="DeleteUserModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header flex-column">
+				<div class="icon-box">
+          <i class="now-ui-icons ui-1_simple-remove"></i>
+				</div>						
+				<h4 class="modal-title w-100">Are you sure?</h4>	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<p>Do you really want to DELETE this user? This process cannot be undone.</p>
+			</div>
+			<div class="modal-footer justify-content-center">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-danger" name="DeleteUser">Delete</button>
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 
 </html>

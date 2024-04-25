@@ -56,21 +56,12 @@
           <i class="now-ui-icons business_chart-bar-32"></i>
           <p>{{ __('LGU Demographics') }}</p>
         </a> -->
-        <a href="#">
+        <a href="{{ route('page.index','icons') }}">
           <i class="now-ui-icons business_chart-bar-32"></i>
-          <p>{{ __('LGU Demographics') }}</p>
+          <p>{{ __('LGU Performance') }}</p>
         </a>
       </li>
-      <li class = "@if ($activePage == 'maps') active @endif">
-        <!-- <a href="{{ route('page.index','maps') }}">
-          <i class="now-ui-icons users_single-02"></i>
-          <p>{{ __('Local Nutrition Profile') }}</p>
-        </a> -->
-        <a href="#">
-          <i class="now-ui-icons users_single-02"></i>
-          <p>{{ __('Local Nutrition Profile') }}</p>
-        </a>
-      </li>
+      
       <li class = " @if ($activePage == 'notifications') active @endif">
         <!-- <a href="{{ route('page.index','notifications') }}">
           <i class="now-ui-icons files_single-copy-04"></i>
@@ -78,29 +69,10 @@
         </a> -->
         <a href="#">
           <i class="now-ui-icons files_single-copy-04"></i>
-          <p>{{ __('Available Program Resource') }}</p>
+          <p>{{ __('Resources') }}</p>
         </a>
       </li>
-      <li class = " @if ($activePage == 'table') active @endif">
-        <!-- <a href="{{ route('page.index','table') }}">
-          <i class="now-ui-icons users_single-02"></i>
-          <p>{{ __('Human Resource Profile') }}</p>
-        </a> -->
-        <a href="#">
-          <i class="now-ui-icons users_single-02"></i>
-          <p>{{ __('Human Resource Profile') }}</p>
-        </a>
-      </li>
-      <li class = "@if ($activePage == 'typography') active @endif">
-        <!-- <a href="{{ route('page.index','typography') }}">
-          <i class="now-ui-icons business_money-coins"></i>
-          <p>{{ __('Budget Allocation') }}</p>
-        </a> -->
-        <a href="#">
-          <i class="now-ui-icons business_money-coins"></i>
-          <p>{{ __('Budget Allocation') }}</p>
-        </a>
-      </li>
+      
       <li class = "@if ($activePage == 'typography') active @endif">
         <!-- <a href="{{ route('page.index','typography') }}">
           <i class="now-ui-icons design_palette"></i>
@@ -108,27 +80,18 @@
         </a> -->
         <a href="#">
           <i class="now-ui-icons design_palette"></i>
-          <p>{{ __('Structure') }}</p>
+          <p>{{ __('Operation Timbang Plus') }}</p>
         </a>
       </li>
-      <li class = "@if ($activePage == 'typography') active @endif">
-        <!-- <a href="{{ route('page.index','typography') }}">
-          <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
-          <p>{{ __('Upload') }}</p>
-        </a> -->
-        <a href="#">
-          <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
-          <p>{{ __('Upload') }}</p>
-        </a>
-      </li>
+      
       <li class = "@if ($activePage == 'typography') active @endif">
         <!-- <a href="{{ route('page.index','typography') }}">
           <i class="now-ui-icons health_ambulance"></i>
           <p>{{ __('Request') }}</p>
         </a> -->
         <a href="#">
-          <i class="now-ui-icons health_ambulance"></i>
-          <p>{{ __('Request') }}</p>
+          <i class="now-ui-icons files_single-copy-04"></i>
+          <p>{{ __('Request Approval') }}</p>
         </a>
       </li>
       <li>
