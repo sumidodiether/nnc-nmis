@@ -12,7 +12,12 @@
     <div class="collapse navbar-collapse justify-content-end" id="navigation">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a href="{{ route('login') }}" class="nav-link">
+          <a href="{{ route('requestportal.view') }}" class="nav-link">
+            <i class="now-ui-icons design_app"></i> {{ __("Request Portal") }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('home') }}" class="nav-link">
             <i class="now-ui-icons design_app"></i> {{ __("Dashboard") }}
           </a>
         </li>

@@ -56,10 +56,33 @@
           <i class="now-ui-icons business_chart-bar-32"></i>
           <p>{{ __('LGU Demographics') }}</p>
         </a> -->
-        <a href="{{ route('page.index','icons') }}">
+        <!-- <a href="{{ route('page.index','icons') }}">
           <i class="now-ui-icons business_chart-bar-32"></i>
           <p>{{ __('LGU Performance') }}</p>
+        </a> -->
+        <a data-toggle="collapse" href="#LguPerformance">
+            <i class="now-ui-icons ui-1_settings-gear-63"></i>
+          <p>
+             {{ __('LGU Performance') }}
+            <b class="caret"></b>
+          </p>
         </a>
+        <div class="collapse show" id="LguPerformance">
+          <ul class="nav">
+            <li class="@if ($activePage == 'mellpi_pro') active @endif">
+              <a href="{{ route('mellpi_pro.view') }}">
+                <i class="now-ui-icons text_align-left"></i>
+                <p> {{ __("MELLPI Pro") }} </p>
+              </a>
+            </li>
+            <li class="@if ($activePage == 'lncFunction') active @endif">
+              <a href="{{ route('lncFunction.index') }}">
+                <i class="now-ui-icons files_paper"></i>
+                <p> {{ __("LNC Functionality") }} </p>
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
       
       <li class = " @if ($activePage == 'notifications') active @endif">

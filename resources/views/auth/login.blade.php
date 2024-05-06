@@ -54,7 +54,7 @@
                         <i class="now-ui-icons objects_key-25 text-dark"></i></i>
                     </div>
                     </div>
-                    <input placeholder="Password" class="form-control text-dark {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" type="password" required>
+                    <input placeholder="Password" class="form-control text-dark {{ $errors->has('password') ? ' is-invalid' : '' }}"  name="password" type="password" required>
                 </div>
                 @if ($errors->has('password'))
                     <span class="invalid-feedback" style="display: block;" role="alert">

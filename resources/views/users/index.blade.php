@@ -186,11 +186,11 @@
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
       <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="#" class="simple-text logo-mini">
           <!-- {{ __('CT') }} -->
           <img src="{{ asset('assets') }}/img/logo.png">
         </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="#" class="simple-text logo-normal">
           {{ __('NMIS') }}
         </a>
       </div>
@@ -342,10 +342,10 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-              <a class="btn btn-primary btn-round text-white pull-right" href="#">Add user</a>
+              <a class="btn btn-primary btn-round text-white pull-right" href="#" data-target="#addUser" data-toggle="modal">Add user</a>
             <h4 class="card-title">Users</h4>
-            <div class="col-12 mt-2">
-                                        </div>
+
+            <div class="col-12 mt-2"></div>
           </div>
           <div class="card-body">
             <div class="toolbar">
@@ -355,7 +355,7 @@
             <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
               <thead>
                 <tr>
-                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id="" title="Select all"></td>
                   <th>Profile</th>
                   <th>Name</th>
                   <th>Email</th>
@@ -389,11 +389,17 @@
                         <!-- <a type="button" href="#" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="" title="">
                           <i class="now-ui-icons ui-2_settings-90"></i>
                         </a> -->
-                        <a type="button" href="#" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="" title="">
+                        <a type="button" href="#" title="Edit" rel="tooltip" class="btn btn-success btn-icon btn-sm " data-original-title="" title="">
                           <i class="now-ui-icons design-2_ruler-pencil"></i>
                         </a>
-                        <a type="button" href='#DeleteUserModal' rel="tooltip" class="btn btn-success btn-icon btn-sm btn-danger" data-original-title="" title="" data-toggle="modal">
+                        <!-- <a type="button" data-toggle="modal" data-target="#DeleteUserModal" id="deleteUserId" data-product-id="{{ $users->id }}" rel="tooltip" class="btn btn-success btn-icon btn-sm btn-danger" data-original-title="" title="">
                           <i class="now-ui-icons files_box"></i>
+                        </a> -->
+                        <!-- <a type="button" data-id="{{ $users->id }}" data-toggle="modal" data-target="#confirmDelete" rel="tooltip" class="btn btn-success btn-icon btn-sm btn-danger" id="deleteIcon">
+                          <i class="now-ui-icons files_box"></i>
+                        </a> -->
+                        <a href="#" title="Delete" class="btn btn-success btn-icon btn-sm btn-danger deleteButton" data-id="{{ $users->id }}" data-toggle="modal" data-target="#confirmDelete" rel="tooltip" id="deleteIcon">
+                        <i class="now-ui-icons files_box"></i>
                         </a>
                       </td>
                   </tr>
@@ -466,27 +472,96 @@
   <script src="{{ asset('assets') }}/demo/demo.js"></script>
   @stack('js')
 
+<!-- get id using jquery -->
+<script>
+    // $('#confirmDelete').on('show.bs.modal', function (event) {
+    //     var button = $(event.relatedTarget);
+    //     // var id = button.data('id');
+    //     var id = $(this).data('id');
+    //     // var id = $('#deleteButton').attr('data-id');
+    //     console.log("The ID is: " + id);
+    //     var modal = $(this);
+    //     modal.find('#deleteForm').attr('action', '/users/' + id);
+    // });
+
+    $(document).ready(function() {
+  $('.deleteButton').click(function() {
+    var id = $(this).data('id');
+    console.log("Button clicked. ID:", id);
+    $('#deleteUserId').val(id); // Set the ID in the hidden input field
+  });
+
+  $('#confirmDelete').on('show.bs.modal', function (event) {
+    var id = $('#deleteUserId').val();
+    console.log("Modal shown. ID:", id);
+    $('#deleteForm').attr('action', '/users/' + id);
+  });
+});
+
+
+
+</script>
+
 <!-- Delete User Modal -->
-<div id="DeleteUserModal" class="modal fade">
-	<div class="modal-dialog modal-confirm">
-		<div class="modal-content">
-			<div class="modal-header flex-column">
-				<div class="icon-box">
-          <i class="now-ui-icons ui-1_simple-remove"></i>
-				</div>						
-				<h4 class="modal-title w-100">Are you sure?</h4>	
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body">
-				<p>Do you really want to DELETE this user? This process cannot be undone.</p>
-			</div>
-			<div class="modal-footer justify-content-center">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-danger" name="DeleteUser">Delete</button>
-			</div>
-		</div>
-	</div>
+<div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmDeleteLabel">Confirm Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="deleteUserId">
+        Are you sure you want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <form id="deleteForm" method="POST">
+          @csrf
+          @method('DELETE')
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
+<!-- End Delete User Modal -->
+
+<!-- Add User Modal-->
+<div class="modal fade" id="addUser" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog d-flex justify-content-center">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Add User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-4">
+                <form action="{{ route('users.store') }}" method="POST">
+                  @csrf
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="name2">Name</label>
+                        <input type="text" name="nameAdd_User" id="nameAddUser" class="form-control"/>
+                    </div>
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="email2">Email address</label>
+                        <input type="email" name="emailAdd_User" id="emailAddUser" class="form-control" />
+                    </div>
+
+                    <div data-mdb-input-init class="form-outline mb-4">
+                        <label class="form-label" for="password2">Password</label>
+                        <input type="password" name="passwordAdd_User" id="passwordAddUser" class="form-control" />
+                    </div>
+                    <button type="submit" name="addUserBtn" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block">Add User</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Add User Modal -->
 </body>
 
 </html>
