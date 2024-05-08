@@ -11,6 +11,6 @@ class LNCFunc extends Model
 
     // protected $fillable = ['barangay', 'municipality', 'province', 'updated_at', 'created_at'];
     // protected $guarded = ['id'];
-    // protected $table = 'mellpi_pro';
+    protected $table = 'lncdata';
     
 }

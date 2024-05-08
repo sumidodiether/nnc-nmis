@@ -185,9 +185,18 @@
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
+
+    @extends('layouts.app', [
+    'class' => 'sidebar-mini ',
+    'namePage' => 'User',
+    'activePage' => 'users',
+    'activeNav' => '',
+    ])
+
+
       <div class="logo">
         <a href="#" class="simple-text logo-mini">
-          <!-- {{ __('CT') }} -->
+          
           <img src="{{ asset('assets') }}/img/logo.png">
         </a>
         <a href="#" class="simple-text logo-normal">
@@ -254,15 +263,10 @@
                   </li>
                 </ul>
               </div>
-          <!-- <li class = "">
-            <a href="{{ route('page.index','upgrade') }}" class="bg-info">
-              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <p>{{ __('Upgrade to PRO') }}</p>
-            </a>
-          </li> -->
         </ul>
       </div>
-    </div><div class="main-panel">
+    </div>
+    <div class="main-panel">
  <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
   <div class="container-fluid">
@@ -562,6 +566,7 @@
     </div>
 </div>
 <!-- End Add User Modal -->
+
 </body>
 
 </html>

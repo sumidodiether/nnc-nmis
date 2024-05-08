@@ -24,7 +24,7 @@ class LNCController extends Controller
      */
     public function create()
     {
-        //
+        return view('checklist_func_provincial.lncFunc_create'); 
     }
 
     /**

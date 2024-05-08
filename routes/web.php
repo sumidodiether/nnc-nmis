@@ -8,6 +8,7 @@ use App\Http\Controllers\LNCController;
 use App\Http\Controllers\LguPerformance\MellpiProController;
 use App\Http\Controllers\RequestPortalController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\publicDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +21,17 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+     return view('welcome');
+    // var_dump($_SERVER);
+        // echo "<pre>";
+        // var_dump($_SERVER);
+        // echo "</pre>";
 });
 
 Route::get('/request-portal', [RequestPortalController::class, 'index'])->name('requestportal.view');
+Route::get('/publicDashboard', [publicDashboardController::class, 'index'])->name('guest');
 
 
 
@@ -42,16 +49,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/mellpi_pro_create', [MellpiProController::class, 'create'])->name('mellpi_pro.create');
     //Route::get('/lncFunction' ,  [LNCController::class, 'index' ]->name('LNCIndex.view'));
     Route::resource('/lncFunction', LNCController::class);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 
 require __DIR__.'/auth.php';
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
 Auth::routes();
 
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+// Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);

@@ -2,21 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 
-.tableColWidth {
-width:30%!important;
- word-break: break-all
-}  */
-
-.fixed-column {
-    position:sticky;
-    left: 0;
-    z-index: 1; 
-    background-color: red; 
-    max-width: 20px!important;
-}
-
-.overflow-container {
-    overflow-x: auto;
-    white-space: nowrap;
-}
