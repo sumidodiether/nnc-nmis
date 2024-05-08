@@ -9,6 +9,9 @@ use App\Http\Controllers\LguPerformance\MellpiProController;
 use App\Http\Controllers\RequestPortalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\publicDashboardController;
+use App\Http\Controllers\EquipmentInventoryController;
+use App\Http\Controllers\NutritionOfficesController;
+use App\Http\Controllers\PersonnelDnaDirectoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +26,10 @@ use App\Http\Controllers\publicDashboardController;
 
 
 Route::get('/', function () {
-     return view('welcome');
-    // var_dump($_SERVER);
+    return view('welcome'); 
         // echo "<pre>";
-        // var_dump($_SERVER);
+        // var_dump($_SERVER["DOCUMENT_ROOT"]);
+        // var_dump($_SERVER["DOCUMENT_URI"]);
         // echo "</pre>";
 });
 
@@ -50,6 +53,9 @@ Route::middleware('auth')->group(function () {
     //Route::get('/lncFunction' ,  [LNCController::class, 'index' ]->name('LNCIndex.view'));
     Route::resource('/lncFunction', LNCController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/personnelDnaDirectory' ,[App\Http\Controllers\PersonnelDnaDirectoryController::class, 'index'])->name('personnelDnaDirectory');
+    Route::get('/nutritionOffices' ,[App\Http\Controllers\NutritionOfficesController::class, 'index'])->name('nutritionOffices');
+    Route::get('/equipmentInventory' ,[App\Http\Controllers\EquipmentInventoryController::class, 'index'])->name('equipmentInventory');
 });
 
 require __DIR__.'/auth.php';

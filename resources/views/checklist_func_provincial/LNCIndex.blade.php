@@ -13,7 +13,7 @@
   </div> 
   <div class="content">
     <div class="card">
-      <div class="row-md-12" style="display:inline-block">
+      <div class="row-md-12" style="display:flex; flex-direction: row;  ">
         <div class="card-header">
           <h5 class="title">{{__(" LNC Functional Provincial")}}</h5>
         </div> 

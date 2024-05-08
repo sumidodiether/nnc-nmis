@@ -240,14 +240,14 @@
             </a>
           </li>
           <li>
-              <a data-toggle="collapse" href="#laravelExamples">
+              <a data-toggle="collapse" href="#userSettings">
                   <i class="now-ui-icons ui-1_settings-gear-63"></i>
                 <p>
                   {{ __("Settings") }}
                   <b class="caret"></b>
                 </p>
               </a>
-              <div class="collapse show" id="laravelExamples">
+              <div class="collapse show" id="userSettings">
                 <ul class="nav">
                   <li >
                     <a href="{{ route('profile.edit') }}">

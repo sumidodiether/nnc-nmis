@@ -61,7 +61,7 @@
           <p>{{ __('LGU Performance') }}</p>
         </a> -->
         <a data-toggle="collapse" href="#LguPerformance">
-            <i class="now-ui-icons ui-1_settings-gear-63"></i>
+            <!-- <i class="now-ui-icons ui-1_settings-gear-63"></i> -->
           <p>
              {{ __('LGU Performance') }}
             <b class="caret"></b>
@@ -84,16 +84,37 @@
           </ul>
         </div>
       </li>
-      
-      <li class = " @if ($activePage == 'notifications') active @endif">
-        <!-- <a href="{{ route('page.index','notifications') }}">
-          <i class="now-ui-icons files_single-copy-04"></i>
-          <p>{{ __('Available Program Resource') }}</p>
-        </a> -->
-        <a href="#">
-          <i class="now-ui-icons files_single-copy-04"></i>
-          <p>{{ __('Resources') }}</p>
+
+      <li class="@if ($activePage == 'notifications') active @endif">
+        <a data-toggle="collapse" href="#AvailableResource">
+        <!-- <i class="now-ui-icons files_single-copy-04"></i> -->
+          <p>
+             {{ __('Resources') }}
+            <b class="caret"></b>
+          </p>
         </a>
+        <div class="collapse show" id="AvailableResource">
+          <ul class="nav">
+            <li class="@if ($activePage == 'PersonnelDnaDirectory') active @endif">
+              <a href="{{ route('personnelDnaDirectory') }}">
+                <i class="now-ui-icons text_align-left"></i>
+                <p> {{ __("Personnel DNA Directory") }} </p>
+              </a>
+            </li>
+            <li class="@if ($activePage == 'NutritionOffices') active @endif">
+              <a href="{{ route('nutritionOffices') }}">
+                <i class="now-ui-icons files_paper"></i>
+                <p> {{ __("Nutrition Offices") }} </p>
+              </a>
+            </li>
+            <li class="@if ($activePage == 'EquipmentInventory') active @endif">
+              <a href="{{ route('equipmentInventory') }}">
+                <i class="now-ui-icons files_paper"></i>
+                <p> {{ __("Equipment Inventory") }} </p>
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
       
       <li class = "@if ($activePage == 'typography') active @endif">
