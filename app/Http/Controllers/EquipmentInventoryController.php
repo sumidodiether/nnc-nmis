@@ -16,4 +16,9 @@ class EquipmentInventoryController extends Controller
     {
         return view('equipment_inventory/create.equipmentInventoryIndex');
     }
+
+    public function create()
+    {
+        return view('equipment_inventory/create.equipmentInventory'); 
+    }
 }

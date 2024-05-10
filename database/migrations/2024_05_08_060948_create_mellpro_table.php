@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mellpro', function (Blueprint $table) {
-            $table->id(); 
-            $table->timestamps();
-        });
+        // Schema::create('mellpro', function (Blueprint $table) {
+        //     $table->increments('id'); 
+        //     $table->timestamps();
+        // });
 
         Schema::create('regions', function (Blueprint $table) {
             $table->increments('id');

@@ -55,7 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/personnelDnaDirectory' ,[App\Http\Controllers\PersonnelDnaDirectoryController::class, 'index'])->name('personnelDnaDirectory');
     Route::get('/nutritionOffices' ,[App\Http\Controllers\NutritionOfficesController::class, 'index'])->name('nutritionOffices');
-    Route::get('/equipmentInventory' ,[App\Http\Controllers\EquipmentInventoryController::class, 'index'])->name('equipmentInventory');
+    Route::get('/equipmentInventoryIndex' ,[App\Http\Controllers\EquipmentInventoryController::class, 'index'])->name('equipmentInventoryIndex');
+    Route::get('/equipmentInventory' ,[App\Http\Controllers\EquipmentInventoryController::class, 'create'])->name('equipmentInventory');
 });
 
 require __DIR__.'/auth.php';

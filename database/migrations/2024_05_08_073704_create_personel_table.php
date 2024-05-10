@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('personnels', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('lastname', 100);
             $table->string('firstname', 100);
             $table->string('middlename', 100);
@@ -24,12 +24,10 @@ return new class extends Migration
             $table->string('degreeCourse', 100);
             $table->string('address', 100);
             $table->string('civilstatus', 100);
-            $table->string('email', 100);
+            $table->string('email', 100)->unique(); //refactor
             $table->string('cellphonenumer', 100);
             $table->string('telephonenumber', 100);
-
-            // check if the columns are valid for migration
-            // expected errors: undefined tables
+ 
             $table->integer('region_id')->unsigned(); 
             $table->integer('province_id')->unsigned(); 
             $table->integer('municipal_id')->unsigned(); 
@@ -43,16 +41,14 @@ return new class extends Migration
 
 
         Schema::create('naos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('typenao', 100);
             $table->string('typedesignation', 100);
             $table->date('datedesignation');
             $table->string('typeappointment', 100);
             $table->string('position', 100);
             $table->string('department', 100);  
-             
-            // check if the columns are valid for migration
-            // expected errors: undefined tables
+              
             $table->integer('personnel_id')->unsigned(); 
             $table->foreign('personnel_id')->references('id')->on('personnels');
             $table->timestamps();
@@ -60,7 +56,7 @@ return new class extends Migration
 
 
         Schema::create('npcs', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('typenpc', 100);
             $table->string('typedesignation', 100);
             $table->date('datedesignation');
@@ -70,16 +66,14 @@ return new class extends Migration
             $table->string('dcnpcapmembership', 100);  
             $table->string('dcnpcapposition', 100);  
             $table->string('dcnpcapofficer', 100);  
-             
-            // check if the columns are valid for migration
-            // expected errors: undefined tables
+              
             $table->integer('personnel_id')->unsigned(); 
             $table->foreign('personnel_id')->references('id')->on('personnels');
             $table->timestamps();
         });
 
         Schema::create('bnss', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('statusemployment', 100);
             $table->string('beneficiaryname', 100);
             $table->date('relationship');
@@ -87,9 +81,7 @@ return new class extends Migration
             $table->date('periodactiveto');
             $table->date('lastupdate');
             $table->string('bnsstatus', 100);   
-             
-            // check if the columns are valid for migration
-            // expected errors: undefined tables
+              
             $table->integer('personnel_id')->unsigned(); 
             $table->foreign('personnel_id')->references('id')->on('personnels');
             $table->timestamps();

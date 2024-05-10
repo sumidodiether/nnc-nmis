@@ -107,8 +107,8 @@
                 <p> {{ __("Nutrition Offices") }} </p>
               </a>
             </li>
-            <li class="@if ($activePage == 'EquipmentInventory') active @endif">
-              <a href="{{ route('equipmentInventory') }}">
+            <li class="@if ($activePage == 'EquipmentInventoryIndex') active @endif">
+              <a href="{{ route('equipmentInventoryIndex') }}">
                 <i class="now-ui-icons files_paper"></i>
                 <p> {{ __("Equipment Inventory") }} </p>
               </a>
