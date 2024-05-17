@@ -14,5 +14,8 @@ class Mellpi extends Model
     protected $guarded = ['id'];
 
     protected $table = 'mellpi_pro';
+
+
+    
     
 }

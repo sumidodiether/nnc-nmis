@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('mellpro', function (Blueprint $table) {
-        //     $table->increments('id'); 
-        //     $table->timestamps();
-        // });
-
         Schema::create('regions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('region', 100);
+            
+            $table->integer('psgccode_id')->unsigned(); 
+            $table->foreign('psgccode_id')->references('id')->on('psgcs');
             $table->timestamps();
         }); 
 
         Schema::create('provinces', function (Blueprint $table) {
             $table->increments('id');
             $table->string('province', 100);
+            
             $table->integer('region_id')->unsigned(); 
             $table->foreign('region_id')->references('id')->on('regions'); 
             $table->timestamps();
@@ -48,7 +47,6 @@ return new class extends Migration
             $table->timestamps();
 
         }); 
-
 
         // Forms&Rating
         Schema::create('visionmissions' , function (Blueprint $table) {
@@ -229,5 +227,12 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('mellpro');
+        Schema::dropIfExists('provinces');
+        Schema::dropIfExists('municipals');
+        Schema::dropIfExists('barangays');
+        Schema::dropIfExists('visionmissions');
+        Schema::dropIfExists('nationalpolicies');
+        Schema::dropIfExists('governances');
+        Schema::dropIfExists('managements');
     }
 };

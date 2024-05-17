@@ -177,21 +177,37 @@
                                 <li class="menu-item">                                  
                                   <a class="nmis-icon" href="">
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Demographics.png') }}" alt="">
+                                    <div class="navigation-titles" style="position: relative;right: 200%;bottom: 40%;">
+                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: right;">Dashboard</h4>
+                                      <p class="nav-text" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-size: 13px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                    </div>
                                   </a>
                                 </li>
                                 <li class="menu-item">                                  
                                   <a class="nmis-icon" href="#">
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Test Passed.png') }}" alt="">
+                                    <div class="navigation-titles" style="position: relative;left: 110%;bottom: 37%;">
+                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: left;">Resources</h4>
+                                      <p class="nav-text" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-size: 13px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                    </div>
                                   </a>
                                 </li>
                                 <li class="menu-item">
                                   <a class="icon-nmis" class="nmis-icon"href="#">
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/People.png') }}" alt="">
+                                    <div class="navigation-titles" style="position: relative;left: 110%;bottom: 37%;">
+                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: left;">Operation Timbang Plus</h4>
+                                      <p class="nav-text" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-size: 13px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                    </div>
                                   </a>
                                 </li>
                                 <li class="menu-item">
                                   <a class="nmis-icon" href="#">
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Profile.png') }}" alt="">
+                                    <div class="navigation-titles" style="position: relative;right: 200%;bottom: 40%;">
+                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: right;">LGU Performance</h4>
+                                      <p class="nav-text" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-size: 13px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                    </div>
                                   </a>
                                 </li>
                               </ul>
@@ -208,6 +224,37 @@
       </div>
     </div>
   </div>
+
+   {{-- <section class="section bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>About Us</h5>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact Information</h5>
+          <ul class="list-unstyled">
+            <li>Email: info@example.com</li>
+            <li>Phone: (123) 456-7890</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Follow Us</h5>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Facebook</a></li>
+            <li class="list-inline-item"><a href="#">Twitter</a></li>
+            <li class="list-inline-item"><a href="#">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section> --}}
+
+@endsection
+
+@section('footer')
+ 
 @endsection
 
 @push('js')

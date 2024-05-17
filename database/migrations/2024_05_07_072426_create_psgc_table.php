@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('psgccode');//10 digit number
             $table->integer('correspondencecode');//10 digit number
             $table->string('geolevel', 100);//10 digit number
+            $table->string('oldname', 100);//10 digit number
             $table->string('incomeclass', 100);//10 digit number
             $table->timestamps();
         });
@@ -39,6 +40,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('psgc');
+        Schema::dropIfExists('psgcs');
+        Schema::dropIfExists('population');
     }
 };

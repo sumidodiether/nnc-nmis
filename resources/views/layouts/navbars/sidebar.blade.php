@@ -71,7 +71,7 @@
           <ul class="nav">
             <li class="@if ($activePage == 'mellpi_pro') active @endif">
               <a href="{{ route('mellpi_pro.view') }}">
-                <i class="now-ui-icons text_align-left"></i>
+              <i class="now-ui-icons files_paper"></i>
                 <p> {{ __("MELLPI Pro") }} </p>
               </a>
             </li>
@@ -97,7 +97,7 @@
           <ul class="nav">
             <li class="@if ($activePage == 'PersonnelDnaDirectory') active @endif">
               <a href="{{ route('personnelDnaDirectory') }}">
-                <i class="now-ui-icons text_align-left"></i>
+              <i class="now-ui-icons files_paper"></i>
                 <p> {{ __("Personnel DNA Directory") }} </p>
               </a>
             </li>
@@ -140,7 +140,7 @@
       </li>
       <li>
         <a data-toggle="collapse" href="#laravelExamples">
-            <i class="now-ui-icons ui-1_settings-gear-63"></i>
+            <!-- <i class="now-ui-icons files_paper"></i> -->
           <p>
             {{ __("Settings") }}
             <b class="caret"></b>

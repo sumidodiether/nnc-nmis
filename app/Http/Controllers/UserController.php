@@ -28,6 +28,8 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User deleted successfully.');
     }
 
+    //add user function
+
     public function store(Request $request) {
         try {
             //code...
@@ -43,35 +45,6 @@ class UserController extends Controller
             //throw $th;
             return "An error occurred: " . $th->getMessage();
         }
-    //     try {
-    //     $addUser->validate([
-    //         'nameAdd_User' => 'required|string|max:255',
-    //         // 'emailAdd_User' => 'required|email|unique:users|max:255',
-    //         // 'passwordAdd_User' => 'required|string|min:8',
-    //     ]);
-
-    //     $nameAddUser = $request->input('nameAdd_User');
-    //     $emailAddUser = $request->input('emailAdd_User');
-    //     $passwordAddUser = bcrypt($request->input('passwordAdd_User'));
-
-    //     // user::create([
-
-    //     //     'name' => $nameAddUser,
-    //     //     'email' => $emailAddUser,
-    //     //     'password' => $passwordAddUser,
-    //     // ]);
-
-    //     $addNewUser = new User;
-
-    //     $addNewUser->name=$request->input('nameAdd_User');
-    //     var_dump($addNewUser->name); die();
-        
-    //     $addNewUser->save();
-
-    //     return redirect()->route('users.index')->with('success', 'User created successfully.');
-    // } catch (\Exception $e) {
-    //     return redirect()->back()->with('error', 'An error occurred while creating the user: ' . $e->getMessage());
-    // }
     }
 
     /**

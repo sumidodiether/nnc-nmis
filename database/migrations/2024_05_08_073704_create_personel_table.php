@@ -97,5 +97,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('personels');
+        Schema::dropIfExists('naos');
+        Schema::dropIfExists('npcs');
+        Schema::dropIfExists('bnss');
+
     }
 };
