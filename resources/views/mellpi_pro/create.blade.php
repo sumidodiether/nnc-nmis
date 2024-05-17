@@ -37,7 +37,7 @@
                     <h5 class="title">{{__(" MellPi Pro LGU Profile")}}</h5>
                 </div>
                 <div class="card-header row-6 d-inline-flex">
-                    <form action="{{ route('mellpi_pro.upload') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('mellpi_pro.uploadPSGC') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                         <div class="input-group mb-3">
                             <div class="custom-file">
