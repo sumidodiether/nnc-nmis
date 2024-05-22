@@ -11,7 +11,7 @@ class Municipal extends Model
 
     protected $table = 'municipals';
     protected $guarded = ['id'];
-    protected $fillable = ['municipal','updated_at', 'created_at'];
+    protected $fillable = ['province_id','municipal','munclass','munnumber','updated_at', 'created_at'];
 
     
 }

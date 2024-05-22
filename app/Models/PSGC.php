@@ -10,7 +10,7 @@ class PSGC extends Model
     use HasFactory;
     protected $table = 'psgcs';
     protected $guarded = ['id'];
-    protected $fillable = ['psgccode','correspondencecode','geolevel','incomeclass','updated_at', 'created_at'];
+    protected $fillable = ['psgccode','correspondencecode','geolevel','oldname','incomeclass','updated_at', 'created_at'];
 
 
     public function region() {

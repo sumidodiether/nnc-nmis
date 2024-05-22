@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LNCController;
 use App\Http\Controllers\MellpiPro\MellpiProController;
+use App\Http\Controllers\MellproLGUController;
 use App\Http\Controllers\RequestPortalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\publicDashboardController;
@@ -50,16 +51,21 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // bulk upload - Ryan
+    Route::get('/mellpi_pro_LGU' ,  [MellproLGUController::class, 'index'])->name('mellpi_pro_LGU.index');
+    Route::post('/mellpi_pro_LGU' ,  [MellproLGUController::class, 'upload'])->name('mellpi_pro_LGU.upload');
+    
+    // Melpi Pro Controller
     Route::get('/mellpi_pro', [MellpiProController::class, 'index'])->name('mellpi_pro.view');
-    Route::post('/mellpi_pro' ,  [MellpiProController::class, 'uploadPSGC'])->name('mellpi_pro.uploadPSGC');
-    Route::post('/mellpi_pro' ,  [MellpiProController::class, 'uploadRegion'])->name('mellpi_pro.uploadRegion');
-    Route::post('/mellpi_pro' ,  [MellpiProController::class, 'uploadProvince'])->name('mellpi_pro.uploadProvince');
-    Route::post('/mellpi_pro' ,  [MellpiProController::class, 'uploadMuni'])->name('mellpi_pro.uploadMuni');
+    Route::post('/mellpi_pro' ,  [MellpiProController::class, 'upload'])->name('mellpi_pro.upload');
     Route::post('/mellpi_pro_create', [MellpiProController::class, 'create'])->name('mellpi_pro.create');
+    Route::post('/mellpi_pro_store', [MellpiProController::class, 'store'])->name('mellpi_pro.store');
+
     //Route::get('/lncFunction' ,  [LNCController::class, 'index' ]->name('LNCIndex.view'));
     Route::resource('/lncFunction', LNCController::class);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/personnelDnaDirectory' ,[PersonnelDnaDirectoryController::class, 'index'])->name('personnelDnaDirectory');
+    Route::get('/personnelDnaDirectoryIndex' ,[PersonnelDnaDirectoryController::class, 'index'])->name('personnelDnaDirectoryIndex');
+    Route::get('/personnelDnaDirectory' ,[PersonnelDnaDirectoryController::class, 'create'])->name('personnelDnaDirectory.create');
     Route::get('/nutritionOffices' ,[NutritionOfficesController::class, 'index'])->name('nutritionOffices');
     Route::get('/equipmentInventoryIndex' ,[EquipmentInventoryController::class, 'index'])->name('equipmentInventoryIndex');
     Route::get('/equipmentInventory' ,[EquipmentInventoryController::class, 'create'])->name('equipmentInventory');

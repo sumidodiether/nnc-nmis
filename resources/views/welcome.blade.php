@@ -23,14 +23,14 @@
 }
 .menu-toggler:hover + label,
 .menu-toggler:hover + label:before,
-.menu-toggler:hover + label:after,{
+.menu-toggler:hover + label:after {
   background: white;
 }
 .menu-toggler:checked + label {
   background: transparent;
 }
 .menu-toggler:checked + label:before,
-.menu-toggler:checked + label:after,{
+.menu-toggler:checked + label:after {
   top:0;
   width:40px;
   transform-origin: 50% 50%;

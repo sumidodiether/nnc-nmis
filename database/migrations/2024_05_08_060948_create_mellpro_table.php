@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('regions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('region', 100);
-            
+            $table->string('regclass', 100);
+            $table->integer('regnumber');
             $table->integer('psgccode_id')->unsigned(); 
             $table->foreign('psgccode_id')->references('id')->on('psgcs');
             $table->timestamps();
@@ -23,7 +24,8 @@ return new class extends Migration
         Schema::create('provinces', function (Blueprint $table) {
             $table->increments('id');
             $table->string('province', 100);
-            
+            $table->string('proclass', 100);
+            $table->integer('provnumber');
             $table->integer('region_id')->unsigned(); 
             $table->foreign('region_id')->references('id')->on('regions'); 
             $table->timestamps();
@@ -33,6 +35,8 @@ return new class extends Migration
         Schema::create('municipals', function (Blueprint $table) {
             $table->increments('id');
             $table->string('municipal', 100);
+            $table->string('munclass', 100);
+            $table->integer('munnumber');
             $table->integer('province_id')->unsigned(); 
             $table->foreign('province_id')->references('id')->on('provinces'); 
             $table->timestamps();
@@ -42,10 +46,11 @@ return new class extends Migration
         Schema::create('barangays', function (Blueprint $table) {
             $table->increments('id');
             $table->string('barangay', 100);
+            $table->string('brgytype', 100);
+            $table->integer('brgynumber');   //urban/rural
             $table->integer('municipal_id')->unsigned(); 
             $table->foreign('municipal_id')->references('id')->on('municipals'); 
             $table->timestamps();
-
         }); 
 
         // Forms&Rating

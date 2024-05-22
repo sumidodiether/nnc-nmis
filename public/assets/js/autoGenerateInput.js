@@ -1,3 +1,5 @@
+
+// Equipment Inventory
 function totalHB() {
     const inputWHB = document.getElementById("inputWHB").value;
     const inputNonWHB = document.getElementById("inputNonWHB").value;
@@ -116,3 +118,107 @@ function availabilityAdult(totalAdult, inputtotalBarangay) {
     console.log(avail_A);
 }
 
+
+
+// COMPUTE AVARAGE FOR Infant and Young Child Feeding
+// function calculateAverage() {
+//     const ratingSelects = document.querySelectorAll('.rating1');
+//     let total = 0;
+//     let count = 0;
+
+//     ratingSelects.forEach(select => {
+//         const rating = parseFloat(select.value);
+//         if (!isNaN(rating)) {
+//             total += rating;
+//             count++;
+//         }
+//     });
+
+//     const average = count ? (total / count).toFixed(2) : 0;
+//     document.getElementById('young_child_feeding_average').textContent = average;
+//     document.getElementById('young_child_feeding_average2').value = average;
+// }
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const ratingSelects = document.querySelectorAll('.rating1');
+//     ratingSelects.forEach(select => {
+//         select.addEventListener('change', calculateAverage);
+//     });
+// });
+
+
+function calculateAverage(className, averageTextId, averageInputId) {
+    const ratingSelects = document.querySelectorAll(`.${className}`);
+    let total = 0;
+    let count = 0;
+
+    ratingSelects.forEach(select => {
+        const rating = parseFloat(select.value);
+        if (!isNaN(rating)) {
+            total += rating;
+            count++;
+        }
+    });
+
+    const average = count ? (total / count).toFixed(2) : 0;
+    document.getElementById(averageTextId).textContent = average;
+    document.getElementById(averageInputId).value = average;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const setups = [
+        { className: 'rating1', averageTextId: 'young_child_feeding_average', averageInputId: 'young_child_feeding_average2' },
+        { className: 'rating2', averageTextId: 'acute_malnutrition_average', averageInputId: 'acute_malnutrition_average2' },
+        { className: 'rating3', averageTextId: 'national_dietary_average', averageInputId: 'national_dietary_average2' },
+        { className: 'rating4', averageTextId: 'behavioral_change_average', averageInputId: 'behavioral_change_average2' },
+        { className: 'rating5', averageTextId: 'micro_supplement_average', averageInputId: 'micro_supplement_average2' },
+        { className: 'rating6', averageTextId: 'mandatory_food_average', averageInputId: 'mandatory_food_average2' },
+        { className: 'rating7', averageTextId: 'emergencies_program_average', averageInputId: 'emergencies_program_average2' },
+        { className: 'rating8', averageTextId: 'prevention_program_average', averageInputId: 'prevention_program_average2' },
+        { className: 'rating9', averageTextId: 'nutri_sensitive_average', averageInputId: 'nutri_sensitive_average2' }
+    ];
+
+    setups.forEach(setup => {
+        const ratingSelects = document.querySelectorAll(`.${setup.className}`);
+        ratingSelects.forEach(select => {
+            select.addEventListener('change', () => {
+                calculateAverage(setup.className, setup.averageTextId, setup.averageInputId);
+            });
+        });
+    });
+});
+
+
+// personnel Directory tabs
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
+
+    // Function to deactivate all tabs and contents
+    function deactivateAll() {
+        tabs.forEach(tab => tab.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
+    }
+
+    // Function to activate the clicked tab and corresponding content
+    function activateTab(tab) {
+        const targetContentId = tab.getAttribute('data-tab');
+        const targetContent = document.getElementById(targetContentId);
+
+        tab.classList.add('active');
+        targetContent.classList.add('active');
+    }
+
+    // Initialize by activating the first tab
+    if (tabs.length > 0) {
+        activateTab(tabs[0]);
+    }
+
+    // Add click event listeners to each tab
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            deactivateAll();
+            activateTab(tab);
+        });
+    });
+});

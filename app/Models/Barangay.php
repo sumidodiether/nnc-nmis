@@ -11,6 +11,6 @@ class Barangay extends Model
 
     protected $table = 'barangays';
     protected $guarded = ['id'];
-    protected $fillable = ['barangay','updated_at', 'created_at'];
+    protected $fillable = ['municipal_id','barangay','brgytype','brgynumber','updated_at', 'created_at'];
 
 }

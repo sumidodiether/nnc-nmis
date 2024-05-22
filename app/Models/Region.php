@@ -11,7 +11,7 @@ class Region extends Model
 
     protected $table = 'regions';
     protected $guarded = ['id'];
-    protected $fillable = ['region','updated_at', 'created_at'];
+    protected $fillable = ['psgccode_id','region','regclass','regnumber','psgccode_id','updated_at', 'created_at'];
 
     
 

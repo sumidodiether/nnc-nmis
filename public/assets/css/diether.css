@@ -1,0 +1,25 @@
+/* Personnel Directory Tabs */
+.tab {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    width: 5rem;
+    margin-right: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .tab.active {
+    background: #ddd;
+    color: green;
+    border-top: 1px solid #ddd;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .tab-content {
+      display: none;
+  }
+  .tab-content.active {
+      display: block;
+  }

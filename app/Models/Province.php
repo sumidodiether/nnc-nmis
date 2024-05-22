@@ -11,9 +11,8 @@ class Province extends Model
 
     protected $table = 'provinces';
     protected $guarded = ['id'];
-    protected $fillable = ['province','updated_at', 'created_at'];
-
+    protected $fillable = ['region_id','province','proclass','provnumber','updated_at', 'created_at'];
     public function psgc() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(PSGC::class);
     }
 }

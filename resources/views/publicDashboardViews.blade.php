@@ -1,12 +1,13 @@
 @extends('layouts.app', [
-    'namePage' => 'Public Dashboard',
-    'backgroundImage' => asset('now') . "/img/background1.png",
+    'namePage' => 'Mellpi Pro',
+    'activePage' => 'mellpi_pro',
+    'backgroundImage' => asset('assets') . "/img/background1.png",
 ])
 
 @section('content')
-  <div class="panel-header panel-header-lg">
+  {{-- <div class="panel-header panel-header-lg">
     <canvas id="bigDashboardChart"></canvas>
-  </div>
+  </div> --}}
   <div class="content">
     <div class="row">
       <div class="col-lg-4">
@@ -271,12 +272,19 @@
   </div>
 @endsection
 
+{{-- @section('content')
+
+<div class="panel-header panel-header-sm">
+</div>
+
+@endsection --}}
+
 @push('js')
   <script>
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
+      demo.checkFullPageBackgroundImage();
       demo.initDashboardPageCharts();
-
     });
   </script>
 @endpush

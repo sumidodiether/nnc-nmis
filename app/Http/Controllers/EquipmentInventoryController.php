@@ -26,47 +26,6 @@ class EquipmentInventoryController extends Controller
     }
 
     public function store(Request $request) {
-            //dd($request->all());
-            // //VALIDATE
-            // $validateEquipmentInventory = $request->validate([
-            //         'totalBarangay' => $request->inputtotalBarangay,
-            //         'woodenHB' => $request->inputWHB,
-            //         'nonWoodenHB' => $request->inputNonWHB,
-            //         'defectiveHB' => $request->inputHBNonF,
-            //         'totalHB' => $request->inputTotalHB,
-            //         'availabilityHB' => $request->inputHBpercent,
-            //         'steelRules' => $request->inputSteelRules,
-            //         'microtoise' => $request->inputMicrotoise,
-            //         'infantometer' => $request->inputInfantometer,
-            //         'remarksHB' => $request->inputHBRemarks,
-            //         'hangingType' => $request->inputWSHanging,
-            //         'defectiveWS' => $request->inputWSNonF,
-            //         'totalWS' => $request->inputTotalWS,
-            //         'availabilityWS' => $request->inputWSpercent,
-            //         'infatScale' => $request->inputInfantScale,
-            //         'beamBalance' => $request->inputBeamBalance,
-            //         'remarksWS' => $request->inputWSRemarks,
-            //         'child' => $request->inputMChild,
-            //         'defectiveMUAC_child' => $request->inputMNonFChild,
-            //         'totalMUAC_Child' => $request->inputTotalChild,
-            //         'availabilityMUAC_child' => $request->inputChildpercent,
-            //         'adults' => $request->inputMAdult,
-            //         'defectiveMUAC_adults' => $request->inputMNonFAdult,
-            //         'totalMUAC_adults' => $request->inputTotalAdult,
-            //         'availabilityMUAC_adults' => $request->inputAdultpercent,
-            //         'remarksMUAC' => $request->inputMRemarks,
-            //         'psgccode_id' => $request->inputPSGC,
-            //         'psgccode_id' => $request->inputPSGC,
-            //         'region_id' => $request->inputRegion,
-            //         'region_id' => $request->inputRegion,
-            //         'province_id' => $request->inputProvince,
-            //         'province_id' => $request->inputProvince,
-            //         'municipal_id' => $request->inputCM,
-            //         'municipal_id' => $request->inputCM,
-            //     ])
-            // } 
-            
-            // //.return
 
         try {
           

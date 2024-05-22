@@ -95,8 +95,8 @@
         </a>
         <div class="collapse show" id="AvailableResource">
           <ul class="nav">
-            <li class="@if ($activePage == 'PersonnelDnaDirectory') active @endif">
-              <a href="{{ route('personnelDnaDirectory') }}">
+            <li class="@if ($activePage == 'PersonnelDnaDirectoryIndex') active @endif">
+              <a href="{{ route('personnelDnaDirectoryIndex') }}">
               <i class="now-ui-icons files_paper"></i>
                 <p> {{ __("Personnel DNA Directory") }} </p>
               </a>
@@ -158,6 +158,12 @@
               <a href="{{ route('user.index') }}">
                 <i class="now-ui-icons design_bullet-list-67"></i>
                 <p> {{ __("User Management") }} </p>
+              </a>
+            </li>
+            <li class="@if ($activePage == 'mellpi_pro_LGU') active @endif">
+              <a href="{{ route('mellpi_pro_LGU.index') }}">
+              <i class="now-ui-icons files_paper"></i>
+                <p> {{ __("MELLPI Pro LGU -Bulk Upload") }} </p>
               </a>
             </li>
           </ul>
