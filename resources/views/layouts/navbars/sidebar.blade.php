@@ -67,13 +67,31 @@
             <b class="caret"></b>
           </p>
         </a>
+        
         <div class="collapse show" id="LguPerformance">
           <ul class="nav">
-            <li class="@if ($activePage == 'mellpi_pro') active @endif">
-              <a href="{{ route('mellpi_pro.view') }}">
-              <i class="now-ui-icons files_paper"></i>
-                <p> {{ __("MELLPI Pro") }} </p>
+            <li>
+              <a data-toggle="collapse" href="#MellpiPro">
+                <p> {{ __("MELLPI Pro for LGU") }}
+                <b class="caret"></b>    
+                </p>
               </a>
+              <div class="collapse show" id="MellpiPro">
+              <ul class="nav">
+                <li class="@if ($activePage == 'mellpi_pro') active @endif">
+                  <a href="{{ route('mellpi_pro.view') }}">
+                  <i class="now-ui-icons files_paper"></i>
+                    <p> {{ __("Create") }} </p>
+                  </a>
+                </li>
+                <li class="@if ($activePage == 'mellpi_pro_summary1b') active @endif">
+                  <a href="{{ route('mellpi_pro.summary1b') }}">
+                    <i class="now-ui-icons files_paper"></i>
+                    <p> {{ __("Summary") }} </p>
+                  </a>
+                </li>
+              </ul>
+            </div>
             </li>
             <li class="@if ($activePage == 'lncFunction') active @endif">
               <a href="{{ route('lncFunction.index') }}">

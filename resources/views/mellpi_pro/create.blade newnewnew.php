@@ -25,21 +25,6 @@
 .form-section.current {
     display: inline;
 }
-
-.striped-rows .row:nth-child(odd) {
-    background-color: #f2f2f2;
-}
-
-.col-sm {
-  margin: auto;
-  padding: 1rem 1rem;
-}
-
-.row .form-control {
-  border-color: #bebebe !important;
-  border: 1px solid;
-  border-radius: 5px;
-}
 </style>
 
 <div class="panel-header panel-header-sm"></div>
@@ -344,9 +329,9 @@
 
                         {{-- Page 2 --}}
                         <!-- Start Vision Mission, Nutrition Policies, Governance, LNC Management -->
-                        <div class="form-section striped-rows">
+                        <div class="form-section">
 
-                            <div class="row">
+                        <div class="row">
                                 <div class="col-md-12 pr-1">
                                     <div class="form-group">
                                         <label>{{__("1. VISION AND MISSION")}}</label>
@@ -937,7 +922,6 @@
                         </div>
                         <!-- End Vision Mission, Nutrition Policies, Governance, LNC Management -->
 
-                        {{-- Page 3 --}}
                         <!-- Nutrition Services -->
                         <div class="form-section">
 

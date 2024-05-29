@@ -268,7 +268,7 @@
                         <div class="collapse show" id="lguresources">
                             <ul class="nav">
                                 <li>
-                                    <a href="{{ route('personnelDnaDirectory') }}">
+                                    <a href="{{ route('personnelDnaDirectoryIndex') }}">
                                         <i class="now-ui-icons files_paper"></i>
                                         <p> {{ __("Personnel DNA Directory") }} </p>
                                     </a>

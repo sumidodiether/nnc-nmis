@@ -71,7 +71,7 @@ class EquipmentInventoryController extends Controller
             $addEquipmentInventory->municipal_id  =   $request->input('inputCM');
 
             $addEquipmentInventory->save();
-            return redirect()->back()->with('success', 'Equipment Inventory successfully.');
+            return redirect()->back()->with('success', 'Equipment Inventory added successfully.');
         } catch (\Throwable $th) {
             //throw $th;
             return "An error occurred: " . $th->getMessage();

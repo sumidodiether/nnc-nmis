@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Barangay extends Model
+class City extends Model
 {
     use HasFactory;
 
-    protected $table = 'barangays';
+    protected $table = 'citys';
     protected $guarded = ['id'];
-    protected $fillable = ['municipal_id','barangay','brgytype','brgynumber','updated_at', 'created_at'];
-   
+    protected $fillable = ['region_id','city','cityclass','citynumber','cityIncomeClass','updated_at', 'created_at'];
+    
     public function psgc() {
         return $this->hasMany(PSGC::class);
     }
@@ -20,12 +20,8 @@ class Barangay extends Model
         return $this->hasMany(Region::class);
     }
 
-    public function Province() {
-        return $this->hasMany(Province::class);
+
+    public function barangay() {
+        return $this->hasMany(Barangay::class);
     }
-    
- 
-
-   
-
 }

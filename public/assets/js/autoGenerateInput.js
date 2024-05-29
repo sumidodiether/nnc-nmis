@@ -1,3 +1,4 @@
+// const { document } = require("postcss");
 
 // Equipment Inventory
 function totalHB() {
@@ -189,6 +190,34 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+function updatePerformanceRating() {
+
+    let total = 0;
+    let count = 0;
+
+    ['5a', '5b', '5c', '5d', '5e', '5f', '5g', '5h', '5i'].forEach(suffix => {
+        var lncRating = parseFloat(document.getElementById(`performance-level-${suffix}`).innerText);
+        const performanceRating = ((lncRating / 5) * 100).toFixed(2);
+        
+        if (!isNaN(performanceRating)) {
+            total += parseFloat(performanceRating); // Use performanceRating here
+            count++;
+        }
+
+        document.getElementById(`current-rating-${suffix}`).innerText = performanceRating; 
+    });
+
+    const average = count ? (total / count).toFixed(2) : 0;
+    document.getElementById('performance-rating5').innerText = average;
+
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    updatePerformanceRating();
+});
+
+
 // personnel Directory tabs
 document.addEventListener('DOMContentLoaded', function() {
     const tabs = document.querySelectorAll('.tab');
@@ -222,3 +251,75 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+// calculate age for NAO
+document.getElementById('inputBdate').addEventListener('change', function() {
+    let birthdate = this.value;
+    let age = calculateAge(birthdate);
+    
+    var ages = document.getElementById('inputage').value = age;
+    console.log("ages: ", ages);
+});
+
+function calculateAge(birthdate) {
+    let birthDate = new Date(birthdate);
+    let today = new Date();
+    
+    let age = today.getFullYear() - birthDate.getFullYear();
+    
+    let monthDifference = today.getMonth() - birthDate.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    
+    return age;
+}
+
+
+// Calculate age for NPC
+document.getElementById('inputNpcBdate').addEventListener('change', function() {
+    let birthdate = this.value;
+    let age = calculateAge(birthdate);
+    
+    var ages = document.getElementById('inputNpcAge').value = age;
+    console.log("ages: ", ages);
+});
+
+function calculateAge(birthdate) {
+    let birthDate = new Date(birthdate);
+    let today = new Date();
+    
+    let age = today.getFullYear() - birthDate.getFullYear();
+    
+    let monthDifference = today.getMonth() - birthDate.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    
+    return age;
+}
+
+
+// Calculate age for BNS
+document.getElementById('inputBnsBdate').addEventListener('change', function() {
+    let birthdate = this.value;
+    let age = calculateAge(birthdate);
+    
+    var ages = document.getElementById('inputBnsAge').value = age;
+    console.log("ages: ", ages);
+});
+
+function calculateAge(birthdate) {
+    let birthDate = new Date(birthdate);
+    let today = new Date();
+    
+    let age = today.getFullYear() - birthDate.getFullYear();
+    
+    let monthDifference = today.getMonth() - birthDate.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    
+    return age;
+}

@@ -18,19 +18,19 @@ class PSGC extends Model
     }
 
     public function province() {
-        return $this->hasOne(PSGC::class);
+        return $this->hasMany(PSGC::class);
     }
 
     public function municipal() {
-        return $this->hasOne(PSGC::class);
+        return $this->hasMany(PSGC::class);
     }
 
     public function barangay() {
-        return $this->hasOne(PSGC::class);
+        return $this->hasMany(PSGC::class);
     }
 
     public function population() {
-        return $this->hasOne(PSGC::class);
+        return $this->hasMany(PSGC::class);
     }
 
     public function visionmissions() {
