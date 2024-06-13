@@ -12,7 +12,79 @@ use Illuminate\Http\Request;
 
 class PersonnelDnaDirectoryController extends Controller
 {
+    // public function getProvinces()
+    // {
+    //     try {
+    //         $provinces = DB::connection('nnc_db')->table('provinces')->get();
+    //         return response()->json($provinces);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()]);
+    //     }
+    // }
+
+    // public function getRegions()
+    // {
+    //     try {
+    //         $regions = DB::connection('nnc_db')->table('regions')->get();
+    //         return response()->json($regions);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()]);
+    //     }
+    // }
+
+    // public function getCitys()
+    // {
+    //     try {
+    //         $citys = DB::connection('nnc_db')->table('citys')->get();
+    //         return response()->json($citys);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()]);
+    //     }
+    // }
+ 
     
+    public function getProvinces()
+    {
+        try {
+            $provinces = DB::connection('nnc_db')->table('provinces')->get(['id', 'province']);
+            return response()->json($provinces);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch provinces data. Please try again later.'], 500);
+        }
+    }
+
+    public function getProvincesByRegion($regionId)
+    {
+        try {
+            $provinces = DB::connection('nnc_db')->table('provinces')->where('region_id', $regionId)->get(['provcode', 'province']);
+            return response()->json($provinces);
+        } catch (\Exception $e) { 
+            return response()->json(['error' => 'Failed to fetch provinces data. Please try again later.'], 500);
+        }
+    }
+
+    public function getCitiesByProvince($provcode)
+    {
+        try {
+            $cities = DB::connection('nnc_db')->table('cities')->where('provcode', $provcode)->get(['provcode', 'cityname']);
+            return response()->json($cities);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch cities data. Please try again later.'], 500);
+        }
+    }
+
+    
+
+    public function getRegions()
+    {
+        try {
+            $regions = DB::connection('nnc_db')->table('regions')->get(['id', 'region']);
+            return response()->json($regions);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch regions data. Please try again later.'], 500);
+        }
+    }
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -20,6 +92,8 @@ class PersonnelDnaDirectoryController extends Controller
      
     public function index()
     {
+        // $nao = PersonnelDnaDirectoryNaoModel::leftJoin('personnels', 'personnel_id', '=', '')
+        // ->get();
         return view('personnel_dna_directory/create.personnelDnaDirectoryIndex');
     }
 

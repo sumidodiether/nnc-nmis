@@ -6,6 +6,17 @@
 ])
 
 <style>
+.gov-ul-links {
+  width: 65%;
+}
+
+.bg-nmis {
+  background: #d7eae3;
+}
+
+.bg-footer {
+  background: #64987e;
+}
 
 .menu-toggler {
   position: absolute;
@@ -225,36 +236,58 @@
     </div>
   </div>
 
-   {{-- <section class="section bg-light py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h5>About Us</h5>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </div>
-        <div class="col-md-4">
-          <h5>Contact Information</h5>
-          <ul class="list-unstyled">
-            <li>Email: info@example.com</li>
-            <li>Phone: (123) 456-7890</li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h5>Follow Us</h5>
-          <ul class="list-inline">
-            <li class="list-inline-item"><a href="#">Facebook</a></li>
-            <li class="list-inline-item"><a href="#">Twitter</a></li>
-            <li class="list-inline-item"><a href="#">Instagram</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section> --}}
+@endsection
 
+@section('additional-content')
+<div class="additional-content bg-nmis">
+    <div class="container p-5">
+        <div class="additional-content-wrapper d-flex">
+            <div class="additional-content-left">
+              <h4 class ="additional-content-title">About NNC</h4>
+              <p class= "additional-content-text w-75">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            </div>
+            <div class="additional-content-right">
+              <img class="about-pic rounded shadow-lg" src="{{ asset('assets/img/nmis/about-welcome.png') }}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('footer')
- 
+<div class="footer bg-footer">
+    <div class="container-fluid p-4">
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="text-light">REPUBLIC OF THE PHILIPPINES</h4>
+                <p class="footer-text text-light">All content is in the public domain unless otherwise stated.</p>
+            </div>
+            <div class="col-md-3">
+                <h4 class="text-light">ABOUT GOVPH</h4>
+                <p class="footer-text text-light w-75">Learn more about the Philippine government, its structure, how government works and the people behind it.</p>
+            </div>
+            <div class="col-md-3">
+                <h4 class="text-light">GOV.PH</h4>
+                <ul class="gov-ul-links list-unstyled text-light">
+                    <li><a href="#">Open Data Portal</a></li>
+                    <li><a href="#">Official Gazette</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <h4 class="text-light">GOV.PH</h4>
+                <ul class="list-unstyled text-light">
+                    <li><a href="#">Office of the President</a></li>
+                    <li><a href="#">Office of the Vice President</a></li>
+                    <li><a href="#">Service of the Philippines</a></li>
+                    <li><a href="#">House of Representatives</a></li>
+                    <li><a href="#">Supreme Court</a></li>
+                    <li><a href="#">Court of Appeals</a></li>
+                    <li><a href="#">Sandiganbayan</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('js')

@@ -10,7 +10,7 @@ class DiscussionQuestionModel extends Model
     use HasFactory;
 
     protected $fillable = [
-                'lgu_profile_id ',
+                'lgu_profile_id',
                 'vision_good_practices_remarks',
                 'vision_issues_problems_remarks',
                 'vision_local_initiatives_remarks',

@@ -20,7 +20,9 @@ class Region extends Model
     public function province() {
         return $this->hasMany(Province::class);
     }
-
+    public function city() {
+        return $this->hasMany(City::class);
+    }
 
     public function municipal() {
         return $this->hasMany(Municipal::class);

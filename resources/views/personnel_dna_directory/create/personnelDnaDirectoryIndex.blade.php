@@ -1,5 +1,19 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/joboy.css') }}" >
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/diether.css') }}">
 <script src="{{ asset('assets/js/joboy.js') }}"></script> 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+.tab {
+  text-align: center;
+  font-size: 11px;
+  border: 1px solid green;
+  }
+
+.tab.active {
+  border-top: 1px solid green;
+}
+</style>
 
 @extends('layouts.app', [
     'class' => 'sidebar-mini ',
@@ -21,32 +35,83 @@
                 </div>
             </div>
         </div>
-        <form>
-        @csrf
-            <!-- <hr>
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="inputPSGC">PSGC</label>
-                    <input type="text" class="form-control" name="inputPSGC" id="inputPSGC" placeholder="PSGC"  >
+        <div class="form-row" style="border-bottom: 1px solid #ddd;">
+            <div id="tabs" class="d-flex mr-3">
+                <div class="tab" data-tab="tab1">NAO</div>
+                <div class="tab" data-tab="tab2">NPC</div>
+                <div class="tab" data-tab="tab3">BNS</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div id="tab-contents" class="col-md-12">
+                <div class="tab-content" id="tab1">
+                    <table id="naoTable" class="table table-striped table-bordered" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>sampleTH</th>
+                                <th>sampleTH</th>
+                                <th>sampleTH</th>
+                                <th>sampleTH</th>
+                                <th>sampleTH</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="inputRegion">Region</label>
-                    <input type="text" class="form-control" name="inputRegion" id="inputRegion" placeholder="Region"  >
+                <div class="tab-content" id="tab2">
+                <table id="npcTable" class="table table-striped table-bordered" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>sampleTHnpc</th>
+                                <th>sampleTHnpc</th>
+                                <th>sampleTHnpc</th>
+                                <th>sampleTHnpc</th>
+                                <th>sampleTHnpc</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="form-group col-md-3">
-                    <label for="inputProvince">Province</label>
-                    <input type="text" class="form-control" name="inputProvince" id="inputProvince" placeholder="Province"  >
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputCM">City/Municipality</label>
-                    <input type="text" class="form-control"name="inputCM" id="inputCM" placeholder="City/Municipality" >
+                <div class="tab-content" id="tab3">
+                <table id="bnsTable" class="table table-striped table-bordered" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>sampleTHbns</th>
+                                <th>sampleTHbns</th>
+                                <th>sampleTHbns</th>
+                                <th>sampleTHbns</th>
+                                <th>sampleTHbns</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                                <td>sampleTD</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <hr> -->
-            <!-- <div class="form-group col-md-12" style="display:flex;">
-                <button type="submit" name="addEquipmentInventory" class="btn btn-outline-primary">Add Equipment Inventory</button>
-            </div> -->
-        </form>
+        </div>
     </div>
 </div>
      

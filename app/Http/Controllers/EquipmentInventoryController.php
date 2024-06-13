@@ -9,6 +9,47 @@ use Illuminate\Http\Request;
 
 class EquipmentInventoryController extends Controller
 {
+
+    public function getProvinces()
+    {
+        try {
+            $provinces = DB::connection('nnc_db')->table('provinces')->get(['id', 'province']);
+            return response()->json($provinces);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch provinces data. Please try again later.'], 500);
+        }
+    }
+
+    public function getProvincesByRegion($regionId)
+    {
+        try {
+            $provinces = DB::connection('nnc_db')->table('provinces')->where('region_id', $regionId)->get(['provcode', 'province']);
+            return response()->json($provinces);
+        } catch (\Exception $e) { 
+            return response()->json(['error' => 'Failed to fetch provinces data. Please try again later.'], 500);
+        }
+    }
+
+    public function getCitiesByProvince($provcode)
+    {
+        try {
+            $cities = DB::connection('nnc_db')->table('cities')->where('provcode', $provcode)->get(['provcode', 'cityname']);
+            return response()->json($cities);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch cities data. Please try again later.'], 500);
+        }
+    }    
+
+    public function getRegions()
+    {
+        try {
+            $regions = DB::connection('nnc_db')->table('regions')->get(['id', 'region']);
+            return response()->json($regions);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch regions data. Please try again later.'], 500);
+        }
+    }
+
     //
     public function __construct()
     {

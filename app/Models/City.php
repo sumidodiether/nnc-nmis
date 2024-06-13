@@ -11,17 +11,17 @@ class City extends Model
 
     protected $table = 'citys';
     protected $guarded = ['id'];
-    protected $fillable = ['region_id','city','cityclass','citynumber','cityIncomeClass','updated_at', 'created_at'];
+    protected $fillable = ['psgccode_id','region_id','city','cityclass','citynumber','cityIncomeClass','updated_at', 'created_at'];
     
     public function psgc() {
-        return $this->hasMany(PSGC::class);
+        return $this->belongsTo(PSGC::class);
     }
     public function region() {
-        return $this->hasMany(Region::class);
+        return $this->belongsTo(Region::class);
     }
 
 
     public function barangay() {
-        return $this->hasMany(Barangay::class);
+        return $this->belongsTo(Barangay::class);
     }
 }

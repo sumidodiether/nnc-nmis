@@ -15,6 +15,15 @@ use App\Http\Controllers\EquipmentInventoryController;
 use App\Http\Controllers\NutritionOfficesController;
 use App\Http\Controllers\PersonnelDnaDirectoryController;
 
+// added
+use App\Http\Controllers\CentralAdmin\PermissionController;
+use App\Http\Controllers\CentralAdmin\RolesController;
+use App\Http\Controllers\CentralAdmin\AdminUserController;
+use App\Http\Controllers\Auth\RegisterController;
+
+
+use function PHPSTORM_META\map;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -71,20 +80,39 @@ Route::middleware('auth')->group(function () {
     Route::resource('/lncFunction', LNCController::class);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+    // Admin
+    Route::get('/provinces/{region}', [AdminUserController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
+    Route::get('/cities/{provcode}', [AdminUserController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
+    Route::get('/regions', [AdminUserController::class, 'getRegions'])->name('regions.get');
+
+    // Equipment Inventory
+    Route::get('/provinces/{region}', [EquipmentInventoryController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
+    Route::get('/cities/{provcode}', [EquipmentInventoryController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
+    Route::get('/regions', [EquipmentInventoryController::class, 'getRegions'])->name('regions.get');
+
+    // Mellpi Pro
+    Route::get('/provinces/{region}', [MellpiProController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
+    Route::get('/cities/{provcode}', [MellpiProController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
+    Route::get('/regions', [MellpiProController::class, 'getRegions'])->name('regions.get');
+
+    //personal DNA
+    Route::get('/provinces/{region}', [PersonnelDnaDirectoryController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
+    Route::get('/cities/{provcode}', [PersonnelDnaDirectoryController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
+    Route::get('/regions', [PersonnelDnaDirectoryController::class, 'getRegions'])->name('regions.get');
+ 
+
     Route::get('/personnelDnaDirectoryIndex' ,[PersonnelDnaDirectoryController::class, 'index'])->name('personnelDnaDirectoryIndex');
     Route::get('/personnelDnaDirectory' ,[PersonnelDnaDirectoryController::class, 'create'])->name('personnelDnaDirectory.create');
     Route::post('/personnelDnaDirectory/nao' ,[PersonnelDnaDirectoryController::class, 'storeNAO'])->name('personnelDnaDirectory.storeNAO');
     Route::post('/personnelDnaDirectory/npc' ,[PersonnelDnaDirectoryController::class, 'storeNPC'])->name('personnelDnaDirectory.storeNPC');
     Route::post('/personnelDnaDirectory/bns' ,[PersonnelDnaDirectoryController::class, 'storeBNS'])->name('personnelDnaDirectory.storeBNS');
 
-    Route::get('/nutritionOffices' ,[NutritionOfficesController::class, 'index'])->name('nutritionOffices');
+    Route::get('/nutritionOfficesIndex' ,[NutritionOfficesController::class, 'index'])->name('nutritionOfficesIndex');
+    Route::get('/nutritionOffices', [NutritionOfficesController::class, 'create'])->name('nutritionOffices');
+    Route::post('/nutritionOffices', [NutritionOfficesController::class, 'store'])->name('nutritionOffices.store');
     Route::get('/equipmentInventoryIndex' ,[EquipmentInventoryController::class, 'index'])->name('equipmentInventoryIndex');
     Route::get('/equipmentInventory' ,[EquipmentInventoryController::class, 'create'])->name('equipmentInventory');
     Route::post('/equipmentInventory', [EquipmentInventoryController::class, 'store'])->name('equipmentInventory.store');
-
-
-
-
 
     // action="{{ route('upload.csv') }}" 
     // ->name('upload.csv');
@@ -93,13 +121,30 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+
+ // sample
+ Route::GET('/permissions', [PermissionController::class, 'index'])->name('permission.index');
+ Route::POST('/permissions', [PermissionController::class, 'store'])->name('permission.store');
+ Route::PUT('/permissions/{permission}' ,[PermissionController::class,'update'])->name('permission.update');
+ Route::GET('/permissions/{permission}/edit', [PermissionController::class, 'edit'])->name('permission.edit');
+ Route::DELETE('/permissions/{permission}', [PermissionController::class, 'destroy'])->name('permission.destroy');
+
+  // sample
+Route::GET('/roles', [RolesController::class, 'index'])->name('roles.index');
+Route::POST('/roles', [RolesController::class, 'store'])->name('roles.store');
+Route::GET('/roles/{role}/give-permission' ,[RolesController::class,'addPermissionToRole'])->name('roles.addPermissionToRole');
+Route::PUT('/roles/{role}/give-permission' ,[RolesController::class,'givePermissionToRole'])->name('roles.givePermissionToRole');
+Route::PUT('/roles/{role}' ,[RolesController::class,'update'])->name('roles.update');
+Route::GET('/roles/{role}/edit', [RolesController::class, 'edit'])->name('roles.edit');
+Route::DELETE('/roles/{role}', [RolesController::class, 'destroy'])->name('roles.destroy');
+
+Route::resource('/adminusers', AdminUserController::class);
+
+
+ 
 Auth::routes();
 
-
-
-Auth::routes();
-
-// Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+// Route::get('/home', 'App\Http\Controllers\HomeController@ind kex')->name('home');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
@@ -110,5 +155,117 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('users',[UserController::class,'index']);
     Route::post('users', [UserController::class, 'store'])->name('users.store');
 });
+
+// sample routes Ryan  wag galawin hahaha----------------------------------------------------------------------------------
+Route::group(['middleware' => 'auth'], function () {
+    
+    // CentralAdmin
+    Route::group([
+        'prefix' => 'CentralAdmin',
+        'middleware' => 'is_centraladmin',
+        'as' => 'cCentralAdmin.',
+    ], function () {
+        //Route
+    });
+
+    // CentralOfficer
+    Route::group([
+        'prefix' => 'CentralOfficer',
+        'middleware' => 'is_centralofficer',
+        'as' => 'CentralOfficer.',
+    ], function () {
+        //Route
+    });
+
+    // CentralStaff
+    Route::group([
+        'prefix' => 'CentralStaff',
+        'middleware' => 'is_centralstaff',
+        'as' => 'CentralStaff.',
+    ], function () {
+        //Route
+    });
+
+
+    // RegionalOfficer
+    Route::group([
+        'prefix' => 'RegionalOfficer',
+        'middleware' => 'is_regionalofficer',
+        'as' => 'RegionalOfficer.',
+    ], function () {
+        //Route
+    });
+
+    // RegionalStaff
+    Route::group([
+        'prefix' => 'RegionalStaff',
+        'middleware' => 'is_regionalstaff',
+        'as' => 'RegionalStaff.',
+    ], function () {
+            //Route
+    });
+    
+    // ProvincialOfficer
+    Route::group([
+        'prefix' => 'ProvincialOfficer',
+        'middleware' => 'is_provincialofficer',
+        'as' => 'ProvincialOfficer.',
+    ], function () {
+        //Route
+    });
+
+    // Provincialstaff
+    Route::group([
+        'prefix' => 'Provincialstaff',
+        'middleware' => 'is_provincialstaff',
+        'as' => 'Provincialstaff.',
+    ], function () {
+            //Route
+    });
+
+    // BarangayScholar
+    Route::group([
+        'prefix' => 'BarangayScholar',
+        'middleware' => 'is_barangayscholar',
+        'as' => 'BarangayScholar.',
+    ], function () {
+            //Route
+    });
+
+        // PublicUser
+        Route::group([
+            'prefix' => 'PublicUser',
+            'middleware' => 'is_publicuser',
+            'as' => 'PublicUser.',
+        ], function () {
+                //Route
+        });
+});
+
+// Route::middleware(['auth', 'role:super-admin'])->group(function () {
+//     Route::resource('posts', PostController::class);
+// });
+
+// Route::middleware(['auth', 'role:admin'])->group(function () {
+//     Route::resource('admin/posts', PostController::class);
+// });
+
+// Route::group(['middleware' => ['role:centralAdmin']], function() {
+
+   
+//     //Route::get('permissions/{permissionId}/delete', [App\Http\Controllers\CentralAdmin\PermissionController::class, 'destroy']);
+
+//     Route::resource('roles', App\Http\Controllers\CentralAdmin\RolesController::class);
+//     Route::get('roles/{roleId}/delete', [App\Http\Controllers\CentralAdmin\RolesController::class, 'destroy']);
+//     Route::get('roles/{roleId}/give-permissions', [App\Http\Controllers\CentralAdmin\RolesController::class, 'addPermissionToRole']);
+//     Route::put('roles/{roleId}/give-permissions', [App\Http\Controllers\CentralAdmin\RolesController::class, 'givePermissionToRole']);
+
+//     Route::resource('users', App\Http\Controllers\CentralAdmin\UserController::class);
+//     Route::get('users/{userId}/delete', [App\Http\Controllers\CentralAdmin\UserController::class, 'destroy']);
+
+// });
+
+
+
 
 Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');

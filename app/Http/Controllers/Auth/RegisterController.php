@@ -22,6 +22,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+ 
 
     /**
      * Where to redirect users after registration.
@@ -49,9 +50,19 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'Firstname' => 'required|string|max:255',
+            'Middlename' => 'required|string|max:255',
+            'Lastname' => 'required|string|max:255',
+            'Region' => 'required|string|max:255',
+            'Province' => 'required|string|max:255',
+            'city_municipal' => 'required|string|max:255',
+            'agency_office_lgu' => 'required|string|max:255',
+            'Division_unit' => 'required|string|max:255',
+            'role' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'status' => 'required|string|max:255',
+          
         ]);
     }
 
@@ -63,9 +74,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        return User::create([ 
+            'Firstname' => $data['Firstname'],
+            'Middlename' => $data['Middlename'],
+            'Lastname' => $data['Lastname'],
+            'Region' => $data['Region'],
+            'Province' => $data['Province'],
+            'city_municipal' => $data['city_municipal'],
+            'agency_office_lgu' => $data['agency_office_lgu'],
+            'Division_unit' => $data['Division_unit'],
+            'role' => $data['role'],
+            'email' => $data['email'], 
+            'status' =>'approved', $data['status'],
             'password' => Hash::make($data['password']),
         ]);
     }

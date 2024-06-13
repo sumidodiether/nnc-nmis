@@ -1,3 +1,5 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 @extends('layouts.app', [
 'class' => 'sidebar-mini ',
 'namePage' => 'Equipment Inventory',
@@ -25,19 +27,26 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="inputPSGC">PSGC</label>
-                    <input type="text" class="form-control" name="inputPSGC" id="inputPSGC" placeholder="PSGC"  >
+                    <input type="text" class="form-control" name="inputPSGC" id="inputPSGC"
+                        placeholder="PSGC" readonly>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputRegion">Region</label>
-                    <input type="text" class="form-control" name="inputRegion" id="inputRegion" placeholder="Region"  >
+                    <label for="inputPSGC">Region</label>
+                    <select id="loadRegionEI" class="form-control" name="inputRegionNAO">
+                        <option selected>Region</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputProvince">Province</label>
-                    <input type="text" class="form-control" name="inputProvince" id="inputProvince" placeholder="Province"  >
+                    <label for="inputPSGC">Province</label>
+                    <select id="loadProvinceEI" class="form-control" name="inputProvinceNAO">
+                        <option selected>Province</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputCM">City/Municipality</label>
-                    <input type="text" class="form-control"name="inputCM" id="inputCM" placeholder="City/Municipality" >
+                    <select id="loadCityEI" class="form-control" name="inputCityNAO">
+                        <option selected>City/Municipality</option>
+                    </select>
                 </div>
             </div>
             <hr>
@@ -186,3 +195,94 @@
     </div>
 </div>
 @endsection
+
+ <script>
+    $(document).ready(function() {
+        function loadRegions(regionSelectId) {
+            $.ajax({
+                url: '{{ route("regions.get") }}',
+                method: 'GET',
+                success: function(response) {
+                    console.log('Regions:', response);
+                    let regionSelect = $(regionSelectId);
+                    regionSelect.find('option:not(:first)').remove();
+                    response.forEach(function(region) {
+                        regionSelect.append(new Option(region.region, region.id));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading regions:', xhr.responseText);
+                    alert('Error loading regions');
+                }
+            });
+        }
+
+        function loadProvincesByRegion(regionId, provinceSelectId) {
+            console.log('Loading provinces for region:', regionId);
+            $.ajax({
+                url: '{{ url("provinces") }}/' + regionId,
+                method: 'GET',
+                success: function(response) {
+                    console.log('Provinces:', response);
+                    let provinceSelect = $(provinceSelectId);
+                    provinceSelect.find('option:not(:first)').remove();
+                    response.forEach(function(province) {
+                        provinceSelect.append(new Option(province.province, province.provcode));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading provinces:', xhr.responseText);
+                    alert('Error loading provinces');
+                }
+            });
+        }
+
+        function loadCitiesByProvince(provcode, citySelectId) {
+            console.log('Loading cities for province code:', provcode);
+            $.ajax({
+                url: '{{ url("cities") }}/' + provcode,
+                method: 'GET',
+                success: function(response) {
+                    console.log('Cities:', response);
+                    let citySelect = $(citySelectId);
+                    citySelect.find('option:not(:first)').remove();
+                    response.forEach(function(city) {
+                        citySelect.append(new Option(city.cityname, city.id));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading cities:', xhr.responseText);
+                    alert('Error loading cities');
+                }
+            });
+        }
+
+        function setupDropdowns(regionSelectId, provinceSelectId, citySelectId) {
+            loadRegions(regionSelectId);
+
+            $(regionSelectId).change(function() {
+                let selectedRegionId = $(this).val();
+                console.log('Region changed to:', selectedRegionId);
+                if (selectedRegionId) {
+                    loadProvincesByRegion(selectedRegionId, provinceSelectId);
+                    $(citySelectId).find('option:not(:first)').remove();
+                } else {
+                    $(provinceSelectId).find('option:not(:first)').remove();
+                    $(citySelectId).find('option:not(:first)').remove();
+                }
+            });
+
+            $(provinceSelectId).change(function() {
+                let selectedProvcode = $(this).val();
+                console.log('Province changed to:', selectedProvcode);
+                if (selectedProvcode) {
+                    loadCitiesByProvince(selectedProvcode, citySelectId);
+                } else {
+                    $(citySelectId).find('option:not(:first)').remove();
+                }
+            });
+        }
+
+        setupDropdowns('#loadRegionEI', '#loadProvinceEI', '#loadCityEI');
+    });
+</script>
