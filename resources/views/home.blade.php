@@ -1,3 +1,4 @@
+
 @extends('layouts.app', [
     'namePage' => 'Dashboard',
     'class' => 'login-page sidebar-mini ',

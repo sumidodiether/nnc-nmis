@@ -1,6 +1,19 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/joboy.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/diether.css') }}">
 <script src="{{ asset('assets/js/joboy.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<style>
+.tab {
+  text-align: center;
+  font-size: 11px;
+  border: 1px solid green;
+  }
+
+.tab.active {
+  border-top: 1px solid green;
+}
+</style>
 
 @extends('layouts.app', [
 'class' => 'sidebar-mini ',
@@ -41,24 +54,43 @@
                             <div class="form-group col-md-3">
                                 <label for="inputPSGC">PSGC</label>
                                 <input type="text" class="form-control" name="inputPSGC" id="inputPSGC"
-                                    placeholder="PSGC">
+                                    placeholder="PSGC" readonly>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="inputRegion">Region</label>
-                                <input type="text" class="form-control" name="inputRegion" id="inputRegion"
-                                    placeholder="Region">
+                                <label for="inputPSGC">Region</label>
+                                <select id="loadRegion1" class="form-control" name="inputRegionNAO">
+                                    <option selected>Region</option>
+                                </select>
+                                {{-- <select class="form-control" name="inputRegionNAO">
+                                    <option selected>Region</option>
+                                    @foreach ($Regs as $regs)
+                                    <option value="{{$regs->id}}">{{$regs->region}}</option>
+                                    @endforeach
+                                </select> --}}
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="inputProvince">Province</label>
-                                <input type="text" class="form-control" name="inputProvince" id="inputProvince"
-                                    placeholder="Province">
+                                <label for="inputPSGC">Province</label>
+                                <select id="loadProvince1" class="form-control" name="inputProvinceNAO">
+                                    <option selected>Province</option>
+                                </select>
+                                {{-- <select class="form-control" name="inputProvinceNAO">
+                                    <option selected>Province</option>
+                                    @foreach ($Prov as $prov)
+                                    <option value="{{$prov->id}}">{{$prov->province}}</option>
+                                    @endforeach
+                                </select> --}}
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputCM">City/Municipality</label>
-                                <input type="text" class="form-control" name="inputCM" id="inputCM"
-                                    placeholder="City/Municipality">
-                                <input type="hidden" class="form-control" name="inputBarangayID" id="inputBarangayID"
-                                    value="1">
+                                <select id="loadCity1" class="form-control" name="inputCityNAO">
+                                    <option selected>City/Municipality</option>
+                                </select>
+                                {{-- <select class="form-control" name="inputCityNAO">
+                                    <option selected>City/Municipality</option>
+                                    @foreach ($Mun as $mun)
+                                    <option value="{{$mun->id}}">{{$mun->municipal}}</option>
+                                    @endforeach
+                                </select> --}}
                             </div>
                         </div>
                         <hr>
@@ -94,7 +126,7 @@
                             <div class="form-group col-md-1">
                                 <label for="inputSuffix">Suffix</label>
                                 <select id="inputSuffix" class="form-control" name="inputSuffix">
-                                    <option selected>Choose...</option>
+                                    <option value="n/a" selected>Choose...</option>
                                     <option value="Jr">Jr</option>
                                     <option value="Sr">Sr</option>
                                     <option value="I">I</option>
@@ -217,24 +249,25 @@
                             <div class="form-group col-md-3">
                                 <label for="inputPSGC">PSGC</label>
                                 <input type="text" class="form-control" name="inputPSGC" id="inputPSGC"
-                                    placeholder="PSGC">
+                                    placeholder="PSGC" readonly>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="inputRegion">Region</label>
-                                <input type="text" class="form-control" name="inputRegion" id="inputRegion"
-                                    placeholder="Region">
+                                <label for="inputPSGC">Region</label>
+                                <select id="loadRegion2" class="form-control" name="inputRegionNPC">
+                                    <option selected>Region</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="inputProvince">Province</label>
-                                <input type="text" class="form-control" name="inputProvince" id="inputProvince"
-                                    placeholder="Province">
+                                <label for="inputPSGC">Province</label>
+                                <select id="loadProvince2" class="form-control" name="inputProvinceNPC">
+                                    <option selected>Province</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputCM">City/Municipality</label>
-                                <input type="text" class="form-control" name="inputCM" id="inputCM"
-                                    placeholder="City/Municipality">
-                                <input type="hidden" class="form-control" name="inputBarangayID" id="inputBarangayID"
-                                    value="1">
+                                <select id="loadCity2" class="form-control" name="inputCityNPC">
+                                    <option selected>City/Municipality</option>
+                                </select>
                             </div>
                         </div>
                         <hr>
@@ -413,24 +446,25 @@
                             <div class="form-group col-md-3">
                                 <label for="inputPSGC">PSGC</label>
                                 <input type="text" class="form-control" name="inputPSGC" id="inputPSGC"
-                                    placeholder="PSGC">
+                                    placeholder="PSGC" readonly>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="inputRegion">Region</label>
-                                <input type="text" class="form-control" name="inputRegion" id="inputRegion"
-                                    placeholder="Region">
+                                <label for="inputPSGC">Region</label>
+                                <select id="loadRegion3" class="form-control" name="inputRegionBNS">
+                                    <option selected>Region</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="inputProvince">Province</label>
-                                <input type="text" class="form-control" name="inputProvince" id="inputProvince"
-                                    placeholder="Province">
+                                <label for="inputPSGC">Province</label>
+                                <select id="loadProvince3" class="form-control" name="inputProvinceBNS">
+                                    <option selected>Province</option>
+                                </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputCM">City/Municipality</label>
-                                <input type="text" class="form-control" name="inputCM" id="inputCM"
-                                    placeholder="City/Municipality">
-                                <input type="hidden" class="form-control" name="inputBarangayID" id="inputBarangayID"
-                                    value="1">
+                                <select id="loadCity3" class="form-control" name="inputCityBNS">
+                                    <option selected>City/Municipality</option>
+                                </select>
                             </div>
                         </div>
                         <hr>
@@ -592,3 +626,96 @@
     </div>
 </div>
 @endsection
+
+<script>
+    $(document).ready(function() {
+        function loadRegions(regionSelectId) {
+            $.ajax({
+                url: '{{ route("regions.get") }}',
+                method: 'GET',
+                success: function(response) {
+                    console.log('Regions:', response);
+                    let regionSelect = $(regionSelectId);
+                    regionSelect.find('option:not(:first)').remove();
+                    response.forEach(function(region) {
+                        regionSelect.append(new Option(region.region, region.id));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading regions:', xhr.responseText);
+                    alert('Error loading regions');
+                }
+            });
+        }
+
+        function loadProvincesByRegion(regionId, provinceSelectId) {
+            console.log('Loading provinces for region:', regionId);
+            $.ajax({
+                url: '{{ url("provinces") }}/' + regionId,
+                method: 'GET',
+                success: function(response) {
+                    console.log('Provinces:', response);
+                    let provinceSelect = $(provinceSelectId);
+                    provinceSelect.find('option:not(:first)').remove();
+                    response.forEach(function(province) {
+                        provinceSelect.append(new Option(province.province, province.provcode));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading provinces:', xhr.responseText);
+                    alert('Error loading provinces');
+                }
+            });
+        }
+
+        function loadCitiesByProvince(provcode, citySelectId) {
+            console.log('Loading cities for province code:', provcode);
+            $.ajax({
+                url: '{{ url("cities") }}/' + provcode,
+                method: 'GET',
+                success: function(response) {
+                    console.log('Cities:', response);
+                    let citySelect = $(citySelectId);
+                    citySelect.find('option:not(:first)').remove();
+                    response.forEach(function(city) {
+                        citySelect.append(new Option(city.cityname, city.id));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading cities:', xhr.responseText);
+                    alert('Error loading cities');
+                }
+            });
+        }
+
+        function setupDropdowns(regionSelectId, provinceSelectId, citySelectId) {
+            loadRegions(regionSelectId);
+
+            $(regionSelectId).change(function() {
+                let selectedRegionId = $(this).val();
+                console.log('Region changed to:', selectedRegionId);
+                if (selectedRegionId) {
+                    loadProvincesByRegion(selectedRegionId, provinceSelectId);
+                    $(citySelectId).find('option:not(:first)').remove();
+                } else {
+                    $(provinceSelectId).find('option:not(:first)').remove();
+                    $(citySelectId).find('option:not(:first)').remove();
+                }
+            });
+
+            $(provinceSelectId).change(function() {
+                let selectedProvcode = $(this).val();
+                console.log('Province changed to:', selectedProvcode);
+                if (selectedProvcode) {
+                    loadCitiesByProvince(selectedProvcode, citySelectId);
+                } else {
+                    $(citySelectId).find('option:not(:first)').remove();
+                }
+            });
+        }
+
+        setupDropdowns('#loadRegion1', '#loadProvince1', '#loadCity1');
+        setupDropdowns('#loadRegion2', '#loadProvince2', '#loadCity2');
+        setupDropdowns('#loadRegion3', '#loadProvince3', '#loadCity3');
+    });
+</script>

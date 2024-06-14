@@ -28,8 +28,8 @@ class PersonnelDnaDirectoryModel extends Model
         'degreeCourse',
         'region_id',
         'province_id',
-        'municipal_id',
-        'barangay_id'
+        // 'municipal_id'
+        'cities_id'
     ];
 
     public function NaoFuction()

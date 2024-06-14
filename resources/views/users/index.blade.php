@@ -142,7 +142,6 @@
     </script>
 
 
-
 </head>
 
 <body class="sidebar-mini clickup-chrome-ext_installed">

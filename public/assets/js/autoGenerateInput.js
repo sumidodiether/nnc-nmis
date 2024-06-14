@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-
+// Computation for Summary 1a
 function updatePerformanceRating() {
 
     let total = 0;
@@ -323,3 +323,163 @@ function calculateAge(birthdate) {
     
     return age;
 }
+
+
+//Separate Budget Amount Input tag enabled/disabled
+function enabledSeparateBudgetInput() {
+    document.getElementById('InputSeparateBudget').addEventListener('change', function() {
+        var InputSeparatAmount = document.getElementById('InputSeparateBudgetAmount');
+        var label = document.getElementById('labelAmount');
+        if (this.value === 'yes') {
+            // InputSeparatAmount.disabled = false;
+            InputSeparatAmount.readOnly = false;
+            InputSeparatAmount.hidden = false;
+            label.hidden = false;
+        } else {
+            // InputSeparatAmount.disabled = true;
+            InputSeparatAmount.readOnly = true;
+            InputSeparatAmount.hidden = true;
+            label.hidden = true;
+        }
+    });
+    if (document.getElementById('InputSeparateBudget').value === 'yes') {
+        document.getElementById('InputSeparateBudgetAmount').readOnly = false;
+        document.getElementById('InputSeparateBudgetAmount').hidden = false;
+        document.getElementById('labelAmount').hidden = false;
+    }
+    console.log('Script loaded and event listener added.');
+}
+
+//other office
+function otherNutritionOffice() {
+    document.getElementById('InputOffice').addEventListener('change', function() {
+        var selectInput = document.getElementById('InputOtherOffice');
+        var labelOtherOffice = document.getElementById('labelOtherOffice');
+        if (this.value === 'others') {
+            // selectInput.disabled = false;
+            selectInput.readOnly = false;
+            selectInput.hidden = false;
+            labelOtherOffice.hidden = false;
+        } else {
+            // selectInput.disabled = true;
+            selectInput.readOnly = true;
+            selectInput.hidden = true;
+            labelOtherOffice.hidden = true;
+        }
+    });
+    if (document.getElementById('InputOffice').value === 'others') {
+        document.getElementById('InputOtherOffice').readOnly = false;
+        document.getElementById('InputOtherOffice').hidden = false;
+        document.getElementById('labelOtherOffice').hidden = false;
+    }
+    console.log('Script loaded and event listener added.');
+}
+
+//p/c/mnao
+function otherEmploymentStat() {
+    document.getElementById('InputPC_MNAO_EmpStat').addEventListener('change', function() {
+        var selectInput = document.getElementById('InputPC_OtherEmpStat');
+        var labelOtherEmploymentStat = document.getElementById('labelOtherEmploymentStat');
+        if (this.value === 'others') {
+            // selectInput.disabled = false;
+            selectInput.readOnly = false;
+            selectInput.hidden = false;
+            labelOtherEmploymentStat.hidden = false;
+        } else {
+            // selectInput.disabled = true;
+            selectInput.readOnly = true;
+            selectInput.hidden = true;
+            labelOtherEmploymentStat.hidden = true;
+        }
+    });
+    if (document.getElementById('InputPC_MNAO_EmpStat').value === 'others') {
+        document.getElementById('InputPC_OtherEmpStat').readOnly = false;
+        document.getElementById('InputPC_OtherEmpStat').hidden = false;
+        document.getElementById('labelOtherEmploymentStat').hidden = false;
+    }
+    console.log('Script loaded and event listener added.');
+}
+function IfYesMoreThanOne() {
+    document.getElementById('InputMorePC_MNAO').addEventListener('change', function() {
+        var InputSeparatAmount = document.getElementById('InputMoreYesPC_MNAO');
+        var label = document.getElementById('labelIfYesMoreThanOne');
+        if (this.value === 'yes') {
+            // InputSeparatAmount.disabled = false;
+            InputSeparatAmount.readOnly = false;
+            InputSeparatAmount.hidden = false;
+            label.hidden = false;
+        } else {
+            // InputSeparatAmount.disabled = true;
+            InputSeparatAmount.readOnly = true;
+            InputSeparatAmount.hidden = true;
+            label.hidden = true;
+        }
+    });
+    if (document.getElementById('InputMorePC_MNAO').value === 'yes') {
+        document.getElementById('InputMoreYesPC_MNAO').readOnly = false;
+        document.getElementById('InputMoreYesPC_MNAO').hidden = false;
+        document.getElementById('labelIfYesMoreThanOne').hidden = false;
+    }
+    console.log('Script loaded and event listener added.');
+}
+
+//d/cnpc
+function otherEmploymentStat_DCNPC() {
+    document.getElementById('InputD_CNPC_EmpStat').addEventListener('change', function() {
+        var selectInput = document.getElementById('InputDCNPC_OtherEmpStat');
+        var labelDCNPC_OtherEmpStat = document.getElementById('labelDCNPC_OtherEmpStat');
+        if (this.value === 'others') {
+            // selectInput.disabled = false;
+            selectInput.readOnly = false;
+            selectInput.hidden = false;
+            labelDCNPC_OtherEmpStat.hidden = false;
+        } else {
+            // selectInput.disabled = true;
+            selectInput.readOnly = true;
+            selectInput.hidden = true;
+            labelDCNPC_OtherEmpStat.hidden = true;
+        }
+    });
+    if (document.getElementById('InputD_CNPC_EmpStat').value === 'others') {
+        document.getElementById('InputDCNPC_OtherEmpStat').readOnly = false;
+        document.getElementById('InputDCNPC_OtherEmpStat').hidden = false;
+        document.getElementById('labelDCNPC_OtherEmpStat').hidden = false;
+    }
+    console.log('Script loaded and event listener added.');
+}
+function IfYesMoreThanOneDCNPC() {
+    document.getElementById('InputMoreDCNPC_MNAO').addEventListener('change', function() {
+        var Input = document.getElementById('InputMoreYesDCNPC_MNAO');
+        var label = document.getElementById('labelIfYesMoreThanOneDCNPC');
+        if (this.value === 'yes') {
+            // InputSeparatAmount.disabled = false;
+            Input.readOnly = false;
+            Input.hidden = false;
+            label.hidden = false;
+        } else {
+            // InputSeparatAmount.disabled = true;
+            Input.readOnly = true;
+            Input.hidden = true;
+            label.hidden = true;
+        }
+    });
+    if (document.getElementById('InputMoreDCNPC_MNAO').value === 'yes') {
+        document.getElementById('InputMoreYesDCNPC_MNAO').readOnly = false;
+        document.getElementById('InputMoreYesDCNPC_MNAO').hidden = false;
+        document.getElementById('labelIfYesMoreThanOneDCNPC').hidden = false;
+    }
+    console.log('Script loaded and event listener added.');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

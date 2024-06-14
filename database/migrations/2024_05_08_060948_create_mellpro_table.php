@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('region', 100);
             $table->string('regclass', 100);
             $table->integer('regnumber');
+            
             $table->integer('psgccode_id')->unsigned(); 
             $table->foreign('psgccode_id')->references('id')->on('psgcs');
             $table->timestamps();
@@ -26,6 +27,10 @@ return new class extends Migration
             $table->string('province', 100);
             $table->string('proclass', 100);
             $table->integer('provnumber');
+
+            $table->integer('psgccode_id')->unsigned(); 
+            $table->foreign('psgccode_id')->references('id')->on('psgcs');
+
             $table->integer('region_id')->unsigned(); 
             $table->foreign('region_id')->references('id')->on('regions'); 
             $table->timestamps();
@@ -37,6 +42,10 @@ return new class extends Migration
             $table->string('municipal', 100);
             $table->string('munclass', 100);
             $table->integer('munnumber');
+
+            $table->integer('psgccode_id')->unsigned(); 
+            $table->foreign('psgccode_id')->references('id')->on('psgcs');
+
             $table->integer('province_id')->unsigned(); 
             $table->foreign('province_id')->references('id')->on('provinces'); 
             $table->timestamps();
@@ -48,8 +57,15 @@ return new class extends Migration
             $table->string('barangay', 100);
             $table->string('brgytype', 100);
             $table->integer('brgynumber');   //urban/rural
+
             $table->integer('municipal_id')->unsigned(); 
-            $table->foreign('municipal_id')->references('id')->on('municipals'); 
+            $table->foreign('municipal_id')->references('id')->on('municipals');
+
+            $table->integer('city_id')->unsigned(); 
+            $table->foreign('city_id')->references('id')->on('citys');
+            
+            $table->integer('psgccode_id')->unsigned(); 
+            $table->foreign('psgccode_id')->references('id')->on('psgcs');
             $table->timestamps();
         }); 
 
@@ -108,6 +124,7 @@ return new class extends Migration
             $table->integer('barangay_id')->unsigned(); 
             $table->integer('lguprofile_id')->unsigned(); 
             $table->foreign('lguprofile_id')->references('id')->on('lguprofile'); 
+            $table->foreign('region_id')->references('id')->on('regions');
             $table->foreign('province_id')->references('id')->on('provinces'); 
             $table->foreign('municipal_id')->references('id')->on('municipals');
             $table->foreign('barangay_id')->references('id')->on('barangays'); 

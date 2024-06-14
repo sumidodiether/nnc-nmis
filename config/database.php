@@ -34,6 +34,22 @@ return [
     */
 
     'connections' => [
+        
+        /*Joboy */
+        'nnc_db' => [
+            'driver' => 'pgsql',
+            'host' => env('DB_HOST_NNC', '127.0.0.1'),
+            'port' => env('DB_PORT_NNC', '5432'),
+            'database' => env('DB_DATABASE_NNC', 'nnc_db'),
+            'username' => env('DB_USERNAME_NNC', 'nnc_dbuser'),
+            'password' => env('DB_PASSWORD_NNC', '}Asj<>ZJ.#~({3a&XM+P'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+        ],
+
+        /*Joboy */
 
         'sqlite' => [
             'driver' => 'sqlite',
@@ -63,20 +79,22 @@ return [
             ]) : [],
         ],
 
+        /*Joboy - Shitfuck */
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'database' => env('DB_DATABASE', 'nnc_db'),
+            'username' => env('DB_USERNAME', 'nnc_dbuser'),
+            'password' => env('DB_PASSWORD', '}Asj<>ZJ.#~({3a&XM+P'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
             'sslmode' => 'prefer',
         ],
+        /*Joboy - Shitfuck */
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',

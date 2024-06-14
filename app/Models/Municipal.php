@@ -11,17 +11,17 @@ class Municipal extends Model
 
     protected $table = 'municipals';
     protected $guarded = ['id'];
-    protected $fillable = ['province_id','municipal','munclass','munnumber','updated_at', 'created_at'];
+    protected $fillable = ['psgccode_id','province_id','municipal','munclass','munnumber','updated_at', 'created_at'];
 
     public function psgc() {
-        return $this->hasMany(PSGC::class);
+        return $this->belongsTo(PSGC::class);
     }
-    public function region() {
-        return $this->hasMany(Region::class);
-    }
+    // public function region() {
+    //     return $this->belongsTo(Region::class);
+    // }
 
     public function Province() {
-        return $this->hasMany(Province::class);
+        return $this->belongsTo(Province::class);
     }
     
     public function barangay() {

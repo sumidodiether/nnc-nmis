@@ -119,8 +119,8 @@
                 <p> {{ __("Personnel DNA Directory") }} </p>
               </a>
             </li>
-            <li class="@if ($activePage == 'NutritionOffices') active @endif">
-              <a href="{{ route('nutritionOffices') }}">
+            <li class="@if ($activePage == 'NutritionOfficesIndex') active @endif">
+              <a href="{{ route('nutritionOfficesIndex') }}">
                 <i class="now-ui-icons files_paper"></i>
                 <p> {{ __("Nutrition Offices") }} </p>
               </a>
@@ -147,10 +147,7 @@
       </li>
       
       <li class = "@if ($activePage == 'typography') active @endif">
-        <!-- <a href="{{ route('page.index','typography') }}">
-          <i class="now-ui-icons health_ambulance"></i>
-          <p>{{ __('Request') }}</p>
-        </a> -->
+
         <a href="#">
           <i class="now-ui-icons files_single-copy-04"></i>
           <p>{{ __('Request Approval') }}</p>
@@ -160,7 +157,7 @@
         <a data-toggle="collapse" href="#laravelExamples">
             <!-- <i class="now-ui-icons files_paper"></i> -->
           <p>
-            {{ __("Settings") }}
+            {{ __("User Management") }}
             <b class="caret"></b>
           </p>
         </a>
@@ -173,9 +170,21 @@
               </a>
             </li>
             <li class="@if ($activePage == 'users') active @endif">
-              <a href="{{ route('user.index') }}">
+              <a href="{{ route('CAadmin.index') }}">
                 <i class="now-ui-icons design_bullet-list-67"></i>
-                <p> {{ __("User Management") }} </p>
+                <p> {{ __("List of Users") }} </p>
+              </a>
+            </li>
+            <li class="@if ($activePage == 'Roles') active @endif">
+              <a href="{{ route('roles.index') }}">
+                <i class="now-ui-icons design_bullet-list-67"></i>
+                <p> {{ __("List of Roles") }} </p>
+              </a>
+            </li>
+            <li class="@if ($activePage == 'Permissions') active @endif">
+              <a href="{{ route('permission.index') }}">
+                <i class="now-ui-icons design_bullet-list-67"></i>
+                <p> {{ __("List of Permission") }} </p>
               </a>
             </li>
             <li class="@if ($activePage == 'mellpi_pro_LGU') active @endif">
@@ -186,12 +195,6 @@
             </li>
           </ul>
         </div>
-      <!-- <li class = "">
-        <a href="{{ route('page.index','upgrade') }}" class="bg-info">
-          <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-          <p>{{ __('Upgrade to PRO') }}</p>
-        </a>
-      </li> -->
     </ul>
   </div>
 </div>

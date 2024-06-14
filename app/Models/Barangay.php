@@ -11,17 +11,21 @@ class Barangay extends Model
 
     protected $table = 'barangays';
     protected $guarded = ['id'];
-    protected $fillable = ['municipal_id','barangay','brgytype','brgynumber','updated_at', 'created_at'];
+    protected $fillable = ['psgccode_id','city_id','municipal_id','barangay','brgytype','brgynumber','updated_at', 'created_at'];
    
     public function psgc() {
         return $this->hasMany(PSGC::class);
     }
-    public function region() {
-        return $this->hasMany(Region::class);
+    // public function region() {
+    //     return $this->hasMany(Region::class);
+    // }
+ 
+    public function city() {
+        return $this->belongsTo(City::class);
     }
 
-    public function Province() {
-        return $this->hasMany(Province::class);
+    public function municipal() {
+        return $this->belongsTo(Municipal::class);
     }
     
  

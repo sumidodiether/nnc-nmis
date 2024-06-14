@@ -13,6 +13,7 @@ use App\Models\Province;
 use App\Models\Municipal;
 use App\Models\City;
 use App\Models\Barangay;
+use App\Models\LocationPivot;
 use App\Models\Barangay as ModelsBarangay;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Collection;
@@ -84,355 +85,27 @@ class MellproLGUController extends Controller
         //
     }
 
-    public function upload(Request $request){ 
+    public function upload(Request $request)
+    {
         $request->validate([
             'inputcsvfile' => 'required|mimes:csv,txt'
         ]);
         $csv = Reader::createFromPath($request->file('inputcsvfile')->getRealPath());
         $csv->setHeaderOffset(0);
-        
+
         // checker
         //dd($request->file('inputcsvfile'));
         // dd($request->file('inputcsvfile')->getRealPath());
         $count = 0;
- 
-        $ExistingPSGCData = PSGC::all(); 
-        $ExistingRegionData = Region::all(); 
-        $ExistingProvinceData = Province::all(); 
-        $ExistingMunicipalData = Municipal::all(); 
 
-        foreach($csv as $record){     
-       
+        $ExistingPSGCData = PSGC::all();
+        $ExistingRegionData = Region::all();
+        $ExistingProvinceData = Province::all();
+        $ExistingMunicipalData = Municipal::all();
+
+        foreach ($csv as $record) {
+
             $ExistingDatahold =  $ExistingPSGCData->where('psgccode', $record['Code'])->first();
-
-            //dd( $ExistingDatahold);
-            // $CodeRegions = [
-         
-            //    '01' => [
-                   
-            //         'name'=> 'Region I (Ilocos Region)'
-            //    ],
-            //    '02' => [
-            //         'name'=> 'Region II (Cagayan Valley)'
-            //    ],
-            //    '03' =>  [ 
-            //         'name'=> 'Region III (Central Luzon)'
-            //    ],
-            //    '04' => [ 
-            //         'name'=> 'Region IV-A (CALABARZON)'
-            //    ],
-            //    '05' =>  [ 
-            //         'name'=> 'Region V (Bicol Region)'
-            //    ],
-            //    '06' =>  [ 
-            //         'name'=> 'Region VI (Western Visayas)'
-            //    ],
-            //    '07' =>   [ 
-            //         'name'=> 'Region VII (Central Visayas)'
-            //    ],
-            //    '08' =>  [ 
-            //         'name'=> 'Region VIII (Eastern Visayas)'
-            //    ],
-            //    '09' => [ 
-            //         'name'=> 'Region IX (Zamboanga Peninsula)'
-            //    ],
-            //    '10' =>  [ 
-            //         'name'=> 'Region X (Northern Mindanao)'
-            //    ],
-            //    '11' => [ 
-            //         'name'=> 'Region XI (Davao Region)'
-            //    ],
-            //    '12' => [ 
-            //         'name'=> 'Region XII (SOCCSKSARGEN)'
-            //    ],
-            //    '13' => [
-            //     'name'=> 'National Capital Region (NCR)'
-            //    ],
-            //    '14' => [
-            //             'name'=> 'Cordillera Administrative Region (CAR)'
-            //     ],
-            //    '16' => [ 
-            //         'name'=> 'Region XIII (Caraga)'
-            //    ],
-            //    '17' => [ 
-            //     'name'=> 'MIMAROPA Region'
-            //     ],
-            //    '19' =>  [ 
-            //      'name'=> 'Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)'
-            //    ],
-            // ];
-
-
-            // $CodeProvince = [
-            //  '1400100000' => [
-            //     'name' => 'Abra'
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Ifugao 	1402700000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet'
-            //     Kalinga 	1403200000 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet'
-            //     Mountain Province 	1404400000 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Apayao 	1408100000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Ilocos Norte 	0102800000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Ilocos Sur 	0102900000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     La Union 	0103300000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Pangasinan 	0105500000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Batanes 	0200900000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Cagayan 	0201500000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Isabela 	0203100000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Nueva Vizcaya 	0205000000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Quirino 	0205700000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Bataan 	0300800000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Bulacan 	0301400000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Nueva Ecija 	0304900000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Pampanga 	0305400000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Tarlac 	0306900000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Zambales 	0307100000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Aurora 	0307700000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Batangas 	0401000000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Cavite 	0402100000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Laguna 	0403400000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Quezon 	0405600000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Rizal 	0405800000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Marinduque 	1704000000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Occidental Mindoro 	1705100000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Oriental Mindoro 	1705200000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Palawan 	1705300000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //     Romblon 	1705900000
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-            //  '1401100000' => [
-            //     'name' => 'Benguet' 
-            //  ],
-
-            // ];
-
-
-            // $CodeMun = [
-            //    [
-            //         'code'=> '13',
-            //         'name'=> 'National Capital Region (NCR)',
-
-            //    ],
-            //    [
-            //         'code'=> '14',
-            //         'name'=> 'Cordillera Administrative Region (CAR)'
-            //    ],
-            //    [
-            //         'code'=> '01',
-            //         'name'=> 'Region I (Ilocos Region)'
-            //    ],
-            //    [
-            //         'code'=> '02',
-            //         'name'=> 'Region II (Cagayan Valley)'
-            //    ],
-            //    [
-            //         'code'=> '03',
-            //         'name'=> 'Region III (Central Luzon)'
-            //    ],
-            //    [
-            //         'code'=> '04',
-            //         'name'=> 'Region IV-A (CALABARZON)'
-            //    ],
-            //    [
-            //         'code'=> '17',
-            //         'name'=> 'MIMAROPA Region'
-            //    ],
-            //    [
-            //         'code'=> '05',
-            //         'name'=> 'Region V (Bicol Region)'
-            //    ],
-            //    [
-            //         'code'=> '06',
-            //         'name'=> 'Region VI (Western Visayas)'
-            //    ],
-            //    [
-            //         'code'=> '07',
-            //         'name'=> 'Region VII (Central Visayas)'
-            //    ],
-            //    [
-            //         'code'=> '08',
-            //         'name'=> 'Region VIII (Eastern Visayas)'
-            //    ],
-            //    [
-            //         'code'=> '09',
-            //         'name'=> 'Region IX (Zamboanga Peninsula)'
-            //    ],
-            //    [
-            //         'code'=> '10',
-            //         'name'=> 'Region X (Northern Mindanao)'
-            //    ],
-            //    [
-            //         'code'=> '11',
-            //         'name'=> 'Region XI (Davao Region)'
-            //    ],
-            //    [
-            //         'code'=> '12',
-            //         'name'=> 'Region XII (SOCCSKSARGEN)'
-            //    ],
-            //    [
-            //         'code'=> '16',
-            //         'name'=> 'Region XIII (Caraga)'
-            //    ],
-            //    [
-            //         'code'=> '19',
-            //         'name'=> 'Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)'
-            //    ],
-
-            // ];
-
 
             // parse from fetch data
 
@@ -440,31 +113,17 @@ class MellproLGUController extends Controller
             $regionsubtr = substr($record['Code'], 0, 2);
             $provsubtr = substr($record['Code'], 2, 4);
             $munsubtr = substr($record['Code'], 5, 6);
-            
-
-            
-            //dd($regionsubtr, '&', $ddds);
-            // dd($provsubtr);
-
-            // if($CodeRegions[$regionsubtr]){
-               
-            //     $d = $CodeRegions[$regionsubtr]["name"];
-            //     dd($d);
-            // }else {
-            //         echo 'incremented by 1 ';
-            // }
-        
 
 
             // substr
 
-          if($ExistingDatahold) {
+            if ($ExistingDatahold) {
                 continue;
-          }else {
-                
-  
+            } else {
 
-                if ($record['Geographic_Level'] === 'Bgy'){
+
+
+                if ($record['Geographic_Level'] === 'Bgy') {
                     $PSGCdata = PSGC::create([
                         'psgccode' => $record['Code'],
                         'correspondencecode' => $record['Correspondence_Code'],
@@ -477,7 +136,7 @@ class MellproLGUController extends Controller
 
                     $Regiondata = Region::create([
                         'psgccode_id' => $PSGCdata->id,
-                  
+
                         'region' => $record['Name'],
 
                         'regclass' => '0',
@@ -512,9 +171,7 @@ class MellproLGUController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
-
-
-                }elseif($record['Geographic_Level'] === 'Mun'  || $record['Geographic_Level'] === 'City' ){
+                } elseif ($record['Geographic_Level'] === 'Mun'  || $record['Geographic_Level'] === 'City') {
                     //echo 'Municipal', $count;
                     $PSGCdata = PSGC::create([
                         'psgccode' => $record['Code'],
@@ -552,10 +209,7 @@ class MellproLGUController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
-
-
-                } 
-                elseif($record['Geographic_Level'] === 'Prov'){ 
+                } elseif ($record['Geographic_Level'] === 'Prov') {
                     $PSGCdata = PSGC::create([
                         'psgccode' => $record['Code'],
                         'correspondencecode' => $record['Correspondence_Code'],
@@ -583,8 +237,7 @@ class MellproLGUController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
-                }
-                elseif($record['Geographic_Level'] === 'Reg'){
+                } elseif ($record['Geographic_Level'] === 'Reg') {
                     //echo 'Region', $count;
                     $PSGCdata = PSGC::create([
                         'psgccode' => $record['Code'],
@@ -604,22 +257,19 @@ class MellproLGUController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
-    
-                }else {
+                } else {
                     echo "data is not found!";
                     //  loop++;
                     // continue;
                 }
+            }
 
 
-           }
-
-
-        //    $count++;
+            //    $count++;
         }
-        
+
         // Test limit to 2000 data rows
-        if($count >= 20000){
+        if ($count >= 20000) {
             dd($count, ' records imported!');
         }
 
@@ -627,98 +277,96 @@ class MellproLGUController extends Controller
         return redirect('/mellpi_pro_LGU')->withStatus(__('LGU Profile successfully added.'));
     }
 
-    public function Regionupload(Request $request){ 
+    public function Regionupload(Request $request)
+    {
         $request->validate([
             'inputcsvfileRegion' => 'required|mimes:csv,txt'
         ]);
         $csv = Reader::createFromPath($request->file('inputcsvfileRegion')->getRealPath());
         $csv->setHeaderOffset(0);
-        
+
         // checker
         //dd($request->file('inputcsvfileRegion'));
         // dd($request->file('inputcsvfile')->getRealPath());
         $count = 0;
- 
-        $ExistingPSGCData = PSGC::all(); 
-        $ExistingRegionData = Region::all(); 
 
-        foreach($csv as $record){     
-       
+        $ExistingPSGCData = PSGC::all();
+        $ExistingRegionData = Region::all();
+
+        foreach ($csv as $record) {
+
             $ExistingDatahold =  $ExistingPSGCData->where('psgccode', $record['Code'])->first();
 
             // parse two digits
             $regionsubtr = substr($record['Code'], 0, 2);
             //dd($regionsubtr);
 
-          if($ExistingDatahold) {
+            if ($ExistingDatahold) {
                 continue;
-          }else {
-        
-                    $PSGCdata = PSGC::create([
-                        'psgccode' => $record['Code'],
-                        'correspondencecode' =>  '0',
-                        'geolevel' =>  '0',
-                        'oldname' =>  '0',
-                        'incomeclass' =>  '0',
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ]);
+            } else {
 
-                    $Regiondata = Region::create([
-                        'psgccode_id' => $PSGCdata->id,
-                        'region' => $record['Name'],
-                        'regclass' => '0',
-                        'regnumber' =>  '0',
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ]);
+                $PSGCdata = PSGC::create([
+                    'psgccode' => $record['Code'],
+                    'correspondencecode' =>  '0',
+                    'geolevel' =>  '0',
+                    'oldname' =>  '0',
+                    'incomeclass' =>  '0',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
 
-           }
 
+                Region::create([
+                    'psgccode_id' => $PSGCdata->id,
+                    'region' => $record['Name'],
+                    'regclass' => '0',
+                    'regnumber' =>  '0',
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
         }
-        
- 
+
+
         //return redirect()->back()->with('success', 'CSV file uploaded successfully.');
         return redirect('/mellpi_pro_LGU')->withStatus(__('LGU Profile successfully added.'));
     }
 
-    public function Provinceupload(Request $request){ 
+    public function Provinceupload(Request $request)
+    {
         $request->validate([
             'inputcsvfileProvince' => 'required|mimes:csv,txt'
         ]);
         $csv = Reader::createFromPath($request->file('inputcsvfileProvince')->getRealPath());
         $csv->setHeaderOffset(0);
-        
+
         // checker
         //dd($request->file('inputcsvfileProvince'));
         // dd($request->file('inputcsvfile')->getRealPath());
         $count = 0;
-        foreach($csv as $record){     
-            
+        foreach ($csv as $record) {
+
             // parse raw data  psgc  
-           $regionsubtr = substr($record['Code'], 0, 2);
-           //dd($regionsubtr);
+            $regionsubtr = substr($record['Code'], 0, 2);
+            //dd($regionsubtr);
 
             // query get match psgc database
             $datamatchRegions = DB::table('psgcs')
-                                    ->join('regions', 'psgcs.id' ,'=' , 'regions.psgccode_id')
-                                    ->select('regions.psgccode_id' ,'regions.id as regionid' , 'psgccode', 'region as regionname')
-                                    // ->select('psgccode')
-                                    ->where('psgccode','LIKE', $regionsubtr . '%')
-                                    ->first();
-
-
-
-          
+                ->join('regions', 'psgcs.id', '=', 'regions.psgccode_id')
+                ->select('regions.psgccode_id', 'regions.id as regionid', 'psgccode', 'region as regionname')
+                ->where('psgccode', 'LIKE', $regionsubtr . '%')
+                ->first();
 
             $provinceQueryExist = DB::table('psgcs')->where('psgccode', $record['Code'])->first();
             //dd($datamatchRegions->regionid,$regionsubtr,$record['Code'], $provinceQueryExist); 
-            
-            if($provinceQueryExist){
+
+            if ($provinceQueryExist) {
                 echo 'Data found!';
-            }else {
-                echo 'Data does not exists!'; 
-                PSGC::create([
+                continue;
+            } else {
+                echo 'Data does not exists!';
+
+                $psgcID = PSGC::create([
                     'psgccode' => $record['Code'],
                     'correspondencecode' =>  '0',
                     'geolevel' =>  '0',
@@ -730,6 +378,7 @@ class MellproLGUController extends Controller
 
                 Province::create([
                     'region_id' => $datamatchRegions->regionid,
+                    'psgccode_id' => $psgcID->id,
                     'province' =>  $record['Name'],
                     'proclass' =>  '0',
                     'provnumber' => '0',
@@ -738,49 +387,47 @@ class MellproLGUController extends Controller
                 ]);
             }
         }
-        
- 
+
+
         //return redirect()->back()->with('success', 'CSV file uploaded successfully.');
         return redirect('/mellpi_pro_LGU')->withStatus(__('LGU Profile successfully added.'));
     }
 
-    public function Cityupload(Request $request){ 
+    public function Cityupload(Request $request)
+    {
         $request->validate([
             'inputcsvfileCity' => 'required|mimes:csv,txt'
         ]);
         $csv = Reader::createFromPath($request->file('inputcsvfileCity')->getRealPath());
         $csv->setHeaderOffset(0);
-        
-         // checker
-        //dd($request->file('inputcsvfileProvince'));
-        // dd($request->file('inputcsvfile')->getRealPath());
+
+        // checker
+        //dd($request->file('inputcsvfileCity'));
+        //dd($request->file('inputcsvfile')->getRealPath());
         $count = 0;
-        foreach($csv as $record){     
-            
+        foreach ($csv as $record) {
+
             // parse raw data  psgc  
-           $regionsubtr = substr($record['Code'], 0, 2);
-           //dd($regionsubtr);
+            $regionsubtr = substr($record['Code'], 0, 2);
+            //dd($regionsubtr);
 
             // query get match psgc database
-            $datamatchRegions = DB::table('psgcs')
-                                    ->join('regions', 'psgcs.id' ,'=' , 'regions.psgccode_id')
-                                    ->select('regions.psgccode_id' ,'regions.id as regionid' , 'psgccode', 'region as regionname')
-                                    // ->select('psgccode')
-                                    ->where('psgccode','LIKE', $regionsubtr . '%')
-                                    ->first();
-
-
-
-          
+            $datamatchRegionsDATA = DB::table('psgcs')
+                ->join('regions', 'psgcs.id', '=', 'regions.psgccode_id')
+                ->select('regions.psgccode_id', 'regions.id as regionid', 'psgccode',)
+                // ->select('psgccode')
+                ->where('psgccode', 'LIKE', $regionsubtr . '%')
+                ->first();
 
             $provinceQueryExist = DB::table('psgcs')->where('psgccode', $record['Code'])->first();
-            //dd($datamatchRegions->regionid,$regionsubtr,$record['Code'], $provinceQueryExist); 
-            
-            if($provinceQueryExist){
+            //dd($datamatchRegionsDATA); 
+
+            if ($provinceQueryExist) {
                 echo 'Data found!';
-            }else {
-                echo 'Data does not exists!'; 
-                PSGC::create([
+                continue;
+            } else {
+                echo 'Data does not exists!';
+                $PSGCdata = PSGC::create([
                     'psgccode' => $record['Code'],
                     'correspondencecode' =>  '0',
                     'geolevel' =>  '0',
@@ -790,8 +437,10 @@ class MellproLGUController extends Controller
                     'updated_at' => now(),
                 ]);
 
+
                 City::create([
-                    'region_id' => $datamatchRegions->regionid,
+                    'region_id' => $datamatchRegionsDATA->regionid,
+                    'psgccode_id' =>   $PSGCdata->id,
                     'city' =>  $record['Name'],
                     'cityclass' =>  '0',
                     'citynumber' => '0',
@@ -801,103 +450,52 @@ class MellproLGUController extends Controller
                 ]);
             }
         }
-        
- 
+
+
         //return redirect()->back()->with('success', 'CSV file uploaded successfully.');
         return redirect('/mellpi_pro_LGU')->withStatus(__('LGU Profile successfully added.'));
     }
-    public function Munupload(Request $request){ 
+
+    public function Munupload(Request $request)
+    {
         $request->validate([
-            'inputcsvfileMun' => 'required|mimes:csv,txt'
+            'inputcsvfileMun' => 'required|mimes:csv,txt|max: 100000'
         ]);
         $csv = Reader::createFromPath($request->file('inputcsvfileMun')->getRealPath());
         $csv->setHeaderOffset(0);
-        
-        // checker
         //dd($request->file('inputcsvfileMun'));
-        // dd($request->file('inputcsvfile')->getRealPath());
-        $count = 0;
-  
-        foreach($csv as $record){   
 
-            // parse raw data  psgc  
-            $provincensubtr = substr($record['Code'], 0, 2); 
-            //dd($regionsubtr);
-
-            // query get match psgc database
-            $datamatchRegions = DB::table('psgcs')
-                  ->join('regions', 'psgcs.id' ,'=' , 'regions.psgccode_id')
-                  ->join('provinces' ,'regions.id' , '=', 'provinces.region_id')
-                  ->select('regions.psgccode_id' ,'provinces.id as provinceid' , 'psgccode',)
-                  // ->select('psgccode')
-                  ->where('psgccode','LIKE', $provincensubtr . '%')
-                  ->first();
-            
-
+        foreach ($csv as $record) {
             $provinceQueryExist = DB::table('psgcs')->where('psgccode', $record['Code'])->first();
-            dd($datamatchRegions->provinceid,$provincensubtr,$record['Code'], $provinceQueryExist); 
-         
+            //dd($provinceQueryExist); 
 
-          if($provinceQueryExist) {
+            // if data found
+            if ($provinceQueryExist) {
                 continue;
-          }else {
-                echo 'Data does not exists!'; 
-                PSGC::create([
-                    'psgccode' => $record['Code'],
-                    'correspondencecode' =>  '0',
-                    'geolevel' =>  '0',
-                    'oldname' =>  '0',
-                    'incomeclass' =>  '0' ,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
+            } else {
+                // if datacolumn is Reg, City , Prov
+                if ($record['Geographic_Level'] == 'Reg' || $record['Geographic_Level'] == 'Prov' || $record['Geographic_Level'] == 'City' ||  $record['Geographic_Level'] == 'Bgy' ||  $record['Geographic_Level'] == 'SubMun') {
+                    continue;
+                } else {
+                    // if Munnicipal
+                    // parse raw data  psgc  
+                    $provincensubtr = substr($record['Code'], 0, 4);
+                    //dd($provincensubtr , $record['Code']);
 
-                City::create([
-                        'province_id' => $datamatchRegions->provinceid,
-                        'municipal' => $record['Name'],
-                        'munclass' => '0' ,
-                        'munnumber' => '0' ,
-                        'created_at' => now(),
-                        'updated_at' => now(),
-                    ]);
+                    // parse raw data  psgc  
+                    $regionsubtr1 = substr($record['Code'], 0, 2);
+                    //dd($regionsubtr1);
+                    // query get match psgc database
+                    $datamatchRegions = DB::table('psgcs')
+                        ->join('regions', 'psgcs.id', '=', 'regions.psgccode_id')     //connection to regions psgc code
+                        ->join('provinces', 'regions.id', '=', 'provinces.region_id') //connection to regions data            //connection to regions data
+                        ->select('psgccode', 'regions.id as regionid', 'provinces.id as provinceid')
+                        ->where('psgccode', 'LIKE', $regionsubtr1 . '%')
+                        ->first();
+                    //dd($datamatchRegions->provinceid, $record['Code']);
 
-           }
 
-        }
-        
- 
-        //return redirect()->back()->with('success', 'CSV file uploaded successfully.');
-        return redirect('/mellpi_pro_LGU')->withStatus(__('LGU Profile successfully added.'));
-    }
-
-    public function Barangayupload(Request $request){ 
-        $request->validate([
-            'inputcsvfileRegion' => 'required|mimes:csv,txt'
-        ]);
-        $csv = Reader::createFromPath($request->file('inputcsvfileRegion')->getRealPath());
-        $csv->setHeaderOffset(0);
-        
-        // checker
-        dd($request->file('inputcsvfileRegion'));
-        // dd($request->file('inputcsvfile')->getRealPath());
-        $count = 0;
- 
-        $ExistingPSGCData = PSGC::all(); 
-        $ExistingRegionData = Region::all(); 
-
-        foreach($csv as $record){     
-       
-            $ExistingDatahold =  $ExistingPSGCData->where('psgccode', $record['Code'])->first();
-
-            // parse two digits
-            $regionsubtr = substr($record['Code'], 0, 2);
-            dd($regionsubtr);
-
-          if($ExistingDatahold) {
-                continue;
-          }else {
-        
-                    $PSGCdata = PSGC::create([
+                    $psgcData = PSGC::create([
                         'psgccode' => $record['Code'],
                         'correspondencecode' =>  '0',
                         'geolevel' =>  '0',
@@ -907,23 +505,278 @@ class MellproLGUController extends Controller
                         'updated_at' => now(),
                     ]);
 
-                    $Regiondata = Region::create([
-                        'psgccode_id' => $PSGCdata->id,
-                        'region' => $record['Name'],
-                        'regclass' => '0',
-                        'regnumber' =>  '0',
+                    Municipal::create([
+                        'province_id' => $datamatchRegions->provinceid,
+                        'psgccode_id' => $psgcData->id,
+                        'municipal' => $record['Name'],
+                        'munclass' => '0',
+                        'munnumber' => '0',
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
-
-           }
-
+                }
+            }
         }
-        
- 
+
         //return redirect()->back()->with('success', 'CSV file uploaded successfully.');
         return redirect('/mellpi_pro_LGU')->withStatus(__('LGU Profile successfully added.'));
     }
 
+    public function Barangayupload(Request $request)
+    {
+        $request->validate([
+            'inputcsvfileBarangay' => 'required|mimes:csv,txt|max: 100000'
+        ]);
+        $csv = Reader::createFromPath($request->file('inputcsvfileBarangay')->getRealPath());
+        $csv->setHeaderOffset(0);
+        //dd($request->file('inputcsvfileBarangay'));
 
+        foreach ($csv as $record) {
+            $provinceQueryExist = DB::table('psgcs')->where('psgccode', $record['Code'])->first();
+            //dd($provinceQueryExist); 
+
+            // if data found
+            if ($provinceQueryExist) {
+                continue;
+
+                //dd('Exist!');
+            } else {
+                
+                // if datacolumn is Reg, City , Prov
+                if ($record['Geographic_Level'] == 'Reg' || $record['Geographic_Level'] == 'City' || $record['Geographic_Level'] == 'Prov' ||  $record['Geographic_Level'] == 'Mun') {
+                    continue;
+
+                } else { 
+                    //dd('Municipal');
+
+                    // parse raw data  psgc  
+                    $regionsubtr = substr($record['Code'], 0, 2);
+                   
+                    $municipalsubtr = substr($record['Code'], 5, 2);
+
+                    $cityData = substr($record['Code'], 5, 2);
+                    $provincesubtr = substr($record['Code'], 0, 5);
+
+                    //---------------------------------accessing municipals and city ids -----------------------------------
+                    $dataProv = DB::table('psgcs') 
+                    ->join('provinces', 'psgcs.id', '=', 'provinces.psgccode_id')
+                    ->select('provinces.id as provincesID')
+                    ->where('psgcs.psgccode', 'LIKE',  $provincesubtr . '%')
+                    ->first();
+
+                    // ----------------------get Data from PSGC to City/Province------------------------
+                    $dataMun = DB::table('provinces') 
+                    ->join('municipals', 'provinces.id', '=', 'municipals.province_id')
+                    ->select('municipals.id as municipalid')
+                    ->where('provinces.id', 'LIKE',     $dataProv->provincesID. '%')
+                    ->first();
+
+                    dd($dataProv, $provincesubtr,  $municipalsubtr,$record['Code'], $dataMun->municipalid, 'Municipal_id to Barangay');
+                   
+                    // get data city foreign key to psgc code
+                    //The psgc code for region is 2 digit only and unique; no psgc code data is duplicated
+                    $PSGC = DB::table('psgcs')
+                        ->join('regions', 'psgcs.id', '=', 'regions.psgccode_id')
+                        ->join('citys', 'regions.id', '=', 'citys.region_id')
+                        ->select('citys.id as cityid')
+                        ->where('psgccode', 'LIKE', $regionsubtr . '%')
+                        ->first();
+                    
+
+                   
+
+                    // compare parsed raw data to database
+                    if ($cityData == '00') {
+                        // City_id to Barangay    
+                        dd('City properties -> barangay!....Solved!');
+                        //dd($datamatchBarangay->cityid);
+                        //dd($regionsubtr,$datamatchCity->cityid , $cityData ,$datamatchRegions->psgccode, $record['Code']);
+
+                        //done
+                        $PSGCdata = PSGC::create([
+                            'psgccode' => $record['Code'],
+                            'correspondencecode' =>  '0',
+                            'geolevel' =>  '0',
+                            'oldname' =>  '0',
+                            'incomeclass' =>  '0',
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]);
+
+                        Barangay::create([
+                            'psgccode_id' =>   $PSGCdata->id,
+                            'city_id' => $PSGC->cityid,
+                            'municipal_id' => '0', //$dataMun->municipalid,
+                            'barangay' => $record['Name'],
+                            'brgytype' => '0',
+                            'brgynumber' => '0',
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]);
+                    } else {
+
+
+                        //dd('Municipal_id to Barangay');
+                        //dd('Municipal properties -> barangay!!', $PSGCmunicipal->municipalid);
+                     
+
+                        $PSGCdata = PSGC::create([
+                            'psgccode' => $record['Code'],
+                            'correspondencecode' =>  '0',
+                            'geolevel' =>  '0',
+                            'oldname' =>  '0',
+                            'incomeclass' =>  '0',
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]);
+
+                        Barangay::create([
+
+                            'psgccode_id' => $PSGCdata->id,
+                            'city_id' => '0',
+                            'municipal_id' =>  $dataMun->municipalid,
+                            'barangay' => $record['Name'],
+                            'brgytype' => '0',
+                            'brgynumber' => '0',
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]);
+                    }
+                }
+            }
+        }
+
+        //return redirect()->back()->with('success', 'CSV file uploaded successfully.');
+        return redirect('/mellpi_pro_LGU')->withStatus(__('LGU Profile successfully added.'));
+    }
+ 
+
+    // public function Barangayupload(Request $request)
+    // {
+    //     $request->validate([
+    //         'inputcsvfileBarangay' => 'required|mimes:csv,txt|max: 100000'
+    //     ]);
+    //     $csv = Reader::createFromPath($request->file('inputcsvfileBarangay')->getRealPath());
+    //     $csv->setHeaderOffset(0);
+    //     //dd($request->file('inputcsvfileBarangay'));
+
+    //     foreach ($csv as $record) {
+    //         $provinceQueryExist = DB::table('psgcs')->where('psgccode', $record['Code'])->first();
+    //         //dd($provinceQueryExist); 
+
+    //         // if data found
+    //         if ($provinceQueryExist) {
+    //             continue;
+
+    //             //dd('Exist!');
+    //         } else {
+                
+    //             // if datacolumn is Reg, City , Prov
+    //             if ($record['Geographic_Level'] == 'Reg' || $record['Geographic_Level'] == 'City' || $record['Geographic_Level'] == 'Prov' ||  $record['Geographic_Level'] == 'Mun') {
+    //                 continue;
+
+    //             } else { 
+    //                 //dd('Municipal');
+
+    //                 // parse raw data  psgc  
+    //                 $regionsubtr = substr($record['Code'], 0, 2);
+                   
+    //                 $municipalsubtr = substr($record['Code'], 5, 2);
+
+    //                 $cityData = substr($record['Code'], 5, 2);
+
+                 
+                   
+    //                 // get data city foreign key to psgc code
+    //                 //The psgc code for region is 2 digit only and unique; no psgc code data is duplicated
+    //                 $PSGC = DB::table('psgcs')
+    //                     ->join('regions', 'psgcs.id', '=', 'regions.psgccode_id')
+    //                     ->join('citys', 'regions.id', '=', 'citys.region_id')
+    //                     ->select('citys.id as cityid')
+    //                     ->where('psgccode', 'LIKE', $regionsubtr . '%')
+    //                     ->first();
+                    
+
+                   
+
+    //                 // compare parsed raw data to database
+    //                 if ($cityData == '00') {
+    //                     // City_id to Barangay    
+    //                     dd('City properties -> barangay!....Solved!');
+    //                     //dd($datamatchBarangay->cityid);
+    //                     //dd($regionsubtr,$datamatchCity->cityid , $cityData ,$datamatchRegions->psgccode, $record['Code']);
+
+    //                     //done
+    //                     $PSGCdata = PSGC::create([
+    //                         'psgccode' => $record['Code'],
+    //                         'correspondencecode' =>  '0',
+    //                         'geolevel' =>  '0',
+    //                         'oldname' =>  '0',
+    //                         'incomeclass' =>  '0',
+    //                         'created_at' => now(),
+    //                         'updated_at' => now(),
+    //                     ]);
+
+    //                     Barangay::create([
+    //                         'psgccode_id' =>   $PSGCdata->id,
+    //                         'city_id' => $PSGC->cityid,
+    //                         'municipal_id' => '0', //$dataMun->municipalid,
+    //                         'barangay' => $record['Name'],
+    //                         'brgytype' => '0',
+    //                         'brgynumber' => '0',
+    //                         'created_at' => now(),
+    //                         'updated_at' => now(),
+    //                     ]);
+    //                 } else {
+
+
+    //                     //dd('Municipal_id to Barangay');
+    //                     //dd('Municipal properties -> barangay!!', $PSGCmunicipal->municipalid);
+    //                     $provincesubtr = substr($record['Code'], 0, 5);
+
+    //                     //---------------------------------accessing municipals and city ids -----------------------------------
+    //                     $dataProv = DB::table('psgcs') 
+    //                     ->join('provinces', 'psgcs.id', '=', 'provinces.psgccode_id')
+    //                     ->select('provinces.id as provincesID')
+    //                     ->where('psgcs.psgccode', 'LIKE',  $provincesubtr . '%')
+    //                     ->first();
+    
+    //                     // ----------------------get Data from PSGC to City/Province------------------------
+    //                     $dataMun = DB::table('provinces') 
+    //                     ->join('municipals', 'provinces.id', '=', 'municipals.province_id')
+    //                     ->select('municipals.id as municipalid')
+    //                     ->where('provinces.id', 'LIKE',     $dataProv->provincesID. '%')
+    //                     ->first();
+
+    //                     dd($dataProv, $provincesubtr,  $municipalsubtr,$record['Code'], $dataMun->municipalid, 'Municipal_id to Barangay');
+
+    //                     $PSGCdata = PSGC::create([
+    //                         'psgccode' => $record['Code'],
+    //                         'correspondencecode' =>  '0',
+    //                         'geolevel' =>  '0',
+    //                         'oldname' =>  '0',
+    //                         'incomeclass' =>  '0',
+    //                         'created_at' => now(),
+    //                         'updated_at' => now(),
+    //                     ]);
+
+    //                     Barangay::create([
+
+    //                         'psgccode_id' => $PSGCdata->id,
+    //                         'city_id' => '0',
+    //                         'municipal_id' =>  $dataMun->municipalid,
+    //                         'barangay' => $record['Name'],
+    //                         'brgytype' => '0',
+    //                         'brgynumber' => '0',
+    //                         'created_at' => now(),
+    //                         'updated_at' => now(),
+    //                     ]);
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     //return redirect()->back()->with('success', 'CSV file uploaded successfully.');
+    //     return redirect('/mellpi_pro_LGU')->withStatus(__('LGU Profile successfully added.'));
+    // }
 }

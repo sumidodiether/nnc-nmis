@@ -11,22 +11,19 @@ class Province extends Model
 
     protected $table = 'provinces';
     protected $guarded = ['id'];
-    protected $fillable = ['region_id','province','proclass','provnumber','updated_at', 'created_at'];
+    protected $fillable = ['psgccode_id','region_id','province','proclass','provnumber','updated_at', 'created_at'];
     
   
     public function psgc() {
-        return $this->hasMany(PSGC::class);
+        return $this->belongsTo(PSGC::class);
     }
     public function region() {
-        return $this->hasMany(Region::class);
+        return $this->belongsTo(Region::class);
     }
 
     public function municipal() {
-        return $this->hasMany(Municipal::class);
+        return $this->belongsTo(Municipal::class);
     }
     
-    public function barangay() {
-        return $this->hasMany(Barangay::class);
-    }
 
 }

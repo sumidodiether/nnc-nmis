@@ -11,6 +11,9 @@ use App\Models\ChangesNSModel;
 use App\Models\DiscussionQuestionModel;
 use App\Models\NutritionServicesModel;
 use App\Models\VisionMission;
+use App\Models\Governances;
+use App\Models\NationalPoliciesModel;
+use App\Models\LncManagementFunctionModel;
 use App\Models\PSGC;
 use App\Models\Region;
 use App\Models\Province;
@@ -44,31 +47,120 @@ class MellpiProController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     public function getRegions()
+     {
+         $regions = DB::connection('nnc_db')->table('regions')->get(['id', 'region']);
+         return response()->json($regions);
+     }
+     
+     public function getProvinces($regionId)
+     {
+         $provinces = DB::connection('nnc_db')->table('provinces')->where('region_id', $regionId)->get(['provcode', 'province']);
+         return response()->json($provinces);
+     }
+     
+     public function getCities($provcode)
+     {
+         $cities = DB::connection('nnc_db')->table('cities')->where('provcode', $provcode)->get(['citymuncode', 'cityname']);
+         return response()->json($cities);
+     }
+     
+    //  public function getBarangays($citymuncode)
+    //  {
+    //      $barangays = DB::connection('nnc_db')->table('brgy')->where('citymuncode', $citymuncode)->get(['id', 'brgyname']);
+    //      return response()->json($barangays);
+    //  }
+
+    public function getBarangays($citymuncode)
+{
+    try {
+        $barangays = DB::connection('nnc_db')
+                        ->table('brgy')
+                        ->where('citymuncode', $citymuncode)
+                        ->get(['id', 'brgyname']);
+
+        return response()->json($barangays);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Failed to fetch barangays data. Please try again later.'], 500);
+    }
+}
+
+    
     public function index()
-    {       
+    {
+       $Regs = Region::get();       
        $Prov = DB::table('provinces')->get();
        $Mun = DB::table('municipals')->get();
        $Brgy = DB::table('barangays')->get();
 
 
-
         // use compact for multiple data passing
-        return view('mellpi_pro.create', ['Prov' => $Prov, 'Mun' => $Mun, 'Brgy' => $Brgy]);
+        return view('mellpi_pro.create', ['Regs' => $Regs, 'Prov' => $Prov, 'Mun' => $Mun, 'Brgy' => $Brgy]);
     }
 
     public function create()
     {
 
 
-      
     }
+
 
     public function summary1b()
     {
 
-        $row = NutritionServicesModel::select('*')->where('id', 9)->first();
+        $row = NutritionServicesModel::select('*')->first();
+        $rowVM = VisionMission::select('*')->first();
+        $rowNP = NationalPoliciesModel::select('*')->first();
+        $rowGv = Governances::select('*')->first();
+        $rowLMF = LncManagementFunctionModel::select('*')->first();
 
-        return view('mellpi_pro.summary_1b', compact('row'));
+
+        // Vision Mission rating Ave
+        $VM_Ave = (
+            ($rowVM->rating1a / 5) * 100 +
+            ($rowVM->rating1b / 5) * 100 +
+            ($rowVM->rating1c / 5) * 100
+        ) / 3;
+
+        // Nutrition Policies Average Rating
+        $NP_Ave = (
+            ($rowNP->rating2a / 5) * 100 +
+            ($rowNP->rating2b / 5) * 100 +
+            ($rowNP->rating2c / 5) * 100 +
+            ($rowNP->rating2d / 5) * 100 +
+            ($rowNP->rating2e / 5) * 100 +
+            ($rowNP->rating2f / 5) * 100 +
+            ($rowNP->rating2g / 5) * 100 +
+            ($rowNP->rating2h / 5) * 100 +
+            ($rowNP->rating2i / 5) * 100 +
+            ($rowNP->rating2j / 5) * 100 +
+            ($rowNP->rating2k / 5) * 100 +
+            ($rowNP->rating2l / 5) * 100 +
+            ($rowNP->rating2m / 5) * 100
+        ) / 13;
+
+        // Governance rating Ave
+        $Gv_Ave = (
+            ($rowGv->rating3a / 5) * 100 +
+            ($rowGv->rating3b / 5) * 100 +
+            ($rowGv->rating3c / 5) * 100
+        ) / 3;
+
+        // Local Nutrition Committee Management
+        $LMF_Ave = (
+            ($rowLMF->rating4a / 5) * 100 +
+            ($rowLMF->rating4b / 5) * 100 +
+            ($rowLMF->rating4c / 5) * 100 +
+            ($rowLMF->rating4d / 5) * 100 +
+            ($rowLMF->rating4e / 5) * 100 +
+            ($rowLMF->rating4f / 5) * 100
+        ) / 6;
+
+        // Nutrition Interventions/Services
+
+
+        return view('mellpi_pro.summary_1b', ['row' => $row, 'rowVM' => $rowVM, 'rowNP' => $rowNP, 'rowGv' => $rowGv, 'rowLMF' => $rowLMF, 'VM_Ave' => $VM_Ave, 'NP_Ave' => $NP_Ave, 'Gv_Ave' => $Gv_Ave, 'LMF_Ave' => $LMF_Ave]);
 
       
     }
@@ -76,7 +168,7 @@ class MellpiProController extends Controller
     public function summary2b()
     {
 
-        $row = ChangesNSModel::select('*')->where('id', 5)->first();
+        $row = ChangesNSModel::select('*')->first();
 
         return view('mellpi_pro.summary_2b', compact('row'));
 
@@ -252,6 +344,93 @@ class MellpiProController extends Controller
             'terrain' => $request->input('terrain'),
             'hazards' => $request->input('hazards'),
         ]);
+
+        VisionMission::create([
+            'lguprofile_id' => $lguProfile->id,
+            'rating1a' => $request->input('vision_rating1'),
+            'rating1b' => $request->input('vision_rating2'),
+            'rating1c' => $request->input('vision_rating3'),
+            'remarks1a' => $request->input('vision_remarks1'),
+            'remarks1b' => $request->input('vision_remarks2'),
+            'remarks1c' => $request->input('vision_remarks3'),
+
+            'region_id' => $request->input('region'),
+            'province_id' => $request->input('province'),
+            'municipal_id' => $request->input('municipality'),
+            'barangay_id' => $request->input('barangay'),
+        ]);
+        Governances::create([
+            'lguprofile_id' => $lguProfile->id,
+            'rating3a' => $request->input('governance_rating1'),
+            'rating3b' => $request->input('governance_rating2'),
+            'rating3c' => $request->input('governance_rating3'),
+            'remarks3a' => $request->input('governance_remarks1'),
+            'remarks3b' => $request->input('governance_remarks2'),
+            'remarks3c' => $request->input('governance_remarks3'),
+
+            'region_id' => $request->input('region'),
+            'province_id' => $request->input('province'),
+            'municipal_id' => $request->input('municipality'),
+            'barangay_id' => $request->input('barangay'),
+        ]);
+        NationalPoliciesModel::create([
+            'lguprofile_id' => $lguProfile->id,
+            'rating2a' => $request->input('policies_rating1'),
+            'rating2b' => $request->input('policies_rating2'),
+            'rating2c' => $request->input('policies_rating3'),
+            'rating2d' => $request->input('policies_rating4'),
+            'rating2e' => $request->input('policies_rating5'),
+            'rating2f' => $request->input('policies_rating6'),
+            'rating2g' => $request->input('policies_rating7'),
+            'rating2h' => $request->input('policies_rating8'),
+            'rating2i' => $request->input('policies_rating9'),
+            'rating2j' => $request->input('policies_rating10'),
+            'rating2k' => $request->input('policies_rating11'),
+            'rating2l' => $request->input('policies_rating12'),
+            'rating2m' => $request->input('policies_rating13'),
+
+            'remarks2a' => $request->input('policies_remarks1'),
+            'remarks2b' => $request->input('policies_remarks2'),
+            'remarks2c' => $request->input('policies_remarks3'),
+            'remarks2d' => $request->input('policies_remarks4'),
+            'remarks2e' => $request->input('policies_remarks5'),
+            'remarks2f' => $request->input('policies_remarks6'),
+            'remarks2g' => $request->input('policies_remarks7'),
+            'remarks2h' => $request->input('policies_remarks8'),
+            'remarks2i' => $request->input('policies_remarks9'),
+            'remarks2j' => $request->input('policies_remarks10'),
+            'remarks2k' => $request->input('policies_remarks11'),
+            'remarks2l' => $request->input('policies_remarks12'),
+            'remarks2m' => $request->input('policies_remarks13'),
+
+            'region_id' => $request->input('region'),
+            'province_id' => $request->input('province'),
+            'municipal_id' => $request->input('municipality'),
+            'barangay_id' => $request->input('barangay'),
+        ]);
+        LncManagementFunctionModel::create([
+            'lguprofile_id' => $lguProfile->id,
+            'rating4a' => $request->input('local_nutrition_rating1'),
+            'rating4b' => $request->input('local_nutrition_rating2'),
+            'rating4c' => $request->input('local_nutrition_rating3'),
+            'rating4d' => $request->input('local_nutrition_rating4'),
+            'rating4e' => $request->input('local_nutrition_rating5'),
+            'rating4f' => $request->input('local_nutrition_rating6'),
+            'rating4g' => $request->input('local_nutrition_rating7'),
+
+            'remarks4a' => $request->input('local_nutrition_remarks1'),
+            'remarks4b' => $request->input('local_nutrition_remarks2'),
+            'remarks4c' => $request->input('local_nutrition_remarks3'),
+            'remarks4d' => $request->input('local_nutrition_remarks4'),
+            'remarks4e' => $request->input('local_nutrition_remarks5'),
+            'remarks4f' => $request->input('local_nutrition_remarks6'),
+            'remarks4g' => $request->input('local_nutrition_remarks7'),
+
+            'region_id' => $request->input('region'),
+            'province_id' => $request->input('province'),
+            'municipal_id' => $request->input('municipality'),
+            'barangay_id' => $request->input('barangay'),
+        ]);
         
         NutritionServicesModel::create([
             'lgu_profile_id' => $lguProfile->id,
@@ -378,8 +557,8 @@ class MellpiProController extends Controller
        ]);
 
        
-        return view('mellpi_pro.create')->with('success', 'Data Successfully Added.');
-
+        // return view('mellpi_pro.create')->with('success', 'Data Successfully Added.');
+        return redirect()->route('mellpi_pro.view');
       
     }
 

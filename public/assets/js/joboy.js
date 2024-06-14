@@ -53,3 +53,82 @@ $(function() {
 
     navigateTo(0);
 });
+
+$(document).ready(function() {
+    function loadRegions() {
+        $.ajax({
+            url: '{{ route("regions.get") }}',
+            method: 'GET',
+            success: function(response) {
+                console.log('Regions:', response);  // Debug log
+                let regionSelect = $('#loadRegion');
+                regionSelect.find('option:not(:first)').remove();
+                response.forEach(function(region) {
+                    regionSelect.append(new Option(region.region, region.id));
+                });
+            },
+            error: function(xhr, status, error) {
+                alert('Error loading regions');
+            }
+        });
+    }
+
+    function loadProvincesByRegion(regionId) {
+        $.ajax({
+            url: '{{ url("provinces") }}/' + regionId,
+            method: 'GET',
+            success: function(response) {
+                let provinceSelect = $('#loadProvince');
+                provinceSelect.find('option:not(:first)').remove();
+                response.forEach(function(province) {
+                    provinceSelect.append(new Option(province.province, province.provcode));
+                });
+            },
+            error: function(xhr, status, error) {
+                alert('Error loading provinces');
+            }
+        });
+    }
+
+    function loadCitiesByProvince(provcode) {
+        $.ajax({
+            url: '{{ url("cities") }}/' + provcode,
+            method: 'GET',
+            success: function(response) {
+                let citySelect = $('#loadCity');
+                citySelect.find('option:not(:first)').remove();
+                response.forEach(function(city) {
+                    citySelect.append(new Option(city.cityname, city.id));
+                });
+            },
+            error: function(xhr, status, error) {
+                alert('Error loading cities');
+            }
+        });
+    }
+
+    // Initial load
+    loadRegions();
+
+    // Event listener for region change
+    $('#loadRegion').change(function() {
+        let selectedRegionId = $(this).val();
+        if (selectedRegionId) {
+            loadProvincesByRegion(selectedRegionId);
+            $('#loadCity').find('option:not(:first)').remove();
+        } else {
+            $('#loadProvince').find('option:not(:first)').remove();
+            $('#loadCity').find('option:not(:first)').remove();
+        }
+    });
+
+    // Event listener for province change
+    $('#loadProvince').change(function() {
+        let selectedProvcode = $(this).val();
+        if (selectedProvcode) {
+            loadCitiesByProvince(selectedProvcode);
+        } else {
+            $('#loadCity').find('option:not(:first)').remove();
+        }
+    });
+});

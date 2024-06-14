@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('psgcs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('psgccode');//10 digit number
-            $table->integer('correspondencecode');//10 digit number
+            $table->string('psgccode');//10 digit number
+            $table->string('correspondencecode');//10 digit number
             $table->string('geolevel', 100);//10 digit number
             $table->string('oldname', 100);//10 digit number
             $table->string('incomeclass', 100);//10 digit number

@@ -6,13 +6,89 @@ use App\Models\PersonnelDnaDirectoryModel;
 use App\Models\PersonnelDnaDirectoryNaoModel;
 use App\Models\PersonnelDnaDirectoryNpcModel;
 use App\Models\PersonnelDnaDirectoryBnsModel;
+use App\Models\Region;
+use App\Models\Province;
+use App\Models\Municipal;
+use App\Models\Barangay;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PersonnelDnaDirectoryController extends Controller
 {
+    // public function getProvinces()
+    // {
+    //     try {
+    //         $provinces = DB::connection('nnc_db')->table('provinces')->get();
+    //         return response()->json($provinces);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()]);
+    //     }
+    // }
+
+    // public function getRegions()
+    // {
+    //     try {
+    //         $regions = DB::connection('nnc_db')->table('regions')->get();
+    //         return response()->json($regions);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()]);
+    //     }
+    // }
+
+    // public function getCitys()
+    // {
+    //     try {
+    //         $citys = DB::connection('nnc_db')->table('citys')->get();
+    //         return response()->json($citys);
+    //     } catch (\Exception $e) {
+    //         return response()->json(['error' => $e->getMessage()]);
+    //     }
+    // }
+ 
     
+    public function getProvinces()
+    {
+        try {
+            $provinces = DB::connection('nnc_db')->table('provinces')->get(['id', 'province']);
+            return response()->json($provinces);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch provinces data. Please try again later.'], 500);
+        }
+    }
+
+    public function getProvincesByRegion($regionId)
+    {
+        try {
+            $provinces = DB::connection('nnc_db')->table('provinces')->where('region_id', $regionId)->get(['provcode', 'province']);
+            return response()->json($provinces);
+        } catch (\Exception $e) { 
+            return response()->json(['error' => 'Failed to fetch provinces data. Please try again later.'], 500);
+        }
+    }
+
+    public function getCitiesByProvince($provcode)
+    {
+        try {
+            $cities = DB::connection('nnc_db')->table('cities')->where('provcode', $provcode)->get(['provcode', 'cityname']);
+            return response()->json($cities);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch cities data. Please try again later.'], 500);
+        }
+    }
+
+    
+
+    public function getRegions()
+    {
+        try {
+            $regions = DB::connection('nnc_db')->table('regions')->get(['id', 'region']);
+            return response()->json($regions);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch regions data. Please try again later.'], 500);
+        }
+    }
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -20,12 +96,19 @@ class PersonnelDnaDirectoryController extends Controller
      
     public function index()
     {
-        return view('personnel_dna_directory/create.personnelDnaDirectoryIndex');
+        $nao = PersonnelDnaDirectoryNaoModel::with('naos')->get();
+        return view('personnel_dna_directory/create.personnelDnaDirectoryIndex', ['naos' => $nao]);
     }
 
     public function create()
     {
-        return view('personnel_dna_directory/create.personnelDnaDirectory'); 
+        $Regs = Region::get();       
+        $Prov = Province::get();
+        $Mun = Municipal::get();
+
+        $Brgy = Barangay::get();
+
+        return view('personnel_dna_directory/create.personnelDnaDirectory', ['Regs' => $Regs, 'Prov' => $Prov, 'Mun' => $Mun, 'Brgy' => $Brgy]); 
     }
 
     public function storeNAO(Request $request) {
@@ -44,10 +127,10 @@ class PersonnelDnaDirectoryController extends Controller
                     'civilstatus' => $request -> inputCivilStatus,
                     'educationalbackground' => $request->inputEB,
                     'degreeCourse' => $request->inputDegree,
-                    'region_id' => $request->inputRegion,
-                    'province_id' => $request->inputProvince,
-                    'municipal_id' => $request->inputCM,
-                    'barangay_id' => $request->inputBarangayID,
+                    'region_id' => $request->inputRegionNAO,
+                    'province_id' => $request->inputProvinceNAO,
+                    // 'municipal_id' => $request->inputCityNAO,
+                    'cities_id' => $request->inputCityNAO,
                 ]);
 
                 $addNao = PersonnelDnaDirectoryNaoModel::create([

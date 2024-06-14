@@ -1,7 +1,7 @@
 @extends('layouts.app', [
 'class' => 'sidebar-mini ',
 'namePage' => 'Mellpi Pro Summary',
-'activePage' => 'mellpi_pro_summary',
+'activePage' => 'mellpi_pro_summary1b',
 'activeNav' => '',
 ])
 

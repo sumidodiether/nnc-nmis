@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('citynumber');
             $table->string('cityIncomeClass', 100);
 
+    
             $table->integer('region_id')->unsigned();
             $table->foreign('region_id')->references('id')->on('regions');
             $table->timestamps();
