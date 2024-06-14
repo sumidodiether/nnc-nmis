@@ -113,35 +113,46 @@ class RolesAndPermissionSeeder extends Seeder
             'name' => 'Central Officer',
             'codename' => 'is_centralofficer'
         ]);
+        $role->givePermissionTo(Permission::all());
+        // $role->givePermissionTo([
+        //     'create user_account', 'edit user_account' ,'delete user_account',  'update user_account', 'view user_account',
+        //     'create lguPerformance', 'edit lguPerformance' ,'delete lguPerformance',  'update lguPerformance', 'view lguPerformance'
+        // ]);
 
         $role = Role::create([
             'name' => 'Central Staff',
             'codename' => 'is_centralstaff'
         ]);
+        $role->givePermissionTo(Permission::all());
 
         $role = Role::create([
             'name' => 'Regional Officer',
             'codename' => 'is_regionalofficer'
         ]);
+        $role->givePermissionTo(Permission::all());
 
         $role = Role::create([
-            'name' => 'Regional Staff',
+            'name' => 'Regional Staff', 
             'codename' => 'is_regionalstaff'
         ]);
+        $role->givePermissionTo(Permission::all());
 
         $role = Role::create([
             'name' => 'Provincial officer',
             'codename' => 'is_provincialofficer'
         ]);
+        $role->givePermissionTo(Permission::all());
 
         $role = Role::create([
             'name' => 'Provincial Staff',
             'codename' => 'is_provincialstaff'
         ]);
+        $role->givePermissionTo(Permission::all());
 
         $role = Role::create([
             'name' => 'Barangay Scholar',
             'codename' => 'is_barangayscholar'
         ]);
+        $role->givePermissionTo(Permission::all());
     }
 }

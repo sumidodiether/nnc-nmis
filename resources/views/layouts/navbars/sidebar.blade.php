@@ -170,7 +170,7 @@
               </a>
             </li>
             <li class="@if ($activePage == 'users') active @endif">
-              <a href="{{ route('adminusers.index') }}">
+              <a href="{{ route('CAadmin.index') }}">
                 <i class="now-ui-icons design_bullet-list-67"></i>
                 <p> {{ __("List of Users") }} </p>
               </a>

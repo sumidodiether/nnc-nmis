@@ -28,15 +28,16 @@ return new class extends Migration
             $table->string('email', 100)->unique(); //refactor
             $table->string('cellphonenumer', 100);
             $table->string('telephonenumber', 100);
- 
+
+            $table->integer('cities_id')->unsigned();
+            $table->foreign('cities_id')->references('id')->on('cities');
+            
             $table->integer('region_id')->unsigned(); 
             $table->integer('province_id')->unsigned(); 
-            $table->integer('municipal_id')->unsigned(); 
-            $table->integer('barangay_id')->unsigned()->nullable();
+
             $table->foreign('region_id')->references('id')->on('regions'); 
             $table->foreign('province_id')->references('id')->on('provinces'); 
-            $table->foreign('municipal_id')->references('id')->on('municipals');
-            $table->foreign('barangay_id')->references('id')->on('barangays'); 
+
             $table->timestamps();
         });
 

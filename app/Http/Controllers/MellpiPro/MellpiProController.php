@@ -48,45 +48,44 @@ class MellpiProController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function getProvinces()
-    {
-        try {
-            $provinces = DB::connection('nnc_db')->table('provinces')->get(['id', 'province']);
-            return response()->json($provinces);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to fetch provinces data. Please try again later.'], 500);
-        }
+     public function getRegions()
+     {
+         $regions = DB::connection('nnc_db')->table('regions')->get(['id', 'region']);
+         return response()->json($regions);
+     }
+     
+     public function getProvinces($regionId)
+     {
+         $provinces = DB::connection('nnc_db')->table('provinces')->where('region_id', $regionId)->get(['provcode', 'province']);
+         return response()->json($provinces);
+     }
+     
+     public function getCities($provcode)
+     {
+         $cities = DB::connection('nnc_db')->table('cities')->where('provcode', $provcode)->get(['citymuncode', 'cityname']);
+         return response()->json($cities);
+     }
+     
+    //  public function getBarangays($citymuncode)
+    //  {
+    //      $barangays = DB::connection('nnc_db')->table('brgy')->where('citymuncode', $citymuncode)->get(['id', 'brgyname']);
+    //      return response()->json($barangays);
+    //  }
+
+    public function getBarangays($citymuncode)
+{
+    try {
+        $barangays = DB::connection('nnc_db')
+                        ->table('brgy')
+                        ->where('citymuncode', $citymuncode)
+                        ->get(['id', 'brgyname']);
+
+        return response()->json($barangays);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Failed to fetch barangays data. Please try again later.'], 500);
     }
- 
-    public function getProvincesByRegion($regionId)
-    {
-        try {
-            $provinces = DB::connection('nnc_db')->table('provinces')->where('region_id', $regionId)->get(['provcode', 'province']);
-            return response()->json($provinces);
-        } catch (\Exception $e) { 
-            return response()->json(['error' => 'Failed to fetch provinces data. Please try again later.'], 500);
-        }
-    }
- 
-    public function getCitiesByProvince($provcode)
-    {
-        try {
-            $cities = DB::connection('nnc_db')->table('cities')->where('provcode', $provcode)->get(['provcode', 'cityname']);
-            return response()->json($cities);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to fetch cities data. Please try again later.'], 500);
-        }
-    }    
- 
-    public function getRegions()
-    {
-        try {
-            $regions = DB::connection('nnc_db')->table('regions')->get(['id', 'region']);
-            return response()->json($regions);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to fetch regions data. Please try again later.'], 500);
-        }
-    }
+}
+
     
     public function index()
     {

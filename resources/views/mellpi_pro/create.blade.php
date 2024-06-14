@@ -87,20 +87,12 @@
                                     <option selected>City/Municipality</option>
                                 </select>
                             </div>
-
-                            <div class="col-sm">
-                                <div class="form-group">
-                                    <label>{{__(" Barangay")}}</label>
-                                    <select class="form-control" name="barangay">
-                                        <option value="">Select Country</option>
-                                        <option value="1">SampleBarangay</option>
-                                        @foreach ($Brgy as $brgy)
-                                        <option value="{{ $brgy->id }}">{{ $brgy->barangay }}</option>
-                                        @endforeach
-                                        
-                                    </select>
-                                </div>
-                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputCM">Barangay</label>
+                                <select id="loadBrgyMellpi" class="form-control" name="inputCityNAO">
+                                    <option selected>Barangay</option>
+                                </select>
+                            </div>                   
                         </div>
                     </div>
 
@@ -1823,7 +1815,7 @@
 </div>
 </div>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
 $(function() {
     var $sections = $('.form-section');
     function navigateTo(index) {
@@ -1929,7 +1921,27 @@ $(document).ready(function() {
         });
     }
 
-    function setupDropdowns(regionSelectId, provinceSelectId, citySelectId) {
+    function loadBrgyByCities(citymuncode, brgySelectId) {
+        console.log('Loading brgy for city code:', citymuncode);
+        $.ajax({
+            url: '{{ url("cities") }}/' + citymuncode,
+            method: 'GET',
+            success: function(response) {
+                console.log('Brgy:', response);
+                let brgySelect = $(brgySelectId);
+                brgySelect.find('option:not(:first)').remove();
+                response.forEach(function(brgy) {
+                    brgySelect.append(new Option(brgy.brgyname, brgy.id));
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading brgy:', xhr.responseText);
+                alert('Error loading brgy');
+            }
+        });
+    }
+
+    function setupDropdowns(regionSelectId, provinceSelectId, citySelectId, brgySelectId) {
         loadRegions(regionSelectId);
 
         $(regionSelectId).change(function() {
@@ -1953,12 +1965,154 @@ $(document).ready(function() {
                 $(citySelectId).find('option:not(:first)').remove();
             }
         });
+
+        $(brgySelectId).change(function() {
+            let selectedCitymuncode = $(this).val();
+            console.log('City changed to:', selectedCitymuncode);
+            if (selectedCitymuncode) {
+                loadBrgyByCities(selectedCitymuncode, brgySelectId);
+            } else {
+                $(brgySelectId).find('option:not(:first)').remove();
+            }
+        });
     }
     
-    setupDropdowns('#loadRegionMellpi', '#loadProvinceMellpi', '#loadCityMellpi');
+    setupDropdowns('#loadRegionMellpi', '#loadProvinceMellpi', '#loadCityMellpi', 'loadBrgyMellpi');
+    });
+</script> --}}
+
+<script>
+    $(document).ready(function() {
+    function loadRegions(regionSelectId) {
+        $.ajax({
+            url: '{{ route("regions.get") }}',
+            method: 'GET',
+            success: function(response) {
+                console.log('Regions:', response);
+                let regionSelect = $(regionSelectId);
+                regionSelect.find('option:not(:first)').remove();
+                response.forEach(function(region) {
+                    regionSelect.append(new Option(region.region, region.id));
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading regions:', xhr.responseText);
+                alert('Error loading regions');
+            }
+        });
+    }
+
+    function loadProvincesByRegion(regionId, provinceSelectId) {
+        console.log('Loading provinces for region:', regionId);
+        $.ajax({
+            url: '{{ url("provinces") }}/' + regionId,
+            method: 'GET',
+            success: function(response) {
+                console.log('Provinces:', response);
+                let provinceSelect = $(provinceSelectId);
+                provinceSelect.find('option:not(:first)').remove();
+                response.forEach(function(province) {
+                    provinceSelect.append(new Option(province.province, province.provcode));
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading provinces:', xhr.responseText);
+                alert('Error loading provinces');
+            }
+        });
+    }
+
+    function loadCitiesByProvince(provcode, citySelectId) {
+        console.log('Loading cities for province code:', provcode);
+        $.ajax({
+            url: '{{ url("cities") }}/' + provcode,
+            method: 'GET',
+            success: function(response) {
+                console.log('Cities:', response);
+                let citySelect = $(citySelectId);
+                citySelect.find('option:not(:first)').remove();
+                response.forEach(function(city) {
+                    // Correctly log and append city data
+                    console.log('City data:', city);
+                    citySelect.append(new Option(city.cityname, city.citymuncode));
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading cities:', xhr.responseText);
+                alert('Error loading cities');
+            }
+        });
+    }
+
+    function loadBarangaysByCity(citymuncode, brgySelectId) {
+    console.log('Loading barangays for citymuncode:', citymuncode);
+    $.ajax({
+        url: '{{ url("barangays") }}/' + citymuncode,
+        method: 'GET',
+        success: function(response) {
+            console.log('Barangays:', response);
+            let brgySelect = $(brgySelectId);
+            brgySelect.find('option:not(:first)').remove();
+
+            if (response.error) {
+                alert('Error loading barangays: ' + response.error);
+                return;
+            }
+
+            response.forEach(function(brgy) {
+                brgySelect.append(new Option(brgy.brgyname, brgy.id));
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error loading barangays:', xhr.responseText);
+            alert('Error loading barangays');
+        }
+    });
+}
+
+    function setupDropdowns(regionSelectId, provinceSelectId, citySelectId, brgySelectId) {
+        loadRegions(regionSelectId);
+
+        $(regionSelectId).change(function() {
+            let selectedRegionId = $(this).val();
+            console.log('Region changed to:', selectedRegionId);
+            if (selectedRegionId) {
+                loadProvincesByRegion(selectedRegionId, provinceSelectId);
+                $(citySelectId).find('option:not(:first)').remove();
+                $(brgySelectId).find('option:not(:first)').remove();
+            } else {
+                $(provinceSelectId).find('option:not(:first)').remove();
+                $(citySelectId).find('option:not(:first)').remove();
+                $(brgySelectId).find('option:not(:first)').remove();
+            }
+        });
+
+        $(provinceSelectId).change(function() {
+            let selectedProvcode = $(this).val();
+            console.log('Province changed to:', selectedProvcode);
+            if (selectedProvcode) {
+                loadCitiesByProvince(selectedProvcode, citySelectId);
+                $(brgySelectId).find('option:not(:first)').remove();
+            } else {
+                $(citySelectId).find('option:not(:first)').remove();
+                $(brgySelectId).find('option:not(:first)').remove();
+            }
+        });
+
+        $(citySelectId).change(function() {
+            let selectedCitymuncode = $(this).val();
+            console.log('City changed to:', selectedCitymuncode);
+            if (selectedCitymuncode) {
+                loadBarangaysByCity(selectedCitymuncode, brgySelectId);
+            } else {
+                $(brgySelectId).find('option:not(:first)').remove();
+            }
+        });
+    }
+        // Setup for the specific view dropdowns
+        setupDropdowns('#loadRegionMellpi', '#loadProvinceMellpi', '#loadCityMellpi', '#loadBrgyMellpi');
     });
 </script>
-
 
 
 @endsection

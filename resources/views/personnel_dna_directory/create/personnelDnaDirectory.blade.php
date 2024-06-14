@@ -61,18 +61,36 @@
                                 <select id="loadRegion1" class="form-control" name="inputRegionNAO">
                                     <option selected>Region</option>
                                 </select>
+                                {{-- <select class="form-control" name="inputRegionNAO">
+                                    <option selected>Region</option>
+                                    @foreach ($Regs as $regs)
+                                    <option value="{{$regs->id}}">{{$regs->region}}</option>
+                                    @endforeach
+                                </select> --}}
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputPSGC">Province</label>
                                 <select id="loadProvince1" class="form-control" name="inputProvinceNAO">
                                     <option selected>Province</option>
                                 </select>
+                                {{-- <select class="form-control" name="inputProvinceNAO">
+                                    <option selected>Province</option>
+                                    @foreach ($Prov as $prov)
+                                    <option value="{{$prov->id}}">{{$prov->province}}</option>
+                                    @endforeach
+                                </select> --}}
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputCM">City/Municipality</label>
                                 <select id="loadCity1" class="form-control" name="inputCityNAO">
                                     <option selected>City/Municipality</option>
                                 </select>
+                                {{-- <select class="form-control" name="inputCityNAO">
+                                    <option selected>City/Municipality</option>
+                                    @foreach ($Mun as $mun)
+                                    <option value="{{$mun->id}}">{{$mun->municipal}}</option>
+                                    @endforeach
+                                </select> --}}
                             </div>
                         </div>
                         <hr>
@@ -108,7 +126,7 @@
                             <div class="form-group col-md-1">
                                 <label for="inputSuffix">Suffix</label>
                                 <select id="inputSuffix" class="form-control" name="inputSuffix">
-                                    <option selected>Choose...</option>
+                                    <option value="n/a" selected>Choose...</option>
                                     <option value="Jr">Jr</option>
                                     <option value="Sr">Sr</option>
                                     <option value="I">I</option>

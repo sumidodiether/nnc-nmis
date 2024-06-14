@@ -46,7 +46,7 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <!--Begin input name -->
-                <input type="hidden"  name="status" value="approved" />
+                <input type="hidden"  name="status" value="pending" />
                 <div class="d-flex name">
 
                     <div class="input-group mr-2 {{ $errors->has('Firstname') ? ' has-danger' : '' }}">
@@ -204,15 +204,7 @@
             </div>
         </div>
 
-        {{-- Gender --}}
-        <!-- <div class="form-check text-left">
-            <label class="form-check-label">
-                <input class="form-check-input" type="checkbox">
-                <span class="form-check-sign"></span>
-                {{ __('I agree to the') }}
-                <a href="#something">{{ __('terms and conditions') }}</a>.
-            </label>
-        </div> -->
+
         <div class="card-footer ">
             <button type="submit" class="btn btn-primary btn-round btn-lg">Submit</button>
         </div>
