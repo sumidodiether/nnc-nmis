@@ -18,7 +18,7 @@ use App\Http\Controllers\PersonnelDnaDirectoryController;
 // added
 use App\Http\Controllers\CentralAdmin\PermissionController;
 use App\Http\Controllers\CentralAdmin\RolesController;
-use App\Http\Controllers\CentralAdmin\ProfileController;
+// use App\Http\Controllers\CentralAdmin\ProfileController;
 use App\Http\Controllers\CentralAdmin\AdminUserController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
