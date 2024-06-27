@@ -45,12 +45,13 @@
         @endif
 
         <div>
-            <form action="{{ route('BSLGUprofile.store') }}" method="POST">
-            @csrf
+            <form action="{{ route('nutritionservice.store') }}" method="POST">
+                @csrf
 
-                <input type="hidden" name="status" value="1" >
-                <input type="hidden" name="dateCreated" value="05/19/2024" >
-                <input type="hidden" name="dateUpdates" value="05/19/2024" >
+                <input type="hidden" name="status" value="1">
+                <input type="hidden" name="dateCreated" value="05/19/2024">
+                <input type="hidden" name="dateUpdates" value="05/19/2024">
+                <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                 <!-- header -->
                 <div style="display:flex">
                     <div class="form-group col">
@@ -88,1177 +89,427 @@
                     </div>
                 </div>
                 <!-- endheader -->
+                
                 <br>
-
-                <div style="display:flex">
-                    <!-- Div1 -->
-                    <div class="col col-4 col-2">
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Total Population:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"
-                                name="totalPopulation">
+                <br>
+                <div>
+                    <!-- tablehearder -->
+                    <div class="row" style="display:flex;background-color:#F5F5F5;padding:10px;border-radius:5px;justify-content:center; text-align: center;" >
+                        <div class="col-2 justify-content-center">
+                            <label for="exampleFormControlInput1"><b>ELEMENTS</b></label>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput2">No. of household with access to safe
-                                water:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput2" name="householdWater">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput3">No. of household with sanitary toilets:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput3"
-                                name="householdToilets">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of Day Care Centers</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="dayCareCenter">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of public elementary schools:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="elementary">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of public secondary schools:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"
-                                name="secondarySchool">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of Barangay Health Stations:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="healthStations">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of retail outlets/sari-sari stores:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="retailOutlets">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of bakeries:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="bakeries">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of public markets:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="markets">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of transport terminals:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"
-                                name="transportTerminals">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Percent of Lactating mothers exclusively
-                                breastfeeding
-                                until
-                                the 5th month:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="breastfeeding">
-                        </div>
-
-                        <div style="display:flex">
-                            <div class="form-group col">
-                                <label for="exampleFormControlInput1">Hazard:</label>
-                                <input class="form-control" id="exampleFormControlInput1" name="hazards"
-                                    style="height:100px; border: 1px solid lightgray;border-radius:5px">
+                        <div class="col" style="padding:0px!important">
+                            <div>
+                                <label for="exampleFormControlInput1"><b>PERFORMANCE LEVEL</b></label>
                             </div>
-                            <div class="form-group col">
-                                <label for="exampleFormControlInput1">LGU/Households affected:</label>
-                                <input class="form-control" id="exampleFormControlInput1" name="affectedLGU"
-                                    style="height:100px; border: 1px solid lightgray;border-radius:5px">
-                              
+                            <div style="display:flex" style="justify-content:center!important">
+                                <div class="col">
+                                    <label for="exampleFormControlInput1"><b>1</b></label>
+                                </div>
+                                <div class="col">
+                                    <label for="exampleFormControlInput1"><b>2</b></label>
+                                </div>
+                                <div class="col">
+                                    <label for="exampleFormControlInput1"><b>3</b></label>
+                                </div>
+                                <div class="col">
+                                    <label for="exampleFormControlInput1"><b>4</b></label>
+                                </div>
+                                <div class="col">
+                                    <label for="exampleFormControlInput1"><b>5</b></label>
+                                </div>
                             </div>
+                        </div>
+                        <div class="col-1" style="padding:0px!important">
+                            <label for="exampleFormControlInput1"><b>DOCUMENT SOURCE</b></label>
+                        </div>
+                        <div class="col-1">
+                            <label for="exampleFormControlInput1"><b>RATING</b></label>
+                        </div>
+                        <div class="col-1">
+                            <label for="exampleFormControlInput1"><b>REMARKS/EVIDENCE</b></label>
                         </div>
                     </div>
-                    <!-- div2 -->
-                    <div class="col col-8 col-4">
-                        <div style="display:flex" class="row">
-                            <div class="form-group col">
-                                <label for="exampleFormControlInput1">No. of households:</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1"
-                                    name="noHousehold">
-                            </div>
-                            <div class="form-group col">
-                                <label for="exampleFormControlInput1">No.of SITIOS/PUROKS:</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" name="noPuroks">
-                            </div>
-                        </div>
-                        <br>
-                        <div>
-                            <div class="row" style="display:flex">
-                                <div class="col ">
-                                    <label for="exampleFormControlInput1"><b>Population</b></label>
-                                </div>
-                                <div class="col">
-                                    <label for="exampleFormControlInput1"><b>6-11mons</b></label>
-                                </div>
-                                <div class="col">
-                                    <label for="exampleFormControlInput1"><b>6-23mons</b></label>
-                                </div>
-                                <div class="col">
-                                    <label for="exampleFormControlInput1"><b>12-59mons</b></label>
-                                </div>
-                                <div class="col">
-                                    <label for="exampleFormControlInput1"><b>0-59mons</b></label>
-                                </div>
-                                <div class="col">
-                                    <label for="exampleFormControlInput1"><b>Pregnant</b></label>
-                                </div>
-                                <div class="col">
-                                    <label for="exampleFormControlInput1"><b>Lactating</b></label>
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group" style="width:170px">
-                                    <label for="exampleFormControlInput1">Estimated: </label>
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationA">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationB">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationC">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationD">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationE">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationF">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group" style="width:170px">
-                                    <label for="exampleFormControlInput1">Actual: </label>
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualA">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualB">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualC">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualD">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualE">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualF">
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <label><b>Nutrition Status of Preschool Children:</b></label>
-                        <div>
-                            <div style="display:flex" class="row">
-                                <div class="  col">
-                                    <label for="exampleFormControlInput1"></label>
-                                </div>
-                                <div class=" col">
-                                    <label for="exampleFormControlInput1">Yr: </label>
-                                </div>
-                                <div class=" col">
-                                    <label for="exampleFormControlInput1">Yr: </label>
-                                </div>
-                                <div class=" col">
-                                    <label for="exampleFormControlInput1">Yr: </label>
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Normal: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalAAA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalBAA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalCAA">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Underweight: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psunderweightAAA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psunderweightBAA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psunderweightCAA">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Severely Underweight: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereUnderweightAAA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereUnderweightBAA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereUnderweightCAA">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Overweight: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightAAA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightBAA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightCAA">
-                                </div>
-                            </div>
+                    <br>
+                    <!-- endtablehearder -->
 
-
-                            <!-- Obese -->
-                            <br>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Normal: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalABA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalBBA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalCCA">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Wasted: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pswastedABA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pswastedBBA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pswastedCCA">
-                                </div>
-                            </div>
-
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Severely Wasted: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psseverelyWastedABA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psseverelyWastedBBA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psseverelyWastedCCA">
-                                </div>
-                            </div>
-
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Overweight: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightABA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightBBA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightCCA">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Obese: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psobeseABA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psobeseBBA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psobeseCCA">
-                                </div>
-                            </div>
-                            <br>
-
-
-                            <!-- tall -->
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Normal: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalAAB">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalBBB">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalCCC">
-                                </div>
-                            </div>
-
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Stunted: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psstuntedAAB">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psstuntedBBB">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psstuntedCCC">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Severely Stunted: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereStuntedAAB">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereStuntedBBB">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereStuntedCCC">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Tall: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pstallAAB">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pstallBBB">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pstallCCC">
-                                </div>
-                            </div>
-                        </div>
-
-                        <br>
-                        <br>
-                        <label><b>Nutrition Status of School Children:</b></label>
-                        <div>
-
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Normal: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scnormalABA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scnormalBBA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scnormalCCA">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Wasted: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scwastedABA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scwastedBBA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scwastedCCA">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Severely Wasted: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scseverelyWastedABA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scseverelyWastedBBA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scseverelyWastedCCA">
-                                </div>
-                            </div>
-
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Overweight: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scoverweightABA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scoverweightBBA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scoverweightCCA">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Obese: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scobeseABA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scobeseBBA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scobeseCCA">
-                                </div>
-                            </div>
-
-                            <br>
-                            <br>
-                            <label><b>Nutrition Status of Pregnant Woman:</b></label>
-                            <div>
-
-                                <div style="display:flex;">
-                                    <div class="form-group col" style="width:170px">
-                                        <label for="exampleFormControlInput1">Normal: </label>
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnormalAAA">
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnormalBAA">
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnormalCAA">
-                                    </div>
-                                </div>
-                                <div style="display:flex;">
-                                    <div class="form-group col" style="width:170px">
-                                        <label for="exampleFormControlInput1">Nutritionally at-risk: </label>
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnutritionllyatriskAAA">
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnutritionllyatriskBAA">
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnutritionllyatriskCAA">
-                                    </div>
-                                </div>
-                                <div style="display:flex;">
-                                    <div class="form-group col" style="width:170px">
-                                        <label for="exampleFormControlInput1">Overweight: </label>
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwoverweightAAA">
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwoverweightBAA">
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwoverweightCAA">
-                                    </div>
-                                </div>
-
-                                <div style="display:flex;">
-                                    <div class="form-group col" style="width:170px">
-                                        <label for="exampleFormControlInput1">Obese: </label>
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwobeseAAA">
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwobeseBAA">
-                                    </div>
-                                    <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwobeseCAA">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <br>
-                        <br>
-                        <div>
-                            <div style="display:flex">
-                                <div class="form-group col">
-                                    <label for="exampleFormControlInput1"><b>Land use Classification</b></label>
-                                </div>
-                                <div class="form-group col">
-                                    <label for="exampleFormControlInput1">land Area</label>
-                                </div>
-                                <div class="form-group col">
-                                    <label for="exampleFormControlInput1">Remarks</label>
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Residential: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="landAreaResidential">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="remarksResidential">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Commercial: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="landAreaCommercial">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="remarksCommercial">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Industrial: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="landAreaIndustrial">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="remarksIndustrial">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Agricultural: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="landAreaAgricultural">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="remarksAgricultural">
-                                </div>
-                            </div>
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Forest Land, Mineral Land, National Park:
+                    <!-- 51a -->
+                    <div  class="row"style="display:flex">
+                        <!-- Top -->
+                        <div class="row-12" style="display:flex;">
+                                <div class="col" style="padding-right:15px"><label for="exampleFormControlInput1"><b>5a </b></label></div>
+                                <div class="col-11"  style="padding-left:0px">
+                                    <label for="exampleFormControlInput1">
+                                        <b>Infant and Young Child Feeding</b>
+                                        <br>Community-based health and nutrition support strengthening
                                     </label>
                                 </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="landAreaFLMLNP">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textArea" class="form-control" id="exampleFormControlInput1"
-                                        name="remarksFLMLNP">
+                        </div>
+                            <!-- endTop --> 
+                        <div class="row"  style="display:flex; margin-top:10px">
+                            <div class="col" style="padding:0px!important">
+                                <div style="display:flex" style="justify-content:center!important">
+                                    <div class="col" style="margin-left:45px">
+                                        <label for="exampleFormControlInput1">
+                                        1. Functional
+                                        breastfeeding
+                                        support group</label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        Breastfeeding support group established in the barangay with written agreement of its establishment and directory of members </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        Breastfeeding
+                                        support group
+                                        oriented on Infant
+                                        and Young Child
+                                        Feeding and Milk Code and provided guidance in the conduct of peer counselling and referral </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        Breastfeeding
+                                        support group
+                                        conducted
+                                        activities such as
+                                        peer counseling,
+                                        sharing of
+                                        experience and
+                                        assistance in
+                                        breastfeeding and
+                                        complementary
+                                        feeding for
+                                        pregnant and
+                                        lactating mothers</label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        Breastfeeding
+                                        support group
+                                        conducted
+                                        activities in Level 3 and maintains a list of lactating mothers 
+                                        and status of breastfeeding and/or complementary feeding includin
+                                        information on those with breastfeeding  or complementary feeding challenge
+                                </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        Breastfeeding
+                                        support group
+                                        conducted activities
+                                        and maintains a list of lactating mothers and status of breastfeeding 
+                                        and/or complementary feeding and conducts follow through activities until 
+                                        the lactating mother have ransitioned from exclusive breastfeeding to 
+                                        continued breastfeeding with complementary feeding
+                                    </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-1" style="padding:0px!important">
+                                <label for="exampleFormControlInput1">
+                                Written agreement on
+                                estbalishment of
+                                Breastfeeding Support 
+                                Group
+                                Directory of members
+                                Documentation of activities
+                                Masterlist of lactating
+                                mothers with breastfeeding
+                                and complementary
+                                feeding status
+                            </label>
+                            </div>
+                            <div class=" col-1 ">
+                                <select id="loadProvince1" class="form-control" name="rating1a">
+                                    <option>Select</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="col col-1   ">
+                                <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                            </div>    
+                        </div> 
                     </div>
 
+                      <!-- 51b -->
+                    <div  class="row"style="display:flex">
+                        <!-- Top -->
+                        <div class="row-12" style="display:flex;">
+                                <div class="col" style="padding-right:15px"><label for="exampleFormControlInput1"><b></b></label></div>
+                                <div class="col-12"  style="padding-left:0px">
+                                    <label for="exampleFormControlInput1">
+                                        <b>Establishment of breastfeeding places in barangay facilities</b> 
+                                    </label>
+                                </div>
+                        </div>
+                            <!-- endTop --> 
+                        <div class="row"  style="display:flex; margin-top:10px">
+                            <div class="col" style="padding:0px!important">
+                                <div style="display:flex" style="justify-content:center!important">
+                                    <div class="col" style="margin-left:45px">
+                                        <label for="exampleFormControlInput1">
+                                        2. Lactation stations
+                                        established in
+                                        barangay facilities
+                                        such as Barangay
+                                        Health Stations,
+                                        multi-purpose hall and in public schools </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        The barangay has one lactation station but not maintained </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        The barangay has one lactation station accessible to the public and well-maintained
+                                    </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        The barangay has one lactation station accessible to the public, well-maintained and has accessible handwashing facility, comfortable seats and proper ventilation 
+                                    </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        The barangay has one lactation station as described in level 3 and maintains a logbook of users
+                                </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        The barangay has more than one lactation station as described in level 3 and maintains a logbook of users
+                                    </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1" style="padding:0px!important">
+                                <label for="exampleFormControlInput1">
+                                (By ocular
+                                inspection)
+                                Documentation
+                                report
+                                Lactation station logbook
+                                of users
+                            </label>
+                            </div>
+                            <div class=" col-1 ">
+                                <select id="loadProvince1" class="form-control" name="rating1a">
+                                    <option>Select</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="col col-1   ">
+                                <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                            </div>    
+                        </div> 
+                    </div>
+
+                          <!-- 51c -->
+                    <div  class="row"style="display:flex">
+                        <!-- Top -->
+                        <div class="row-12" style="display:flex;">
+                                <div class="col" style="padding-right:15px"><label for="exampleFormControlInput1"><b></b></label></div>
+                                <div class="col-12"  style="padding-left:0px">
+                                    <label for="exampleFormControlInput1">
+                                        <b>Promotion of compliance to the Milk Code</b> 
+                                    </label>
+                                </div>
+                        </div>
+                            <!-- endTop --> 
+                        <div class="row"  style="display:flex; margin-top:10px">
+                            <div class="col" style="padding:0px!important">
+                                <div style="display:flex" style="justify-content:center!important">
+                                    <div class="col" style="margin-left:45px">
+                                        <label for="exampleFormControlInput1">
+                                        3. Activities
+                                        conducted to
+                                        promote compliance
+                                        to Executive Order
+                                        51, Milk Code
+                                    </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        The barangay have Milk Code materials posted in the Barangay Health Station
+                                        </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        The Barangay
+                                        Health Station is
+                                        compliant to the
+                                        Milk Code
+                                    </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        The Barangay Health Station includes the Milk Code in its Infant and Young Child Feeding classes for pregnant and lactating mothers  
+                                    </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        The Barangay
+                                        issued a
+                                        resolution in
+                                        support of the Milk Code including regular inspection of Barangay Health Station/s 
+                                </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        Members of the
+                                        Barangay Nutrition
+                                        Committee conduct
+                                        inspection in the
+                                        Barangay Health
+                                        Stations at least
+                                        twice a year to
+                                        ensure compliance of
+                                        health workers and clients in the public health facility
+                                    </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1" style="padding:0px!important">
+                                <label for="exampleFormControlInput1">
+                                Milk code materials
+                                Ocular inspection of the
+                                Barangay Health Station
+                                IYCF classes learning
+                                materials
+                                Resolution
+                                Documentation Report
+                            </label>
+                            </div>
+                            <div class=" col-1 ">
+                                <select id="loadProvince1" class="form-control" name="rating1a">
+                                    <option>Select</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="col col-1   ">
+                                <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                            </div>    
+                        </div> 
+                    </div>
+
+                      <!-- 52a -->
+                      <br>
+                      <div  class="row"style="display:flex">
+                        <!-- Top -->
+                        <div class="row-12" style="display:flex;">
+                                <div class="col" style="padding-right:15px"><label for="exampleFormControlInput1"><b>5b</b></label></div>
+                                <div class="col-11"  style="padding-left:0px">
+                                    <label for="exampleFormControlInput1">
+                                        <b>Philippine Integrated Management of Acute Malnutrition</b>
+                                        <br>Provision of services for Severe Acute Malnutrition (SAM) and Moderate Acute Malnutrition (MAM)
+                                    </label>
+                                </div>
+                        </div>
+                            <!-- endTop --> 
+                        <div class="row"  style="display:flex; margin-top:10px">
+                            <div class="col" style="padding:0px!important">
+                                <div style="display:flex" style="justify-content:center!important">
+                                    <div class="col" style="margin-left:45px">
+                                        <label for="exampleFormControlInput1">
+                                        4. Referral of
+                                        severely and
+                                        moderately acute
+                                        malnourished
+                                        children to Barangay Health Stations and/or Rural Health Units
+                                    </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        The LGU only
+                                        maintains a
+                                        master list of
+                                        children with
+                                        severe and
+                                        moderate acute
+                                        malnutrition
+                                        </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        Barangay conducts active case finding of SAM and MAM cases 
+                                    </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        Barangay conducts
+                                        active case finding
+                                        of SAM and MAM
+                                        cases and refers
+                                        cases to the 
+                                        appropriate facility
+                                        for PIMAM
+                                    </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        Barangay conducts
+                                        active case finding
+                                        of SAM and MAM
+                                        cases, refers cases to the appropriate 
+                                        facility for PIMAM and monitors the 
+                                        progress of the SAM and MAM cases 
+                                        enrolled but not reported monthly 
+                                </label>
+                                    </div>
+                                    <div class="col">
+                                        <label for="exampleFormControlInput1">
+                                        Barangay conducts
+                                        active case finding
+                                        of SAM and MAM
+                                        cases, refers cases to the 
+                                        appropriate facility for PIMAM 
+                                        and monitors the progress of the 
+                                        SAM and MAM cases enrolled and reports monthly 
+                                    </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1" style="padding:0px!important">
+                                <label for="exampleFormControlInput1">
+                                Masterlist of
+                                children with SAM
+                                Referral forms
+                            </label>
+                            </div>
+                            <div class=" col-1 ">
+                                <select id="loadProvince1" class="form-control" name="rating1a">
+                                    <option>Select</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="col col-1   ">
+                                <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                            </div>    
+                        </div> 
+                    </div>
+ 
                 </div>
 
-
-                <br>
-                <br>
-                <label><b>INTERVENTION WITH ACTION LINES FROM NGA/NEW STANDARDS:</b></label>
-                <div>
-                    <div style="display:flex">
-                        <div class="col">
-                            <label for="exampleFormControlInput1"><b>Intervention</b></label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Type</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Source</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Available Received</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Date Received</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Volume No. of Pax</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Remarks</label>
-                        </div>
-                    </div>
-                    <!-- I. -->
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">I. Philippine Integrated Managements of Acute
-                                Malnutrition</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Training</label>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="Isource">
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="Iavailreceived">
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="Idatereceived">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="Ivolumepax">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="Iremarks">
-                        </div>
-                    </div>
-                    <!-- II. -->
-                    <br>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">II. National Dietary Supplementation
-                                Program</label>
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                    </div>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">1. Pregnant Women</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Dietary Supplementation</label>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIAsource">
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIAavailreceived">
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIAdatereceived">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIAvolumepax">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIAremarks">
-                        </div>
-                    </div>
-                    <br>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">2. Children 6-23 months</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Dietary Supplementation</label>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIBsource">
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIBavailreceived">
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIBdatereceived">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIBvolumepax">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIBremarks">
-                        </div>
-                    </div>
-                    <!-- III. -->
-                    <br>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">III. Micronutrient Supplementation</label>
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                    </div>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">1. Iron-folic Acid Supplementation for
-                                Pregnant Women</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Commodity</label>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIIAsource">
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIIAavailreceived">
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIIAdatereceived">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIAvolumepax">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIAremarks">
-                        </div>
-                    </div>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">2. Vitamin A Supplementation for children 6-11
-                                months</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Commodity</label>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIIBsource">
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIIBavailreceived">
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIIBdatereceived">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIBvolumepax">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIBremarks">
-                        </div>
-                    </div>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">3. Vitamin A Supplementation for children
-                                12-59 months</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Commodity</label>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIICsource">
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIICavailreceived">
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIICdatereceived">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIICvolumepax">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIICremarks">
-                        </div>
-                    </div>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">4. Micronutrient Powder for children 6-23
-                                months</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Commodity</label>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIIDsource">
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIIDavailreceived">
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIIDdatereceived">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIDvolumepax">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIDremarks">
-                        </div>
-                    </div>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">5. Weekly Iron-Folic Acic Supplementation for
-                                female adolescents in public schools</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Commodity</label>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIIEsource">
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIIEavailreceived">
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIIEdatereceived">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIEvolumepax">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIEremarks">
-                        </div>
-                    </div>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">6. Weekly Iron-Folic Acic Supplementation for
-                                female adolescents in outside the public schools</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Commodity</label>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIIFsource">
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIIFavailreceived">
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIIFdatereceived">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIFvolumepax">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIFremarks">
-                        </div>
-                    </div>
-
-                    <!-- IV. -->
-                    <br>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">IV. Mandatory Food Fortification</label>
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                    </div>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">1. Retail outlets selling adequately iodized
-                                salt</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Dropdown</label>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IVAsource">
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IVAavailreceived">
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IVAdatereceived">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IVAvolumepax">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IVAremarks">
-                        </div>
-                    </div>
-
-                    <!-- V. -->
-                    <br>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">V. Nuitrition-in-Emergencies</label>
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                        <div class="col">
-
-
-                        </div>
-                        <div class="col">
-
-                        </div>
-                    </div>
-                    <div style="display:flex;">
-                        <div class="col">
-                            <label for="exampleFormControlInput1">1. NIEM Plan integrated in the local Disaster
-                                Risk Reduction Management Plan</label>
-                        </div>
-                        <div class="col">
-                            <label for="exampleFormControlInput1">Training</label>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="VAsource">
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <select id="loadProvince1" class="form-control" name="VAavailreceived">
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="VAdatereceived">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="VAvolumepax">
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="VAremarks">
-                        </div>
-                    </div>
-                </div>
 
                 <div class="row" style="margin-top:30px;margin-right:20px;justify-content: flex-end">
                     <button type="submit" class="btn btn-primary">Submit</button>
