@@ -10,19 +10,10 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
-
-    public function getProvinces()
-    {
-        try {
-            $provinces = DB::connection('nnc_db')->table('provinces')->get(['id', 'province']);
-            return response()->json($provinces);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to fetch provinces data. Please try again later.'], 500);
-        }
-    }
 
     public function getProvincesByRegion($regionId)
     {
@@ -51,6 +42,16 @@ class RegisterController extends Controller
             return response()->json($regions);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to fetch regions data. Please try again later.'], 500);
+        }
+    }
+
+    public function getBarangays($city)
+    {
+        try {
+            $barangays = DB::connection('nnc_db')->table('barangays')->where('city', $city)->get(['id', 'barangay']);
+            return response()->json($barangays);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch barangays data. Please try again later.'], 500);
         }
     }
 

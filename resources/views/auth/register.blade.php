@@ -94,13 +94,13 @@
                                 </div>
                             </div>
                             <div class="d-flex region">
-                                <select id="loadRegionReg" class="form-control" name="Region">
+                                <select id="regionSelect" class="form-control" name="Region">
                                     <option value="428" selected>Region</option>
                                 </select>
-                                <select id="loadProvinceReg" class="form-control" name="Province">
+                                <select id="provinceSelect" class="form-control" name="Province">
                                     <option value="1301" selected>Province</option>
                                 </select>
-                                <select id="loadCityReg" class="form-control" name="city_municipal">
+                                <select id="citySelect" class="form-control" name="city_municipal">
                                     <option value="1923" selected>City/Municipality</option>
                                 </select>
                                 <div class="input-group {{ $errors->has('agency_office_lgu') ? ' has-danger' : '' }}" style="margin-right:10px">
@@ -208,59 +208,130 @@
 @push('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
     $(document).ready(function() {
-    $('#region').change(function() {
-        var regionId = $(this).val();
-        if (regionId) {
-            $.ajax({
-                url: '/register/provinces/' + regionId, // Updated URL
-                type: "GET",
-                dataType: "json",
-                success: function(data) {
-                    // Handle the response to populate provinces dropdown
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX Error:', status, error);
-                }
-            });
-        }
-    });
+    function loadRegions(regionSelectId) {
+        $.ajax({
+            url: '{{ route("regions.get") }}',
+            method: 'GET',
+            success: function(response) {
+                console.log('Regions:', response);
+                let regionSelect = $(regionSelectId);
+                regionSelect.find('option:not(:first)').remove();
+                response.forEach(function(region) {
+                    regionSelect.append(new Option(region.region, region.id));
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading regions:', xhr.responseText);
+                alert('Error loading regions');
+            }
+        });
+    }
 
-    $('#province').change(function() {
-        var provcode = $(this).val();
-        if (provcode) {
-            $.ajax({
-                url: '/register/cities/' + provcode, // Updated URL
-                type: "GET",
-                dataType: "json",
-                success: function(data) {
-                    // Handle the response to populate cities dropdown
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX Error:', status, error);
-                }
-            });
-        }
-    });
+    function loadProvincesByRegion(regionId, provinceSelectId) {
+        console.log('Loading provinces for region:', regionId);
+        $.ajax({
+            url: '{{ url("provinces") }}/' + regionId,
+            method: 'GET',
+            success: function(response) {
+                console.log('Provinces:', response);
+                let provinceSelect = $(provinceSelectId);
+                provinceSelect.find('option:not(:first)').remove();
+                response.forEach(function(province) {
+                    provinceSelect.append(new Option(province.province, province.provcode));
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading provinces:', xhr.responseText);
+                alert('Error loading provinces');
+            }
+        });
+    }
 
-    $('#city').change(function() {
-        var cityId = $(this).val();
-        if (cityId) {
-            $.ajax({
-                url: '/register/barangays/' + cityId, // Updated URL
-                type: "GET",
-                dataType: "json",
-                success: function(data) {
-                    // Handle the response to populate barangays dropdown
-                },
-                error: function(xhr, status, error) {
-                    console.error('AJAX Error:', status, error);
-                }
-            });
-        }
-    });
+    function loadCitiesByProvince(provcode, citySelectId) {
+        console.log('Loading cities for province code:', provcode);
+        $.ajax({
+            url: '{{ url("cities") }}/' + provcode,
+            method: 'GET',
+            success: function(response) {
+                console.log('Cities:', response);
+                let citySelect = $(citySelectId);
+                citySelect.find('option:not(:first)').remove();
+                response.forEach(function(city) {
+                    citySelect.append(new Option(city.cityname, city.provcode));
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading cities:', xhr.responseText);
+                alert('Error loading cities');
+            }
+        });
+    }
+
+    function loadBarangaysByCity(cityId, barangaySelectId) {
+        console.log('Loading barangays for city:', cityId);
+        $.ajax({
+            url: '{{ url("barangays") }}/' + cityId,
+            method: 'GET',
+            success: function(response) {
+                console.log('Barangays:', response);
+                let barangaySelect = $(barangaySelectId);
+                barangaySelect.find('option:not(:first)').remove();
+                response.forEach(function(barangay) {
+                    barangaySelect.append(new Option(barangay.barangay, barangay.id));
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error loading barangays:', xhr.responseText);
+                alert('Error loading barangays');
+            }
+        });
+    }
+
+    function setupDropdowns(regionSelectId, provinceSelectId, citySelectId, barangaySelectId) {
+        loadRegions(regionSelectId);
+
+        $(regionSelectId).change(function() {
+            let selectedRegionId = $(this).val();
+            console.log('Region changed to:', selectedRegionId);
+            if (selectedRegionId) {
+                loadProvincesByRegion(selectedRegionId, provinceSelectId);
+                $(citySelectId).find('option:not(:first)').remove();
+                $(barangaySelectId).find('option:not(:first)').remove();
+            } else {
+                $(provinceSelectId).find('option:not(:first)').remove();
+                $(citySelectId).find('option:not(:first)').remove();
+                $(barangaySelectId).find('option:not(:first)').remove();
+            }
+        });
+
+        $(provinceSelectId).change(function() {
+            let selectedProvcode = $(this).val();
+            console.log('Province changed to:', selectedProvcode);
+            if (selectedProvcode) {
+                loadCitiesByProvince(selectedProvcode, citySelectId);
+                $(barangaySelectId).find('option:not(:first)').remove();
+            } else {
+                $(citySelectId).find('option:not(:first)').remove();
+                $(barangaySelectId).find('option:not(:first)').remove();
+            }
+        });
+
+        $(citySelectId).change(function() {
+            let selectedCityId = $(this).val();
+            console.log('City changed to:', selectedCityId);
+            if (selectedCityId) {
+                loadBarangaysByCity(selectedCityId, barangaySelectId);
+            } else {
+                $(barangaySelectId).find('option:not(:first)').remove();
+            }
+        });
+    }
+
+    // Setup for each set of dropdowns
+    setupDropdowns('#regionSelect', '#provinceSelect', '#citySelect', '#barangaySelect');
 });
-
 
     $(document).ready(function() {demo.checkFullPageBackgroundImage();});
 </script>

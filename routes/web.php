@@ -432,17 +432,17 @@ Route::prefix('mellpi')->group(function () {
     Route::get('/cities/{province}', [MellpiProController::class, 'getCities'])->name('mellpi.cities.get');
 });
 
-// Personnel DNA
-Route::prefix('personnel')->group(function () {
-    Route::get('/provinces/{region}', [PersonnelDnaDirectoryController::class, 'getProvincesByRegion'])->name('personnel.provinces.byRegion.get');
-    Route::get('/cities/{provcode}', [PersonnelDnaDirectoryController::class, 'getCitiesByProvince'])->name('personnel.cities.byProvince.get');
-    Route::get('/regions', [PersonnelDnaDirectoryController::class, 'getRegions'])->name('personnel.regions.get');
+// Personnel DNA Directory
+Route::prefix('personneldnadirectory')->group(function () {
+    Route::get('/provinces/{region}', [PersonnelDnaDirectoryController::class, 'getProvincesByRegion'])->name('personneldnadirectory.provinces.byRegion.get');
+    Route::get('/cities/{provcode}', [PersonnelDnaDirectoryController::class, 'getCitiesByProvince'])->name('personneldnadirectory.cities.byProvince.get');
+    Route::get('/regions', [PersonnelDnaDirectoryController::class, 'getRegions'])->name('personneldnadirectory.regions.get');
 });
 
+
 // Register
-Route::prefix('register')->group(function () {
-    Route::get('/provinces/{region}', [RegisterController::class, 'getProvincesByRegion'])->name('register.provinces.byRegion.get');
-    Route::get('/barangays/{city}', [RegisterController::class, 'getBarangays'])->name('register.barangays.get');
-    Route::get('/cities/{provcode}', [RegisterController::class, 'getCitiesByProvince'])->name('register.cities.byProvince.get');
-    Route::get('/regions', [RegisterController::class, 'getRegions'])->name('register.regions.get');
-});
+Route::get('/provinces/{region}', [RegisterController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
+Route::get('/barangays/{city}', [RegisterController::class, 'getBarangays'])->name('barangays.get');
+Route::get('/cities/{provcode}', [RegisterController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
+Route::get('/regions', [RegisterController::class, 'getRegions'])->name('regions.get');
+
