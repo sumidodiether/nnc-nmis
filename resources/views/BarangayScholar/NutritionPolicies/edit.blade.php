@@ -46,7 +46,7 @@
 
 
         <div>
-            <form action="{{ route('nutritionpolicies.store') }}" method="POST">
+            <form action="{{ route('nutritionpolicies.update', $npbarangay->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 

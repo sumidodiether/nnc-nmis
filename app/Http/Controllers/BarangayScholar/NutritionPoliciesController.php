@@ -200,53 +200,49 @@ class NutritionPoliciesController extends Controller
             return response()->json([
                 'errors' => $validator->errors()
             ], 422);
+        }else  {
+            $npbarangay =  MellpiprobarangayNationalpolicies::find($request->id);
+
+            $npbarangay->update([
+                'barangay_id' =>  $request->barangay_id,
+                'municipal_id' =>  $request->municipal_id,
+                'province_id' =>  $request->province_id,
+                'region_id' =>  $request->region_id,
+                'dateMonitoring' =>  $request->dateMonitoring,
+                'periodCovereda' =>  $request->periodCovereda,
+                'periodCoveredb' =>  $request->periodCoveredb,
+                'rating2a' =>  $request->rating2a,
+                'rating2b' =>  $request->rating2b,
+                'rating2c' =>  $request->rating2c,
+                'rating2d' =>  $request->rating2d,
+                'rating2e' =>  $request->rating2e,
+                'rating2f' =>  $request->rating2f,
+                'rating2g' =>  $request->rating2g,
+                'rating2h' =>  $request->rating2h,
+                'rating2i' =>  $request->rating2i,
+                'rating2j' =>  $request->rating2j,
+                'rating2k' =>  $request->rating2k,
+                'rating2l' =>  $request->rating2l,
+                'remarks2a' =>  $request->remarks2a,
+                'remarks2b' =>  $request->remarks2b,
+                'remarks2c' =>  $request->remarks2c,
+                'remarks2d' =>  $request->remarks2d,
+                'remarks2e' =>  $request->remarks2e,
+                'remarks2f' =>  $request->remarks2f,
+                'remarks2g' =>  $request->remarks2g,
+                'remarks2h' =>  $request->remarks2h,
+                'remarks2i' =>  $request->remarks2i,
+                'remarks2j' =>  $request->remarks2j,
+                'remarks2k' =>  $request->remarks2k,
+                'remarks2l' =>  $request->remarks2l,
+                'status' =>  $request->status,
+                'user_id' =>  $request->user_id,
+                'dateCreated' =>  $request->dateCreated,
+                'dateUpdates' =>  $request->dateUpdates,
+            ]); 
         }
 
-        $npbarangay = MellpiprobarangayNationalpolicies::create([
-            'barangay_id' =>  $request->barangay_id,
-            'municipal_id' =>  $request->municipal_id,
-            'province_id' =>  $request->province_id,
-            'region_id' =>  $request->region_id,
-            'dateMonitoring' =>  $request->dateMonitoring,
-            'periodCovereda' =>  $request->periodCovereda,
-            'periodCoveredb' =>  $request->periodCoveredb,
-            'rating2a' =>  $request->rating2a,
-            'rating2b' =>  $request->rating2b,
-            'rating2c' =>  $request->rating2c,
-            'rating2d' =>  $request->rating2d,
-            'rating2e' =>  $request->rating2e,
-            'rating2f' =>  $request->rating2f,
-            'rating2g' =>  $request->rating2g,
-            'rating2h' =>  $request->rating2h,
-            'rating2i' =>  $request->rating2i,
-            'rating2j' =>  $request->rating2j,
-            'rating2k' =>  $request->rating2k,
-            'rating2l' =>  $request->rating2l,
-            'remarks2a' =>  $request->remarks2a,
-            'remarks2b' =>  $request->remarks2b,
-            'remarks2c' =>  $request->remarks2c,
-            'remarks2d' =>  $request->remarks2d,
-            'remarks2e' =>  $request->remarks2e,
-            'remarks2f' =>  $request->remarks2f,
-            'remarks2g' =>  $request->remarks2g,
-            'remarks2h' =>  $request->remarks2h,
-            'remarks2i' =>  $request->remarks2i,
-            'remarks2j' =>  $request->remarks2j,
-            'remarks2k' =>  $request->remarks2k,
-            'remarks2l' =>  $request->remarks2l,
-            'status' =>  $request->status,
-            'user_id' =>  $request->user_id,
-            'dateCreated' =>  $request->dateCreated,
-            'dateUpdates' =>  $request->dateUpdates,
-        ]); 
-
-        mpbrgynationalPoliciestracking::create([
-            'mellpiprobarangaynationalpolicies_id' => $npbarangay->id,
-            'status' => $request->status,
-            'barangay_id' => auth()->user()->barangay,
-            'municipal_id' => auth()->user()->city_municipal,
-            'user_id' => auth()->user()->id,
-        ]);
+        return redirect()->route('nutritionpolicies.index')->with('success', 'Updated successfully!');
     }
 
     /**
@@ -254,6 +250,10 @@ class NutritionPoliciesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+         //dd($id);
+         DB::table('mpbrgynationalPoliciestracking')->where('mellpiprobarangaynationalpolicies_id', $id)->delete();
+         $npbarangay = MellpiprobarangayNationalpolicies::find($id); 
+         $npbarangay->delete();
+         return redirect()->route('nutritionpolicies.index')->with('success', 'Deleted successfully!');
     }
 }

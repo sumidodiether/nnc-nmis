@@ -87,6 +87,12 @@
                                 <p> {{ __("Governance") }} </p>
                             </a>
                         </li>
+                        <li class="@if ($activePage == 'LNCManagement') active @endif">
+                            <a href="{{ route('lncmanagement.index') }}">
+                                <i class="now-ui-icons files_paper"></i>
+                                <p> {{ __("LNC Management") }} </p>
+                            </a>
+                        </li>
                         <li class="@if ($activePage == 'nutritionservice') active @endif">
                             <a href="{{ route('nutritionservice.index') }}">
                                 <i class="now-ui-icons files_paper"></i>
