@@ -27,26 +27,31 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="inputPSGC">PSGC</label>
-                    <input type="text" class="form-control" name="inputPSGC" id="inputPSGC"
-                        placeholder="PSGC" readonly>
+                    <!-- <input type="text" class="form-control" name="inputPSGC" id="inputPSGC"
+                        placeholder="PSGC" readonly> -->
+                        <input type="text" class="form-control" name="inputPSGC" id="inputPSGC"
+                        placeholder="PSGC">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputPSGC">Region</label>
-                    <select id="loadRegionEI" class="form-control" name="inputRegionNAO">
+                    <!-- <select id="loadRegionEI" class="form-control" name="inputRegionNAO">
                         <option selected>Region</option>
-                    </select>
+                    </select> -->
+                    <input type="text" id="loadRegionEI" class="form-control" name="inputRegion">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputPSGC">Province</label>
-                    <select id="loadProvinceEI" class="form-control" name="inputProvinceNAO">
+                    <!-- <select id="loadProvinceEI" class="form-control" name="inputProvinceNAO">
                         <option selected>Province</option>
-                    </select>
+                    </select> -->
+                    <input type="text" id="loadProvinceEI" class="form-control" name="inputProvince">
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputCM">City/Municipality</label>
-                    <select id="loadCityEI" class="form-control" name="inputCityNAO">
+                    <!-- <select id="loadCityEI" class="form-control" name="inputCityNAO">
                         <option selected>City/Municipality</option>
-                    </select>
+                    </select> -->
+                    <input type="text" id="loadCityEI" class="form-control" name="inputCM">
                 </div>
             </div>
             <hr>

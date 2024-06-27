@@ -24,6 +24,6 @@ class PersonnelDnaDirectoryNaoModel extends Model
 
     public function personnelsFunction()
     {
-        return $this->belongsTo(PersonnelDnaDirectoryModel::class);
+        return $this->belongsTo(PersonnelDnaDirectoryModel::class, 'personnel_id');
     }
 }

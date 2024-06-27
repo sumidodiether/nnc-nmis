@@ -77,8 +77,6 @@ class PersonnelDnaDirectoryController extends Controller
         }
     }
 
-    
-
     public function getRegions()
     {
         try {
@@ -96,8 +94,9 @@ class PersonnelDnaDirectoryController extends Controller
      
     public function index()
     {
-        $nao = PersonnelDnaDirectoryNaoModel::with('naos')->get();
-        return view('personnel_dna_directory/create.personnelDnaDirectoryIndex', ['naos' => $nao]);
+        $naoPersonnel = PersonnelDnaDirectoryModel::with('NaoFuction')
+        ->get();
+        return view('personnel_dna_directory/create.personnelDnaDirectoryIndex', ['naosPersonnel' => $naoPersonnel]);
     }
 
     public function create()

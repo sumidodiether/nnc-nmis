@@ -52,14 +52,7 @@
       </li>
       
       <li class="@if ($activePage == 'icons') active @endif">
-        <!-- <a href="{{ route('page.index','icons') }}">
-          <i class="now-ui-icons business_chart-bar-32"></i>
-          <p>{{ __('LGU Demographics') }}</p>
-        </a> -->
-        <!-- <a href="{{ route('page.index','icons') }}">
-          <i class="now-ui-icons business_chart-bar-32"></i>
-          <p>{{ __('LGU Performance') }}</p>
-        </a> -->
+ 
         <a data-toggle="collapse" href="#LguPerformance">
             <!-- <i class="now-ui-icons ui-1_settings-gear-63"></i> -->
           <p>
@@ -136,10 +129,7 @@
       </li>
       
       <li class = "@if ($activePage == 'typography') active @endif">
-        <!-- <a href="{{ route('page.index','typography') }}">
-          <i class="now-ui-icons design_palette"></i>
-          <p>{{ __('Structure') }}</p>
-        </a> -->
+ 
         <a href="#">
           <i class="now-ui-icons design_palette"></i>
           <p>{{ __('Operation Timbang Plus') }}</p>
@@ -153,6 +143,7 @@
           <p>{{ __('Request Approval') }}</p>
         </a>
       </li>
+
       <li>
         <a data-toggle="collapse" href="#laravelExamples">
             <!-- <i class="now-ui-icons files_paper"></i> -->
@@ -164,7 +155,7 @@
         <div class="collapse show" id="laravelExamples">
           <ul class="nav">
             <li class="@if ($activePage == 'profile') active @endif">
-              <a href="{{ route('profile.edit') }}">
+              <a href="{{ route('CAprofile.index') }}">
                 <i class="now-ui-icons users_single-02"></i>
                 <p> {{ __("User Profile") }} </p>
               </a>
@@ -195,6 +186,7 @@
             </li>
           </ul>
         </div>
+      </li>
     </ul>
   </div>
 </div>

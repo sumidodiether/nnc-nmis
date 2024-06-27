@@ -44,7 +44,7 @@
     @endif
   
     <div>
-        <form action="{{ route('admin.store') }}"   method="POST">
+        <form action="{{ route('CAadmin.store') }}"   method="POST">
         @csrf
         <form>
             <div class="form-group">

@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+@extends('layouts.CAapp', [
 'class' => 'sidebar-mini ',
 'namePage' => 'Permissions',
 'activePage' => 'Permissions',
@@ -73,7 +73,7 @@
                 <td class="d-flex">
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" style="margin-right:101px"
+                    <button type="button" class="btn btn-primary" data-toggle="modal" style="margin-right:10px"
                         data-target="#exampleModal{{$permission->id}}">
                         edit
                     </button>

@@ -136,9 +136,7 @@ class MellproLGUController extends Controller
 
                     $Regiondata = Region::create([
                         'psgccode_id' => $PSGCdata->id,
-
                         'region' => $record['Name'],
-
                         'regclass' => '0',
                         'regnumber' =>  $record['Number'],
                         'created_at' => now(),

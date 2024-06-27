@@ -1,3 +1,36 @@
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/joboy.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/diether.css') }}">
+<script src="{{ asset('assets/js/joboy.js') }}"></script>
+
+<style>
+.tab {
+    text-align: center;
+    font-size: 11px;
+    border: 1px solid green;
+}
+
+.tab.active {
+    border-top: 1px solid green;
+}
+.mainHeader {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+thead th {
+    background-color: #f2f2f2;
+}
+
+</style>
+
 @extends('layouts.app', [
 'class' => 'sidebar-mini ',
 'namePage' => 'Equipment Inventory',
@@ -7,7 +40,7 @@
 
 @section('content')
 
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/joboy.css') }}" >
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/joboy.css') }}">
 <script src="{{ asset('assets/js/joboy.js') }}"></script>
 
 <div class="panel-header panel-header-sm">
@@ -22,169 +55,225 @@
                 </div>
             </div>
         </div>
-        <form>
-            <hr>
+        <form action="#" method="POST">
             <div class="form-row">
                 <div class="form-group col-md-3">
-                    <label for="inputPSGC">PSGC</label>
-                    <input type="text" class="form-control" id="inputPSGC" placeholder="PSGC" disabled>
+                    <label for="inputPSGC">Region</label>
+                    <select id="loadRegion1" class="form-control" name="inputRegion">
+                        <option selected>Region</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="inputRegion">Region</label>
-                    <input type="text" class="form-control" id="inputRegion" placeholder="Region" disabled>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="inputProvince">Province</label>
-                    <input type="text" class="form-control" id="inputProvince" placeholder="Province" disabled>
+                    <label for="inputPSGC">Province</label>
+                    <select id="loadProvince1" class="form-control" name="inputProvince">
+                        <option selected>Province</option>
+                    </select>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="inputCM">City/Municipality</label>
-                    <input type="text" class="form-control" id="inputCM" placeholder="City/Municipality" disabled>
+                    <select id="loadCity1" class="form-control" name="inputCity">
+                        <option selected>City/Municipality</option>
+                    </select>
                 </div>
             </div>
-            <hr>
-            <div class="form-group col-md-4" id="totalBarangay" style="display:flex; border-right:1px solid;">
-                <div class="form-group col-md-6">
-                    <label for="inputtotalBarangay">Total No. of Barangay</label>
-                    <input type="number" class="form-control" id="inputtotalBarangay" value='0' disabled>
-                </div>
-            </div>
-            <hr>
-            <div>
-                <label for="formHB"><b>Height Board (HB)</b></label>
-            </div>
-            <hr>
-            <div style="display:flex;">
-                <div class="form-group col-md-4" id="formHB" style="display:flex; border-right:1px solid;">
-                    <div class="form-group col-md-6">
-                        <label for="inputWHB">Wooden HB</label>
-                        <input type="text" class="form-control" id="inputWHB" placeholder="Wooden HB" disabled>
-                        <label for="inputNonWHB">Non-wooden HB</label>
-                        <input type="text" class="form-control" id="inputNonWHB" placeholder="Non-wooden HB" disabled>
-                        <label for="inputHBNonF">Defective/Non-functional</label>
-                        <input type="text" class="form-control" id="inputHBNonF" placeholder="Defective/Non-functional" disabled>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputTotalHB">Total HB</label>
-                        <input type="text" class="form-control" id="inputTotalHB" placeholder="Total HB" disabled>
-                        <label for="inputHBpercent">HB% Availability</label>
-                        <input type="text" class="form-control" id="inputHBpercent" placeholder="HB% Availability" disabled>
-                    </div>
-                </div>
-                <div class="form-group col-md-4" id="formHB" style="display:flex; border-right:1px solid;">
-                    <div class="form-group col-md-4">
-                        <label for="inputSteelRules">Steel Rules</label>
-                        <input type="text" class="form-control" id="inputSteelRules" placeholder="Steel Rules" disabled>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputMicrotoise">Microtoise</label>
-                        <input type="text" class="form-control" id="inputMicrotoise" placeholder="Microtoise" disabled>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputInfantometer">Infantometer</label>
-                        <input type="text" class="form-control" id="inputInfantometer" placeholder="Infantometer" disabled>
-                    </div>
-                </div>
-                <div class="form-group col-md-4" id="formHB">
-                    <div class="form-group col-md-12">
-                        <label for="inputHBRemarks">Remarks</label>
-                        <input type="text" class="form-control" id="inputHBRemarks" placeholder="Remarks" disabled>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div>
-                <label for="formWS"><b>Weighing Scale (WS)</b></label>
-            </div>
-            <hr>
-            <div style="display:flex;">
-                <div class="form-group col-md-4" id="formWS" style="display:flex; border-right:1px solid;">
-                    <div class="form-group col-md-6">
-                        <label for="inputWSHanging">Hanging-type</label>
-                        <input type="text" class="form-control" id="inputWSHanging" placeholder="Hanging-type" disabled>
-                        <label for="inputWSNonF">Defective/Non-functional</label>
-                        <input type="text" class="form-control" id="inputWSNonF" placeholder="Defective/Non-functional" disabled>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" id="inputWSpercent" disabled>
-                    </div>
-                </div>
-                <div class="form-group col-md-4" id="formHB" style="display:flex; border-right:1px solid;">
-                    <div class="form-group col-md-6">
-                        <label for="inputInfantScale">Infant Scale</label>
-                        <input type="text" class="form-control" id="inputInfantScale" placeholder="Infant Scale" disabled>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputBeamBalance">Beam Balance</label>
-                        <input type="text" class="form-control" id="inputBeamBalance" placeholder="Beam Balance" disabled>
-                    </div>
-                </div>
-                <div class="form-group col-md-4" id="formHB">
-                    <div class="form-group col-md-12">
-                        <label for="inputWSRemarks">Remarks</label>
-                        <input type="text" class="form-control" id="inputWSRemarks" placeholder="Remarks" disabled>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div>
-                <label for="formMUAC"><b>MUAC</b></label>
-            </div>
-            <hr>
-            <div style="display:flex;">
-                <div class="form-group col-md-4" id="formMUAC" style="display:flex; border-right:1px solid;">
-                    <div class="form-group col-md-6">
-                        <label for="inputMChild">Child</label>
-                        <input type="text" class="form-control" id="inputMChild" placeholder="Child" disabled>
-                        <label for="inputMNonFChild">Defective/Non-functional</label>
-                        <input type="text" class="form-control" id="inputMNonFChild"
-                            placeholder="Defective/Non-functional" disabled>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputTotalChild">Total (Child)</label>
-                        <input type="text" class="form-control" id="inputTotalChild" placeholder="Total (Child)" disabled>
-                        <label for="inputChildpercent">% Availability (Child)</label>
-                        <input type="text" class="form-control" id="inputChildpercent"
-                            placeholder="% Availability (Child)" disabled>
-                    </div>
-                </div>
-                <div class="form-group col-md-4" id="formHB" style="display:flex; border-right:1px solid;">
-                    <div class="form-group col-md-6">
-                        <label for="inputMAdult">Adult</label>
-                        <input type="text" class="form-control" id="inputMAdult" placeholder="Adult" disabled>
-                        <label for="inputMNonFAdult">Defective/Non-functional</label>
-                        <input type="text" class="form-control" id="inputMNonFAdult"
-                            placeholder="Defective/Non-functional" disabled>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputTotalAdult">Total (Adult)</label>
-                        <input type="text" class="form-control" id="inputTotalAdult" placeholder="Total (Adult)" disabled>
-                        <label for="inputAdultpercent">% Availability (Adult)</label>
-                        <input type="text" class="form-control" id="inputAdultpercent"
-                            placeholder="% Availability (Adult)" disabled>
-                    </div>
-                </div>
-                <div class="form-group col-md-4" id="formHB">
-                    <div class="form-group col-md-12">
-                        <label for="inputMRemarks">Remarks</label>
-                        <input type="text" class="form-control" id="inputMRemarks" placeholder="Remarks" disabled>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="form-group col-md-12" style="display:flex;">
-                <div class="form-group col-md-6">
-                    <label for="inputEISubtotal">Subtotal</label>
-                    <input type="text" class="form-control" id="inputEISubtotal" placeholder="Subtotal" disabled>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="inputEIGrandTotal">Grand Total</label>
-                    <input type="text" class="form-control" id="inputEIGrandTotal" placeholder="Grand Total" disabled>
-                </div>
-            </div>
-            <div class="form-group col-md-12" style="display:flex;">
-                <!-- <button type="submit" class="btn btn-primary">Sign in</button> -->
         </form>
+        <div class="form-row" style="border-bottom: 1px solid #ddd;">
+            <div id="tabs" class="d-flex mr-3">
+                <div class="tab" data-tab="tab1">(HB)</div>
+                <div class="tab" data-tab="tab2">(WS)</div>
+                <div class="tab" data-tab="tab3">(MUAC)</div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div id="tab-contents" class="col-md-12">
+                <div class="tab-content" id="tab1">
+                    <table id="nutriTable" class="table table-striped table-bordered" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th><b>10-digit PSGC</b></th>
+                                <th><b>City/Municipality</b></th>
+                                <th><b>Total No. of Barangay</b></th>
+                                <th colspan="8" class="mainHeader">Height Board (HB)</th>
+                                <th>HB Remarks</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Wooden HB</th>
+                                <th>Non-Wooden HB</th>
+                                <th>Defective</th>
+                                <th>Total HB</th>
+                                <th>HB% Availability</th>
+                                <th colspan="3" class="mainHeader">Others</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Steel Rules</th>
+                                <th>Microtoise</th>
+                                <th>Infantometer</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        @foreach ($EquipmentInventory as $equipmentInventory)
+                        <tbody>
+                            <tr>
+                                <td>{{$equipmentInventory->psgccode_id}}</td>
+                                <td>{{$equipmentInventory->municipal_id}}</td>
+                                <td>{{$equipmentInventory->totalBarangay}}</td>
+                                <td>{{$equipmentInventory->woodenHB}}</td>
+                                <td>{{$equipmentInventory->nonWoodenHB}}</td>
+                                <td>{{$equipmentInventory->defectiveHB}}</td>
+                                <td>{{$equipmentInventory->totalHB}}</td>
+                                <td>{{$equipmentInventory->availabilityHB}}</td>
+                                <td>{{$equipmentInventory->steelRules}}</td>
+                                <td>{{$equipmentInventory->microtoise}}</td>
+                                <td>{{$equipmentInventory->infantometer}}</td>
+                                <td>{{$equipmentInventory->remarksHB}}</td>
+                            </tr>
+                        </tbody>
+                        @endforeach
+                        <tfoot>
+                            <tr>
+                                <td><b></b></td>
+                                <td><b>Grand Total</b></td>
+                                <td><b>{{$totalBarangay}}</b></td>
+                                <td><b>{{$woodenHB}}</b></td>
+                                <td><b>{{$nonWoodenHB}}</b></td>
+                                <td><b>{{$defectiveHB}}</b></td>
+                                <td><b>{{$totalHB}}</b></td>
+                                <td><b>{{$availabilityHB}}</b></td>
+                                <td><b>{{$steelRules}}</b></td>
+                                <td><b>{{$microtoise}}</b></td>
+                                <td><b>{{$infantometer}}</b></td>
+                                <td><b></b></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="tab-content" id="tab2">
+                <table id="nutriTable" class="table table-striped table-bordered" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th><b>City/Municipality</b></th>
+                                <th colspan="6" class="mainHeader">Weighing Scale (WS)</th>
+                                <th>WS Remarks</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Hanging-type</th>
+                                <th>Defective</th>
+                                <th>Total WS</th>
+                                <th>WS% Availability</th>
+                                <th colspan="2" class="mainHeader">Others</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Infant Scale</th>
+                                <th>Beam Balance</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($EquipmentInventory as $equipmentInventory)
+                            <tr>
+                                <td>{{$equipmentInventory->municipal_id}}</td>
+                                <td>{{$equipmentInventory->hangingType}}</td>
+                                <td>{{$equipmentInventory->defectiveWS}}</td>
+                                <td>{{$equipmentInventory->totalWS}}</td>
+                                <td>{{$equipmentInventory->availabilityWS}}</td>
+                                <td>{{$equipmentInventory->infatScale}}</td>
+                                <td>{{$equipmentInventory->beamBalance}}</td>
+                                <td>{{$equipmentInventory->remarksWS}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><b>Grand Total</b></td>
+                                <td><b>{{$hangingType}}</b></td>
+                                <td><b>{{$defectiveWS}}</b></td>
+                                <td><b>{{$totalWS}}</b></td>
+                                <td><b>{{$availabilityWS}}</b></td>
+                                <td><b>{{$infatScale}}</b></td>
+                                <td><b>{{$beamBalance}}</b></td>
+                                <td><b></b></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="tab-content" id="tab3">
+                <table id="nutriTable" class="table table-striped table-bordered" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th><b>City/Municipality</b></th>
+                                <th colspan="8" class="mainHeader">Mid-Upper Arm Circumference (MUAC) Tapes</th>
+                                <th>MUAC Remarks</th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>Child</th>
+                                <th>Defect</th>
+                                <th>Total (Child)</th>
+                                <th>% Availability (Child)</th>
+                                <th>Adult</th>
+                                <th>Defect</th>
+                                <th>Total (Adult)</th>
+                                <th>% Availability (Adult)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($EquipmentInventory as $equipmentInventory)
+                            <tr>
+                                <td>{{$equipmentInventory->municipal_id}}</td>
+                                <td>{{$equipmentInventory->child}}</td>
+                                <td>{{$equipmentInventory->defectiveMUAC_child}}</td>
+                                <td>{{$equipmentInventory->totalMUAC_Child}}</td>
+                                <td>{{$equipmentInventory->availabilityMUAC_child}}</td>
+                                <td>{{$equipmentInventory->adults}}</td>
+                                <td>{{$equipmentInventory->defectiveMUAC_adults}}</td>
+                                <td>{{$equipmentInventory->totalMUAC_adults}}</td>
+                                <td>{{$equipmentInventory->availabilityMUAC_adults}}</td>
+                                <td>{{$equipmentInventory->remarksMUAC}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><b>Grand Total</b></td>
+                                <td><b>{{$child}}</b></td>
+                                <td><b>{{$defectiveMUAC_child}}</b></td>
+                                <td><b>{{$totalMUAC_Child}}</b></td>
+                                <td><b>{{$availabilityMUAC_child}}</b></td>
+                                <td><b>{{$adults}}</b></td>
+                                <td><b>{{$defectiveMUAC_adults}}</b></td>
+                                <td><b>{{$totalMUAC_adults}}</b></td>
+                                <td><b>{{$availabilityMUAC_adults}}</b></td>
+                                <td><b></b></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row row-12">
+
+        </div>
     </div>
 </div>
 @endsection

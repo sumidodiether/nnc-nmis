@@ -10,6 +10,47 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
+
+    public function getProvinces()
+    {
+        try {
+            $provinces = DB::connection('nnc_db')->table('provinces')->get(['id', 'province']);
+            return response()->json($provinces);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch provinces data. Please try again later.'], 500);
+        }
+    }
+
+    public function getProvincesByRegion($regionId)
+    {
+        try {
+            $provinces = DB::connection('nnc_db')->table('provinces')->where('region_id', $regionId)->get(['provcode', 'province']);
+            return response()->json($provinces);
+        } catch (\Exception $e) { 
+            return response()->json(['error' => 'Failed to fetch provinces data. Please try again later.'], 500);
+        }
+    }
+
+    public function getCitiesByProvince($provcode)
+    {
+        try {
+            $cities = DB::connection('nnc_db')->table('cities')->where('provcode', $provcode)->get(['provcode', 'cityname']);
+            return response()->json($cities);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch cities data. Please try again later.'], 500);
+        }
+    }
+
+    public function getRegions()
+    {
+        try {
+            $regions = DB::connection('nnc_db')->table('regions')->get(['id', 'region']);
+            return response()->json($regions);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch regions data. Please try again later.'], 500);
+        }
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -29,6 +70,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
+    // edit route 
     protected $redirectTo = '/home';
 
     /**
@@ -56,6 +98,7 @@ class RegisterController extends Controller
             'Region' => 'required|string|max:255',
             'Province' => 'required|string|max:255',
             'city_municipal' => 'required|string|max:255',
+            'barangay' => 'required|string|max:255',
             'agency_office_lgu' => 'required|string|max:255',
             'Division_unit' => 'required|string|max:255',
             'role' => 'required|string|max:255',
@@ -81,6 +124,7 @@ class RegisterController extends Controller
             'Region' => $data['Region'],
             'Province' => $data['Province'],
             'city_municipal' => $data['city_municipal'],
+            'barangay' => $data['barangay'],
             'agency_office_lgu' => $data['agency_office_lgu'],
             'Division_unit' => $data['Division_unit'],
             'role' => $data['role'],

@@ -110,11 +110,11 @@ class AdminUserController extends Controller
                     ]);
         
         //query fo r permissions
-         $roles = Role::findOrFail($request->role);
+         $roles = DB::table('roles')->where('id', $request->role)->first();
         // dd($roles);
         $user->syncRoles($roles->name);
 
-        return redirect('/users')->with('status','User created successfully with roles');
+        return redirect('/adminusers')->with('status','User created successfully with roles');
     }
 
     public function edit(Request $request)
@@ -151,8 +151,8 @@ class AdminUserController extends Controller
             'status' => 'required|string|max:255',
         ]);
 
-        $data = [
-            'Firstname' => $request->Firstname,
+                $data = [
+                        'Firstname' => $request->Firstname,
                         'Middlename' => $request->Middlename,
                         'Lastname' => $request->Lastname,
                         'Region' => $request->Region,
@@ -164,7 +164,7 @@ class AdminUserController extends Controller
                         'email' => $request->email,
                         'password' => Hash::make($request->password),
                         'status' => $request->status,
-        ];
+                ];
 
         if(!empty($request->password)){
             $data += [
@@ -173,9 +173,11 @@ class AdminUserController extends Controller
         }
 
         $user->update($data);
-        $user->syncRoles($request->roles);
 
-        return redirect('/users')->with('status','User Updated Successfully with roles');
+        $roles = DB::table('roles')->where('id', $request->role)->first();
+        $user->syncRoles($roles->name); 
+
+        return redirect('/adminusers')->with('status','User Updated Successfully with roles');
     }
 
     public function destroy($userId)

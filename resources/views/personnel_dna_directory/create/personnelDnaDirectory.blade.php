@@ -40,11 +40,7 @@
                 <div class="tab" data-tab="tab3">BNS</div>
             </div>
         </div>
-        @if(session()->has('message'))
-            <div class="alert alert-success">
-                {{ session()->get('message') }}
-            </div>  
-        @endif
+    
         <div class="form-row">
             <div id="tab-contents" class="col-md-12">
                 <div class="tab-content" id="tab1">
@@ -58,39 +54,24 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputPSGC">Region</label>
-                                <select id="loadRegion1" class="form-control" name="inputRegionNAO">
+                                <!-- <select id="loadRegion1" class="form-control" name="inputRegionNAO">
                                     <option selected>Region</option>
-                                </select>
-                                {{-- <select class="form-control" name="inputRegionNAO">
-                                    <option selected>Region</option>
-                                    @foreach ($Regs as $regs)
-                                    <option value="{{$regs->id}}">{{$regs->region}}</option>
-                                    @endforeach
-                                </select> --}}
+                                </select> -->
+                                <input type="number" id="loadRegion1" class="form-control" name="inputRegionNAO">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputPSGC">Province</label>
-                                <select id="loadProvince1" class="form-control" name="inputProvinceNAO">
+                                <!-- <select id="loadProvince1" class="form-control" name="inputProvinceNAO">
                                     <option selected>Province</option>
-                                </select>
-                                {{-- <select class="form-control" name="inputProvinceNAO">
-                                    <option selected>Province</option>
-                                    @foreach ($Prov as $prov)
-                                    <option value="{{$prov->id}}">{{$prov->province}}</option>
-                                    @endforeach
-                                </select> --}}
+                                </select> -->
+                                <input type="number" id="loadProvince1" class="form-control" name="inputProvinceNAO">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputCM">City/Municipality</label>
-                                <select id="loadCity1" class="form-control" name="inputCityNAO">
+                                <!-- <select id="loadCity1" class="form-control" name="inputCityNAO">
                                     <option selected>City/Municipality</option>
-                                </select>
-                                {{-- <select class="form-control" name="inputCityNAO">
-                                    <option selected>City/Municipality</option>
-                                    @foreach ($Mun as $mun)
-                                    <option value="{{$mun->id}}">{{$mun->municipal}}</option>
-                                    @endforeach
-                                </select> --}}
+                                </select> -->
+                                <input type="number" id="loadCity1" class="form-control" name="inputCityNAO">
                             </div>
                         </div>
                         <hr>
@@ -126,12 +107,12 @@
                             <div class="form-group col-md-1">
                                 <label for="inputSuffix">Suffix</label>
                                 <select id="inputSuffix" class="form-control" name="inputSuffix">
-                                    <option value="n/a" selected>Choose...</option>
+                                    <option value=" " selected>Choose...</option>
                                     <option value="Jr">Jr</option>
                                     <option value="Sr">Sr</option>
                                     <option value="I">I</option>
-                                    <option value="I">II</option>
-                                    <option value="I">III</option>
+                                    <option value="II">II</option>
+                                    <option value="III">III</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
@@ -164,8 +145,7 @@
                         <div class="form-row" id="formBasicInfo">
                             <div class="form-group col-md-2">
                                 <label for="inputBdate">Birthdate</label>
-                                <input type="date" class="form-control" name="inputBdate" id="inputBdate"
-                                    placeholder="Last Name">
+                                <input type="date" class="form-control" name="inputBdate" id="inputBdate">
                             </div>
                             <div class="form-group col-md-1">
                                 <label for="inputage">age</label>
@@ -303,12 +283,12 @@
                             <div class="form-group col-md-1">
                                 <label for="inputSuffix">Suffix</label>
                                 <select id="inputSuffix" class="form-control" name="inputSuffix">
-                                    <option selected>Choose...</option>
+                                    <option value=" " selected>Choose...</option>
                                     <option value="Jr">Jr</option>
                                     <option value="Sr">Sr</option>
                                     <option value="I">I</option>
-                                    <option value="I">II</option>
-                                    <option value="I">III</option>
+                                    <option value="II">II</option>
+                                    <option value="III">III</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
@@ -505,12 +485,12 @@
                             <div class="form-group col-md-1">
                                 <label for="inputSuffix">Suffix</label>
                                 <select id="inputSuffix" class="form-control" name="inputSuffix">
-                                    <option selected>Choose...</option>
+                                    <option value=" " selected>Choose...</option>
                                     <option value="Jr">Jr</option>
                                     <option value="Sr">Sr</option>
                                     <option value="I">I</option>
-                                    <option value="I">II</option>
-                                    <option value="I">III</option>
+                                    <option value="II">II</option>
+                                    <option value="III">III</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
@@ -627,95 +607,168 @@
 </div>
 @endsection
 
-<script>
+{{-- <script>
     $(document).ready(function() {
-        function loadRegions(regionSelectId) {
+        function loadRegions() {
             $.ajax({
                 url: '{{ route("regions.get") }}',
                 method: 'GET',
                 success: function(response) {
-                    console.log('Regions:', response);
-                    let regionSelect = $(regionSelectId);
+                    let regionSelect = $('#loadRegion');
                     regionSelect.find('option:not(:first)').remove();
                     response.forEach(function(region) {
                         regionSelect.append(new Option(region.region, region.id));
                     });
                 },
                 error: function(xhr, status, error) {
-                    console.error('Error loading regions:', xhr.responseText);
                     alert('Error loading regions');
                 }
             });
         }
-
-        function loadProvincesByRegion(regionId, provinceSelectId) {
-            console.log('Loading provinces for region:', regionId);
+        function loadProvincesByRegion(regionId) {
             $.ajax({
                 url: '{{ url("provinces") }}/' + regionId,
                 method: 'GET',
                 success: function(response) {
-                    console.log('Provinces:', response);
-                    let provinceSelect = $(provinceSelectId);
+                    let provinceSelect = $('#loadProvince');
                     provinceSelect.find('option:not(:first)').remove();
                     response.forEach(function(province) {
                         provinceSelect.append(new Option(province.province, province.provcode));
                     });
                 },
                 error: function(xhr, status, error) {
-                    console.error('Error loading provinces:', xhr.responseText);
                     alert('Error loading provinces');
                 }
             });
         }
-
-        function loadCitiesByProvince(provcode, citySelectId) {
-            console.log('Loading cities for province code:', provcode);
+        function loadCitiesByProvince(provcode) {
             $.ajax({
                 url: '{{ url("cities") }}/' + provcode,
                 method: 'GET',
                 success: function(response) {
-                    console.log('Cities:', response);
-                    let citySelect = $(citySelectId);
+                    let citySelect = $('#loadCity');
                     citySelect.find('option:not(:first)').remove();
                     response.forEach(function(city) {
                         citySelect.append(new Option(city.cityname, city.id));
                     });
                 },
                 error: function(xhr, status, error) {
-                    console.error('Error loading cities:', xhr.responseText);
                     alert('Error loading cities');
                 }
             });
         }
-
-        function setupDropdowns(regionSelectId, provinceSelectId, citySelectId) {
-            loadRegions(regionSelectId);
-
-            $(regionSelectId).change(function() {
-                let selectedRegionId = $(this).val();
-                console.log('Region changed to:', selectedRegionId);
-                if (selectedRegionId) {
-                    loadProvincesByRegion(selectedRegionId, provinceSelectId);
-                    $(citySelectId).find('option:not(:first)').remove();
-                } else {
-                    $(provinceSelectId).find('option:not(:first)').remove();
-                    $(citySelectId).find('option:not(:first)').remove();
-                }
-            });
-
-            $(provinceSelectId).change(function() {
-                let selectedProvcode = $(this).val();
-                console.log('Province changed to:', selectedProvcode);
-                if (selectedProvcode) {
-                    loadCitiesByProvince(selectedProvcode, citySelectId);
-                } else {
-                    $(citySelectId).find('option:not(:first)').remove();
-                }
-            });
-        }
-
-        setupDropdowns('#loadRegion1', '#loadProvince1', '#loadCity1');
-        setupDropdowns('#loadRegion2', '#loadProvince2', '#loadCity2');
-        setupDropdowns('#loadRegion3', '#loadProvince3', '#loadCity3');
+        loadRegions();
+        $('#loadRegion').change(function() {
+            let selectedRegionId = $(this).val();
+            if (selectedRegionId) {
+                loadProvincesByRegion(selectedRegionId);
+                $('#loadCity').find('option:not(:first)').remove();
+            } else {
+                $('#loadProvince').find('option:not(:first)').remove();
+                $('#loadCity').find('option:not(:first)').remove();
+            }
+        });
+        $('#loadProvince').change(function() {
+            let selectedProvcode = $(this).val();
+            if (selectedProvcode) {
+                loadCitiesByProvince(selectedProvcode);
+            } else {
+                $('#loadCity').find('option:not(:first)').remove();
+            }
+        });
     });
-</script>
+</script> --}}
+
+<script>
+        $(document).ready(function() {
+            function loadRegions(regionSelectId) {
+                $.ajax({
+                    url: '{{ route("regions.get") }}',
+                    method: 'GET',
+                    success: function(response) {
+                        console.log('Regions:', response);
+                        let regionSelect = $(regionSelectId);
+                        regionSelect.find('option:not(:first)').remove();
+                        response.forEach(function(region) {
+                            regionSelect.append(new Option(region.region, region.id));
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading regions:', xhr.responseText);
+                        alert('Error loading regions');
+                    }
+                });
+            }
+
+            function loadProvincesByRegion(regionId, provinceSelectId) {
+                console.log('Loading provinces for region:', regionId);
+                $.ajax({
+                    url: '{{ url("provinces") }}/' + regionId,
+                    method: 'GET',
+                    success: function(response) {
+                        console.log('Provinces:', response);
+                        let provinceSelect = $(provinceSelectId);
+                        provinceSelect.find('option:not(:first)').remove();
+                        response.forEach(function(province) {
+                            provinceSelect.append(new Option(province.province, province.provcode));
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading provinces:', xhr.responseText);
+                        alert('Error loading provinces');
+                    }
+                });
+            }
+
+            function loadCitiesByProvince(provcode, citySelectId) {
+                console.log('Loading cities for province code:', provcode);
+                $.ajax({
+                    url: '{{ url("cities") }}/' + provcode,
+                    method: 'GET',
+                    success: function(response) {
+                        console.log('Cities:', response);
+                        let citySelect = $(citySelectId);
+                        citySelect.find('option:not(:first)').remove();
+                        response.forEach(function(city) {
+                            citySelect.append(new Option(city.cityname, city.id));
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error loading cities:', xhr.responseText);
+                        alert('Error loading cities');
+                    }
+                });
+            }
+
+            function setupDropdowns(regionSelectId, provinceSelectId, citySelectId) {
+                loadRegions(regionSelectId);
+
+                $(regionSelectId).change(function() {
+                    let selectedRegionId = $(this).val();
+                    console.log('Region changed to:', selectedRegionId);
+                    if (selectedRegionId) {
+                        loadProvincesByRegion(selectedRegionId, provinceSelectId);
+                        $(citySelectId).find('option:not(:first)').remove();
+                    } else {
+                        $(provinceSelectId).find('option:not(:first)').remove();
+                        $(citySelectId).find('option:not(:first)').remove();
+                    }
+                });
+
+                $(provinceSelectId).change(function() {
+                    let selectedProvcode = $(this).val();
+                    console.log('Province changed to:', selectedProvcode);
+                    if (selectedProvcode) {
+                        loadCitiesByProvince(selectedProvcode, citySelectId);
+                    } else {
+                        $(citySelectId).find('option:not(:first)').remove();
+                    }
+                });
+            }
+
+            // Setup for each set of dropdowns
+            setupDropdowns('#loadRegion1', '#loadProvince1', '#loadCity1');
+            setupDropdowns('#loadRegion2', '#loadProvince2', '#loadCity2');
+            setupDropdowns('#loadRegion3', '#loadProvince3', '#loadCity3');
+        });
+    </script>

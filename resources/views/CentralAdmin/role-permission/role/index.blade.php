@@ -1,7 +1,7 @@
-@extends('layouts.app', [
+@extends('layouts.CAapp', [
 'class' => 'sidebar-mini ',
 'namePage' => 'Roles',
-'activePage' => 'roles',
+'activePage' => 'Roles',
 'activeNav' => '',
 ])
 

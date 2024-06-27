@@ -1,7 +1,7 @@
 @extends('layouts.app', [
 'class' => 'sidebar-mini ',
-'namePage' => 'Roles',
-'activePage' => 'roles',
+'namePage' => 'Users',
+'activePage' => 'Users',
 'activeNav' => '',
 ])
 
@@ -42,7 +42,7 @@
     <div class="alert alert-success">{{session('status')}}</div>
     @endif
     <div>
-        <a href="{{route('admin.create')}}" class="btn btn-primary">Add new Account </a>
+        <a href="{{route('CAadmin.create')}}" class="btn btn-primary">Add new Account </a>
     </div>
 
     <table class="table table-striped">
@@ -99,8 +99,8 @@
                 <td class="d-flex">
 
                 <!-- <a href="{{url('/adminusers/'.$users->id.'/edit')}}" class="btn btn-primary" style="margin-right:10px">Edit</a>     -->
-                <a href="{{route('admin.edit', $users->id)}}" class="btn btn-primary" >edit</a>
-                    <form action="{{ route('admin.destroy', $users->id) }}" method="POST"
+                <a href="{{route('CAadmin.edit', $users->id)}}" class="btn btn-primary" >edit</a>
+                    <form action="{{ route('CAadmin.destroy', $users->id) }}" method="POST"
                         onsubmit="return confirm('Are you sure you want to delete this account?');">
                         @csrf
                         @method('DELETE')

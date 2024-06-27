@@ -34,7 +34,7 @@ class PersonnelDnaDirectoryModel extends Model
 
     public function NaoFuction()
     {
-        return $this->hasMany(PersonnelDnaDirectoryNaoModel::class);
+        return $this->hasMany(PersonnelDnaDirectoryNaoModel::class, 'personnel_id');
     }
 
     public function NpcFuction()

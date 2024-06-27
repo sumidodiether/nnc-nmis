@@ -12,30 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-    //     Schema::create('lgu_profile', function (Blueprint $table) {
-    //         $table->increments('id');
-    //         $table->string('income_class',150);
-    //         $table->date('date_monitoring');
-    //         $table->string('period_covered',10);
-    //         $table->integer('population');
-    //         $table->integer('nutritional_status');
-    //         $table->integer('land_use_classification');
-    //         $table->string('total_land_remarks', 150);
-    //         $table->string('source_and_remarks', 150);
-    //         $table->string('received', 150);
-    //         $table->date('date_received');
-    //         $table->integer('no_pax');
-    //         $table->string('remarks', 150);
-    //         $table->date('date_created');
-    //         $table->date('date_updated');
-    //         $table->integer('province_id')->unsigned(); 
-    //         $table->integer('municipal_id')->unsigned(); 
-    //         $table->integer('barangay_id')->unsigned(); 
-    //         $table->foreign('province_id')->references('id')->on('provinces'); 
-    //         $table->foreign('municipal_id')->references('id')->on('municipals');
-    //         $table->foreign('barangay_id')->references('id')->on('barangays'); 
-    //         $table->timestamps();
-    //     });
+
 
 
     //     Schema::create('lgu_demographics', function (Blueprint $table) {

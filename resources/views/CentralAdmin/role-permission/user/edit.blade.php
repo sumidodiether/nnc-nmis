@@ -43,7 +43,8 @@
     @endif
   
     <div>
-        <form action="{{ url('/adminusers/'.$users->id.'/edit') }}"   method="POST">
+        <!-- <form action="{{ url('/adminusers/'.$users->id.'/edit') }}"   method="POST"> -->
+        <form action="{{ route('CAadmin.edit', $users->id)}}"   method="POST">
         @csrf
         @method('PUT')
         <form>

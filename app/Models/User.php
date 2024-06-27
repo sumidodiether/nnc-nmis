@@ -27,6 +27,7 @@ class User extends Authenticatable
         'city_municipal',
         'agency_office_lgu',
         'Division_unit',
+        'barangay',
         'role',
         'email',
         'password',

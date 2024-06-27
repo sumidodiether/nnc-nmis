@@ -65,7 +65,7 @@ class AdminUserController extends Controller
     {
         $users = User::get();
         
-        return view('CentralAdmin.role-permission.user.index', ['users' => $users]);
+        return view('Central.role-permission.user.index', ['users' => $users]);
     }
 
     public function create()
