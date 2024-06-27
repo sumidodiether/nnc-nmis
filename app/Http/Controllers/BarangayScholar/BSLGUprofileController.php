@@ -635,6 +635,7 @@ class BSLGUprofileController extends Controller
         }else {
             $lguprofile = LguProfile::find($id);
 
+
             $lguprofile->update([
                 'dateMonitoring'=> $request->dateMonitoring,
                 'periodCovereda' => $request->periodCovereda,

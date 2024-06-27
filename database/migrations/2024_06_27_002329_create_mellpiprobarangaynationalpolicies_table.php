@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('mellpiprobarangaynationalpolicies', function (Blueprint $table) {
             $table->id(); 
-        
+            $table->integer('rating2a');
             $table->integer('rating2b');
             $table->integer('rating2c');
             $table->integer('rating2d');

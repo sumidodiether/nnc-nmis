@@ -1,3 +1,8 @@
+<head>
+    <!-- Other head content -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
+
 @extends('layouts.app', [
 'namePage' => 'Register page',
 'activePage' => 'register',
@@ -5,10 +10,11 @@
 ])
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="content">
     <div class="container">
         <div class="row">
-            <div class="col-md-5 ml-auto">
+            <div class="col-md-4 ml-auto">
                 <div class="info-area info-horizontal mt-2">
                     <div class="icon icon-primary">
                         <i class="now-ui-icons media-2_sound-wave"></i>
@@ -32,7 +38,7 @@
                     </div>
                 </div>
             </div> 
-            <div class="col-md-12 mr-auto">
+            <div class="col-md-8 mr-auto">
                 <div class="card card-signup text-center">
                     <div class="card-header">
                         <h4 class="card-title">{{ __('Register') }}</h4>
@@ -202,96 +208,103 @@
 @push('js')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-        $(document).ready(function() {
-            function loadRegions(regionSelectId) {
-                $.ajax({
-                    url: '{{ route("regions.get") }}',
-                    method: 'GET',
-                    success: function(response) {
-                        console.log('Regions:', response);
-                        let regionSelect = $(regionSelectId);
-                        regionSelect.find('option:not(:first)').remove();
-                        response.forEach(function(region) {
-                            regionSelect.append(new Option(region.region, region.id));
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error loading regions:', xhr.responseText);
-                        alert('Error loading regions');
-                    }
-                });
+    $(document).ready(function() {
+        // Set the CSRF token in the header for all AJAX requests
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-
-            function loadProvincesByRegion(regionId, provinceSelectId) {
-                console.log('Loading provinces for region:', regionId);
-                $.ajax({
-                    url: '{{ url("provinces") }}/' + regionId,
-                    method: 'GET',
-                    success: function(response) {
-                        console.log('Provinces:', response);
-                        let provinceSelect = $(provinceSelectId);
-                        provinceSelect.find('option:not(:first)').remove();
-                        response.forEach(function(province) {
-                            provinceSelect.append(new Option(province.province, province.provcode));
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error loading provinces:', xhr.responseText);
-                        alert('Error loading provinces');
-                    }
-                });
-            }
-
-            function loadCitiesByProvince(provcode, citySelectId) {
-                console.log('Loading cities for province code:', provcode);
-                $.ajax({
-                    url: '{{ url("cities") }}/' + provcode,
-                    method: 'GET',
-                    success: function(response) {
-                        console.log('Cities:', response);
-                        let citySelect = $(citySelectId);
-                        citySelect.find('option:not(:first)').remove();
-                        response.forEach(function(city) {
-                            citySelect.append(new Option(city.cityname, city.id));
-                        });
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error loading cities:', xhr.responseText);
-                        alert('Error loading cities');
-                    }
-                });
-            }
-
-            function setupDropdowns(regionSelectId, provinceSelectId, citySelectId) {
-                loadRegions(regionSelectId);
-
-                $(regionSelectId).change(function() {
-                    let selectedRegionId = $(this).val();
-                    console.log('Region changed to:', selectedRegionId);
-                    if (selectedRegionId) {
-                        loadProvincesByRegion(selectedRegionId, provinceSelectId);
-                        $(citySelectId).find('option:not(:first)').remove();
-                    } else {
-                        $(provinceSelectId).find('option:not(:first)').remove();
-                        $(citySelectId).find('option:not(:first)').remove();
-                    }
-                });
-
-                $(provinceSelectId).change(function() {
-                    let selectedProvcode = $(this).val();
-                    console.log('Province changed to:', selectedProvcode);
-                    if (selectedProvcode) {
-                        loadCitiesByProvince(selectedProvcode, citySelectId);
-                    } else {
-                        $(citySelectId).find('option:not(:first)').remove();
-                    }
-                });
-            }
-
-            // Setup for each set of dropdowns
-            setupDropdowns('#loadRegionReg', '#loadProvinceReg', '#loadCityReg');
         });
 
-        $(document).ready(function() {demo.checkFullPageBackgroundImage();});
-    </script>
+        function loadRegions(regionSelectId) {
+            $.ajax({
+                url: '{{ route("regions.get") }}',
+                method: 'GET',
+                success: function(response) {
+                    console.log('Regions:', response);
+                    let regionSelect = $(regionSelectId);
+                    regionSelect.find('option:not(:first)').remove();
+                    response.forEach(function(region) {
+                        regionSelect.append(new Option(region.region, region.id));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading regions:', xhr.responseText);
+                    alert('Error loading regions');
+                }
+            });
+        }
+
+        function loadProvincesByRegion(regionId, provinceSelectId) {
+            console.log('Loading provinces for region:', regionId);
+            $.ajax({
+                url: '{{ url("provinces") }}/' + regionId,
+                method: 'GET',
+                success: function(response) {
+                    console.log('Provinces:', response);
+                    let provinceSelect = $(provinceSelectId);
+                    provinceSelect.find('option:not(:first)').remove();
+                    response.forEach(function(province) {
+                        provinceSelect.append(new Option(province.province, province.provcode));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading provinces:', xhr.responseText);
+                    alert('Error loading provinces');
+                }
+            });
+        }
+
+        function loadCitiesByProvince(provcode, citySelectId) {
+            console.log('Loading cities for province code:', provcode);
+            $.ajax({
+                url: '{{ url("cities") }}/' + provcode,
+                method: 'GET',
+                success: function(response) {
+                    console.log('Cities:', response);
+                    let citySelect = $(citySelectId);
+                    citySelect.find('option:not(:first)').remove();
+                    response.forEach(function(city) {
+                        citySelect.append(new Option(city.cityname, city.id));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading cities:', xhr.responseText);
+                    alert('Error loading cities');
+                }
+            });
+        }
+
+        function setupDropdowns(regionSelectId, provinceSelectId, citySelectId) {
+            loadRegions(regionSelectId);
+
+            $(regionSelectId).change(function() {
+                let selectedRegionId = $(this).val();
+                console.log('Region changed to:', selectedRegionId);
+                if (selectedRegionId) {
+                    loadProvincesByRegion(selectedRegionId, provinceSelectId);
+                    $(citySelectId).find('option:not(:first)').remove();
+                } else {
+                    $(provinceSelectId).find('option:not(:first)').remove();
+                    $(citySelectId).find('option:not(:first)').remove();
+                }
+            });
+
+            $(provinceSelectId).change(function() {
+                let selectedProvcode = $(this).val();
+                console.log('Province changed to:', selectedProvcode);
+                if (selectedProvcode) {
+                    loadCitiesByProvince(selectedProvcode, citySelectId);
+                } else {
+                    $(citySelectId).find('option:not(:first)').remove();
+                }
+            });
+        }
+
+        // Setup for each set of dropdowns
+        setupDropdowns('#loadRegionReg', '#loadProvinceReg', '#loadCityReg');
+    });
+
+    $(document).ready(function() {demo.checkFullPageBackgroundImage();});
+</script>
 @endpush

@@ -13,7 +13,7 @@ class MellpiprobarangayNationalpolicies extends Model
     'province_id',
     'municipal_id',
     'barangay_id',
-
+    'rating2a',
     'rating2b',
     'rating2c',
     'rating2d',
@@ -24,8 +24,7 @@ class MellpiprobarangayNationalpolicies extends Model
     'rating2i',
     'rating2j',
     'rating2k',
-    'rating2l',
-    'rating2m',
+    'rating2l', 
     'remarks2a',
     'remarks2b',
     'remarks2c',
@@ -38,7 +37,6 @@ class MellpiprobarangayNationalpolicies extends Model
     'remarks2j',
     'remarks2k',
     'remarks2l',
-    'remarks2m',
     'dateCreated',
     'dateUpdates',
     'dateMonitoring', 
@@ -50,5 +48,5 @@ class MellpiprobarangayNationalpolicies extends Model
 
 protected $guarded = ['id'];
 
-protected $table = 'mellpiprobarangay_nationalpolicies';
+protected $table = 'mellpiprobarangaynationalpolicies';
 }

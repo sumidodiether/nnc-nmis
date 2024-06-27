@@ -176,7 +176,7 @@
                                 Annual Budget PPAN Accomplishment Report Minutes of meeting</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1a">
+                            <select id="loadProvince1" class="form-control" name="rating2a">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -186,7 +186,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2a" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -247,7 +247,7 @@
                                 Documentation of posting and/or dissemination activities</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1b">
+                            <select id="loadProvince1" class="form-control" name="rating2b">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -257,7 +257,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1b" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2b" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -305,7 +305,7 @@
                             <label for="exampleFormControlInput1">Annual Investment Program</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c">
+                            <select id="loadProvince1" class="form-control" name="rating2c">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -315,7 +315,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1c" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2c" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -383,7 +383,7 @@
                                 promotion and monitoring</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c">
+                            <select id="loadProvince1" class="form-control" name="rating2d">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -393,7 +393,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1c" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2d" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -472,7 +472,7 @@
                             </label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c">
+                            <select id="loadProvince1" class="form-control" name="rating2e">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -482,7 +482,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1c" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2e" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -546,7 +546,7 @@
                                 iodized salt</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c">
+                            <select id="loadProvince1" class="form-control" name="rating2f">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -556,7 +556,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1c" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2f" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -622,7 +622,7 @@
                                 fortified foods</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c">
+                            <select id="loadProvince1" class="form-control" name="rating2g">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -632,7 +632,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1c" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2g" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -712,7 +712,7 @@
                                 reports</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c">
+                            <select id="loadProvince1" class="form-control" name="rating2h">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -722,7 +722,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1c" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2h" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -795,7 +795,7 @@
                                 OPT Plus Report</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c">
+                            <select id="loadProvince1" class="form-control" name="rating2i">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -805,7 +805,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1c" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2i" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -881,7 +881,7 @@
                                 Minutes of meeting</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c">
+                            <select id="loadProvince1" class="form-control" name="rating2j">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -891,7 +891,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1c" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2j" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -959,7 +959,7 @@
                                 report</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c">
+                            <select id="loadProvince1" class="form-control" name="rating2k">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -969,7 +969,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1c" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2k" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -1032,7 +1032,7 @@
                                 Minutes of meeting</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c">
+                            <select id="loadProvince1" class="form-control" name="rating2l">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -1042,7 +1042,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1c" placeholder="Your remarks"
+                            <textarea type="text" name="remarks2l" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>

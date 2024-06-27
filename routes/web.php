@@ -62,7 +62,6 @@ use function PHPSTORM_META\map;
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');  
 });
@@ -106,35 +105,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/lncFunction', LNCController::class);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-    // Admin
-    Route::get('/provinces/{region}', [AdminUserController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
-    Route::get('/cities/{provcode}', [AdminUserController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
-    Route::get('/regions', [AdminUserController::class, 'getRegions'])->name('regions.get');
-
-    // Equipment Inventory
-    Route::get('/provinces/{region}', [EquipmentInventoryController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
-    Route::get('/cities/{provcode}', [EquipmentInventoryController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
-    Route::get('/regions', [EquipmentInventoryController::class, 'getRegions'])->name('regions.get');
-
-    // Register
-    Route::get('/provinces/{region}', [RegisterController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
-    Route::get('/barangays/{city}', [RegisterController::class, 'getBarangays'])->name('barangays.get');
-    Route::get('/cities/{provcode}', [RegisterController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
-    Route::get('/regions', [RegisterController::class, 'getRegions'])->name('regions.get');
-
-    Route::get('/regions', [MellpiProController::class, 'getRegions'])->name('regions.get');
-    Route::get('/provinces/{region}', [MellpiProController::class, 'getProvinces'])->name('provinces.get');
-    Route::get('/cities/{province}', [MellpiProController::class, 'getCities'])->name('cities.get');
-    // Route::get('/barangays/{city}', [MellpiProController::class, 'getBarangays'])->name('barangays.get');
-    Route::get('/barangays/{citymuncode}', [MellpiProController::class, 'getBarangays'])->name('barangays.get');
-
-
-    //Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
-
-    //personal DNA
-    Route::get('/provinces/{region}', [PersonnelDnaDirectoryController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
-    Route::get('/cities/{provcode}', [PersonnelDnaDirectoryController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
-    Route::get('/regions', [PersonnelDnaDirectoryController::class, 'getRegions'])->name('regions.get');
+    
  
 
     Route::get('/personnelDnaDirectoryIndex' ,[PersonnelDnaDirectoryController::class, 'index'])->name('personnelDnaDirectoryIndex');
@@ -428,3 +399,27 @@ Route::group(['middleware' => 'auth'], function () {
 Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 Route::get('/request-portal', [RequestPortalController::class, 'index'])->name('requestportal.view');
 Route::get('/publicDashboard', [publicDashboardController::class, 'index'])->name('guest');
+
+// Admin
+Route::get('/provinces/{region}', [AdminUserController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
+Route::get('/cities/{provcode}', [AdminUserController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
+Route::get('/regions', [AdminUserController::class, 'getRegions'])->name('regions.get');
+
+// Equipment Inventory
+Route::get('/provinces/{region}', [EquipmentInventoryController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
+Route::get('/cities/{provcode}', [EquipmentInventoryController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
+Route::get('/regions', [EquipmentInventoryController::class, 'getRegions'])->name('regions.get');
+
+
+// Mellpi
+Route::get('/regions', [MellpiProController::class, 'getRegions'])->name('regions.get');
+Route::get('/provinces/{region}', [MellpiProController::class, 'getProvinces'])->name('provinces.get');
+Route::get('/cities/{province}', [MellpiProController::class, 'getCities'])->name('cities.get');
+
+
+//Route::get('{page}', ['as' => 'page.index', 'uses' => 'App\Http\Controllers\PageController@index']);
+
+//personal DNA
+Route::get('/provinces/{region}', [PersonnelDnaDirectoryController::class, 'getProvincesByRegion'])->name('provinces.byRegion.get');
+Route::get('/cities/{provcode}', [PersonnelDnaDirectoryController::class, 'getCitiesByProvince'])->name('cities.byProvince.get');
+Route::get('/regions', [PersonnelDnaDirectoryController::class, 'getRegions'])->name('regions.get');

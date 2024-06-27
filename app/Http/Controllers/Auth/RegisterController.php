@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+//joboy
+use Illuminate\Support\Facades\DB;
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;

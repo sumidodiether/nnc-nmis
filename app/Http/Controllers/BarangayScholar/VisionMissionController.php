@@ -33,7 +33,7 @@ class VisionMissionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         //dd($request);
         $rules = [
@@ -63,36 +63,29 @@ class VisionMissionController extends Controller
             return response()->json([
                 'errors' => $validator->errors()
             ], 422);
+        }else {
+
+            $npbarangay = MellpiproLGUBarangayVisionMission::find($id);
+            $npbarangay->update([
+                'barangay_id' =>  $request->barangay_id,
+                'municipal_id' =>  $request->municipal_id,
+                'province_id' =>  $request->province_id,
+                'region_id' =>  $request->region_id,
+                'dateMonitoring' =>  $request->dateMonitoring,
+                'periodCovereda' =>  $request->periodCovereda,
+                'periodCoveredb' =>  $request->periodCoveredb,
+                'rating1a' =>  $request->rating1a,
+                'rating1b' =>  $request->rating1b,
+                'rating1c' =>  $request->rating1c,
+                'remarks1a' =>  $request->remarks1a,
+                'remarks1b' =>  $request->remarks1b,
+                'remarks1c' =>  $request->remarks1c,
+                'status' =>  $request->status,
+                'user_id' =>  $request->user_id,
+                'dateCreated' =>  $request->dateCreated,
+                'dateUpdates' =>  $request->dateUpdates,
+            ]); 
         }
-
-        $vmbarangay = MellpiproLGUBarangayVisionMission::create([
-            'barangay_id' =>  $request->barangay_id,
-            'municipal_id' =>  $request->municipal_id,
-            'province_id' =>  $request->province_id,
-            'region_id' =>  $request->region_id,
-            'dateMonitoring' =>  $request->dateMonitoring,
-            'periodCovereda' =>  $request->periodCovereda,
-            'periodCoveredb' =>  $request->periodCoveredb,
-            'rating1a' =>  $request->rating1a,
-            'rating1b' =>  $request->rating1b,
-            'rating1c' =>  $request->rating1c,
-            'remarks1a' =>  $request->remarks1a,
-            'remarks1b' =>  $request->remarks1b,
-            'remarks1c' =>  $request->remarks1c,
-            'status' =>  $request->status,
-            'user_id' =>  $request->user_id,
-            'dateCreated' =>  $request->dateCreated,
-            'dateUpdates' =>  $request->dateUpdates,
-        ]); 
-
-        mlplgubrgytracking::create([
-            'mplgubrgyvisionmissions_id' => $vmbarangay->id,
-            'status' => $request->status,
-            'barangay_id' => auth()->user()->barangay,
-            'municipal_id' => auth()->user()->city_municipal,
-            'user_id' => auth()->user()->id,
-        ]);
-
 
         return redirect('BarangayScholar/visionmission');
     }
@@ -111,7 +104,7 @@ class VisionMissionController extends Controller
     public function edit(Request $request)
     {
         $vmbarangay = DB::table('mplgubrgyvisionmissions')->where('id', $request->id)->first();
-        return view('BarangayScholar.VisionMission.edit', ['vmbarangay' => $vmbarangay ])->with('success', 'Created successfully!');;
+        return view('BarangayScholar.VisionMission.edit', ['vmbarangay' => $vmbarangay ])->with('success', 'Created successfully!');
  
     }
 
