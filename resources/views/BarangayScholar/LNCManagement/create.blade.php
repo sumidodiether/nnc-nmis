@@ -47,7 +47,7 @@
         @endif
 
         <div>
-            <form action="{{ route('visionmission.store') }}" method="POST">
+            <form action="{{ route('lncmanagement.store') }}" method="POST">
                 @csrf
 
                 <input type="hidden" name="status" value="1">
@@ -185,7 +185,7 @@
                             Action Plan</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1a">
+                            <select id="loadProvince1" class="form-control" name="rating4a">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -195,7 +195,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="remarks4a" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -251,7 +251,7 @@
                                         Development Plan</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1b">
+                            <select id="loadProvince1" class="form-control" name="rating4b">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -261,7 +261,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1b"  placeholder="Your remarks"
+                            <textarea type="text" name="remarks4b"  placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -271,7 +271,7 @@
                     <div class="row" style="display:flex">
                         <div style="display:flex" class="col-2 justify-content-center">
                             <div>
-                                <label for="exampleFormControlInput1"><b>1c</b></label>
+                                <label for="exampleFormControlInput1"><b>4c</b></label>
                             </div>
                             <div class="col">
                                 <label for="exampleFormControlInput1">Presence of nutrition-related concerns in the Annual Investment Program</label>
@@ -300,7 +300,7 @@
                             <label for="exampleFormControlInput1">Annual Investment Program</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c"> 
+                            <select id="loadProvince1" class="form-control" name="rating4c"> 
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -310,7 +310,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                        <textarea type="text" name="remarks1c"  placeholder="Your remarks"
+                        <textarea type="text" name="remarks4c"  placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -356,7 +356,7 @@
                                     beneficiaries</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c"> 
+                            <select id="loadProvince1" class="form-control" name="rating4d"> 
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -366,7 +366,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                        <textarea type="text" name="remarks1c"  placeholder="Your remarks"
+                        <textarea type="text" name="remarks4d"  placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -429,7 +429,7 @@
                             Minutes of meeting</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c"> 
+                            <select id="loadProvince1" class="form-control" name="rating4e"> 
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -439,7 +439,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                        <textarea type="text" name="remarks1c"  placeholder="Your remarks"
+                        <textarea type="text" name="remarks4e"  placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -492,7 +492,7 @@
                                     Documentation</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c"> 
+                            <select id="loadProvince1" class="form-control" name="rating4f"> 
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -502,7 +502,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                        <textarea type="text" name="remarks1c"  placeholder="Your remarks"
+                        <textarea type="text" name="remarks4f"  placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -553,7 +553,7 @@
                                     Documentation</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c"> 
+                            <select id="loadProvince1" class="form-control" name="rating4g"> 
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -563,7 +563,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                        <textarea type="text" name="remarks1c"  placeholder="Your remarks"
+                        <textarea type="text" name="remarks4g"  placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>

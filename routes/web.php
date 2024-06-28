@@ -48,7 +48,7 @@ use App\Http\Controllers\BarangayScholar\NutritionServiceController;
 use App\Http\Controllers\BarangayScholar\ChangeNSController;
 use App\Http\Controllers\BarangayScholar\DiscussionQuestionController;
 use App\Http\Controllers\BarangayScholar\BudgetAIPController;
-use App\Http\Controllers\BarangayScholar\LNCManagementBarangay;
+use App\Http\Controllers\BarangayScholar\LNCManagementBarangayController;
 
 use App\Http\Controllers\BarangayScholar\MellpiProForLNFP_barangayController;
 
@@ -344,12 +344,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::DELETE('/governance/{id}', [GovernanceController::class, 'destroy'])->name('governance.destroy');  
    
         //NutritionServicesController
-        Route::get('/lncmanagement', [LNCManagementBarangay::class, 'index'])->name('lncmanagement.index');
-        Route::POST('/lncmanagement', [LNCManagementBarangay::class, 'store'])->name('lncmanagement.store');
-        Route::get('/lncmanagement/create', [LNCManagementBarangay::class, 'create'])->name('lncmanagement.create');
-        Route::put('/lncmanagement/{id}', [LNCManagementBarangay::class, 'update'])->name('lncmanagement.update');
-        Route::get('/lncmanagement/{id}/edit', [LNCManagementBarangay::class, 'edit'])->name('lncmanagement.edit');
-        Route::DELETE('/lncmanagement/{id}', [LNCManagementBarangay::class, 'destroy'])->name('lncmanagement.destroy');  
+        Route::get('/lncmanagement', [LNCManagementBarangayController::class, 'index'])->name('lncmanagement.index');
+        Route::POST('/lncmanagement', [LNCManagementBarangayController::class, 'store'])->name('lncmanagement.store');
+        Route::get('/lncmanagement/create', [LNCManagementBarangayController::class, 'create'])->name('lncmanagement.create');
+        Route::put('/lncmanagement/{id}', [LNCManagementBarangayController::class, 'update'])->name('lncmanagement.update');
+        Route::get('/lncmanagement/{id}/edit', [LNCManagementBarangayController::class, 'edit'])->name('lncmanagement.edit');
+        Route::DELETE('/lncmanagement/{id}', [LNCManagementBarangayController::class, 'destroy'])->name('lncmanagement.destroy');  
 
         //NutritionServicesController
         Route::get('/nutritionservice', [NutritionServiceController::class, 'index'])->name('nutritionservice.index');

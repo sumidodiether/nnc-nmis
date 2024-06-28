@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\MellpiproLGUBarangayVisionMission;
-use App\Models\mlplgubrgytracking;
+use App\Models\MellpiproLGUBarangayVisionMissionTracker;
 
 class VisionMissionController extends Controller
 {
@@ -65,8 +65,7 @@ class VisionMissionController extends Controller
             ], 422);
         }else {
 
-            $npbarangay = MellpiproLGUBarangayVisionMission::find($id);
-            $npbarangay->update([
+            $vmBarangay = MellpiproLGUBarangayVisionMission::create([
                 'barangay_id' =>  $request->barangay_id,
                 'municipal_id' =>  $request->municipal_id,
                 'province_id' =>  $request->province_id,
@@ -85,6 +84,13 @@ class VisionMissionController extends Controller
                 'dateCreated' =>  $request->dateCreated,
                 'dateUpdates' =>  $request->dateUpdates,
             ]); 
+            MellpiproLGUBarangayVisionMissionTracker::create([
+                'mplgubrgyvisionmissions_id' => $vmBarangay->id,
+                'status' => $request->status,
+                'barangay_id' => auth()->user()->barangay,
+                'municipal_id' => auth()->user()->city_municipal,
+                'user_id' => auth()->user()->id,
+            ]);
         }
 
         return redirect('BarangayScholar/visionmission');

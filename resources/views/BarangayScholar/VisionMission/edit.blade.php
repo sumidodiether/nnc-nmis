@@ -54,22 +54,22 @@
                 <input type="hidden" name="status" value="{{$vmbarangay->status}}">
                 <input type="hidden" name="dateCreated" value="{{$vmbarangay->dateCreated}}">
                 <input type="hidden" name="dateUpdates" value="{{$vmbarangay->dateUpdates}}">
-                <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                <input type="hidden" name="user_id" value="{{$vmbarangay->user_id}}}}">
                 <!-- header -->
                 <div style="display:flex">
                     <div class="form-group col">
                         <label for="exampleFormControlInput1">Barangay:</label>
-                        <input type="text" class="form-control" name="barangay_id" value="{{Auth()->user()->barangay}}">
+                        <input type="text" class="form-control" name="barangay_id" value="{{$vmbarangay->barangay_id}}}}">
                     </div>
                     <div class="form-group col">
                         <label for="exampleFormControlInput1">Municipality/City:</label>
                         <input type="text" class="form-control" name="municipal_id"
-                            value="{{auth()->user()->city_municipal }}">
+                            value="{{$vmbarangay->municipal_id}}}}">
                     </div>
                     <div class="form-group col">
                         <label for="exampleFormControlInput1">Province:</label>
-                        <input type="text" class="form-control" name="province_id" value="{{auth()->user()->Province}}">
-                        <input type="hidden" class="form-control" name="region_id" value="{{auth()->user()->Region}}">
+                        <input type="text" class="form-control" name="province_id" value="{{$vmbarangay->province_id}}}}">
+                        <input type="hidden" class="form-control" name="region_id" value="{{$vmbarangay->region_id}}}}">
                     </div>
 
                 </div>

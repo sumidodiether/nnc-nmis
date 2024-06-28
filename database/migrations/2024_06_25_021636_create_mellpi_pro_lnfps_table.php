@@ -161,6 +161,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mellpi_pro_for_l_n_f_p_s');
+        Schema::dropIfExists('mellpi_pro_lnfps');
     }
 };

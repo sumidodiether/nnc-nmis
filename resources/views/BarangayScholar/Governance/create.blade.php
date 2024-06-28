@@ -44,7 +44,7 @@
         @endif
 
         <div>
-            <form action="{{ route('visionmission.store') }}" method="POST">
+            <form action="{{ route('governance.store') }}" method="POST">
                 @csrf
 
                 <input type="hidden" name="status" value="1">
@@ -187,7 +187,7 @@
                                 Documentation of dissemination</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1a">
+                            <select id="loadProvince1" class="form-control" name="rating3a">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -197,7 +197,7 @@
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="remarks3a" placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -237,7 +237,7 @@ Office and Personnel</label>
                             <label for="exampleFormControlInput1">Resolution Executive Order Barangay Nutrition Action Plan Organizational Chart Approved Annual Budget</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1b">
+                            <select id="loadProvince1" class="form-control" name="rating3b">
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -247,7 +247,7 @@ Office and Personnel</label>
                             </select>
                         </div>
                         <div class="col-1">
-                            <textarea type="text" name="remarks1b"  placeholder="Your remarks"
+                            <textarea type="text" name="remarks3b"  placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>
@@ -300,8 +300,7 @@ Office and Personnel</label>
                                 Report</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1c">
-                                <option>Select</option>
+                            <select id="loadProvince1" class="form-control" name="rating3c"> 
                                 <option>Select</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -311,7 +310,7 @@ Office and Personnel</label>
                             </select>
                         </div>
                         <div class="col-1">
-                        <textarea type="text" name="remarks1c"  placeholder="Your remarks"
+                        <textarea type="text" name="remarks3c"  placeholder="Your remarks"
                                 style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
                         </div>
                     </div>

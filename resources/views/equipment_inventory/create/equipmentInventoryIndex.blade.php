@@ -87,48 +87,35 @@ thead th {
         <div class="form-row">
             <div id="tab-contents" class="col-md-12">
                 <div class="tab-content" id="tab1">
-                    <table id="nutriTable" class="table table-striped table-bordered" style="width: 100%;">
+                    <table id="equipInventoryTable" class="table table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th><b>10-digit PSGC</b></th>
-                                <th><b>City/Municipality</b></th>
-                                <th><b>Total No. of Barangay</b></th>
-                                <th colspan="8" class="mainHeader">Height Board (HB)</th>
-                                <th>HB Remarks</th>
+                                <td rowspan="3"><b>10-digit PSGC</b></td>
+                                <td rowspan="3"><b>City/Municipality</b></td>
+                                <td rowspan="3"><b>Total No. of Barangay</b></td>
+                                <td colspan="8" class="mainHeader"><b>Height Board (HB)</b></td>
+                                <td rowspan="3"><b>HB Remarks</b></td>
                             </tr>
                             <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>Wooden HB</th>
-                                <th>Non-Wooden HB</th>
-                                <th>Defective</th>
-                                <th>Total HB</th>
-                                <th>HB% Availability</th>
-                                <th colspan="3" class="mainHeader">Others</th>
-                                <th></th>
+                                <td rowspan="2">Wooden HB</td>
+                                <td rowspan="2">Non-Wooden HB</td>
+                                <td rowspan="2">Defective</td>
+                                <td rowspan="2">Total HB</td>
+                                <td rowspan="2">HB% Availability</td>
+                                <td colspan="3" class="mainHeader">Others</td>
                             </tr>
                             <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>Steel Rules</th>
-                                <th>Microtoise</th>
-                                <th>Infantometer</th>
-                                <th></th>
+                                <td>Steel Rules</td>
+                                <td>Microtoise</td>
+                                <td>Infantometer</td>
                             </tr>
                         </thead>
                         @foreach ($EquipmentInventory as $equipmentInventory)
                         <tbody>
                             <tr>
-                                <td>{{$equipmentInventory->psgccode_id}}</td>
-                                <td>{{$equipmentInventory->municipal_id}}</td>
-                                <td>{{$equipmentInventory->totalBarangay}}</td>
+                                <td><b>{{$equipmentInventory->psgccode_id}}</b></td>
+                                <td><b>{{$equipmentInventory->municipal_id}}</b></td>
+                                <td><b>{{$equipmentInventory->totalBarangay}}</b></td>
                                 <td>{{$equipmentInventory->woodenHB}}</td>
                                 <td>{{$equipmentInventory->nonWoodenHB}}</td>
                                 <td>{{$equipmentInventory->defectiveHB}}</td>
@@ -163,34 +150,30 @@ thead th {
                 <table id="nutriTable" class="table table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th><b>City/Municipality</b></th>
-                                <th colspan="6" class="mainHeader">Weighing Scale (WS)</th>
-                                <th>WS Remarks</th>
+                                <td rowspan="3"><b>10-digit PSGC</b></td>
+                                <td rowspan="3"><b>City/Municipality</b></td>
+                                <td rowspan="3"><b>Total No. of Barangay</b></td>
+                                <td colspan="6" class="mainHeader"><b>Weighing Scale (WS)</b></td>
+                                <td rowspan="3"><b>WS Remarks</b></td>
                             </tr>
                             <tr>
-                                <th></th>
-                                <th>Hanging-type</th>
-                                <th>Defective</th>
-                                <th>Total WS</th>
-                                <th>WS% Availability</th>
-                                <th colspan="2" class="mainHeader">Others</th>
-                                <th></th>
+                                <td rowspan="2">Hanging-type</td>
+                                <td rowspan="2">Defective</td>
+                                <td rowspan="2">Total WS</td>
+                                <td rowspan="2">WS% Availability</td>
+                                <td colspan="2" class="mainHeader">Others</td>
                             </tr>
                             <tr>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>Infant Scale</th>
-                                <th>Beam Balance</th>
-                                <th></th>
+                                <td>Infant Scale</td>
+                                <td>Beam Balance</td>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach ($EquipmentInventory as $equipmentInventory)
                             <tr>
-                                <td>{{$equipmentInventory->municipal_id}}</td>
+                                <td><b>{{$equipmentInventory->psgccode_id}}</b></td>
+                                <td><b>{{$equipmentInventory->municipal_id}}</b></td>
+                                <td><b>{{$equipmentInventory->totalBarangay}}</b></td>
                                 <td>{{$equipmentInventory->hangingType}}</td>
                                 <td>{{$equipmentInventory->defectiveWS}}</td>
                                 <td>{{$equipmentInventory->totalWS}}</td>
@@ -203,7 +186,9 @@ thead th {
                         </tbody>
                         <tfoot>
                             <tr>
+                                <td><b></b></td>
                                 <td><b>Grand Total</b></td>
+                                <td><b>{{$totalBarangay}}</b></td>
                                 <td><b>{{$hangingType}}</b></td>
                                 <td><b>{{$defectiveWS}}</b></td>
                                 <td><b>{{$totalWS}}</b></td>
@@ -219,28 +204,30 @@ thead th {
                 <table id="nutriTable" class="table table-striped table-bordered" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th><b>City/Municipality</b></th>
-                                <th colspan="8" class="mainHeader">Mid-Upper Arm Circumference (MUAC) Tapes</th>
-                                <th>MUAC Remarks</th>
+                                <td rowspan="2"><b>10-digit PSGC</b></td>
+                                <td rowspan="2"><b>City/Municipality</b></td>
+                                <td rowspan="2"><b>Total No. of Barangay</b></td>
+                                <td colspan="8" class="mainHeader"><b>Mid-Upper Arm Circumference (MUAC) Tapes</b></td>
+                                <td rowspan="2"><b>MUAC Remarks</b></td>
                             </tr>
                             <tr>
-                                <th></th>
-                                <th>Child</th>
-                                <th>Defect</th>
-                                <th>Total (Child)</th>
-                                <th>% Availability (Child)</th>
-                                <th>Adult</th>
-                                <th>Defect</th>
-                                <th>Total (Adult)</th>
-                                <th>% Availability (Adult)</th>
-                                <th></th>
+                                <td>Child</td>
+                                <td>Defect</td>
+                                <td>Total (Child)</td>
+                                <td>% Availability (Child)</td>
+                                <td>Adult</td>
+                                <td>Defect</td>
+                                <td>Total (Adult)</td>
+                                <td>% Availability (Adult)</td>
                             </tr>
                         </thead>
 
                         <tbody>
                             @foreach ($EquipmentInventory as $equipmentInventory)
                             <tr>
-                                <td>{{$equipmentInventory->municipal_id}}</td>
+                                <td><b>{{$equipmentInventory->psgccode_id}}</b></td>
+                                <td><b>{{$equipmentInventory->municipal_id}}</b></td>
+                                <td><b>{{$equipmentInventory->totalBarangay}}</b></td>
                                 <td>{{$equipmentInventory->child}}</td>
                                 <td>{{$equipmentInventory->defectiveMUAC_child}}</td>
                                 <td>{{$equipmentInventory->totalMUAC_Child}}</td>
@@ -255,7 +242,9 @@ thead th {
                         </tbody>
                         <tfoot>
                             <tr>
+                                <td><b></b></td>
                                 <td><b>Grand Total</b></td>
+                                <td><b>{{$totalBarangay}}</b></td>
                                 <td><b>{{$child}}</b></td>
                                 <td><b>{{$defectiveMUAC_child}}</b></td>
                                 <td><b>{{$totalMUAC_Child}}</b></td>
