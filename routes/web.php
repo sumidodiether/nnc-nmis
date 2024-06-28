@@ -387,6 +387,7 @@ Route::group(['middleware' => 'auth'], function () {
 
           //Mellpi pro for LNFP
           Route::get('/lguprofilelnfp', [MellpiProForLNFP_barangayController::class, 'index'])->name('BSLGUprofileLNFPIndex.index');
+          Route::get('/lguprofilelnfpCreate', [MellpiProForLNFP_barangayController::class, 'mellpiProLNFP_create'])->name('MellpiProForLNFPCreate.create');
 
 
     });

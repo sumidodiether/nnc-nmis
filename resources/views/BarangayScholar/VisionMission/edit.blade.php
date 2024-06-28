@@ -227,8 +227,7 @@
                             <label for="exampleFormControlInput1">Barangay Development Plan</label>
                         </div>
                         <div class="col-1">
-                            <select id="loadProvince1" class="form-control" name="rating1b"  >
-                                <option>Select</option>
+                            <select id="loadProvince1" class="form-control" name="rating1b"  > 
                                 <option value="1" {{ old('rating1b', $vmbarangay->rating1b) == '1' ? 'selected' : '' }}>1</option>
                                 <option value="2" {{ old('rating1b', $vmbarangay->rating1b) == '2' ? 'selected' : '' }}>2</option>
                                 <option value="3" {{ old('rating1b', $vmbarangay->rating1b) == '3' ? 'selected' : '' }}>3</option>

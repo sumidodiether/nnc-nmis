@@ -13,6 +13,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="title">{{__("LGU Profile LNFP")}}</h5>
+                    <a href="{{route('MellpiProForLNFPCreate.create')}}" class="btn btn-primary">Create data</a>
                 </div>
             </div>
         </div>

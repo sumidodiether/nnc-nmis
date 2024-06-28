@@ -17,6 +17,12 @@ class MellpiProForLNFP_barangayController extends Controller
         return view('BarangayScholar/MellpiProForLNFP.MellpiProForLNFPIndex');
     }
 
+    public function mellpiProLNFP_create()
+    {
+        //
+        return view('BarangayScholar/MellpiProForLNFP.MellpiProForLNFPCreate');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
