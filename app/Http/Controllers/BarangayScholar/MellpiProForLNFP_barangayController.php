@@ -14,13 +14,18 @@ class MellpiProForLNFP_barangayController extends Controller
     public function index()
     {
         //
-        return view('BarangayScholar/MellpiProForLNFP.MellpiProForLNFPIndex');
+        return view('BarangayScholar/MellpiProForLNFP/LGUprofile.MellpiProForLNFPIndex');
     }
 
     public function mellpiProLNFP_create()
     {
         //
-        return view('BarangayScholar/MellpiProForLNFP.MellpiProForLNFPCreate');
+        return view('BarangayScholar/MellpiProForLNFP/LGUprofile.MellpiProForLNFPCreate');
+    }
+    public function monitoringForm5()
+    {
+        //
+        return view('BarangayScholar/MellpiProForLNFP/MellpiProMonitoring.MonitoringForm5Index');
     }
 
     /**

@@ -9,16 +9,16 @@ class MellpiproNutritionServiceTracking extends Model
 {
     use HasFactory;
 
-    protected $table = 'mplgubrgylncmanagementtracking';
+    protected $table = 'mplgubrgynutritionservicetracking';
     protected $guarded = ['id'];
     protected $fillable = [
-        'mplgubrgylncmanagement_id',
+        'mplgubrgynutritionservice_id',
         'barangay_id',
         'municipal_id', 
         'user_id',
         'status', 
     ];
-    public function  LNCManagement() {
-        return $this->belongsTo(MellpiproLNCManagement::class);
+    public function  NutritionServicee() {
+        return $this->belongsTo(MellpiproNutritionService::class);
     }
 }

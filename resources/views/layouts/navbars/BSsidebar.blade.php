@@ -134,8 +134,8 @@
                                 <p> {{ __("LGU PROFILE (LNFP)") }} </p>
                             </a>
                         </li>
-                        <li class="@if ($activePage == 'mellpi_pro') active @endif">
-                            <a href="#">
+                        <li class="@if ($activePage == 'mellpi_pro_form5') active @endif">
+                            <a href="{{ route('MellpiProMonitoringIndex.index') }}">
                                 <i class="now-ui-icons files_paper"></i>
                                 <p> {{ __("FORM 5") }} </p>
                             </a>

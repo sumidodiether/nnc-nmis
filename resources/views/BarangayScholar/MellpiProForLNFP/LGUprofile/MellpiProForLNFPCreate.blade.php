@@ -712,11 +712,11 @@
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
                                                 <input type="number" class="form-control"
-                                                    id="exampleFormControlInput1" name="landAreaResidential">
+                                                    id="exampleFormControlInput1" name="newNutritionScholar">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
                                                 <input type="number" class="form-control"
-                                                    id="exampleFormControlInput1" name="remarksResidential">
+                                                    id="exampleFormControlInput1" name="oldNutritionScholar">
                                             </div>
                                         </div>
                                     </div>
