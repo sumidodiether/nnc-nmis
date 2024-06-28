@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('mplgubrgylncmanagement' , function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('rating3a');
-            $table->integer('rating3b');
-            $table->integer('rating3c');
-            $table->integer('rating3d');
-            $table->integer('rating3e');
-            $table->integer('rating3f');
-            $table->integer('rating3g'); 
-            $table->string('remarks3a', 255);
-            $table->string('remarks3b', 255);
-            $table->string('remarks3c', 255);
-            $table->string('remarks3d', 255);
-            $table->string('remarks3e', 255);
-            $table->string('remarks3f', 255);
-            $table->string('remarks3g', 255);
+            $table->integer('rating4a');
+            $table->integer('rating4b');
+            $table->integer('rating4c');
+            $table->integer('rating4d');
+            $table->integer('rating4e');
+            $table->integer('rating4f');
+            $table->integer('rating4g'); 
+            $table->string('remarks4a', 255);
+            $table->string('remarks4b', 255);
+            $table->string('remarks4c', 255);
+            $table->string('remarks4d', 255);
+            $table->string('remarks4e', 255);
+            $table->string('remarks4f', 255);
+            $table->string('remarks4g', 255);
             $table->integer('status');
             $table->date('dateCreated');
             $table->date('dateUpdates');

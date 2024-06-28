@@ -14,6 +14,7 @@ class MellpiProForLNFP_barangayController extends Controller
     public function index()
     {
         //
+        return view('BarangayScholar/MellpiProForLNFP.MellpiProForLNFPIndex');
     }
 
     /**
@@ -22,7 +23,7 @@ class MellpiProForLNFP_barangayController extends Controller
     public function create()
     {
         //
-        return view('BarangayScholar.MellpiProForLNFP');
+        
     }
 
     /**

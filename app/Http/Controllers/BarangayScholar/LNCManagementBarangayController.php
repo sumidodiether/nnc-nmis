@@ -33,8 +33,7 @@ class LNCManagementBarangayController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-           //dd($request);
+         //dd($request); 
            $rules = [
             'barangay_id' => 'required|integer',
             'municipal_id' => 'required|integer',
@@ -43,13 +42,13 @@ class LNCManagementBarangayController extends Controller
             'dateMonitoring' => 'required|date|max:255',
             'periodCovereda' => 'required|string |max:255',
             'periodCoveredb' => 'required|string|max:255',
-            'rating4a' => 'required|string|max:255',
-            'rating4b' => 'required|string|max:255',
-            'rating4c' => 'required|string|max:255',
-            'rating4d' => 'required|string|max:255',
-            'rating4e' => 'required|string|max:255',
-            'rating4f' => 'required|string|max:255',
-            'rating4g' => 'required|string|max:255',
+            'rating4a' => 'required|integer',
+            'rating4b' => 'required|integer',
+            'rating4c' => 'required|integer',
+            'rating4d' => 'required|integer',
+            'rating4e' => 'required|integer',
+            'rating4f' => 'required|integer',
+            'rating4g' => 'required|integer',
             
             'remarks4a' => 'required|string|max:255',
             'remarks4b' => 'required|string|max:255',
@@ -103,8 +102,9 @@ class LNCManagementBarangayController extends Controller
                 'dateCreated' =>  $request->dateCreated,
                 'dateUpdates' =>  $request->dateUpdates,
             ]); 
+
             MellpiproLNCManagementTracking::create([
-                'mplgubrgygovernance_id' => $govbarangay->id,
+                // 'mplgubrgygovernance_id' => $govbarangay->id,
                 'status' => $request->status,
                 'barangay_id' => auth()->user()->barangay,
                 'municipal_id' => auth()->user()->city_municipal,

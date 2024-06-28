@@ -37,6 +37,7 @@
 @section('content')
 
 <div class="panel-header panel-header-sm"></div>
+
 <div class="content" style="padding:2%">
     <div class="card">
         <h4>MELLPI PRO FORM B: BARANGAY PROFILE SHEET</h4>

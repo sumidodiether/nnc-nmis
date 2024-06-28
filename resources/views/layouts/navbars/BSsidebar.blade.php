@@ -129,7 +129,7 @@
                 <div class="collapse show" id="MellpiProLNFP">
                     <ul class="nav">
                         <li class="@if ($activePage == 'LGUPROFILELNFP') active @endif">
-                            <a href="{{ route('BSLGUprofileLNFP.create') }}">
+                            <a href="{{ route('BSLGUprofileLNFPIndex.index') }}">
                                 <i class="now-ui-icons files_paper"></i>
                                 <p> {{ __("LGU PROFILE (LNFP)") }} </p>
                             </a>

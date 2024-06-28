@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mellpiproLNCManagementTracking extends Model
+class MellpiproLNCManagementTracking extends Model
 {
     use HasFactory;
 
@@ -18,7 +18,7 @@ class mellpiproLNCManagementTracking extends Model
         'user_id',
         'status', 
     ];
-    public function  Nationalpolicies() {
+    public function  LNCManagement() {
         return $this->belongsTo(MellpiproLNCManagement::class);
     }
 }
