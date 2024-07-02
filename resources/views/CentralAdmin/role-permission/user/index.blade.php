@@ -34,7 +34,7 @@
 }
 </style>
 
-<div class="panel-header panel-header-sm"></div>
+ 
 <div class="content" style="padding:2%">
 
     <h4>Roles</h4>

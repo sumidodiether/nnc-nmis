@@ -19,8 +19,7 @@
                     @endif
 
                     <div>
-                        <form action="#" method="POST">
-                            @csrf
+                        <form action="#">
 
                             <input type="hidden" name="status" value="1">
                             <input type="hidden" name="dateCreated" value="05/19/2024">
@@ -78,73 +77,73 @@
                                 <div class="col col-4 col-2">
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">Total Population:</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
                                             name="totalPopulation">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlInput2">No. of household with access to
                                             safe
                                             water:</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput2"
+                                        <input type="number" class="form-control" id="exampleFormControlInput2"
                                             name="householdWater">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlInput3">No. of household with sanitary
                                             toilets:</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput3"
+                                        <input type="number" class="form-control" id="exampleFormControlInput3"
                                             name="householdToilets">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">No. of Day Care Centers</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
                                             name="dayCareCenter">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">No. of public elementary
                                             schools:</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
                                             name="elementary">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">No. of public secondary
                                             schools:</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
                                             name="secondarySchool">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">No. of Barangay Health
                                             Stations:</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
                                             name="healthStations">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">No. of retail outlets/sari-sari
                                             stores:</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
                                             name="retailOutlets">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">No. of bakeries:</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
                                             name="bakeries">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">No. of public markets:</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
                                             name="markets">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">No. of transport
                                             terminals:</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
                                             name="transportTerminals">
                                     </div>
                                     <div class="form-group">
@@ -153,7 +152,7 @@
                                             breastfeeding
                                             until
                                             the 5th month:</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
                                             name="breastfeeding">
                                     </div>
 
@@ -177,12 +176,12 @@
                                     <div style="display:flex" class="row">
                                         <div class="form-group col">
                                             <label for="exampleFormControlInput1">No. of households:</label>
-                                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            <input type="number" class="form-control" id="exampleFormControlInput1"
                                                 name="noHousehold">
                                         </div>
                                         <div class="form-group col">
                                             <label for="exampleFormControlInput1">No.of SITIOS/PUROKS:</label>
-                                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            <input type="number" class="form-control" id="exampleFormControlInput1"
                                                 name="noPuroks">
                                         </div>
                                     </div>
@@ -216,27 +215,27 @@
                                                 <label for="exampleFormControlInput1">Estimated: </label>
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                <input type="number" class="form-control" id="exampleFormControlInput1"
                                                     name="populationA">
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                <input type="number" class="form-control" id="exampleFormControlInput1"
                                                     name="populationB">
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                <input type="number" class="form-control" id="exampleFormControlInput1"
                                                     name="populationC">
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                <input type="number" class="form-control" id="exampleFormControlInput1"
                                                     name="populationD">
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                <input type="number" class="form-control" id="exampleFormControlInput1"
                                                     name="populationE">
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                                <input type="number" class="form-control" id="exampleFormControlInput1"
                                                     name="populationF">
                                             </div>
                                         </div>
@@ -245,27 +244,27 @@
                                                 <label for="exampleFormControlInput1">Actual: </label>
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="actualA">
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="actualB">
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="actualC">
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="actualD">
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="actualE">
                                             </div>
                                             <div class="form-group" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="actualF">
                                             </div>
                                         </div>
@@ -278,13 +277,13 @@
                                                 <label for="exampleFormControlInput1"></label>
                                             </div>
                                             <div class=" col">
-                                                <label for="exampleFormControlInput1">Yr: </label>
+                                                <label for="exampleFormControlInput1">Year: <?php echo date("Y",strtotime("-1 year")); ?> </label>
                                             </div>
                                             <div class=" col">
-                                                <label for="exampleFormControlInput1">Yr: </label>
+                                                <label for="exampleFormControlInput1">Year: <?php echo date("Y",strtotime("-2 year")); ?></label>
                                             </div>
                                             <div class=" col">
-                                                <label for="exampleFormControlInput1">Yr: </label>
+                                                <label for="exampleFormControlInput1">Year: <?php echo date("Y",strtotime("-3 year")); ?></label>
                                             </div>
                                         </div>
                                         <div style="display:flex;">
@@ -292,15 +291,15 @@
                                                 <label for="exampleFormControlInput1">Normal: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psnormalAAA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psnormalBAA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psnormalCAA">
                                             </div>
                                         </div>
@@ -309,15 +308,15 @@
                                                 <label for="exampleFormControlInput1">Underweight: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psunderweightAAA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psunderweightBAA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psunderweightCAA">
                                             </div>
                                         </div>
@@ -327,15 +326,15 @@
                                                 </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pssevereUnderweightAAA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pssevereUnderweightBAA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pssevereUnderweightCAA">
                                             </div>
                                         </div>
@@ -344,15 +343,15 @@
                                                 <label for="exampleFormControlInput1">Overweight: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psoverweightAAA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psoverweightBAA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psoverweightCAA">
                                             </div>
                                         </div>
@@ -365,15 +364,15 @@
                                                 <label for="exampleFormControlInput1">Normal: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psnormalABA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psnormalBBA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psnormalCCA">
                                             </div>
                                         </div>
@@ -382,15 +381,15 @@
                                                 <label for="exampleFormControlInput1">Wasted: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pswastedABA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pswastedBBA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pswastedCCA">
                                             </div>
                                         </div>
@@ -400,15 +399,15 @@
                                                 <label for="exampleFormControlInput1">Severely Wasted: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psseverelyWastedABA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psseverelyWastedBBA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psseverelyWastedCCA">
                                             </div>
                                         </div>
@@ -418,15 +417,15 @@
                                                 <label for="exampleFormControlInput1">Overweight: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psoverweightABA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psoverweightBBA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psoverweightCCA">
                                             </div>
                                         </div>
@@ -435,15 +434,15 @@
                                                 <label for="exampleFormControlInput1">Obese: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psobeseABA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psobeseBBA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psobeseCCA">
                                             </div>
                                         </div>
@@ -456,15 +455,15 @@
                                                 <label for="exampleFormControlInput1">Normal: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psnormalAAB">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psnormalBBB">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psnormalCCC">
                                             </div>
                                         </div>
@@ -474,15 +473,15 @@
                                                 <label for="exampleFormControlInput1">Stunted: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psstuntedAAB">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psstuntedBBB">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="psstuntedCCC">
                                             </div>
                                         </div>
@@ -491,15 +490,15 @@
                                                 <label for="exampleFormControlInput1">Severely Stunted: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pssevereStuntedAAB">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pssevereStuntedBBB">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pssevereStuntedCCC">
                                             </div>
                                         </div>
@@ -508,15 +507,15 @@
                                                 <label for="exampleFormControlInput1">Tall: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pstallAAB">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pstallBBB">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="pstallCCC">
                                             </div>
                                         </div>
@@ -532,15 +531,15 @@
                                                 <label for="exampleFormControlInput1">Normal: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scnormalABA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scnormalBBA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scnormalCCA">
                                             </div>
                                         </div>
@@ -549,15 +548,15 @@
                                                 <label for="exampleFormControlInput1">Wasted: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scwastedABA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scwastedBBA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scwastedCCA">
                                             </div>
                                         </div>
@@ -566,15 +565,15 @@
                                                 <label for="exampleFormControlInput1">Severely Wasted: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scseverelyWastedABA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scseverelyWastedBBA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scseverelyWastedCCA">
                                             </div>
                                         </div>
@@ -584,15 +583,15 @@
                                                 <label for="exampleFormControlInput1">Overweight: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scoverweightABA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scoverweightBBA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scoverweightCCA">
                                             </div>
                                         </div>
@@ -601,15 +600,15 @@
                                                 <label for="exampleFormControlInput1">Obese: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scobeseABA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scobeseBBA">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="scobeseCCA">
                                             </div>
                                         </div>
@@ -624,15 +623,15 @@
                                                     <label for="exampleFormControlInput1">Normal: </label>
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwnormalAAA">
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwnormalBAA">
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwnormalCAA">
                                                 </div>
                                             </div>
@@ -642,15 +641,15 @@
                                                     </label>
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwnutritionllyatriskAAA">
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwnutritionllyatriskBAA">
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwnutritionllyatriskCAA">
                                                 </div>
                                             </div>
@@ -659,15 +658,15 @@
                                                     <label for="exampleFormControlInput1">Overweight: </label>
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwoverweightAAA">
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwoverweightBAA">
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwoverweightCAA">
                                                 </div>
                                             </div>
@@ -677,15 +676,15 @@
                                                     <label for="exampleFormControlInput1">Obese: </label>
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwobeseAAA">
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwobeseBAA">
                                                 </div>
                                                 <div class="form-group col" style="margin-left:10px">
-                                                    <input type="textarea" class="form-control"
+                                                    <input type="number" class="form-control"
                                                         id="exampleFormControlInput1" name="pwobeseCAA">
                                                 </div>
                                             </div>
@@ -725,8 +724,7 @@
                                     <div>
                                         <div style="display:flex">
                                             <div class="form-group col">
-                                                <label for="exampleFormControlInput1"><b>Land use
-                                                        Classification</b></label>
+                                                <label for="exampleFormControlInput1"><b>Land use Classification</b></label>
                                             </div>
                                             <div class="form-group col">
                                                 <label for="exampleFormControlInput1">land Area</label>
@@ -744,7 +742,7 @@
                                                     id="exampleFormControlInput1" name="newNutritionScholar">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="number" class="form-control"
+                                                <input type="textarea" class="form-control"
                                                     id="exampleFormControlInput1" name="oldNutritionScholar">
                                             </div>
                                         </div>
@@ -753,7 +751,7 @@
                                                 <label for="exampleFormControlInput1">Commercial: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="landAreaCommercial">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
@@ -766,7 +764,7 @@
                                                 <label for="exampleFormControlInput1">Industrial: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="landAreaIndustrial">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
@@ -779,7 +777,7 @@
                                                 <label for="exampleFormControlInput1">Agricultural: </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="landAreaAgricultural">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
@@ -794,7 +792,7 @@
                                                 </label>
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">
-                                                <input type="textarea" class="form-control"
+                                                <input type="number" class="form-control"
                                                     id="exampleFormControlInput1" name="landAreaFLMLNP">
                                             </div>
                                             <div class="form-group col" style="margin-left:10px">

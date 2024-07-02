@@ -15,7 +15,7 @@
     <div class="card">
         <div class="row row-12" style="display:inline-block">
             <div class="card-header">
-                <h5 class="title">{{__("Mellpi Pro LGU-Bulk Upload")}}</h5>
+                <h5 class="title">{{__("PSGC Data-Bulk Upload")}}</h5>
             </div>
             <div>
                 @include('alerts.success')

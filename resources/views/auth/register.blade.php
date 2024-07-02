@@ -13,8 +13,8 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="content">
     <div class="container">
-        <div class="row">
-            <div class="col-md-4 ml-auto">
+        <div class="row" style="justify-content:center; align-items:center">
+            <!-- <div class="col-md-4 ml-auto">
                 <div class="info-area info-horizontal mt-2">
                     <div class="icon icon-primary">
                         <i class="now-ui-icons media-2_sound-wave"></i>
@@ -37,8 +37,8 @@
                         </p>
                     </div>
                 </div>
-            </div> 
-            <div class="col-md-8 mr-auto">
+            </div>  -->
+            <div class="col-md-12 mr-auto" style="margin-left:30px">
                 <div class="card card-signup text-center">
                     <div class="card-header">
                         <h4 class="card-title">{{ __('Register') }}</h4>

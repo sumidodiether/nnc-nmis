@@ -240,8 +240,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5aa" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5aa" 
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5aa', $nserbarangay->remarks5aa) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -323,7 +323,7 @@
                             </div>
                             <div class="col col-1   ">
                                 <textarea type="text" name="remarks5ab" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ab', $nserbarangay->remarks5ab) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -417,8 +417,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ac" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ac" 
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ac', $nserbarangay->remarks5ac) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -519,8 +519,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5b" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5b" 
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5b', $nserbarangay->remarks5b) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -615,8 +615,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ca" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ca"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ca', $nserbarangay->remarks5ca) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -711,8 +711,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5cb" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5cb" 
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5cb', $nserbarangay->remarks5cb) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -813,8 +813,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5cc" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5cc"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5cc', $nserbarangay->remarks5cc) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -911,8 +911,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5cd" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5cd"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5cd', $nserbarangay->remarks5cd) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -1002,8 +1002,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5da" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5da" 
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5da', $nserbarangay->remarks5da) }}</textarea>
                             </div>
                         </div>
 
@@ -1071,8 +1071,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5db" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5db" 
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5db', $nserbarangay->remarks5db) }}</textarea>
                             </div>
                         </div>
 
@@ -1153,8 +1153,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ea" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ea"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ea', $nserbarangay->remarks5ea) }}</textarea>
                             </div>
                         </div>
 
@@ -1220,8 +1220,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5eb" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5eb"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5eb', $nserbarangay->remarks5eb) }}</textarea>
                             </div>
                         </div>
 
@@ -1290,8 +1290,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ec" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ec"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ec', $nserbarangay->remarks5ec) }}</textarea>
                             </div>
                         </div>
 
@@ -1358,8 +1358,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ed" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ed"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ed', $nserbarangay->remarks5ed) }}</textarea>
                             </div>
                         </div>
 
@@ -1433,8 +1433,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ee" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ee"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ee', $nserbarangay->remarks5ee) }}</textarea>
                             </div>
                         </div>
 
@@ -1506,8 +1506,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ef" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ef" 
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ef', $nserbarangay->remarks5ef) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -1583,8 +1583,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5fa" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5fa"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5fa', $nserbarangay->remarks5fa) }}</textarea>
                             </div>
                         </div>
 
@@ -1650,8 +1650,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5fb" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5fb"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5fb', $nserbarangay->remarks5fb) }}</textarea>
                             </div>
                         </div>
 
@@ -1718,8 +1718,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5fc" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5fc"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5fc', $nserbarangay->remarks5fc) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -1818,8 +1818,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ga" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ga" 
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ga', $nserbarangay->remarks5ga) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -1915,8 +1915,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ha" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ha"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ha', $nserbarangay->remarks5ha) }}</textarea>
                             </div>
                         </div>
 
@@ -1992,8 +1992,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5hb" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5hb"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5hb', $nserbarangay->remarks5hb) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -2105,8 +2105,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ia" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ia"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ia', $nserbarangay->remarks5ia) }}</textarea>
                             </div>
                         </div>
 
@@ -2194,8 +2194,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ib" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ib"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ib', $nserbarangay->remarks5ib) }}</textarea>
                             </div>
                         </div>
 
@@ -2301,8 +2301,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ic" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ic"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ic', $nserbarangay->remarks5ic) }}</textarea>
                             </div>
                         </div>
 
@@ -2375,8 +2375,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5id" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5id"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5id', $nserbarangay->remarks5id) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -2470,8 +2470,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ie" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ie"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ie', $nserbarangay->remarks5ie) }}</textarea>
                             </div>
                         </div>
 
@@ -2545,8 +2545,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5if" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5if"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5if', $nserbarangay->remarks5if) }}</textarea>
                             </div>
                         </div>
 
@@ -2632,8 +2632,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ig" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ig" 
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ig', $nserbarangay->remarks5ig) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -2720,8 +2720,8 @@
                                 </select>
                             </div>
                             <div class="col col-1   ">
-                                <textarea type="text" name="remarks5ih" placeholder="Your remarks"
-                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                <textarea type="text" name="remarks5ih"  
+                                    style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks5ih', $nserbarangay->remarks5ih) }}</textarea>
                             </div>
                         </div>
 

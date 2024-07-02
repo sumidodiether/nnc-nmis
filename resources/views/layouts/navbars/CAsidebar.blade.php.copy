@@ -276,7 +276,7 @@
                         <li class="@if ($activePage == 'mellpi_pro_LGU') active @endif">
                             <a href="{{ route('mellpi_pro_LGU.index') }}">
                                 <i class="now-ui-icons files_paper"></i>
-                                <p> {{ __("MELLPI Pro LGU -Bulk Upload") }} </p>
+                                <p> {{ __("PSGC Data -Bulk Upload") }} </p>
                             </a>
                         </li>
                     </ul>

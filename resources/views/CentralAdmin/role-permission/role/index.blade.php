@@ -71,8 +71,9 @@
                 <td>{{$roles->codename}}</td>
                 <td>{{$roles->created_at}}</td>
                 <td class="d-flex">
-
-                    <a href="{{url('/roles/'.$roles->id.'/give-permission')}}" class="btn btn-primary" style="margin-right:10px">Add/Edit Role Permission</a>
+                    
+                    <!-- <a href="{{url('/roles/'.$roles->id.'/give-permission')}}" class="btn btn-primary" style="margin-right:10px">Add/Edit Role Permission</a> -->
+                    <a href="{{route('roles.addPermissionToRole', $roles->id)}}" class="btn btn-primary" style="margin-right:10px">Add/Edit Role Permission</a>
                     <button type="button" class="btn btn-primary"  style="margin-right:10px" data-toggle="modal"
                         data-target="#exampleModals{{$roles->id}}">
                         edit

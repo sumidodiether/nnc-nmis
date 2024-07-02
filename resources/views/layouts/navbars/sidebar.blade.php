@@ -60,7 +60,7 @@
             <b class="caret"></b>
           </p>
         </a>
-        
+<!--         
         <div class="collapse show" id="LguPerformance">
           <ul class="nav">
             <li>
@@ -93,7 +93,7 @@
               </a>
             </li>
           </ul>
-        </div>
+        </div> -->
       </li>
 
       <li class="@if ($activePage == 'notifications') active @endif">
@@ -181,7 +181,7 @@
             <li class="@if ($activePage == 'mellpi_pro_LGU') active @endif">
               <a href="{{ route('mellpi_pro_LGU.index') }}">
               <i class="now-ui-icons files_paper"></i>
-                <p> {{ __("MELLPI Pro LGU -Bulk Upload") }} </p>
+                <p> {{ __("PSGC Data -Bulk Upload") }} </p>
               </a>
             </li>
           </ul>

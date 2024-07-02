@@ -65,6 +65,7 @@ class AdminUserController extends Controller
     {
         $users = User::get();
         
+        //dd($users);
         return view('CentralAdmin.role-permission.user.index', ['users' => $users]);
     }
 
