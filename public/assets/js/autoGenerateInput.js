@@ -473,10 +473,64 @@ function IfYesMoreThanOneDCNPC() {
 
 
 
+//LNFP Form
+function toggleReadonly() {
+    var textareas = document.querySelectorAll('.elements, .performance');
+    var button2 = document.getElementById('saveForm');
+    // var button2 = document.getElementsByName('action')
+    var button = document.getElementById('editForm');
+    var anyReadonly = Array.from(textareas).some(textarea => textarea.hasAttribute('readonly'));
+
+    textareas.forEach(function(textarea) {
+        if (anyReadonly) {
+            textarea.removeAttribute('readonly');
+            button.setAttribute('hidden', true);
+            button2.removeAttribute('hidden');
+        } else {
+            textarea.setAttribute('readonly', true);
+            button.removeAttribute('hidden');
+            button2.setAttribute('hidden', true);
+        }
+    });
+
+    if (anyReadonly) {
+        button.textContent = "Save All"; // Optional: change button text
+    } else {
+        button.textContent = "Edit Contents"; // Optional: change button text back
+    }
+}
 
 
+    // function toggleReadonly() {
+    //     // Select textareas with the classes 'elements' and 'performance'
+    //     var textareas = document.querySelectorAll('.elements, .performance');
+    //     // Get the buttons by their IDs
+    //     var button2 = document.getElementById('saveForm');
+    //     var button = document.getElementById('editForm');
+        
+    //     // Check if any of the textareas are readonly
+    //     var anyReadonly = Array.from(textareas).some(textarea => textarea.hasAttribute('readonly'));
 
+    //     // Toggle the readonly attribute for each textarea
+    //     textareas.forEach(function(textarea) {
+    //         if (anyReadonly) {
+    //             textarea.removeAttribute('readonly');
+    //             // Hide the save button
+    //             button2.classList.remove('hidden');
+    //         } else {
+    //             textarea.setAttribute('readonly', true);
+    //             // Show the save button
+    //             button2.classList.add('hidden');
+    //         }
+    //     });
 
+    //     // Optional: Change the text of the edit button
+    //     if (anyReadonly) {
+    //         button.textContent = "Save All"; 
+    //     } else {
+    //         button.textContent = "Edit Contents"; 
+    //     }
+    // }
 
 
 

@@ -1,0 +1,26 @@
+.form5 {
+    overflow-x: scroll;
+}
+.elements2 {
+    width: inherit;
+    height: 20vh;
+}
+textarea {
+    width: inherit;
+    height: 20vh;
+}
+textarea.performance {
+    font-size: 11;
+    width: inherit;
+    height: 20vh;
+}
+textarea.elements1 {
+    width: inherit;
+    height: 20vh;
+}
+.tab {
+    margin-right: 9px;
+}
+.hidden {
+    display: none;
+}

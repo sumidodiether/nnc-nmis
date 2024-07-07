@@ -2,187 +2,210 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/joboy.css') }}">
 
 <style>
-.form-section {
-    display: none;
-}
+    .form-section {
+        display: none;
+    }
 
-.form-section.current {
-    display: inline;
-}
+    .form-section.current {
+        display: inline;
+    }
 
-.striped-rows .row:nth-child(odd) {
-    background-color: #f2f2f2;
-}
+    .striped-rows .row:nth-child(odd) {
+        background-color: #f2f2f2;
+    }
 
-.col-sm {
-    margin: auto;
-    padding: 1rem 1rem;
-}
+    .col-sm {
+        margin: auto;
+        padding: 1rem 1rem;
+    }
 
-.row .form-control {
-    border-color: #bebebe !important;
-    border: 1px solid;
-    border-radius: 5px;
-}
+    .row .form-control {
+        border-color: #bebebe !important;
+        border: 1px solid;
+        border-radius: 5px;
+    }
 </style>
 
 @extends('layouts.BSapp', [
 'class' => 'sidebar-mini ',
-'namePage' => 'User Profile',
+'namePage' => ' Mellpi Pro for LGU',
 'activePage' => 'profile',
 'activeNav' => '',
 ])
 
-
 @section('content')
+<!-- <div class="panel-header panel-header-sm"></div>  -->
+<div class="content" style="margin-top:50px;padding:2%">
+    <div class="card" style="border-radius:10px;padding-left:2rem!important;padding-right:1rem!important">
+        <div style="display:flex;align-items:center">
+            <a href="{{route('BSLGUprofile.index')}}" style="margin-right:15px"><i class="now-ui-icons arrows-1_minimal-left" style="font-size:18px!important;font-weight:bolder!important"></i></a>
+            <h4 style="margin-top:18px">FORM B: BARANGAY PROFILE SHEET</h4>
+        </div>
 
-<div class="panel-header panel-header-sm"></div>
-<div class="content" style="padding:2%">
-    <div class="card">
-        <h4>MELLPI PRO FORM B: BARANGAY PROFILE SHEET</h4>
-        @if(session('status'))
-        <div class="alert alert-success">{{session('status')}}</div>
-        @endif
+        <!-- alerts -->
+        @include('layouts.page_template.crud_alert_message')
 
-        <div>
+        <div style="padding:25px">
             <form action="{{ route('BSLGUprofile.store') }}" method="POST">
-            @csrf
+                @csrf
 
-                <input type="hidden" name="status" value="1" >
-                <input type="hidden" name="dateCreated" value="05/19/2024" >
-                <input type="hidden" name="dateUpdates" value="05/19/2024" >
-                <!-- header -->
-                <div style="display:flex">
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Barangay:</label>
-                        <input type="text" class="form-control" name="barangay_id" value="{{Auth()->user()->barangay}}">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Municipality/City:</label>
-                        <input type="text" class="form-control" name="municipal_id"
-                            value="{{auth()->user()->city_municipal }}">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Province:</label>
-                        <input type="text" class="form-control" name="province_id" value="{{auth()->user()->Province}}">
-                        <input type="hidden" class="form-control" name="region_id" value="{{auth()->user()->Region}}">
-                    </div>
+                <input type="hidden" name="status" value="1">
+                <input type="hidden" name="dateCreated" value="05/19/2024">
+                <input type="hidden" name="dateUpdates" value="05/19/2024">
 
-                </div>
+                @include('layouts.page_template.location_header')
+
+                <!-- Update create  -->
+                 <!-- -added error message  per variable -->
+                 <!-- -added value old for history data  -->
+                 <!-- -added placeholder sample -->
+
+
                 <br>
-                <div style="display:flex">
-
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Date of Monitoring:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" name="dateMonitoring">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Period Covered:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" data-date-format="mm-yyyy"
-                            name="periodCovereda">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Period Covered:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" data-date-format="mm-yyyy"
-                            name="periodCoveredb">
-                    </div>
-                </div>
-                <!-- endheader -->
-                <br>
-
                 <div style="display:flex">
                     <!-- Div1 -->
                     <div class="col col-4 col-2">
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Total Population:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"
-                                name="totalPopulation">
+                            <label for="totalPopulation">Total Population:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" placeholder="ex. 100" id="totalPopulation" name="totalPopulation" value="{{ old('totalPopulation') }}">
+                            @error('totalPopulation')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput2">No. of household with access to safe
-                                water:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput2" name="householdWater">
+                            <label for="householdWater">No. of household with access to safe
+                                water:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="householdWater" name="householdWater" 
+                            placeholder="ex. 100"  
+                            value="{{ old('householdWater') }}">
+                            @error('totalPopulation')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlInput3">No. of household with sanitary toilets:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput3"
-                                name="householdToilets">
+                            <label for="householdToilets">No. of household with sanitary toilets:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="householdToilets" name="householdToilets"
+                            placeholder="ex. 100" value="{{ old('householdToilets') }}">
+                            @error('householdToilets')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of Day Care Centers</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="dayCareCenter">
+                            <label for="dayCareCenter">No. of Day Care Centers:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="dayCareCenter" name="dayCareCenter"
+                            placeholder="ex. 2 " value="{{ old('dayCareCenter') }}">
+                            @error('dayCareCenter')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of public elementary schools:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="elementary">
+                            <label for="elementary">No. of public elementary schools:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="elementary" name="elementary">
+                            @error('elementary')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of public secondary schools:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"
-                                name="secondarySchool">
+                            <label for="secondarySchool">No. of public secondary schools:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="secondarySchool" name="secondarySchool">
+                            @error('secondarySchool')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of Barangay Health Stations:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="healthStations">
+                            <label for="healthStations">No. of Barangay Health Stations:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="healthStations" name="healthStations">
+                            @error('healthStations')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of retail outlets/sari-sari stores:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="retailOutlets">
+                            <label for="retailOutlets">No. of retail outlets/sari-sari stores:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="retailOutlets" name="retailOutlets">
+                            @error('retailOutlets')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of bakeries:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="bakeries">
+                            <label for="bakeries">No. of bakeries:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="bakeries" name="bakeries">
+                            @error('bakeries')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of public markets:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="markets">
+                            <label for="markets">No. of public markets:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="markets" name="markets">
+                            @error('markets')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">No. of transport terminals:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1"
-                                name="transportTerminals">
+                            <label for="transportTerminals">No. of transport terminals:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="transportTerminals" name="transportTerminals">
+                            @error('transportTerminals')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Percent of Lactating mothers exclusively
-                                breastfeeding
-                                until
-                                the 5th month:</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="breastfeeding">
+                            <label for="breastfeeding">Percent of Lactating mothers exclusively
+                                breastfeeding until the 5th month:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="breastfeeding" name="breastfeeding">
+                            @error('breastfeeding')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div style="display:flex">
-                            <div class="form-group col">
-                                <label for="exampleFormControlInput1">Hazard:</label>
-                                <input class="form-control" id="exampleFormControlInput1" name="hazards"
-                                    style="height:100px; border: 1px solid lightgray;border-radius:5px">
-                            </div>
-                            <div class="form-group col">
-                                <label for="exampleFormControlInput1">LGU/Households affected:</label>
-                                <input class="form-control" id="exampleFormControlInput1" name="affectedLGU"
-                                    style="height:100px; border: 1px solid lightgray;border-radius:5px">
-                              
-                            </div>
+                        <div class="form-group">
+                            <label for="terrain">Terrain:<span style="color:red">*</span></label>
+                            <input type="text" class="form-control" id="terrain" name="terrain">
+                            @error('terrain')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
+
+
+                        <div class="form-group">
+                            <label for="hazards">Hazard:<span style="color:red">*</span></label>
+                            <textarea class="form-control" id="hazards" height="800px" style="max-height:380px;height:380px;border: 1px solid lightgray;border-radius:5px" name="hazards"></textarea>
+                            @error('hazards')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group" style="max-height:800px">
+                            <label for="affectedLGU">LGU/Households affected:<span style="color:red">*</span></label>
+                            <textarea class="form-control" id="affectedLGU" style="max-height:380px;height:380px;border: 1px solid lightgray;border-radius:5px" name="affectedLGU"></textarea>
+                            @error('affectedLGU')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                     </div>
                     <!-- div2 -->
                     <div class="col col-8 col-4">
                         <div style="display:flex" class="row">
                             <div class="form-group col">
-                                <label for="exampleFormControlInput1">No. of households:</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1"
-                                    name="noHousehold">
+                                <label for="noHousehold">No. of households:<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="noHousehold" name="noHousehold">
+                                @error('noHousehold')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group col">
-                                <label for="exampleFormControlInput1">No.of SITIOS/PUROKS:</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" name="noPuroks">
+                                <label for="noPuroks ">No.of SITIOS/PUROKS:<span style="color:red">*</span></label>
+                                <input type="text" class="form-control" id="noPuroks " 
+                                name="noPuroks">
+                                @error('noPuroks')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             </div>
                         </div>
                         <br>
@@ -212,60 +235,96 @@
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group" style="width:170px">
-                                    <label for="exampleFormControlInput1">Estimated: </label>
+                                    <label for="exampleFormControlInput1">Estimated:<span style="color:red">*</span></label>
+                                </div>
+                                <div class="form-group" style="margin-left:10px">
+                                    <input type="text" class="form-control" id="populationA"
+                                     name="populationA">
+                                     @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                                </div>
+                                <div class="form-group" style="margin-left:10px">
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" 
+                                    name="populationB">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationA">
+                                     name="populationC">
+                                     @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationB">
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" 
+                                    name="populationD">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationC">
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" 
+                                    name="populationE">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationD">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationE">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="populationF">
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" 
+                                     name="populationF">
+                                     @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group" style="width:170px">
-                                    <label for="exampleFormControlInput1">Actual: </label>
+                                    <label for="exampleFormControlInput1">Actual:<span style="color:red">*</span></label>
+                                </div>
+                                <div class="form-group" style="margin-left:10px">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="actualA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                                </div>
+                                <div class="form-group" style="margin-left:10px">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="actualB">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                                </div>
+                                <div class="form-group" style="margin-left:10px">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="actualC">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualA">
+                                     name="actualD">
+                                     @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualB">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="actualE">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualC">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualD">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualE">
-                                </div>
-                                <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="actualF">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="actualF">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                         </div>
@@ -288,70 +347,102 @@
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Normal: </label>
+                                    <label for="exampleFormControlInput1">Normal:<span style="color:red">*</span></label>
+                                </div>
+                                <div class="form-group col" style="margin-left:10px">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="psnormalAAA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalAAA">
+                                     name="psnormalBAA">
+                                     @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalBAA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalCAA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="psnormalCAA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror 
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Underweight: </label>
+                                    <label for="exampleFormControlInput1">Underweight:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psunderweightAAA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="psunderweightAAA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psunderweightBAA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="psunderweightBAA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psunderweightCAA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="psunderweightCAA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Severely Underweight: </label>
+                                    <label for="exampleFormControlInput1">Severely Underweight:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereUnderweightAAA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"  
+                                    name="pssevereUnderweightAAA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereUnderweightBAA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="pssevereUnderweightBAA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereUnderweightCAA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pssevereUnderweightCAA">  
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Overweight: </label>
+                                    <label for="exampleFormControlInput1">Overweight:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightAAA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightAAA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightBAA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightBAA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightCAA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightCAA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
 
@@ -360,89 +451,119 @@
                             <br>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Normal: </label>
+                                    <label for="exampleFormControlInput1">Normal:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalABA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalABA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalBBA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalBBA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalCCA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalCCA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Wasted: </label>
+                                    <label for="exampleFormControlInput1">Wasted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pswastedABA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pswastedABA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pswastedBBA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pswastedBBA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pswastedCCA">
-                                </div>
-                            </div>
-
-                            <div style="display:flex;">
-                                <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Severely Wasted: </label>
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psseverelyWastedABA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psseverelyWastedBBA">
-                                </div>
-                                <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psseverelyWastedCCA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pswastedCCA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
 
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Overweight: </label>
+                                    <label for="exampleFormControlInput1">Severely Wasted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightABA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psseverelyWastedABA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightBBA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psseverelyWastedBBA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psoverweightCCA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psseverelyWastedCCA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                                </div>
+                            </div>
+
+                            <div style="display:flex;">
+                                <div class="form-group col" style="width:170px">
+                                    <label for="exampleFormControlInput1">Overweight:<span style="color:red">*</span></label>
+                                </div>
+                                <div class="form-group col" style="margin-left:10px">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightABA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                                </div>
+                                <div class="form-group col" style="margin-left:10px">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightBBA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                                </div>
+                                <div class="form-group col" style="margin-left:10px">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightCCA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Obese: </label>
+                                    <label for="exampleFormControlInput1">Obese:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psobeseABA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psobeseABA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psobeseBBA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psobeseBBA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psobeseCCA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psobeseCCA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <br>
@@ -451,71 +572,95 @@
                             <!-- tall -->
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Normal: </label>
+                                    <label for="exampleFormControlInput1">Normal:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalAAB">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalAAB">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalBBB">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalBBB">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psnormalCCC">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalCCC">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
 
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Stunted: </label>
+                                    <label for="exampleFormControlInput1">Stunted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psstuntedAAB">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psstuntedAAB">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psstuntedBBB">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psstuntedBBB">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="psstuntedCCC">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psstuntedCCC">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Severely Stunted: </label>
+                                    <label for="exampleFormControlInput1">Severely Stunted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereStuntedAAB">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pssevereStuntedAAB">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereStuntedBBB">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pssevereStuntedBBB">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pssevereStuntedCCC">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pssevereStuntedCCC">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Tall: </label>
+                                    <label for="exampleFormControlInput1">Tall:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pstallAAB">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pstallAAB">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pstallBBB">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pstallBBB">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="pstallCCC">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pstallCCC">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                         </div>
@@ -527,88 +672,118 @@
 
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Normal: </label>
+                                    <label for="exampleFormControlInput1">Normal:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scnormalABA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scnormalABA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scnormalBBA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scnormalBBA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scnormalCCA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scnormalCCA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Wasted: </label>
+                                    <label for="exampleFormControlInput1">Wasted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scwastedABA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scwastedABA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scwastedBBA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scwastedBBA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scwastedCCA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scwastedCCA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Severely Wasted: </label>
+                                    <label for="exampleFormControlInput1">Severely Wasted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scseverelyWastedABA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scseverelyWastedABA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scseverelyWastedBBA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scseverelyWastedBBA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scseverelyWastedCCA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scseverelyWastedCCA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
 
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Overweight: </label>
+                                    <label for="exampleFormControlInput1">Overweight:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scoverweightABA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scoverweightABA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scoverweightBBA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scoverweightBBA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scoverweightCCA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scoverweightCCA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Obese: </label>
+                                    <label for="exampleFormControlInput1">Obese:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scobeseABA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scobeseABA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scobeseBBA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scobeseBBA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="scobeseCCA">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scobeseCCA">
+                                    @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
 
@@ -619,71 +794,88 @@
 
                                 <div style="display:flex;">
                                     <div class="form-group col" style="width:170px">
-                                        <label for="exampleFormControlInput1">Normal: </label>
+                                        <label for="exampleFormControlInput1">Normal:<span style="color:red">*</span></label>
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnormalAAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnormalAAA">
+                                        @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnormalBAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnormalBAA">
+                                        @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnormalCAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnormalCAA">
+                                        @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                 </div>
                                 <div style="display:flex;">
                                     <div class="form-group col" style="width:170px">
-                                        <label for="exampleFormControlInput1">Nutritionally at-risk: </label>
+                                        <label for="exampleFormControlInput1">Nutritionally at-risk:<span style="color:red">*</span></label>
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnutritionllyatriskAAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnutritionllyatriskAAA">
+                                        @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnutritionllyatriskBAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnutritionllyatriskBAA">
+                                        @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwnutritionllyatriskCAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnutritionllyatriskCAA">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                 </div>
                                 <div style="display:flex;">
                                     <div class="form-group col" style="width:170px">
-                                        <label for="exampleFormControlInput1">Overweight: </label>
+                                        <label for="exampleFormControlInput1">Overweight:<span style="color:red">*</span></label>
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwoverweightAAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwoverweightAAA">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwoverweightBAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwoverweightBAA">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwoverweightCAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwoverweightCAA">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                 </div>
 
                                 <div style="display:flex;">
                                     <div class="form-group col" style="width:170px">
-                                        <label for="exampleFormControlInput1">Obese: </label>
+                                        <label for="exampleFormControlInput1">Obese:<span style="color:red">*</span></label>
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwobeseAAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwobeseAAA">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwobeseBAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwobeseBAA">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                            name="pwobeseCAA">
+                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwobeseCAA">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                     </div>
                                 </div>
 
@@ -705,68 +897,78 @@
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Residential: </label>
+                                    <label for="exampleFormControlInput1">Residential:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="landAreaResidential">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="landAreaResidential">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="remarksResidential">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="remarksResidential">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Commercial: </label>
+                                    <label for="exampleFormControlInput1">Commercial:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="landAreaCommercial">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="landAreaCommercial">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="remarksCommercial">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="remarksCommercial">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Industrial: </label>
+                                    <label for="exampleFormControlInput1">Industrial:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="landAreaIndustrial">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="landAreaIndustrial">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="remarksIndustrial">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="remarksIndustrial">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Agricultural: </label>
+                                    <label for="exampleFormControlInput1">Agricultural:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="landAreaAgricultural">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="landAreaAgricultural">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="remarksAgricultural">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="remarksAgricultural">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                             <div style="display:flex;">
                                 <div class="form-group col" style="width:170px">
-                                    <label for="exampleFormControlInput1">Forest Land, Mineral Land, National Park:
+                                    <label for="exampleFormControlInput1">Forest Land, Mineral Land, National Park:<span style="color:red">*</span>
                                     </label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                        name="landAreaFLMLNP">
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="landAreaFLMLNP">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textArea" class="form-control" id="exampleFormControlInput1"
-                                        name="remarksFLMLNP">
+                                    <input type="textArea" class="form-control" id="exampleFormControlInput1" name="remarksFLMLNP">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                             </div>
                         </div>
@@ -806,33 +1008,45 @@
                     <div style="display:flex;">
                         <div class="col">
                             <label for="exampleFormControlInput1">I. Philippine Integrated Managements of Acute
-                                Malnutrition</label>
+                                Malnutrition<span style="color:red">*</span></label>
                         </div>
                         <div class="col">
                             <label for="exampleFormControlInput1">Training</label>
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="Isource">
+                            <option value="">Choose...</option> 
                                 <option value="NGA">NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="Iavailreceived">
+                            <option value="">Choose...</option> 
                                 <option value="YES">YES</option>
                                 <option value="NO">NO</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="Idatereceived">
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="Idatereceived">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="Ivolumepax">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="Ivolumepax">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="Iremarks">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="Iremarks">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <!-- II. -->
@@ -861,67 +1075,89 @@
                     </div>
                     <div style="display:flex;">
                         <div class="col">
-                            <label for="exampleFormControlInput1">1. Pregnant Women</label>
+                            <label for="exampleFormControlInput1">1. Pregnant Women<span style="color:red">*</span></label>
                         </div>
                         <div class="col">
                             <label for="exampleFormControlInput1">Dietary Supplementation</label>
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIAsource">
+                            <option value="">Choose...</option> 
                                 <option value="NGA">NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIAavailreceived">
+                            <option value="">Choose...</option> 
                                 <option value="YES">YES</option>
                                 <option value="NO">NO</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIAdatereceived">
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIAdatereceived">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIAvolumepax">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIAvolumepax">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIAremarks">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIAremarks">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <br>
                     <div style="display:flex;">
                         <div class="col">
-                            <label for="exampleFormControlInput1">2. Children 6-23 months</label>
+                            <label for="exampleFormControlInput1">2. Children 6-23 months<span style="color:red">*</span></label>
                         </div>
                         <div class="col">
                             <label for="exampleFormControlInput1">Dietary Supplementation</label>
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIBsource">
+                            <option value="">Choose...</option> 
                                 <option value="NGA">NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIBavailreceived">
+                            <option value="">Choose...</option> 
                                 <option value="YES">YES</option>
                                 <option value="NO">NO</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIBdatereceived">
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIBdatereceived">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIBvolumepax">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIBvolumepax">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIBremarks">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIBremarks">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <!-- III. -->
@@ -950,199 +1186,265 @@
                     <div style="display:flex;">
                         <div class="col">
                             <label for="exampleFormControlInput1">1. Iron-folic Acid Supplementation for
-                                Pregnant Women</label>
+                                Pregnant Women<span style="color:red">*</span></label>
                         </div>
                         <div class="col">
                             <label for="exampleFormControlInput1">Commodity</label>
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIAsource">
+                            <option value="">Choose...</option> 
                                 <option value="NGA">NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIAavailreceived">
+                            <option value="">Choose...</option> 
                                 <option value="YES">YES</option>
                                 <option value="NO">NO</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIIAdatereceived">
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIIAdatereceived">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIAvolumepax">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIAvolumepax">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIAremarks">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIAremarks">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div style="display:flex;">
                         <div class="col">
                             <label for="exampleFormControlInput1">2. Vitamin A Supplementation for children 6-11
-                                months</label>
+                                months<span style="color:red">*</span></label>
                         </div>
                         <div class="col">
                             <label for="exampleFormControlInput1">Commodity</label>
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIBsource">
+                            <option value="">Choose...</option> 
                                 <option value="NGA">NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIBavailreceived">
+                            <option value="">Choose...</option> 
                                 <option value="YES">YES</option>
                                 <option value="NO">NO</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIIBdatereceived">
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIIBdatereceived">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIBvolumepax">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIBvolumepax">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIBremarks">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIBremarks">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div style="display:flex;">
                         <div class="col">
                             <label for="exampleFormControlInput1">3. Vitamin A Supplementation for children
-                                12-59 months</label>
+                                12-59 months<span style="color:red">*</span></label>
                         </div>
                         <div class="col">
                             <label for="exampleFormControlInput1">Commodity</label>
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIICsource">
+                            <option value="">Choose...</option> 
                                 <option value="NGA">NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIICavailreceived">
+                            <option value="">Choose...</option> 
                                 <option value="YES">YES</option>
                                 <option value="NO">NO</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIICdatereceived">
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIICdatereceived">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIICvolumepax">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIICvolumepax">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIICremarks">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIICremarks">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div style="display:flex;">
                         <div class="col">
                             <label for="exampleFormControlInput1">4. Micronutrient Powder for children 6-23
-                                months</label>
+                                months<span style="color:red">*</span></label>
                         </div>
                         <div class="col">
                             <label for="exampleFormControlInput1">Commodity</label>
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIDsource">
+                            <option value="">Choose...</option>  
                                 <option value="NGA">NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIDavailreceived">
+                            <option value="">Choose...</option> 
                                 <option value="YES">YES</option>
                                 <option value="NO">NO</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIIDdatereceived">
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIIDdatereceived">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIDvolumepax">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIDvolumepax">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIDremarks">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIDremarks">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div style="display:flex;">
                         <div class="col">
                             <label for="exampleFormControlInput1">5. Weekly Iron-Folic Acic Supplementation for
-                                female adolescents in public schools</label>
+                                female adolescents in public schools<span style="color:red">*</span></label>
                         </div>
                         <div class="col">
                             <label for="exampleFormControlInput1">Commodity</label>
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIEsource">
+                            <option value="">Choose...</option> 
                                 <option value="NGA">NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIEavailreceived">
+                            <option value="">Choose...</option> 
                                 <option value="YES">YES</option>
                                 <option value="NO">NO</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIIEdatereceived">
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIIEdatereceived">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIEvolumepax">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIEvolumepax">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIEremarks">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIEremarks">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div style="display:flex;">
                         <div class="col">
                             <label for="exampleFormControlInput1">6. Weekly Iron-Folic Acic Supplementation for
-                                female adolescents in outside the public schools</label>
+                                female adolescents in outside the public schools<span style="color:red">*</span></label>
                         </div>
                         <div class="col">
                             <label for="exampleFormControlInput1">Commodity</label>
                         </div>
                         <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIIFsource">
+                            <select id="loadProvince1" class="form-control" name="IIIFsource">                            <option value="">Choose...</option>
+                            <option value="">Choose...</option> 
                                 <option value="NGA">NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIFavailreceived">
+                            <option value="">Choose...</option> 
                                 <option value="YES">YES</option>
                                 <option value="NO">NO</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IIIFdatereceived">
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIIFdatereceived">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIFvolumepax">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIFvolumepax">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIFremarks">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIFremarks">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -1172,34 +1474,45 @@
                     <div style="display:flex;">
                         <div class="col">
                             <label for="exampleFormControlInput1">1. Retail outlets selling adequately iodized
-                                salt</label>
+                                salt<span style="color:red">*</span></label>
                         </div>
                         <div class="col">
                             <label for="exampleFormControlInput1">Dropdown</label>
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IVAsource">
+                            <option value="">Choose...</option> 
                                 <option value="NGA">NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IVAavailreceived">
-                                <option value="YES">YES</option>
+                            <option value="">Choose...</option> 
+                            <option value="YES">YES</option>
                                 <option value="NO">NO</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1"
-                                name="IVAdatereceived">
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IVAdatereceived">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IVAvolumepax">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IVAvolumepax">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IVAremarks">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IVAremarks">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -1229,33 +1542,45 @@
                     <div style="display:flex;">
                         <div class="col">
                             <label for="exampleFormControlInput1">1. NIEM Plan integrated in the local Disaster
-                                Risk Reduction Management Plan</label>
+                                Risk Reduction Management Plan<span style="color:red">*</span></label>
                         </div>
                         <div class="col">
                             <label for="exampleFormControlInput1">Training</label>
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="VAsource">
+                            <option value="">Choose...</option>
                                 <option value="NGA">NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="VAavailreceived">
-                                <option value="YES">YES</option>
+                            <option value="">Choose...</option>
+                            <option value="YES">YES</option>
                                 <option value="NO">NO</option>
-                            </select>
+                            </select>  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="VAdatereceived">
+                            <input type="date" class="form-control" id="exampleFormControlInput1" name="VAdatereceived">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="VAvolumepax">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="VAvolumepax">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="VAremarks">
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="VAremarks">  @error('populationA')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>

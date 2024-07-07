@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\MellpiprobarangayGovernance;
 use App\Models\MellpiprobarangayGovernanceTracker;
+use App\Models\Province;
+use App\Models\Barangay;
+use App\Models\Municipal;
+use App\Models\City;
 
 
 class GovernanceController extends Controller
@@ -30,9 +34,15 @@ class GovernanceController extends Controller
      */
     public function create()
     {
+        $prov = Province::where('region_id', auth()->user()->Region)->get();
+        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
+        $city = City::where('region_id', auth()->user()->Region)->get();
+        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal )->get();
+        
+        $years = range(date("Y"), 1900);
 
    
-        return view('BarangayScholar.Governance.create');
+        return view('BarangayScholar.Governance.create', compact('prov', 'mun', 'city', 'brgy','years'));
     }
 
     /**

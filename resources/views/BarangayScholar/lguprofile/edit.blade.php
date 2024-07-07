@@ -57,46 +57,9 @@
                 <input type="hidden" name="status" value="{{ old('status', $lguProfile->status) }}">
                 <input type="hidden" name="dateCreated" value="{{ old('dateCreated', $lguProfile->dateCreated) }}">
                 <input type="hidden" name="dateUpdates" value="{{ old('dateUpdates', $lguProfile->dateUpdates) }}">
-                <!-- header -->
-                <div style="display:flex">
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Barangay:</label>
-                        <input type="text" class="form-control" name="barangay_id"
-                            value="{{ old('dateUpdates',Auth()->user()->barangay) }}">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Municipality/City:</label>
-                        <input type="text" class="form-control" name="municipal_id"
-                            value="{{ auth()->user()->city_municipal }}">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Province:</label>
-                        <input type="text" class="form-control" name="province_id"
-                            value="{{ auth()->user()->Province }}">
-                        <input type="hidden" class="form-control" name="region_id" value="{{ auth()->user()->Region }}">
-                    </div>
+                
+                @include('layouts.page_template.location_header')
 
-                </div>
-                <br>
-                <div style="display:flex">
-
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Date of Monitoring:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" name="dateMonitoring"
-                            value="{{$lguProfile->dateMonitoring}}">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Period Covered:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" data-date-format="mm-yyyy"
-                            name="periodCovereda" value="{{$lguProfile->periodCovereda}}">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Period Covered:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" data-date-format="mm-yyyy"
-                            name="periodCoveredb" value="{{$lguProfile->periodCovereda}}">
-                    </div>
-                </div>
-                <!-- endheader -->
                 <br>
 
                 <div style="display:flex">
@@ -174,6 +137,15 @@
                             <input type="text" class="form-control" id="exampleFormControlInput1" name="breastfeeding"
                                 value="{{$lguProfile->breastfeeding}}">
                         </div>
+
+                        <div class="form-group">
+                            <label for="terrain">Terrain:</label>
+                            <input type="text" class="form-control" id="terrain" name="terrain">
+                            @error('terrain')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
 
                         <div style="display:flex">
                             <div class="form-group col">

@@ -22,6 +22,9 @@ use App\Http\Controllers\CentralAdmin\ProfileController;
 use App\Http\Controllers\CentralAdmin\AdminUserController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CentralAdmin\CADashboardController;
+use App\Http\Controllers\CentralAdmin\FormsBuilderController; 
+ 
+use App\Http\Controllers\CentralAdmin\FormFieldController;
 
 
 use App\Http\Controllers\CentralOfficer\CODashboardController;
@@ -52,6 +55,12 @@ use App\Http\Controllers\BarangayScholar\LNCManagementBarangayController;
 
 use App\Http\Controllers\BarangayScholar\MellpiProForLNFP_barangayController;
 
+
+
+
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\FormSubmissionController; 
+
 use function PHPSTORM_META\map;
 
 /*
@@ -69,8 +78,6 @@ Route::get('/', function () {
     return view('welcome');  
 });
 
-// Outside User Role
-
 
 
 // Please Check
@@ -82,8 +89,11 @@ Route::get('/dashboard', function () {
 
 // For review
 Route::middleware('auth')->group(function () {
-
  
+    // Forms samples
+    Route::resource('forms', FormController::class);
+Route::post('forms/{form}/submissions', [FormSubmissionController::class, 'store'])->name('form-submissions.store');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -108,8 +118,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/lncFunction', LNCController::class);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-    
- 
 
     Route::get('/personnelDnaDirectoryIndex' ,[PersonnelDnaDirectoryController::class, 'index'])->name('personnelDnaDirectoryIndex');
     Route::get('/personnelDnaDirectory' ,[PersonnelDnaDirectoryController::class, 'create'])->name('personnelDnaDirectory.create');
@@ -178,7 +186,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::POST('/dashboard', [CADashboardController::class, 'store'])->name('CAdashboard.store');
         Route::get('/dashboard/create', [CADashboardController::class, 'create'])->name('CAdashboard.create');
         Route::get('/dashboard/{admin}', [CADashboardController::class, 'update'])->name('CAdashboard.update');
-        Route::get('/dashboard/{admin}/edit', [CADashboardController::class, 'create'])->name('CAdashboard.edit');
+        Route::get('/dashboard/{admin}/edit', [CADashboardController::class, 'edit'])->name('CAdashboard.edit');
         Route::DELETE('/dashboard/{admin}', [CADashboardController::class, 'destroy'])->name('CAdashboard.destroy');
 
         // // Userprofile
@@ -187,6 +195,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile/{profile}/edit', [ProfileController::class, 'edit'])->name('CAprofile.edit'); 
         Route::PUT('/profile/password', [ProfileController::class, 'password'])->name('CAprofile.password');
 
+        // forms Creator 
+       Route::get('/formsb', [FormsBuilderController::class, 'index'])->name('formsb.index');
+       Route::POST('/formsb', [FormsBuilderController::class, 'store'])->name('formsb.store');
+       Route::get('/formsb/create', [FormsBuilderController::class, 'create'])->name('formsb.create');
+       Route::get('/formsb/{id}', [FormsBuilderController::class, 'update'])->name('formsb.update');
+       Route::get('/formsb/{id}/edit', [FormsBuilderController::class, 'edit'])->name('formsb.edit');
+       Route::DELETE('/formsb/{id}', [FormsBuilderController::class, 'destroy'])->name('formsb.destroy');
+       
+       Route::get('/formsb/{id}/formsbindex', [FormsBuilderController::class, 'formIndex'])->name('formsb.formIndex');
+       Route::get('/formsb/createForms', [FormsBuilderController::class, 'createForms'])->name('formsb.createForms');
 
 
     });
@@ -388,7 +406,10 @@ Route::group(['middleware' => 'auth'], function () {
           //Mellpi pro for LNFP
           Route::get('/lguprofilelnfp', [MellpiProForLNFP_barangayController::class, 'index'])->name('BSLGUprofileLNFPIndex.index');
           Route::get('/lguprofilelnfpCreate', [MellpiProForLNFP_barangayController::class, 'mellpiProLNFP_create'])->name('MellpiProForLNFPCreate.create');
+          Route::post('/lguLnfpUpdate', [MellpiProForLNFP_barangayController::class, 'editForm5a'])->name('lguLnfpUpdate');
+
           Route::get('/lguform5Index', [MellpiProForLNFP_barangayController::class, 'monitoringForm5'])->name('MellpiProMonitoringIndex.index');
+          Route::get('/lguform5Create', [MellpiProForLNFP_barangayController::class, 'monitoringForm5create'])->name(('MellpiProMonitoringCreate.create'));
 
 
     });

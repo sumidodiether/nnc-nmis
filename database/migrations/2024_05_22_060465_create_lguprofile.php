@@ -15,8 +15,7 @@ return new class extends Migration
         Schema::create('lguprofilebarangay', function (Blueprint $table) {
             $table->increments('id'); 
             $table->date('dateMonitoring');
-            $table->string('periodCovereda',10);
-            $table->string('periodCoveredb',10);
+            $table->string('periodCovereda',10); 
             $table->integer('totalPopulation');
             $table->integer('noHousehold');
             $table->integer('noPuroks');

@@ -7,43 +7,62 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\LguProfile;
 use App\Models\barangaytracking;
+use App\Models\Province;
+use App\Models\Barangay;
+use App\Models\Municipal;
+use App\Models\City;
 use Illuminate\Support\Facades\Validator;
 
 class BSLGUprofileController extends Controller
 {
     public function index() {
+
+        $prov = Province::where('region_id', auth()->user()->Region)->get();
+        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
+        $city = City::where('region_id', auth()->user()->Region)->get();
+        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal )->get();
+
         $barangay = auth()->user()->barangay;
-        //dd($barangay);
         $lguProfile = DB::table('lguprofilebarangay')->where('barangay_id', $barangay)->get();
 
-        return view('BarangayScholar.lguprofile.index',['lguProfile' => $lguProfile]);
+        return view('BarangayScholar.lguprofile.index', compact('lguProfile','prov', 'mun', 'city', 'brgy'));
 
     }
  
 
     public function edit(LguProfile $LguProfile, Request $request) { 
-       
+        $prov = Province::where('region_id', auth()->user()->Region)->get();
+        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
+        $city = City::where('region_id', auth()->user()->Region)->get();
+        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal )->get();
 
         //dd($request->id);
         $lguProfile = DB::table('lguprofilebarangay')->where('id', $request->id)->first();
         //dd($lguProfile);
 
 
-        return view('BarangayScholar.lguprofile.edit', ['lguProfile' => $lguProfile]) ;
+        return view('BarangayScholar.lguprofile.edit',compact('lguProfile','prov', 'mun', 'city', 'brgy'));
     }
 
     public function create() {
-        return view('BarangayScholar.lguprofile.create');
+
+        $prov = Province::where('region_id', auth()->user()->Region)->get();
+        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
+        $city = City::where('region_id', auth()->user()->Region)->get();
+        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal )->get();
+        
+        $years = range(date("Y"), 1900);
+
+        return view('BarangayScholar.lguprofile.create', compact('prov', 'mun', 'city', 'brgy','years'));
     }
 
     public function store(Request $request) {
 
-        //dd($request);
+   
             $rules = [
                 'dateMonitoring' => 'required|date|max:255',
                 'periodCovereda' => 'required|string |max:255',
-                'periodCoveredb' => 'required|string|max:255',
-                'totalPopulation' => 'required|string|max:255',
+                'totalPopulation' => 'required|integer',
                 'householdWater' => 'required|string|max:255',
                 'householdToilets' => 'required|string|max:255',
                 'dayCareCenter' => 'required|string|max:255',
@@ -55,6 +74,7 @@ class BSLGUprofileController extends Controller
                 'markets' => 'required|string|max:255',
                 'transportTerminals' => 'required|string|max:255',
                 'breastfeeding' => 'required|string|max:255',
+                'terrain' => 'required|string|max:255',
                 'hazards' => 'required|string|max:255',
                 'affectedLGU' => 'required|string|max:255',
                 'noHousehold' => 'required|string|max:255',
@@ -212,18 +232,25 @@ class BSLGUprofileController extends Controller
         
             ]; 
 
-            $validator = Validator::make($request->all() , $rules);
+           
+        $message = [
+            'required' => 'The field is required.',
+            'integer' => 'The field must be an integer.',
+            'string' => 'The field must be a string.',
+            'date' => 'The field must be a valid date.',
+            'max' => 'The field may not be greater than :max characters.',
+        ]; 
+            $validator = Validator::make($request->all() , $rules, $message );
 
             if($validator->fails()){
-                return response()->json([
-                    'errors' => $validator->errors()
-                ], 422);
+                return redirect()->back()
+                ->withErrors($validator)
+                ->withInput()->with('error', 'Something went wrong! Please try again.');
             }
 
                 $LGUProfileBarangay = LguProfile::create([
                     'dateMonitoring'=> $request->dateMonitoring,
                     'periodCovereda' => $request->periodCovereda,
-                    'periodCoveredb' => $request->periodCoveredb,
                     'totalPopulation' => $request->totalPopulation,
                     'householdWater' => $request->householdWater, 
                     'householdToilets' => $request->householdToilets, 
@@ -235,7 +262,8 @@ class BSLGUprofileController extends Controller
                     'bakeries' => $request->bakeries, 
                     'markets' => $request->markets, 
                     'transportTerminals' => $request->transportTerminals, 
-                    'breastfeeding' => $request->breastfeeding, 
+                    'breastfeeding' => $request->breastfeeding,
+                    'terrain' => $request->terrain,  
                     'hazards' => $request->hazards, 
                     'affectedLGU' => $request->affectedLGU, 
                     'noHousehold' => $request->noHousehold, 
@@ -443,21 +471,16 @@ class BSLGUprofileController extends Controller
          
             
 
-        return redirect('BarangayScholar/lguprofile');
+        return redirect('BarangayScholar/lguprofile')->with('Success', 'Data created successfullySuccessfully!');
     }
 
-
-    
     public function update( Request $request , $id ) {
           
-    
-        
         //dd($request);
            $rules = [
             'dateMonitoring' => 'required|date|max:255',
             'periodCovereda' => 'required|string |max:255',
-            'periodCoveredb' => 'required|string|max:255',
-            'totalPopulation' => 'required|string|max:255',
+            'totalPopulation' => 'required|integer',
             'householdWater' => 'required|string|max:255',
             'householdToilets' => 'required|string|max:255',
             'dayCareCenter' => 'required|string|max:255',
@@ -469,6 +492,7 @@ class BSLGUprofileController extends Controller
             'markets' => 'required|string|max:255',
             'transportTerminals' => 'required|string|max:255',
             'breastfeeding' => 'required|string|max:255',
+            'terrain' => 'required|string|max:255',
             'hazards' => 'required|string|max:255',
             'affectedLGU' => 'required|string|max:255',
             'noHousehold' => 'required|string|max:255',
@@ -625,8 +649,15 @@ class BSLGUprofileController extends Controller
             'region_id' => 'required|integer',
     
         ]; 
+        $message = [
+            'required' => 'The field is required.',
+            'integer' => 'The field must be an integer.',
+            'string' => 'The field must be a string.',
+            'date' => 'The field must be a valid date.',
+            'max' => 'The field may not be greater than :max characters.',
+        ]; 
 
-        $validator = Validator::make($request->all() , $rules);
+        $validator = Validator::make($request->all() , $rules,$message);
 
         if($validator->fails()){
             return response()->json([
@@ -638,8 +669,7 @@ class BSLGUprofileController extends Controller
 
             $lguprofile->update([
                 'dateMonitoring'=> $request->dateMonitoring,
-                'periodCovereda' => $request->periodCovereda,
-                'periodCoveredb' => $request->periodCoveredb,
+                'periodCovereda' => $request->periodCovereda, 
                 'totalPopulation' => $request->totalPopulation,
                 'householdWater' => $request->householdWater, 
                 'householdToilets' => $request->householdToilets, 
@@ -652,6 +682,7 @@ class BSLGUprofileController extends Controller
                 'markets' => $request->markets, 
                 'transportTerminals' => $request->transportTerminals, 
                 'breastfeeding' => $request->breastfeeding, 
+                'terrain' => $request->breastfeeding, 
                 'hazards' => $request->hazards, 
                 'affectedLGU' => $request->affectedLGU, 
                 'noHousehold' => $request->noHousehold, 

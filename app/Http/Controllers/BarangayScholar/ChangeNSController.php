@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\MellpiproChangeNS;
 use App\Models\MellpiproChangeNSTracking;
+use App\Models\Province;
+use App\Models\Barangay;
+use App\Models\Municipal;
+use App\Models\City;
 
 class ChangeNSController extends Controller
 {
@@ -27,7 +31,13 @@ class ChangeNSController extends Controller
      */
     public function create()
     {
-        return view('BarangayScholar.ChangeinNS.create');
+        $prov = Province::where('region_id', auth()->user()->Region)->get();
+        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
+        $city = City::where('region_id', auth()->user()->Region)->get();
+        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal )->get();
+        
+        $years = range(date("Y"), 1900);
+        return view('BarangayScholar.ChangeinNS.create', compact('prov', 'mun', 'city', 'brgy','years'));
     }
 
     /**
@@ -135,9 +145,9 @@ class ChangeNSController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Request $request ,string $id)
-    {
-        // $cnbarangay = DB::table('mplgubrgychangeNS')->where('id', $request->id)->first();
-        // return view('BarangayScholar.VisionMission.edit', ['vmbarangay' => $cnbarangay ])->with('success', 'Created successfully!');
+    {   
+        $cnlocation = DB::table('mplgubrgychangeNS')->where('id', $request->id)->first();
+        return view('BarangayScholar.ChangeinNS.edit', ['cnlocation' => $cnlocation ])->with('success', 'Created successfully!');
     }
 
     /**
@@ -145,7 +155,88 @@ class ChangeNSController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       
+          //dd($request);
+          $rules = [
+            'barangay_id' => 'required|integer',
+            'municipal_id' => 'required|integer',
+            'province_id' => 'required|integer',
+            'region_id' => 'required|integer',
+            'dateMonitoring' => 'required|date|max:255',
+            'periodCovereda' => 'required|string |max:255',
+            'periodCoveredb' => 'required|string|max:255',
+
+            'rating6a' => 'required|integer',
+            'rating6b' => 'required|integer',
+            'rating6c' => 'required|integer',
+            'rating6d' => 'required|integer',
+            'rating6e' => 'required|integer',
+            'rating6f' => 'required|integer',
+            'rating6g' => 'required|integer',
+            'rating6h' => 'required|integer', 
+            
+
+            'remarks6a' => 'required|string|max: 255',
+            'remarks6b' => 'required|string|max: 255',
+            'remarks6c' => 'required|string|max: 255',
+            'remarks6d' => 'required|string|max: 255',
+            'remarks6e' => 'required|string|max: 255',
+            'remarks6f' => 'required|string|max: 255',
+            'remarks6g' => 'required|string|max: 255',
+            'remarks6h' => 'required|string|max: 255', 
+
+            'status' => 'required|string|max:255',
+            'dateCreated' => 'required|date ',
+            'dateUpdates' => 'required|date ',
+            'user_id' => 'required|integer',
+
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        } else {
+            $changeNSBarangay  = MellpiproChangeNS::find($request->id);
+
+            $changeNSBarangay = MellpiproChangeNS::create([
+                'barangay_id' =>  $request->barangay_id,
+                'municipal_id' =>  $request->municipal_id,
+                'province_id' =>  $request->province_id,
+                'region_id' =>  $request->region_id,
+                'dateMonitoring' =>  $request->dateMonitoring,
+                'periodCovereda' =>  $request->periodCovereda,
+                'periodCoveredb' =>  $request->periodCoveredb,
+
+                'rating6a' => $request->rating6a,
+                'rating6b' => $request->rating6b,
+                'rating6c' => $request->rating6c,
+                'rating6d' => $request->rating6d,
+                'rating6e' => $request->rating6e,
+                'rating6f' => $request->rating6f,
+                'rating6g' => $request->rating6g,
+                'rating6h' => $request->rating6h,
+
+                'remarks6a' => $request->remarks6a,
+                'remarks6b' => $request->remarks6b,
+                'remarks6c' => $request->remarks6c,
+                'remarks6d' => $request->remarks6d,
+                'remarks6e' => $request->remarks6e,
+                'remarks6f' => $request->remarks6f,
+                'remarks6g' => $request->remarks6g,
+                'remarks6h' => $request->remarks6h,
+                 
+
+                'status' =>  $request->status,
+                'user_id' =>  $request->user_id,
+                'dateCreated' =>  $request->dateCreated,
+                'dateUpdates' =>  $request->dateUpdates,
+            ]);
+        
+        }
+        return redirect('BarangayScholar/changeNS');
     }
 
     /**
@@ -153,6 +244,9 @@ class ChangeNSController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('mplgubrgychangeNStracking')->where('mplgubrgychangeNS_id', $id)->delete();
+        $lguprofile = MellpiproChangeNS::find($id); 
+        $lguprofile->delete();
+        return redirect()->route('changeNS.index')->with('success', 'Deleted successfully!');
     }
 }

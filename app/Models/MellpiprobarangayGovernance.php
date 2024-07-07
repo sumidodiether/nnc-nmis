@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MellpiprobarangayGovernance extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'barangay_id',
         'municipal_id',

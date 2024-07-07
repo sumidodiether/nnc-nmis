@@ -199,7 +199,7 @@
                         </div>
                         <div class="col-1">
                             <textarea type="text" name="remarks3a" placeholder="Your remarks"
-                                style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks3c', $govbarangay->remarks3a) }}</textarea>
+                                style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks3a', $govbarangay->remarks3a) }}</textarea>
                         </div>
                     </div>
 
@@ -248,7 +248,7 @@ Office and Personnel</label>
                         </div>
                         <div class="col-1">
                             <textarea type="text" name="remarks3b"  placeholder="Your remarks"
-                                style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks3c', $govbarangay->remarks3b) }}</textarea>
+                                style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px">{{ old('remarks3b', $govbarangay->remarks3b) }}</textarea>
                         </div>
                     </div>
 

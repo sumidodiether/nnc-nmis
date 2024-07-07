@@ -17,7 +17,7 @@
                     <div class="content" style="margin:30px">
                         <div class="row">
                             <div style="display:flex;align-items:center">
-                                <a href="{{route('BSLGUprofile.create')}}" class="btn btn-primary">Create data</a>
+                                <a href="{{route('nutritionpolicies.create')}}" class="btn btn-primary">Create data</a>
                                 <p style="margin-bottom:0px;margin-left:25px; font-weight:900;font-size:25px">MELLPI PRO
                                     FORM B: BARANGAY
                                     PROFILE SHEET</p>

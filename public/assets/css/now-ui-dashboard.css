@@ -1306,6 +1306,7 @@ fieldset[disabled] .btn-link.active {
 
 .no-caret.dropdown-toggle::after {
     display: none;
+    color:green;
 }
 
 .form-control::-moz-placeholder {
@@ -1981,6 +1982,7 @@ a.text-warning:hover {
 a.text-danger:focus,
 a.text-danger:hover {
     color: #FF3636 !important;
+    font-size:11px
 }
 
 .text-gray,
@@ -4696,9 +4698,12 @@ Created using IcoMoon - icomoon.io
 }
 
 .card label {
-    font-size: 0.8571em;
     margin-bottom: 5px;
-    color: #9A9A9A;
+    /* color: #9A9A9A;
+    font-size: 0.8571em; */
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
 }
 
 .card .card-footer {

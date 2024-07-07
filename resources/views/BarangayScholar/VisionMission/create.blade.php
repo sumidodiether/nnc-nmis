@@ -55,42 +55,7 @@
                 <input type="hidden" name="dateUpdates" value="05/19/2024">
                 <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                 <!-- header -->
-                <div style="display:flex">
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Barangay:</label>
-                        <input type="text" class="form-control" name="barangay_id" value="{{Auth()->user()->barangay}}">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Municipality/City:</label>
-                        <input type="text" class="form-control" name="municipal_id"
-                            value="{{auth()->user()->city_municipal }}">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Province:</label>
-                        <input type="text" class="form-control" name="province_id" value="{{auth()->user()->Province}}">
-                        <input type="hidden" class="form-control" name="region_id" value="{{auth()->user()->Region}}">
-                    </div>
-
-                </div>
-                <br>
-                <div style="display:flex">
-
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Date of Monitoring:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" name="dateMonitoring">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Period Covered:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" data-date-format="mm-yyyy"
-                            name="periodCovereda">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Period Covered:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" data-date-format="mm-yyyy"
-                            name="periodCoveredb">
-                    </div>
-                </div>
-                <!-- endheader -->
+                @include('layouts.page_template.location_header')
                 <br>
                 <br>
                 <div>

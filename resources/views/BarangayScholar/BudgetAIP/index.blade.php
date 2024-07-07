@@ -81,12 +81,7 @@
                         <label for="exampleFormControlInput1">Period Covered:</label>
                         <input type="date" class="form-control" id="exampleFormControlInput1" data-date-format="mm-yyyy"
                             name="periodCovereda">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Period Covered:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" data-date-format="mm-yyyy"
-                            name="periodCoveredb">
-                    </div>
+                    </div> 
                 </div>
                 <!-- endheader -->
                 <br>

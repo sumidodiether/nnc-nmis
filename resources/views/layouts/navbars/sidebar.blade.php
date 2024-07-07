@@ -187,6 +187,39 @@
           </ul>
         </div>
       </li>
+
+      <li>
+        <a data-toggle="collapse" href="#laravelExamples">
+            <!-- <i class="now-ui-icons files_paper"></i> -->
+          <p>
+            {{ __("Form Management") }}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse show" id="laravelExamples">
+          <ul class="nav">
+            <li class="@if ($activePage == 'forms') active @endif">
+              <a href="{{ route('forms.index') }}">
+                <i class="now-ui-icons users_single-02"></i>
+                <p> {{ __("Forms1") }} </p>
+              </a>
+            </li>
+            <li class="@if ($activePage == 'forms2') active @endif">
+              <a href="{{ route('formsb.index') }}">
+                <i class="now-ui-icons users_single-02"></i>
+                <p> {{ __("Forms2") }} </p>
+              </a>
+            </li>
+            <!-- <li class="@if ($activePage == 'users') active @endif">
+              <a href="{{ route('CAadmin.index') }}">
+                <i class="now-ui-icons design_bullet-list-67"></i>
+                <p> {{ __("List of Users") }} </p>
+              </a>
+            </li> -->
+     
+          </ul>
+        </div>
+      </li>
     </ul>
   </div>
 </div>

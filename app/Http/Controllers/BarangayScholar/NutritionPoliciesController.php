@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\MellpiprobarangayNationalpolicies;
 use App\Models\mpbrgynationalPoliciestracking;
+use App\Models\Province;
+use App\Models\Barangay;
+use App\Models\Municipal;
+use App\Models\City;
+use App\Http\Controllers\LocationController;
 
 class NutritionPoliciesController extends Controller
 {
@@ -26,8 +31,14 @@ class NutritionPoliciesController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        return view('BarangayScholar.NutritionPolicies.create');
+    {   
+        $prov = Province::where('region_id', auth()->user()->Region)->get();
+        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
+        $city = City::where('region_id', auth()->user()->Region)->get();
+        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal )->get();
+        
+        $years = range(date("Y"), 1900);
+        return view('BarangayScholar.NutritionPolicies.create', compact('prov', 'mun', 'city', 'brgy','years'));
     }
 
     /**

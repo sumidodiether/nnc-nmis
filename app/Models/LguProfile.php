@@ -11,8 +11,7 @@ class LguProfile extends Model
 
     protected $fillable = [
         'dateMonitoring',
-        'periodCovereda',
-        'periodCoveredb',
+        'periodCovereda', 
         'totalPopulation',
         'householdWater',
         'householdToilets',
@@ -25,6 +24,7 @@ class LguProfile extends Model
         'markets',
         'transportTerminals',
         'breastfeeding',
+        'terrain',
         'hazards',
         'affectedLGU',
         'noHousehold',

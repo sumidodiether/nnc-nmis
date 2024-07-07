@@ -18,7 +18,7 @@ class MellpiprobarangayGovernanceTracker extends Model
         'user_id',
         'status', 
     ];
-    public function  Nationalpolicies() {
+    public function  Governances() {
         return $this->belongsTo(MellpiprobarangayGovernance::class);
     }
 }

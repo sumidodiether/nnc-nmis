@@ -45,7 +45,7 @@
         @endif
 
         <div>
-            <form action="{{ route('visionmission.store') }}" method="POST">
+            <form action="{{ route('discussionquestion.store') }}" method="POST">
                 @csrf
 
                 <input type="hidden" name="status" value="1">
@@ -78,15 +78,10 @@
                         <input type="date" class="form-control" id="exampleFormControlInput1" name="dateMonitoring">
                     </div>
                     <div class="form-group col">
-                        <label for="exampleFormControlInput1">Period Covered:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" data-date-format="mm-yyyy"
-                            name="periodCovereda">
-                    </div>
-                    <div class="form-group col">
-                        <label for="exampleFormControlInput1">Period Covered:</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" data-date-format="mm-yyyy"
-                            name="periodCoveredb">
-                    </div>
+                        <label for="exampleFormControlInput1">Period Covered:</label> 
+                        <input type="number" id="yearInput" name="periodCovered" class="form-control" min="1900" max="2100" required>
+
+                    </div> 
                 </div>
                 <!-- endheader -->
                 <br>
@@ -131,19 +126,19 @@
                         </div>
 
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7aa" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7ab" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7ac" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7ad" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                     </div>
@@ -161,19 +156,19 @@
                         </div>
 
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7ba" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7bb" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7bc" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7bd" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                     </div>
@@ -192,19 +187,19 @@
                         </div>
 
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7ca" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7cb" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7cc" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7cd" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                     </div>
@@ -223,19 +218,19 @@
                         </div>
 
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7da" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7db" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7dc" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7dd" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                     </div>
@@ -253,19 +248,19 @@
                         </div>
 
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7ea" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7eb" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7ec" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7ed" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                     </div>
@@ -284,19 +279,19 @@
                         </div>
 
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7fa" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7fb" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7fc" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                         <div class="col" style="padding-left:0px!important">
-                            <textarea type="text" name="remarks1a" placeholder="Your remarks"
+                            <textarea type="text" name="practice7fd" placeholder="Your remarks"
                                 style="border-radius: 5px;border:1px solid lightgray;font-size:12px;width:inherit;max-height:120px;height:120px;padding:7px"></textarea>
                         </div>
                     </div>

@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\MellpiproLGUBarangayVisionMission;
 use App\Models\MellpiproLGUBarangayVisionMissionTracker;
+use App\Models\Province;
+use App\Models\Barangay;
+use App\Models\Municipal;
+use App\Models\City;
 
 class VisionMissionController extends Controller
 {
@@ -27,13 +31,21 @@ class VisionMissionController extends Controller
      */
     public function create()
     {
-        return view('BarangayScholar.VisionMission.create');
+        $prov = Province::where('region_id', auth()->user()->Region)->get();
+        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
+        $city = City::where('region_id', auth()->user()->Region)->get();
+        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal )->get();
+        
+        $years = range(1900, strftime("%Y", time()));
+
+
+        return view('BarangayScholar.VisionMission.create', compact('prov', 'mun', 'city', 'brgy', 'years'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         //dd($request);
         $rules = [
@@ -60,9 +72,9 @@ class VisionMissionController extends Controller
         $validator = Validator::make($request->all() , $rules);
 
         if($validator->fails()){
-            return response()->json([
-                'errors' => $validator->errors()
-            ], 422);
+                return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
         }else {
 
             $vmBarangay = MellpiproLGUBarangayVisionMission::create([
