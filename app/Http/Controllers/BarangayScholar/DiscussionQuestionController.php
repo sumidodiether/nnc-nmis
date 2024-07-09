@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
 use App\Models\MellpiproBarangayDiscussionQuestion;
 use App\Models\MellpiproBarangayDiscussionQuestionTracking;
+use App\Http\Controllers\LocationController;
 
 class DiscussionQuestionController extends Controller
 {
@@ -27,7 +27,15 @@ class DiscussionQuestionController extends Controller
      */
     public function create()
     {
-        return view('BarangayScholar.DiscussionQuestion.create');
+        $location = new LocationController;
+        $prov = $location->getLocationDataProvince(auth()->user()->Region);
+        $mun = $location->getLocationDataMuni(auth()->user()->Province);
+        $city = $location->getLocationDataCity(auth()->user()->Region);
+        $brgy = $location->getLocationDataBrgy(auth()->user()->city_municipal);
+
+        $years = range(date("Y"), 1900);
+
+        return view('BarangayScholar.DiscussionQuestion.create', compact('prov', 'mun', 'city', 'brgy','years'));
     }
 
     /**

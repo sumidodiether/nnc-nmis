@@ -3905,12 +3905,21 @@ Created using IcoMoon - icomoon.io
 .sidebar .nav li:focus:not(.active)>a i,
 .off-canvas-sidebar .nav li:hover:not(.active)>a i,
 .off-canvas-sidebar .nav li:focus:not(.active)>a i {
-    color: #64987e;
+    color: #64987e;     
 }
+
+.sidebar .nav .active p {
+    color: #fff!important;
+  }
+
+
 
 .sidebar .nav li.active>a,
 .off-canvas-sidebar .nav li.active>a {
-    background-color: #64987e;
+    /* background-color: #64987e; */
+    /* background-color: #d7eae3; */
+    background-color: #508D4E; 
+    
     box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
 }
 
@@ -3922,6 +3931,8 @@ Created using IcoMoon - icomoon.io
     display: block;
     height: auto;
     white-space: nowrap;
+    font-weight: bolder;
+    font-size: 11px;
 }
 
 .sidebar .nav i,
@@ -4019,6 +4030,7 @@ Created using IcoMoon - icomoon.io
     font-weight: 400;
     line-height: 30px;
     overflow: hidden;
+    font-weight: bold;
 }
 
 .sidebar .logo-tim,
@@ -4183,8 +4195,10 @@ Created using IcoMoon - icomoon.io
     position: relative;
     float: right;
     width: calc(100% - 260px);
-    background-color: #E3E3E3;
-    background-color: #ebecf1;
+    height:100%;
+    /* background-color: #E3E3E3;
+    background-color: #ebecf1; */
+    background-color: #d7eae3; 
     transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
 }
 

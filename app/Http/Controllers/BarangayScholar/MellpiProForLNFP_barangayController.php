@@ -86,6 +86,7 @@ class MellpiProForLNFP_barangayController extends Controller
         $performanceB5 = $request->input('performanceB5');
         $docuSourceB = $request->input('docuSourceB');
 
+        $elementsBB = $request->input('elementsBB');
         $performanceBB1 = $request->input('performanceBB1');
         $performanceBB2 = $request->input('performanceBB2');
         $performanceBB3 = $request->input('performanceBB3');
@@ -139,6 +140,7 @@ class MellpiProForLNFP_barangayController extends Controller
         $performanceGG3 = $request->input('performanceGG3');
         $performanceGG4 = $request->input('performanceGG4');
         $performanceGG5 = $request->input('performanceGG5');
+        $docuSourceGG = $request->input('docuSourceGG');
 
 
         $elementsH = $request->input('elementsH');
@@ -160,7 +162,7 @@ class MellpiProForLNFP_barangayController extends Controller
         } elseif ($action == 'update') {
             // Update the data in the database
             // Example: YourModel::where('id', $id)->update(['input_field' => $input]);
-            sampleUpdateForm5a::where('id', 2)
+            $update = lnfp_form5a::where('id', 2)
             ->update([
                 'elementsA' => $elementsA,
                 'performanceA1' => $performanceA1,
@@ -178,6 +180,7 @@ class MellpiProForLNFP_barangayController extends Controller
                 'performanceB5' => $performanceB5,
                 'documentSourceB' => $docuSourceB,
 
+                'elementsBB' => $elementsBB,
                 'performanceBB1' => $performanceBB1,
                 'performanceBB2' => $performanceBB2,
                 'performanceBB3' => $performanceBB3,
@@ -224,13 +227,14 @@ class MellpiProForLNFP_barangayController extends Controller
                 'performanceG4' => $performanceG4,
                 'performanceG5' => $performanceG5,
                 'documentSourceG' => $docuSourceG,
+
                 'elementsGG' => $elementsGG,
                 'performanceGG1' => $performanceGG1,
                 'performanceGG2' => $performanceGG2,
                 'performanceGG3' => $performanceGG3,
                 'performanceGG4' => $performanceGG4,
                 'performanceGG5' => $performanceGG5,
-
+                'documentSourceGG' => $docuSourceGG,
 
                 'elementsH' => $elementsH,
                 'performanceH1' => $performanceH1,
@@ -242,7 +246,10 @@ class MellpiProForLNFP_barangayController extends Controller
 
             ]);
             // return response()->json(['message' => 'Input updated successfully!', 'data' => $input]);
-            return redirect()->route('MellpiProMonitoringCreate.create');
+            // return redirect()->route('MellpiProMonitoringCreate.create');
+
+            return redirect()->back() ->with('alert', 'Updated Successfully!');
+
         }
 
         return response()->json(['message' => 'Invalid Action!', 400]);

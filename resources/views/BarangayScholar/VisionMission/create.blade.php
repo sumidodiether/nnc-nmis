@@ -28,9 +28,8 @@
 
 @extends('layouts.BSapp', [
 'class' => 'sidebar-mini ',
-'namePage' => 'User Profile',
-'activePage' => 'profile',
-'activeNav' => '',
+'namePage' => 'Vision Mission',
+'activePage' => 'VISION',
 ])
 
 
@@ -259,6 +258,7 @@
 
 
                 <div class="row" style="margin-top:30px;margin-right:20px;justify-content: flex-end">
+                <button type="submit" class="btn btn-primary">Save Draft</button>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>

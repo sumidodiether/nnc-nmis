@@ -138,7 +138,7 @@
   height: inherit;
   line-height: 150px;
   color: rgba(0, 0, 0, 1);
-  background: rgba(255, 255, 255, 1);
+  background: #FFFDB5;
   border-radius: 50%;
   text-align: center;
   text-decoration: none;
@@ -149,7 +149,7 @@
 .menu-item a:hover {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
   color: white;
-  background: rgba(255, 255, 255, 0.3);
+  background:#FFFDB5;
   font-size: 44.44px
 }
 

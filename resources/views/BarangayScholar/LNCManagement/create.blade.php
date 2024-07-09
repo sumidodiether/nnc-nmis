@@ -28,8 +28,8 @@
 
 @extends('layouts.BSapp', [
 'class' => 'sidebar-mini ',
-'namePage' => 'User Profile',
-'activePage' => 'profile',
+'namePage' => 'LNC Management',
+'activePage' => 'LNCManagement',
 'activeNav' => '',
 ])
 

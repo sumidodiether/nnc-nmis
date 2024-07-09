@@ -1,39 +1,46 @@
 <?php
 
-namespace App\Http\Controllers\BarangayScholar;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use App\Models\MellpiprobarangayNationalpolicies;
-use App\Models\mpbrgynationalPoliciestracking;
 use App\Models\Province;
 use App\Models\Barangay;
 use App\Models\Municipal;
 use App\Models\City;
 
-class NutritionPoliciesController extends Controller
+class LocationController extends Controller
 {
 
-    public function getLocationData()
+    public function getLocationDataProvince($region_id)
     {
-        $prov = Province::where('region_id', auth()->user()->Region)->get();
-        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
-        $city = City::where('region_id', auth()->user()->Region)->get();
-        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal)->get();
-        
-        $years = range(date("Y"), 1900);
+        $data = Province::where('region_id', $region_id)->get();
 
-        return [
-            'provinces' => $prov,
-            'municipals' => $mun,
-            'cities' => $city,
-            'barangays' => $brgy,
-            'years' => $years
-        ];
+        return $data;
     }
 
+    public function getLocationDataBrgy($mun_id)
+    {
+        $data = Barangay::where('municipal_id', $mun_id )->get();
+
+        return $data;
+    }
+
+    public function getLocationDataMuni($prov_id)
+    {
+        $data = Municipal::where('province_id', $prov_id)->get();
+
+        return $data;
+    }
+
+    public function getLocationDataCity($region_id)
+    {
+        $data = City::where('region_id', $region_id)->get();
+
+        return $data;
+    }
 
 
 }

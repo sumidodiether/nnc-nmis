@@ -67,15 +67,19 @@
                     <div class="col col-4 col-2">
                         <div class="form-group">
                             <label for="totalPopulation">Total Population:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" placeholder="ex. 100" id="totalPopulation" name="totalPopulation" value="{{ old('totalPopulation') }}">
+                            <input type="number" min="1" max="100" class="form-control" placeholder="ex. 100" id="totalPopulation" 
+                            name="totalPopulation" value="{{ old('totalPopulation') }}"> 
                             @error('totalPopulation')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                       
+
+
                         <div class="form-group">
                             <label for="householdWater">No. of household with access to safe
                                 water:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="householdWater" name="householdWater" 
+                            <input type="number" min="1" max="1000" class="form-control" id="householdWater" name="householdWater" 
                             placeholder="ex. 100"  
                             value="{{ old('householdWater') }}">
                             @error('totalPopulation')
@@ -85,7 +89,7 @@
 
                         <div class="form-group">
                             <label for="householdToilets">No. of household with sanitary toilets:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="householdToilets" name="householdToilets"
+                            <input  type="number" min="1" max="100" class="form-control" id="householdToilets" name="householdToilets"
                             placeholder="ex. 100" value="{{ old('householdToilets') }}">
                             @error('householdToilets')
                             <div class="text-danger">{{ $message }}</div>
@@ -94,15 +98,16 @@
 
                         <div class="form-group">
                             <label for="dayCareCenter">No. of Day Care Centers:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="dayCareCenter" name="dayCareCenter"
-                            placeholder="ex. 2 " value="{{ old('dayCareCenter') }}">
+                            <input type="number" min="1" max="100"class="form-control" id="dayCareCenter" name="dayCareCenter"
+                            placeholder="ex. 100 " value="{{ old('dayCareCenter') }}">
                             @error('dayCareCenter')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="elementary">No. of public elementary schools:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="elementary" name="elementary">
+                            <input type="number" class="form-control" id="elementary" placeholder="ex. 100 " 
+                            value="{{ old('elementary') }}" name="elementary">
                             @error('elementary')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -110,7 +115,8 @@
 
                         <div class="form-group">
                             <label for="secondarySchool">No. of public secondary schools:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="secondarySchool" name="secondarySchool">
+                            <input type="number" class="form-control" id="secondarySchool" name="secondarySchool"
+                            placeholder="ex. 100 " value="{{ old('secondarySchool') }}">
                             @error('secondarySchool')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -118,7 +124,8 @@
 
                         <div class="form-group">
                             <label for="healthStations">No. of Barangay Health Stations:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="healthStations" name="healthStations">
+                            <input type="number" class="form-control" id="healthStations" name="healthStations"
+                            placeholder="ex. 100 " value="{{ old('healthStations') }}">
                             @error('healthStations')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -126,7 +133,8 @@
 
                         <div class="form-group">
                             <label for="retailOutlets">No. of retail outlets/sari-sari stores:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="retailOutlets" name="retailOutlets">
+                            <input type="number" class="form-control" id="retailOutlets" name="retailOutlets"
+                            placeholder="ex. 100 " value="{{ old('retailOutlets') }}">
                             @error('retailOutlets')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -134,7 +142,8 @@
 
                         <div class="form-group">
                             <label for="bakeries">No. of bakeries:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="bakeries" name="bakeries">
+                            <input type="number" class="form-control" id="bakeries" name="bakeries"
+                            placeholder="ex. 100 " value="{{ old('bakeries') }}">
                             @error('bakeries')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -142,7 +151,8 @@
 
                         <div class="form-group">
                             <label for="markets">No. of public markets:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="markets" name="markets">
+                            <input type="number" class="form-control" id="markets" name="markets"
+                            placeholder="ex. 100 " value="{{ old('markets') }}">
                             @error('markets')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -150,15 +160,17 @@
 
                         <div class="form-group">
                             <label for="transportTerminals">No. of transport terminals:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="transportTerminals" name="transportTerminals">
+                            <input type="number" class="form-control" id="transportTerminals" name="transportTerminals"
+                            placeholder="ex. 100 " value="{{ old('transportTerminals') }}">
                             @error('transportTerminals')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group">
                             <label for="breastfeeding">Percent of Lactating mothers exclusively
-                                breastfeeding until the 5th month:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="breastfeeding" name="breastfeeding">
+                                breastfeeding until the 5th month(%):<span style="color:red">*</span></label>
+                            <input type="number" class="form-control" id="breastfeeding" name="breastfeeding"
+                            placeholder="ex. 100 " value="{{ old('breastfeeding') }}">
                             @error('breastfeeding')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -166,7 +178,8 @@
 
                         <div class="form-group">
                             <label for="terrain">Terrain:<span style="color:red">*</span></label>
-                            <input type="text" class="form-control" id="terrain" name="terrain">
+                            <textarea class="form-control" id="terrain" height="800px" style="max-height:380px;height:300px;border: 1px solid lightgray;border-radius:5px" name="terrain"
+                            value="{{ old('terrain') }}"></textarea>
                             @error('terrain')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -175,14 +188,16 @@
 
                         <div class="form-group">
                             <label for="hazards">Hazard:<span style="color:red">*</span></label>
-                            <textarea class="form-control" id="hazards" height="800px" style="max-height:380px;height:380px;border: 1px solid lightgray;border-radius:5px" name="hazards"></textarea>
+                            <textarea class="form-control" id="hazards" height="800px" style="max-height:380px;height:300px;border: 1px solid lightgray;border-radius:5px" name="hazards"
+                            value="{{ old('hazards') }}"></textarea>
                             @error('hazards')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group" style="max-height:800px">
                             <label for="affectedLGU">LGU/Households affected:<span style="color:red">*</span></label>
-                            <textarea class="form-control" id="affectedLGU" style="max-height:380px;height:380px;border: 1px solid lightgray;border-radius:5px" name="affectedLGU"></textarea>
+                            <textarea class="form-control" id="affectedLGU" style="max-height:380px;height:300px;border: 1px solid lightgray;border-radius:5px" name="affectedLGU"
+                            value="{{ old('affectedLGU') }}"></textarea>
                             @error('affectedLGU')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -194,7 +209,7 @@
                         <div style="display:flex" class="row">
                             <div class="form-group col">
                                 <label for="noHousehold">No. of households:<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" id="noHousehold" name="noHousehold">
+                                <input type="number" class="form-control" id="noHousehold" name="noHousehold">
                                 @error('noHousehold')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
@@ -1586,6 +1601,7 @@
                 </div>
 
                 <div class="row" style="margin-top:30px;margin-right:20px;justify-content: flex-end">
+                    <button type="submit" class="btn btn-warning ">Save as draft</button>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>

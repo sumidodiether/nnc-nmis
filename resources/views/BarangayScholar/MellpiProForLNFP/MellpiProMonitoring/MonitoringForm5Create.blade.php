@@ -1,4 +1,6 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/form5a.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/common.css') }}">
 
 @extends('layouts.BSapp', [
 'class' => 'sidebar-mini ',
@@ -8,17 +10,18 @@
 ])
 
 @section('content')
-<div class="panel-header panel-header-sm"></div>
-<div class="content">
+<!-- <div class="panel-header panel-header-sm"></div> -->
+<div class="content" style="margin-top:50px;padding:2%">
     <div class="row-12">
         <div class="col flex">
             <div class="card">
                 <div class="card-header">
-                    <h5 class="title">{{__("Mellpi Pro Form 5 Monitoring")}}</h5>
-                    <h4>MELLPI PRO FOR LNFP FORM :</h4>
-                    
-                    @if(session('status'))
-                    <div class="alert alert-success">{{session('status')}}</div>
+                    <!-- <h4>MELLPI PRO FOR LNFP FORM :</h4> -->
+
+                    @if(session('alert'))
+                    <div class="alert alert-success" id="alert-message">
+                        {{ session('alert') }}
+                    </div>
                     @endif
 
                     <div class="form5">
@@ -26,11 +29,65 @@
                             @csrf
                             <input type="hidden" id="action" name="action" value="">
 
-                            <button type="button" class="btn btn-primary" id="editForm" onclick="toggleReadonly()">Edit Contents</button>
+                            <button type="button" class="btn btn-outline-primary" id="editForm" onclick="toggleReadonly()">Edit Contents</button>
                             <!-- <button type="submit" name="action" value="update" class="btn btn-outline-primary">Save</button> -->
-                            <button type="submit" name="action" value="update" id="saveForm" class="btn btn-primary" hidden>Save All</button>
+                            <!-- <button type="button" name="cancel" id="cancelForm" class="btn btn-outline-primary" onclick="cancelForm()" hidden>Cancel</button> -->
+                            <button type="submit" name="action" value="update" id="saveForm" class="btn btn-outline-primary" hidden>Save All</button>
 
                             @foreach ($form5a as $form5a)
+                            <center>
+                                <h5 class="title">{{__("Mellpi Pro Form 5a: Provincial Nutrition Action Officer Monitoring")}}</h5>
+                                <label for="period">For the period: </label> <input type="date" name="period" id="period">
+                            </center>
+                            <div>
+                            <label for="nameOf">Name of PNAO: </label>
+                            <input type="text" name="nameOf" id="nameOf">
+
+                            <label for="address">address: </label>
+                            <input type="text" name="address" id="address">
+
+                            <label for="provDep">Province of Deployment: </label> 
+                            <input type="text" name="provDev" id="provDev">
+
+                            <label for="numYr">Number of Years PNAO: </label>
+                            <input type="text" name="numYr" id="numYr">
+
+                            <label for="fulltime">Full time: </label>
+                            <select name="fulltime" id="fulltime">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+
+                            <label for="profAct">With continuing professional Activities?: </label>
+                            <select name="profAct" id="profAct">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            </div>
+                            <div>
+                                <label for="bday">Birthday: </label>
+                                <input type="date" name="bday" id="bday">
+
+                                <label for="sex">Sex: </label>
+                                <select name="sex" id="sex">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+
+                                <label for="dateDesig">Date of Designation: </label>
+                                <input type="date" name="deteDesig" id="dateDesig">
+
+                                <label for="seconded">Seconded from the Office of: </label>
+                                <input type="text" name="seconded" id="seconded">
+                            </div>
+                            <div>
+                                <label>Capacity development activities attended in the previous year: </label><br>
+                                <label for="devAct">1</label><input type="text" id="devAct" name="num1"><br>
+                                <label for="devAct">2</label><input type="text" id="devAct" name="num2"><br>
+                                <label for="devAct">3<input type="text" id="devAct" name="num3">
+                            </div>
+
+
                             <div>
                                 <!-- endtablehearder -->
                                 <div class="row" style="display:flex;background-color:#F5F5F5;padding:10px;border-radius:5px;justify-content:center; text-align: center;">
@@ -186,7 +243,7 @@
                                         </div>
                                         <div class="col">
                                             <!-- <label for="exampleFormControlInput1"></label> -->
-                                            <textarea name="elementsBB" id="elementsID" class="elements" readonly></textarea>
+                                            <textarea name="elementsBB" id="elementsID" class="elements" readonly>{{$form5a->elementsBB}}</textarea>
                                         </div>
                                     </div>
                                     <div class="col" style="padding:0px!important">
@@ -631,5 +688,19 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded and parsed');
+        setTimeout(function() {
+            var alertMessage = document.getElementById('alert-message');
+            if (alertMessage) {
+                console.log('Alert message found, hiding now');
+                alertMessage.style.display = 'none';
+            } else {
+                console.log('Alert message not found');
+            }
+        }, 3000);
+    });
+</script>
 <script src="{{ asset('assets/js/autoGenerateInput.js') }}"></script>
 @endsection

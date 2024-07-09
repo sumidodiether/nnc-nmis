@@ -9,10 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\MellpiproNutritionService;
 use App\Models\MellpiproNutritionServiceTracking;
-use App\Models\Province;
-use App\Models\Barangay;
-use App\Models\Municipal;
-use App\Models\City;
+use App\Http\Controllers\LocationController;
 
 class NutritionServiceController extends Controller
 {
@@ -31,10 +28,11 @@ class NutritionServiceController extends Controller
      */
     public function create()
     {
-        $prov = Province::where('region_id', auth()->user()->Region)->get();
-        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
-        $city = City::where('region_id', auth()->user()->Region)->get();
-        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal )->get();
+        $location = new LocationController;
+        $prov = $location->getLocationDataProvince(auth()->user()->Region);
+        $mun = $location->getLocationDataMuni(auth()->user()->Province);
+        $city = $location->getLocationDataCity(auth()->user()->Region);
+        $brgy = $location->getLocationDataBrgy(auth()->user()->city_municipal);
         
         $years = range(date("Y"), 1900);
 

@@ -8,6 +8,12 @@
 textarea {
     width: inherit;
     height: 20vh;
+    border: none;
+    outline: none;
+}
+textarea:focus {
+    outline: none;
+    outline-color: transparent;
 }
 textarea.performance {
     font-size: 11;

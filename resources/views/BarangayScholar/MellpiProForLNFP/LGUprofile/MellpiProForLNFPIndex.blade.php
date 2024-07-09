@@ -6,8 +6,8 @@
 ])
 
 @section('content')
-<div class="panel-header panel-header-sm"></div>
-<div class="content">
+<!-- <div class="panel-header panel-header-sm"></div> -->
+<div class="content" style="margin-top:50px;padding:2%">
     <div class="row-12">
         <div class="col flex">
             <div class="card">

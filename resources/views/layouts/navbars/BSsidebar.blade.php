@@ -24,7 +24,9 @@
 /*logo color start */
 .sidebar .logo-normal {
     color: #000 !important;
+    font-weight: bolder;
 }
+
 
 .sidebar .logo-normal:hover {
     color: #64987e !important;
@@ -40,12 +42,12 @@
     <div class="logo">
         <a href="#" class="simple-text logo-mini">
             <img src="{{ asset('assets') }}/img/logo.png">
-        </a>
-        <a href="#" class="simple-text logo-normal">
-            {{ __('NMIS') }}
+        </a> 
+        <a href="#" class="simple-text logo-normal" style="font-size: 20px">
+            {{ __('NNC') }}
         </a>
     </div>
-    <div class="sidebar-wrapper" id="sidebar-wrapper">
+    <div class="sidebar-wrapper" id="sidebar-wrapper" >
         <ul class="nav">
             <li class="@if ($activePage == 'dashboard') active @endif">
                 <a href="{{ route('BSdashboard.index') }}">
@@ -65,8 +67,8 @@
                     <ul class="nav">
                         <li class="@if ($activePage == 'LGUPROFILE') active @endif">
                             <a href="{{ route('BSLGUprofile.index') }}">
-                                <i class="now-ui-icons files_paper"></i>
-                                <p> {{ __("LGU PROFILE") }} </p>
+                               
+                                <p>  <i class="now-ui-icons files_paper"></i>{{ __("LGU PROFILE") }} </p>
                             </a>
                         </li>
                         <li class="@if ($activePage == 'VISION') active @endif">

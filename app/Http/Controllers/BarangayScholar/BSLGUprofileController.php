@@ -7,20 +7,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\LguProfile;
 use App\Models\barangaytracking;
-use App\Models\Province;
-use App\Models\Barangay;
-use App\Models\Municipal;
-use App\Models\City;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\LocationController;
 
 class BSLGUprofileController extends Controller
 {
+
     public function index() {
 
-        $prov = Province::where('region_id', auth()->user()->Region)->get();
-        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
-        $city = City::where('region_id', auth()->user()->Region)->get();
-        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal )->get();
+        $location = new LocationController;
+        $prov = $location->getLocationDataProvince(auth()->user()->Region);
+        $mun = $location->getLocationDataMuni(auth()->user()->Province);
+        $city = $location->getLocationDataCity(auth()->user()->Region);
+        $brgy = $location->getLocationDataBrgy(auth()->user()->city_municipal);
 
         $barangay = auth()->user()->barangay;
         $lguProfile = DB::table('lguprofilebarangay')->where('barangay_id', $barangay)->get();
@@ -31,10 +30,12 @@ class BSLGUprofileController extends Controller
  
 
     public function edit(LguProfile $LguProfile, Request $request) { 
-        $prov = Province::where('region_id', auth()->user()->Region)->get();
-        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
-        $city = City::where('region_id', auth()->user()->Region)->get();
-        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal )->get();
+
+        $location = new LocationController;
+        $prov = $location->getLocationDataProvince(auth()->user()->Region);
+        $mun = $location->getLocationDataMuni(auth()->user()->Province);
+        $city = $location->getLocationDataCity(auth()->user()->Region);
+        $brgy = $location->getLocationDataBrgy(auth()->user()->city_municipal);
 
         //dd($request->id);
         $lguProfile = DB::table('lguprofilebarangay')->where('id', $request->id)->first();
@@ -46,10 +47,11 @@ class BSLGUprofileController extends Controller
 
     public function create() {
 
-        $prov = Province::where('region_id', auth()->user()->Region)->get();
-        $mun = Municipal::where('province_id', auth()->user()->Province)->get();
-        $city = City::where('region_id', auth()->user()->Region)->get();
-        $brgy = Barangay::where('municipal_id', auth()->user()->city_municipal )->get();
+        $location = new LocationController;
+        $prov = $location->getLocationDataProvince(auth()->user()->Region);
+        $mun = $location->getLocationDataMuni(auth()->user()->Province);
+        $city = $location->getLocationDataCity(auth()->user()->Region);
+        $brgy = $location->getLocationDataBrgy(auth()->user()->city_municipal);
         
         $years = range(date("Y"), 1900);
 
