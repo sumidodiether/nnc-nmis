@@ -1,6 +1,9 @@
 .form5 {
     overflow-x: scroll;
 }
+.elements {
+    resize: none;
+}
 .elements2 {
     width: inherit;
     height: 20vh;
@@ -10,19 +13,23 @@ textarea {
     height: 20vh;
     border: none;
     outline: none;
+    resize: none;
 }
 textarea:focus {
     outline: none;
     outline-color: transparent;
+    resize: none;
 }
 textarea.performance {
     font-size: 11;
     width: inherit;
     height: 20vh;
+    resize: none;
 }
 textarea.elements1 {
     width: inherit;
     height: 20vh;
+    resize: none;
 }
 .tab {
     margin-right: 9px;

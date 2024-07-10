@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header">
                     <h5 class="title">{{__("Mellpi Pro Form 6 Monitoring")}}</h5>
-                    <a href="#" class="btn btn-primary">Create data</a>
+                    <a href="{{ route('MellpiProRadialCreate.create') }}" class="btn btn-primary">Create data</a>
                 </div>
             </div>
         </div>

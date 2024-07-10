@@ -404,12 +404,16 @@ Route::group(['middleware' => 'auth'], function () {
 
 
           //Mellpi pro for LNFP
+          //LGU Profile
           Route::get('/lguprofilelnfp', [MellpiProForLNFP_barangayController::class, 'index'])->name('BSLGUprofileLNFPIndex.index');
           Route::get('/lguprofilelnfpCreate', [MellpiProForLNFP_barangayController::class, 'mellpiProLNFP_create'])->name('MellpiProForLNFPCreate.create');
-          Route::post('/lguLnfpUpdate', [MellpiProForLNFP_barangayController::class, 'editForm5a'])->name('lguLnfpUpdate');
-
+          //Form 5 Monitoring
           Route::get('/lguform5Index', [MellpiProForLNFP_barangayController::class, 'monitoringForm5'])->name('MellpiProMonitoringIndex.index');
           Route::get('/lguform5Create', [MellpiProForLNFP_barangayController::class, 'monitoringForm5create'])->name(('MellpiProMonitoringCreate.create'));
+          Route::post('/lguLnfpUpdate', [MellpiProForLNFP_barangayController::class, 'editForm5a'])->name('lguLnfpUpdate');
+          //Form 6 Radial Diagram
+          Route::get('/lguform6Index', [MellpiProForLNFP_barangayController::class, 'radialForm6'])->name('MellpiProRadialIndex.index');
+          Route::get('lguform6Create', [MellpiProForLNFP_barangayController::class, 'radialForm6Create'])->name('MellpiProRadialCreate.create');
 
 
     });

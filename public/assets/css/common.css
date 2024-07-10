@@ -8,6 +8,7 @@
     width: inherit;
     /* max-height: 20vh; */
     height: 20vh;
+    resize: none;
 }
 .editContentButtons {
     margin-bottom: 0px;

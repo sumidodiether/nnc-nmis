@@ -142,8 +142,8 @@
                                 <p> {{ __("FORM 5") }} </p>
                             </a>
                         </li>
-                        <li class="@if ($activePage == 'mellpi_pro_summary1b') active @endif">
-                            <a href="#">
+                        <li class="@if ($activePage == 'mellpi_pro_form6') active @endif">
+                            <a href="{{ route('MellpiProRadialIndex.index') }}">
                                 <i class="now-ui-icons files_paper"></i>
                                 <p> {{ __("FORM 6") }} </p>
                             </a>
