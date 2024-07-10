@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
   <div class="container-fluid">
     <div class="navbar-wrapper">
-    <a class="navbar-brand" href="#pablo">{{ $namePage }}</a>
+    <a class="navbar-brand" href="#pablo" style="font-weight:bold;font-size:20px">{{ $namePage }}</a>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-bar navbar-kebab"></span>

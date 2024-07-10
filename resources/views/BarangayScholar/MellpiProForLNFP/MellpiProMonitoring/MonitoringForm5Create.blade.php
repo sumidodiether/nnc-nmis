@@ -27,64 +27,106 @@
                     <div class="form5">
                         <form action="{{ route('lguLnfpUpdate') }}" method="POST">
                             @csrf
-                            <input type="hidden" id="action" name="action" value="">
-
-                            <button type="button" class="btn btn-outline-primary" id="editForm" onclick="toggleReadonly()">Edit Contents</button>
-                            <!-- <button type="submit" name="action" value="update" class="btn btn-outline-primary">Save</button> -->
-                            <!-- <button type="button" name="cancel" id="cancelForm" class="btn btn-outline-primary" onclick="cancelForm()" hidden>Cancel</button> -->
-                            <button type="submit" name="action" value="update" id="saveForm" class="btn btn-outline-primary" hidden>Save All</button>
 
                             @foreach ($form5a as $form5a)
                             <center>
                                 <h5 class="title">{{__("Mellpi Pro Form 5a: Provincial Nutrition Action Officer Monitoring")}}</h5>
-                                <label for="period">For the period: </label> <input type="date" name="period" id="period">
-                            </center>
-                            <div>
-                            <label for="nameOf">Name of PNAO: </label>
-                            <input type="text" name="nameOf" id="nameOf">
-
-                            <label for="address">address: </label>
-                            <input type="text" name="address" id="address">
-
-                            <label for="provDep">Province of Deployment: </label> 
-                            <input type="text" name="provDev" id="provDev">
-
-                            <label for="numYr">Number of Years PNAO: </label>
-                            <input type="text" name="numYr" id="numYr">
-
-                            <label for="fulltime">Full time: </label>
-                            <select name="fulltime" id="fulltime">
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-
-                            <label for="profAct">With continuing professional Activities?: </label>
-                            <select name="profAct" id="profAct">
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                            </div>
-                            <div>
-                                <label for="bday">Birthday: </label>
-                                <input type="date" name="bday" id="bday">
-
-                                <label for="sex">Sex: </label>
-                                <select name="sex" id="sex">
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
+                                <label for="period">For the period: </label>
+                                <select name="forTheperiod" id="forTheperiod" class="inputHeaderPeriod">
+                                    <option selected>Select</option>
+                                    <?php
+                                    $currentYear = date('Y');
+                                    $startYear = 1900;
+                                    $endYear = $currentYear + 20;
+                                    for ($year = $startYear; $year <= $endYear; $year++) {
+                                        echo "<option value=\"$year\">$year</option>";
+                                    }
+                                    ?>
                                 </select>
+                            </center><br>
+                            <div class="formHeader">
+                                <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label for="nameOf">Name of PNAO: </label>
+                                        <input class="inputHeader" type="text" name="nameOf" id="nameOf">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="address">address: </label>
+                                        <input class="inputHeader" type="text" name="address" id="address">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="provDep">Province of Deployment: </label>
+                                        <input class="inputHeader" type="text" name="provDev" id="provDev">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="numYr">Number of Years PNAO: </label>
+                                        <input class="inputHeader" type="text" name="numYr" id="numYr">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="fulltime">Full time: </label>
+                                        <select class="form-control" name="fulltime" id="fulltime">
+                                            <option Selected>Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="profAct">With continuing professional Activities?: </label>
+                                        <select class="form-control" name="profAct" id="profAct">
+                                            <option Selected>Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <div class="form-group col-md-12">
+                                        <label for="bday">Birthday: </label>
+                                        <input class="form-control" type="date" name="bday" id="bday">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="sex">Sex: </label>
+                                        <select class="form-control" name="sex" id="sex">
+                                            <option selected>Select</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="dateDesig">Date of Designation: </label>
+                                        <input class="form-control" type="date" name="deteDesig" id="dateDesig">
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="seconded">Seconded from the Office of: </label>
+                                        <input class="inputHeader" type="text" name="seconded" id="seconded">
+                                    </div>
+                                </div>
+                            </div>
 
-                                <label for="dateDesig">Date of Designation: </label>
-                                <input type="date" name="deteDesig" id="dateDesig">
-
-                                <label for="seconded">Seconded from the Office of: </label>
-                                <input type="text" name="seconded" id="seconded">
+                            <div class="form-group col-md-6">
+                                <label>Capacity development activities attended in the previous year: </label>
+                                <div class="form-group col-md-12">
+                                    <label for="devAct">1</label>
+                                    <input class="inputHeader" type="text" id="devAct" name="num1">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="devAct">2</label>
+                                    <input class="inputHeader" type="text" id="devAct" name="num2">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="devAct">3</label>
+                                    <input class="inputHeader" type="text" id="devAct" name="num3">
+                                </div>
                             </div>
                             <div>
-                                <label>Capacity development activities attended in the previous year: </label><br>
-                                <label for="devAct">1</label><input type="text" id="devAct" name="num1"><br>
-                                <label for="devAct">2</label><input type="text" id="devAct" name="num2"><br>
-                                <label for="devAct">3<input type="text" id="devAct" name="num3">
+                                <div class="editContentButtons">
+                                    <input type="hidden" id="action" name="action" value="">
+
+                                    <button type="button" class="btn btn-outline-primary" id="editForm" onclick="toggleReadonly()">Edit Contents</button>
+                                    <!-- <button type="submit" name="action" value="update" class="btn btn-outline-primary">Save</button> -->
+                                    <!-- <button type="button" name="cancel" id="cancelForm" class="btn btn-outline-primary" onclick="cancelForm()" hidden>Cancel</button> -->
+                                    <button type="submit" name="action" value="update" id="saveForm" class="btn btn-outline-primary" hidden>Save All</button>
+                                </div>
                             </div>
 
 
@@ -168,7 +210,7 @@
                                         <textarea name="docuSourceA" id="docuSourceA" class="performance" readonly>{{$form5a->documentSourceA}}</textarea>
                                     </div>
                                     <div class="col-1">
-                                        <select id="loadProvince1" class="form-control" name="rating1a">
+                                        <select id="loadProvince1" class="form-control" name="ratingA">
                                             <option>Select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -178,7 +220,7 @@
                                         </select>
                                     </div>
                                     <div class="col-1">
-                                        <textarea type="text" name="remarks1a" placeholder="Your remarks" style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                        <textarea type="text" name="remarksA" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
 
@@ -223,7 +265,7 @@
                                         <textarea name="docuSourceB" id="docuSourceB" class="performance" readonly>{{$form5a->documentSourceB}}</textarea>
                                     </div>
                                     <div class="col-1">
-                                        <select id="loadProvince1" class="form-control" name="rating1b">
+                                        <select id="loadProvince1" class="form-control" name="ratingB">
                                             <option>Select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -233,7 +275,7 @@
                                         </select>
                                     </div>
                                     <div class="col-1">
-                                        <textarea type="text" name="remarks1b" placeholder="Your remarks" style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                        <textarea type="text" name="remarksB" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
                                 <div class="row" style="display:flex">
@@ -275,7 +317,7 @@
                                         <textarea name="docuSourceBB" id="docuSourceBB" class="performance" readonly>{{$form5a->documentSourceBB}}</textarea>
                                     </div>
                                     <div class="col-1">
-                                        <select id="loadProvince1" class="form-control" name="rating1b">
+                                        <select id="loadProvince1" class="form-control" name="ratingBB">
                                             <option>Select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -285,7 +327,7 @@
                                         </select>
                                     </div>
                                     <div class="col-1">
-                                        <textarea type="text" name="remarks1b" placeholder="Your remarks" style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                        <textarea type="text" name="remarksBB" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
 
@@ -330,7 +372,7 @@
                                         <textarea name="docuSourceC" id="docuSourceC" class="performance" readonly>{{$form5a->documentSourceC}}</textarea>
                                     </div>
                                     <div class="col-1">
-                                        <select id="loadProvince1" class="form-control" name="rating1c">
+                                        <select id="loadProvince1" class="form-control" name="ratingC">
                                             <option>Select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -340,7 +382,7 @@
                                         </select>
                                     </div>
                                     <div class="col-1">
-                                        <textarea type="text" name="remarks1c" placeholder="Your remarks" style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                        <textarea type="text" name="remarksC" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
 
@@ -385,7 +427,7 @@
                                         <textarea name="docuSourceD" id="docuSourceD" class="performance" readonly>{{$form5a->documentSourceD}}</textarea>
                                     </div>
                                     <div class="col-1">
-                                        <select id="loadProvince1" class="form-control" name="rating1c">
+                                        <select id="loadProvince1" class="form-control" name="ratingD">
                                             <option>Select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -395,7 +437,7 @@
                                         </select>
                                     </div>
                                     <div class="col-1">
-                                        <textarea type="text" name="remarks1c" placeholder="Your remarks" style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                        <textarea type="text" name="remarksD" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
 
@@ -440,7 +482,7 @@
                                         <textarea name="docuSourceE" id="docuSourceE" class="performance" readonly>{{$form5a->documentSourceE}}</textarea>
                                     </div>
                                     <div class="col-1">
-                                        <select id="loadProvince1" class="form-control" name="rating1c">
+                                        <select id="loadProvince1" class="form-control" name="ratingE">
                                             <option>Select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -450,7 +492,7 @@
                                         </select>
                                     </div>
                                     <div class="col-1">
-                                        <textarea type="text" name="remarks1c" placeholder="Your remarks" style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                        <textarea type="text" name="remarksE" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
 
@@ -495,7 +537,7 @@
                                         <textarea name="docuSourceF" id="docuSourceF" class="performance" readonly>{{$form5a->documentSourceF}}</textarea>
                                     </div>
                                     <div class="col-1">
-                                        <select id="loadProvince1" class="form-control" name="rating1c">
+                                        <select id="loadProvince1" class="form-control" name="ratingF">
                                             <option>Select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -505,7 +547,7 @@
                                         </select>
                                     </div>
                                     <div class="col-1">
-                                        <textarea type="text" name="remarks1c" placeholder="Your remarks" style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                        <textarea type="text" name="remarksF" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
 
@@ -550,7 +592,7 @@
                                         <textarea name="docuSourceG" id="docuSourceG" class="performance" readonly>{{$form5a->documentSourceG}}</textarea>
                                     </div>
                                     <div class="col-1">
-                                        <select id="loadProvince1" class="form-control" name="rating1c">
+                                        <select id="loadProvince1" class="form-control" name="ratingG">
                                             <option>Select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -560,7 +602,7 @@
                                         </select>
                                     </div>
                                     <div class="col-1">
-                                        <textarea type="text" name="remarks1c" placeholder="Your remarks" style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                        <textarea type="text" name="remarksG" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
 
@@ -603,7 +645,7 @@
                                         <textarea name="docuSourceGG" id="docuSourceGG" class="performance" readonly>{{$form5a->documentSourceGG}}</textarea>
                                     </div>
                                     <div class="col-1">
-                                        <select id="loadProvince1" class="form-control" name="rating1c">
+                                        <select id="loadProvince1" class="form-control" name="ratingGG">
                                             <option>Select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -613,7 +655,7 @@
                                         </select>
                                     </div>
                                     <div class="col-1">
-                                        <textarea type="text" name="remarks1c" placeholder="Your remarks" style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                        <textarea type="text" name="remarksGG" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
 
@@ -658,7 +700,7 @@
                                         <textarea name="docuSourceH" id="docuSourceH" class="performance" readonly>{{$form5a->documentSourceH}}</textarea>
                                     </div>
                                     <div class="col-1">
-                                        <select id="loadProvince1" class="form-control" name="rating1c">
+                                        <select id="loadProvince1" class="form-control" name="ratingH">
                                             <option>Select</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -668,7 +710,7 @@
                                         </select>
                                     </div>
                                     <div class="col-1">
-                                        <textarea type="text" name="remarks1c" placeholder="Your remarks" style="background-color:#F5F5F5;border:0px;font-size:12px;width:inherit;max-height:120px;height:120px"></textarea>
+                                        <textarea type="text" name="remarksH" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
 

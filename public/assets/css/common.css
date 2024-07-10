@@ -1,3 +1,15 @@
 .formHeader {
     display: flex;
 }
+.inputRemarks {
+    background-color: #F5F5F5;
+    border:0px;
+    font-size: 12px;
+    width: inherit;
+    /* max-height: 20vh; */
+    height: 20vh;
+}
+.editContentButtons {
+    margin-bottom: 0px;
+    margin-top: auto;
+}

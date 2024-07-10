@@ -50,6 +50,7 @@
   <!-- custom  js/Jquery/ajax -->
   <script src="{{ asset('assets') }}/js/csvReadfile.js"></script>
   <script src="{{ asset('assets') }}/js/autoGenerateInput.js"></script>
+  <script src="{{ asset('assets') }}/js/joboy.js"></script>
   
   <!-- Stock -->
   <!-- Bootstrap v4.2.1 (https://getbootstrap.com/) -->

@@ -6,6 +6,7 @@ use App\Models\MellpiProForLNFP;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\lnfp_form5a;
+use App\Models\lnfp_form5a_rr;
 use App\Models\sampleUpdateForm5a;
 
 class MellpiProForLNFP_barangayController extends Controller

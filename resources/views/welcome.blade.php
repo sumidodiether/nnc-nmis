@@ -148,11 +148,19 @@
 }
 .menu-item a:hover {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-  color: white;
-  background:#FFFDB5;
+ color: black;
+  /* background:#EFFAD3; */
+  background:#FEFFD2;
+  
   font-size: 44.44px
 }
 
+.nav-text1 {
+  color:black;
+}
+.nav-text1:hover {
+  color:black;
+}
 .icon-nmis {
   width: 50%;
   position: relative;
@@ -162,7 +170,7 @@
 </style>
 
 @section('content')
-  <div class="content">
+  <div class="content" style="margin-top:30px;margin-bottom: 30px ">
     <div class="container">
       <div class="col-md-12 ml-auto mr-auto">
           <div class="header bg-gradient-primary py-10 py-lg-2 pt-lg-12">
@@ -189,8 +197,8 @@
                                   <a class="nmis-icon" href="">
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Demographics.png') }}" alt="">
                                     <div class="navigation-titles" style="position: relative;right: 200%;bottom: 40%;">
-                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: right;">Dashboard</h4>
-                                      <p class="nav-text" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-size: 13px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: right;">Dashboard</h6>
+                                      <p class="nav-text1" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
                                     </div>
                                   </a>
                                 </li>
@@ -198,8 +206,8 @@
                                   <a class="nmis-icon" href="#">
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Test Passed.png') }}" alt="">
                                     <div class="navigation-titles" style="position: relative;left: 110%;bottom: 37%;">
-                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: left;">Resources</h4>
-                                      <p class="nav-text" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-size: 13px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: left;">Resources</h6>
+                                      <p class="nav-text1" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
                                     </div>
                                   </a>
                                 </li>
@@ -207,8 +215,8 @@
                                   <a class="icon-nmis" class="nmis-icon"href="#">
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/People.png') }}" alt="">
                                     <div class="navigation-titles" style="position: relative;left: 110%;bottom: 37%;">
-                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: left;">Operation Timbang Plus</h4>
-                                      <p class="nav-text" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-size: 13px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: left;">Operation Timbang Plus</h6>
+                                      <p class="nav-text1" style="margin-top:0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
                                     </div>
                                   </a>
                                 </li>
@@ -216,8 +224,8 @@
                                   <a class="nmis-icon" href="#">
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Profile.png') }}" alt="">
                                     <div class="navigation-titles" style="position: relative;right: 200%;bottom: 40%;">
-                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: right;">LGU Performance</h4>
-                                      <p class="nav-text" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-size: 13px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                      <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: right;">LGU Performance</h6>
+                                      <p class="nav-text1" style="margin-top:0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
                                     </div>
                                   </a>
                                 </li>
@@ -243,8 +251,8 @@
     <div class="container p-5">
         <div class="additional-content-wrapper d-flex">
             <div class="additional-content-left">
-              <h4 class ="additional-content-title">About NNC</h4>
-              <p class= "additional-content-text w-75">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+              <h4 class ="additional-content-title" style="font-weight:bold;font-size:30px">About NNC</h4>
+              <p class= "additional-content-text w-75" style="font-weight:500;font-size:18px">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
             </div>
             <div class="additional-content-right">
               <img class="about-pic rounded shadow-lg" src="{{ asset('assets/img/nmis/about-welcome.png') }}" alt="">

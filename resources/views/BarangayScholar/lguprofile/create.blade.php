@@ -1,5 +1,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/joboy.css') }}">
+<script src="{{ asset('assets') }}/js/joboy.js"></script>
 
 <style>
     .form-section {
@@ -209,15 +210,16 @@
                         <div style="display:flex" class="row">
                             <div class="form-group col">
                                 <label for="noHousehold">No. of households:<span style="color:red">*</span></label>
-                                <input type="number" class="form-control" id="noHousehold" name="noHousehold">
+                                <input type="number" class="form-control" id="noHousehold" name="noHousehold"
+                                placeholder="ex. 100 " value="{{ old('noHousehold') }}">
                                 @error('noHousehold')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group col">
                                 <label for="noPuroks ">No.of SITIOS/PUROKS:<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" id="noPuroks " 
-                                name="noPuroks">
+                                <input type="number" class="form-control" id="noPuroks " 
+                                name="noPuroks" placeholder="ex. 100 " value="{{ old('noPuroks') }}">
                                 @error('noPuroks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -253,43 +255,43 @@
                                     <label for="exampleFormControlInput1">Estimated:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="populationA"
-                                     name="populationA">
+                                    <input type="number" class="form-control" id="populationA"
+                                     name="populationA" value="{{ old('populationA') }}" placeholder="ex. 100">
                                      @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" 
-                                    name="populationB">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="populationB" value="{{ old('populationB') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                     name="populationC">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1"
+                                     name="populationC" value="{{ old('populationC') }}" placeholder="ex. 100">
                                      @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" 
-                                    name="populationD">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="populationD" value="{{ old('populationD') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" 
-                                    name="populationE">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="populationE" value="{{ old('populationE') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="text" class="form-control" id="exampleFormControlInput1" 
-                                     name="populationF">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                     name="populationF" value="{{ old('populationF') }}" placeholder="ex. 100" >
                                      @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -300,43 +302,43 @@
                                     <label for="exampleFormControlInput1">Actual:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="actualA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="actualA" value="{{ old('actualA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="actualB">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="actualB" value="{{ old('actualB') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="actualC">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="actualC"  value="{{ old('actualC') }}" placeholder="ex. 100" >
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                     name="actualD">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1"
+                                     name="actualD" value="{{ old('actualD') }}" placeholder="ex. 100">
                                      @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="actualE">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="actualE" value="{{ old('actualE') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="actualF">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="actualF" value="{{ old('actualF') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -344,20 +346,20 @@
                             </div>
                         </div>
                         <br>
-                        <label><b>Nutrition Status of Preschool Children:</b></label>
+                        <label><b>Nutrition Status of Preschool Children(%):</b></label>
                         <div>
                             <div style="display:flex" class="row">
                                 <div class="  col">
                                     <label for="exampleFormControlInput1"></label>
                                 </div>
                                 <div class=" col">
-                                    <label for="exampleFormControlInput1">Yr: </label>
+                                    Yr: <label for="exampleFormControlInput1" id="currentYearMinus2"> </label>
                                 </div>
                                 <div class=" col">
-                                    <label for="exampleFormControlInput1">Yr: </label>
+                                    Yr: <label for="exampleFormControlInput1" id="currentYearMinus1"> </label>
                                 </div>
                                 <div class=" col">
-                                    <label for="exampleFormControlInput1">Yr: </label>
+                                    Yr: <label for="exampleFormControlInput1" id="currentYear"> </label>
                                 </div>
                             </div>
                             <div style="display:flex;">
@@ -365,22 +367,22 @@
                                     <label for="exampleFormControlInput1">Normal:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="psnormalAAA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psnormalAAA" value="{{ old('psnormalAAA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                     name="psnormalBAA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1"
+                                     name="psnormalBAA" value="{{ old('psnormalBAA') }}" placeholder="ex. 100">
                                      @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="psnormalCAA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psnormalCAA" value="{{ old('psnormalCAA') }}" placeholder="ex. 100" >
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror 
@@ -391,22 +393,22 @@
                                     <label for="exampleFormControlInput1">Underweight:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="psunderweightAAA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psunderweightAAA" value="{{ old('psunderweightAAA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="psunderweightBAA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psunderweightBAA" value="{{ old('psunderweightBAA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="psunderweightCAA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psunderweightCAA" value="{{ old('psunderweightCAA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -417,21 +419,22 @@
                                     <label for="exampleFormControlInput1">Severely Underweight:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"  
-                                    name="pssevereUnderweightAAA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1"  
+                                    name="pssevereUnderweightAAA" value="{{ old('pssevereUnderweightAAA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="pssevereUnderweightBAA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="pssevereUnderweightBAA" value="{{ old('pssevereUnderweightBAA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pssevereUnderweightCAA">  
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="pssevereUnderweightCAA" value="{{ old('pssevereUnderweightCAA') }}" placeholder="ex. 100">  
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -442,19 +445,22 @@
                                     <label for="exampleFormControlInput1">Overweight:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightAAA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psoverweightAAA" value="{{ old('psoverweightAAA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightBAA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psoverweightBAA" value="{{ old('psoverweightBAA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightCAA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psoverweightCAA" value="{{ old('psoverweightCAA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -469,19 +475,22 @@
                                     <label for="exampleFormControlInput1">Normal:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalABA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psnormalABA" value="{{ old('psnormalABA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalBBA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psnormalBBA"  value="{{ old('psnormalBBA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalCCA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psnormalCCA" value="{{ old('psnormalCCA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -492,19 +501,22 @@
                                     <label for="exampleFormControlInput1">Wasted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pswastedABA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="pswastedABA" value="{{ old('pswastedABA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pswastedBBA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="pswastedBBA" value="{{ old('pswastedBBA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pswastedCCA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="pswastedCCA" value="{{ old('pswastedCCA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -516,19 +528,22 @@
                                     <label for="exampleFormControlInput1">Severely Wasted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psseverelyWastedABA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psseverelyWastedABA" value="{{ old('psseverelyWastedABA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psseverelyWastedBBA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psseverelyWastedBBA" value="{{ old('psseverelyWastedBBA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psseverelyWastedCCA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psseverelyWastedCCA" value="{{ old('psseverelyWastedCCA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -540,19 +555,22 @@
                                     <label for="exampleFormControlInput1">Overweight:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightABA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psoverweightABA" value="{{ old('psoverweightABA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightBBA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psoverweightBBA" value="{{ old('psoverweightBBA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psoverweightCCA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psoverweightCCA" value="{{ old('psoverweightCCA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -563,19 +581,22 @@
                                     <label for="exampleFormControlInput1">Obese:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psobeseABA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psobeseABA" value="{{ old('psobeseABA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psobeseBBA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psobeseBBA" value="{{ old('psobeseBBA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psobeseCCA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psobeseCCA" value="{{ old('psobeseCCA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -590,19 +611,22 @@
                                     <label for="exampleFormControlInput1">Normal:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalAAB">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psnormalAAB" value="{{ old('psnormalAAB') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalBBB">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psnormalBBB" value="{{ old('psnormalBBB') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psnormalCCC">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psnormalCCC" value="{{ old('psnormalCCC') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -614,19 +638,22 @@
                                     <label for="exampleFormControlInput1">Stunted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psstuntedAAB">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psstuntedAAB" value="{{ old('psstuntedAAB') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psstuntedBBB">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psstuntedBBB" value="{{ old('psstuntedBBB') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="psstuntedCCC">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="psstuntedCCC" value="{{ old('psstuntedCCC') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -637,19 +664,22 @@
                                     <label for="exampleFormControlInput1">Severely Stunted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pssevereStuntedAAB">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="pssevereStuntedAAB" value="{{ old('pssevereStuntedAAB') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pssevereStuntedBBB">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="pssevereStuntedBBB" value="{{ old('pssevereStuntedBBB') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pssevereStuntedCCC">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="pssevereStuntedCCC"  value="{{ old('pssevereStuntedCCC') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -660,19 +690,22 @@
                                     <label for="exampleFormControlInput1">Tall:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pstallAAB">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="pstallAAB" value="{{ old('pstallAAB') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pstallBBB">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="pstallBBB" value="{{ old('pstallBBB') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pstallCCC">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="pstallCCC" value="{{ old('pstallCCC') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -690,19 +723,22 @@
                                     <label for="exampleFormControlInput1">Normal:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scnormalABA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scnormalABA" value="{{ old('scnormalABA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scnormalBBA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scnormalBBA" value="{{ old('scnormalBBA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scnormalCCA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1"
+                                     name="scnormalCCA" value="{{ old('scnormalCCA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -713,19 +749,22 @@
                                     <label for="exampleFormControlInput1">Wasted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scwastedABA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1"
+                                     name="scwastedABA" value="{{ old('scwastedABA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scwastedBBA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scwastedBBA" value="{{ old('scwastedBBA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scwastedCCA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scwastedCCA" value="{{ old('scwastedCCA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -736,19 +775,22 @@
                                     <label for="exampleFormControlInput1">Severely Wasted:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scseverelyWastedABA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scseverelyWastedABA"  value="{{ old('scseverelyWastedABA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scseverelyWastedBBA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scseverelyWastedBBA" value="{{ old('scseverelyWastedBBA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scseverelyWastedCCA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scseverelyWastedCCA" value="{{ old('scseverelyWastedCCA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -760,19 +802,22 @@
                                     <label for="exampleFormControlInput1">Overweight:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scoverweightABA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scoverweightABA" value="{{ old('scoverweightABA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scoverweightBBA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scoverweightBBA" value="{{ old('scoverweightBBA') }}" placeholder="ex. 100">
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scoverweightCCA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scoverweightCCA" value="{{ old('scoverweightCCA') }}" placeholder="ex. 100" >
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -783,19 +828,22 @@
                                     <label for="exampleFormControlInput1">Obese:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scobeseABA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scobeseABA" value="{{ old('scobeseABA') }}" placeholder="ex. 100" >
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scobeseBBA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scobeseBBA" value="{{ old('scobeseBBA') }}" placeholder="ex. 100" >
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="scobeseCCA">
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                    name="scobeseCCA" value="{{ old('scobeseCCA') }}" placeholder="ex. 100" >
                                     @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -812,19 +860,22 @@
                                         <label for="exampleFormControlInput1">Normal:<span style="color:red">*</span></label>
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnormalAAA">
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                        name="pwnormalAAA" value="{{ old('pwnormalAAA') }}" placeholder="ex. 100">
                                         @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnormalBAA">
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                        name="pwnormalBAA" value="{{ old('pwnormalBAA') }}" placeholder="ex. 100">
                                         @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnormalCAA">
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                        name="pwnormalCAA" value="{{ old('pwnormalCAA') }}" placeholder="ex. 100">
                                         @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -835,19 +886,23 @@
                                         <label for="exampleFormControlInput1">Nutritionally at-risk:<span style="color:red">*</span></label>
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnutritionllyatriskAAA">
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                        name="pwnutritionllyatriskAAA" value="{{ old('pwnutritionllyatriskAAA') }}" placeholder="ex. 100">
                                         @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnutritionllyatriskBAA">
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                        name="pwnutritionllyatriskBAA" value="{{ old('pwnutritionllyatriskBAA') }}" placeholder="ex. 100">
                                         @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwnutritionllyatriskCAA">  @error('populationA')
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                        name="pwnutritionllyatriskCAA" value="{{ old('pwnutritionllyatriskCAA') }}" placeholder="ex. 100">  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
@@ -857,17 +912,23 @@
                                         <label for="exampleFormControlInput1">Overweight:<span style="color:red">*</span></label>
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwoverweightAAA">  @error('populationA')
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                        name="pwoverweightAAA"  value="{{ old('pwoverweightAAA') }}" placeholder="ex. 100">  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwoverweightBAA">  @error('populationA')
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                        name="pwoverweightBAA" value="{{ old('pwoverweightBAA') }}" placeholder="ex. 100"> 
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwoverweightCAA">  @error('populationA')
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                        name="pwoverweightCAA" value="{{ old('pwoverweightCAA') }}" placeholder="ex. 100"> 
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
@@ -878,17 +939,23 @@
                                         <label for="exampleFormControlInput1">Obese:<span style="color:red">*</span></label>
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwobeseAAA">  @error('populationA')
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                        name="pwobeseAAA" value="{{ old('pwobeseAAA') }}" placeholder="ex. 100">  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwobeseBAA">  @error('populationA')
+                                        <input type="number" class="form-control" id="exampleFormControlInput1" 
+                                        name="pwobeseBAA" value="{{ old('pwobeseBAA') }}" placeholder="ex. 100"> 
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
-                                        <input type="textarea" class="form-control" id="exampleFormControlInput1" name="pwobeseCAA">  @error('populationA')
+                                        <input type="number" class="form-control" id="exampleFormControlInput1"
+                                         name="pwobeseCAA" value="{{ old('pwobeseCAA') }}" placeholder="ex. 100">  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
@@ -915,12 +982,16 @@
                                     <label for="exampleFormControlInput1">Residential:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="landAreaResidential">  @error('populationA')
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="landAreaResidential" value="{{ old('pwobeseCAA') }}">  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="remarksResidential">  @error('populationA')
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="remarksResidential" value="{{ old('remarksResidential') }}">  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -930,12 +1001,16 @@
                                     <label for="exampleFormControlInput1">Commercial:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="landAreaCommercial">  @error('populationA')
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="landAreaCommercial" value="{{ old('landAreaCommercial') }}"> 
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="remarksCommercial">  @error('populationA')
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="remarksCommercial" value="{{ old('landAreaCommercial') }}" >  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -945,12 +1020,16 @@
                                     <label for="exampleFormControlInput1">Industrial:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="landAreaIndustrial">  @error('populationA')
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="landAreaIndustrial" value="{{ old('landAreaIndustrial') }}">  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="remarksIndustrial">  @error('populationA')
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="remarksIndustrial" value="{{ old('remarksIndustrial') }}">  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -960,12 +1039,16 @@
                                     <label for="exampleFormControlInput1">Agricultural:<span style="color:red">*</span></label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="landAreaAgricultural">  @error('populationA')
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="landAreaAgricultural" value="{{ old('landAreaAgricultural') }}" >  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="remarksAgricultural">  @error('populationA')
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1"
+                                     name="remarksAgricultural" value="{{ old('remarksAgricultural') }}">  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -976,12 +1059,16 @@
                                     </label>
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" name="landAreaFLMLNP">  @error('populationA')
+                                    <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    name="landAreaFLMLNP" value="{{ old('landAreaFLMLNP') }}">
+                             @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
-                                    <input type="textArea" class="form-control" id="exampleFormControlInput1" name="remarksFLMLNP">  @error('populationA')
+                                    <input type="textArea" class="form-control" id="exampleFormControlInput1" 
+                                    name="remarksFLMLNP" value="{{ old('remarksFLMLNP') }}">  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -1049,17 +1136,17 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="Idatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('Idatereceived') }}" name="Idatereceived">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="Ivolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('Ivolumepax') }}" name="Ivolumepax">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="Iremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('Iremarks') }}" name="Iremarks">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1098,7 +1185,7 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIAsource">
                             <option value="">Choose...</option> 
-                                <option value="NGA">NGA</option>
+                                <option value="NGA" <?php echo ( old('IIAsource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
                                 <option value="LGU">LGU</option>
                                 <option value="NGO">NGO</option>
                                 <option value="Private">Private</option>
@@ -1116,17 +1203,17 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIAdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIAdatereceived') }}" name="IIAdatereceived">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIAvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIAvolumepax') }}" name="IIAvolumepax">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIAremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIAremarks') }}" name="IIAremarks">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1160,17 +1247,17 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIBdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIBdatereceived') }}" name="IIBdatereceived">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIBvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIBvolumepax') }}"  name="IIBvolumepax">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIBremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIBremarks') }}" name="IIBremarks">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1227,17 +1314,17 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIIAdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIAdatereceived') }}"  name="IIIAdatereceived">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIAvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIAvolumepax') }}" name="IIIAvolumepax">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIAremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIAremarks') }}" name="IIIAremarks">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1271,17 +1358,17 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIIBdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIBdatereceived') }}" name="IIIBdatereceived">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIBvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIBvolumepax') }}" name="IIIBvolumepax">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIBremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIBremarks') }}" name="IIIBremarks">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1315,17 +1402,17 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIICdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIICdatereceived') }}" name="IIICdatereceived">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIICvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIICvolumepax') }}" name="IIICvolumepax">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIICremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIICremarks') }}" name="IIICremarks">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1359,17 +1446,17 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIIDdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIDdatereceived') }}" name="IIIDdatereceived">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIDvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIDvolumepax') }}" name="IIIDvolumepax">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIDremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIDremarks') }}" name="IIIDremarks">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1403,17 +1490,17 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIIEdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIEdatereceived') }}"  name="IIIEdatereceived">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIEvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIEvolumepax') }}" name="IIIEvolumepax">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIEremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIEremarks') }}" name="IIIEremarks">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1447,17 +1534,17 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IIIFdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIFdatereceived') }}" name="IIIFdatereceived">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIFvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIFvolumepax') }}" name="IIIFvolumepax">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IIIFremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIFremarks') }}" name="IIIFremarks">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1515,17 +1602,17 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="IVAdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IVAdatereceived') }}" name="IVAdatereceived">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IVAvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IVAvolumepax') }}" name="IVAvolumepax">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="IVAremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IVAremarks') }}" name="IVAremarks">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1583,17 +1670,17 @@
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" name="VAdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('VAdatereceived') }}" name="VAdatereceived">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="VAvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('VAvolumepax') }}" name="VAvolumepax">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="VAremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('VAremarks') }}" name="VAremarks">  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>

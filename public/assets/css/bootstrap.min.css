@@ -4125,7 +4125,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     white-space: nowrap
 }
 
-.navbar-brand:focus, .navbar-brand:hover {
+.navbar-brand:focus, .navbar-brand:hover { 
     text-decoration: none
 }
 
@@ -4136,7 +4136,9 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     flex-direction: column;
     padding-left: 0;
     margin-bottom: 0;
-    list-style: none
+    list-style: none;
+    font-size:20px;
+    font-weight:bold;
 }
 
 .navbar-nav .nav-link {
