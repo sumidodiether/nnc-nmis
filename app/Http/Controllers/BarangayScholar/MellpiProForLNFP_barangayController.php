@@ -14,17 +14,20 @@ class MellpiProForLNFP_barangayController extends Controller
     /**
      * Display a listing of the resource.
      */
+    //LGU Profile (LNFP)
     public function index()
     {
         //
         return view('BarangayScholar/MellpiProForLNFP/LGUprofile.MellpiProForLNFPIndex');
     }
-
     public function mellpiProLNFP_create()
     {
         //
         return view('BarangayScholar/MellpiProForLNFP/LGUprofile.MellpiProForLNFPCreate');
     }
+
+
+    //form 5 Monitoring
     public function monitoringForm5()
     {
         //
@@ -37,39 +40,6 @@ class MellpiProForLNFP_barangayController extends Controller
 
         return view('BarangayScholar/MellpiProForLNFP/MellpiProMonitoring.MonitoringForm5Create', ['form5a' => $form5a]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    // public function create()
-    // {
-    //     //
-        
-    // }
-
-    // /**
-    //  * Store a newly created resource in storage.
-    //  */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  */
-    // public function show(MellpiProForLNFP $mellpiProForLNFP)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  */
-    // public function edit(MellpiProForLNFP $mellpiProForLNFP)
-    // {
-    //     //
-    // }
     public function editForm5a(Request $request) {
         $elementsA = $request->input('elementsA');
         $performanceA1 = $request->input('performanceA1');
@@ -156,13 +126,51 @@ class MellpiProForLNFP_barangayController extends Controller
 
 
         if ($action == 'submit') {
-            // Process the input data and save it to the database
-            // Example: YourModel::create(['input_field' => $input]);
-            // return response()->json(['message' => 'Input submitted successfully!', 'data' => $input]);
-            return redirect()->route('MellpiProMonitoringCreate.create');
+            try {
+                $submitForm5a_rr = new lnfp_form5a_rr;
+    
+                $submitForm5a_rr->forThePeriod = $request->input('forTheperiod');
+                $submitForm5a_rr->nameofPnao = $request->input('nameOf');
+                $submitForm5a_rr->address = $request->input('address');
+                $submitForm5a_rr->provDeploy = $request->input('provDev');
+                $submitForm5a_rr->numYearPnao = $request->input('numYr');
+                $submitForm5a_rr->fulltime = $request->input('fulltime');
+                $submitForm5a_rr->profAct = $request->input('profAct');
+                $submitForm5a_rr->bdate = $request->input('bday');
+                $submitForm5a_rr->sex = $request->input('sex');
+                $submitForm5a_rr->dateDesignation = $request->input('dateDesig');
+                $submitForm5a_rr->secondedOffice = $request->input('seconded');
+                $submitForm5a_rr->devActnum1 = $request->input('num1');
+                $submitForm5a_rr->devActnum2 = $request->input('num2');
+                $submitForm5a_rr->devActnum3 = $request->input('num3');
+                $submitForm5a_rr->ratingA = $request->input('ratingA');
+                $submitForm5a_rr->ratingB = $request->input('ratingB');
+                $submitForm5a_rr->ratingBB = $request->input('ratingBB');
+                $submitForm5a_rr->ratingC = $request->input('ratingC');
+                $submitForm5a_rr->ratingD = $request->input('ratingD');
+                $submitForm5a_rr->ratingE = $request->input('ratingE');
+                $submitForm5a_rr->ratingF = $request->input('ratingF');
+                $submitForm5a_rr->ratingG = $request->input('ratingG');
+                $submitForm5a_rr->ratingGG = $request->input('ratingGG');
+                $submitForm5a_rr->ratingH = $request->input('ratingH');
+                $submitForm5a_rr->remarksA = $request->input('remarksA');
+                $submitForm5a_rr->remarksB = $request->input('remarksB');
+                $submitForm5a_rr->remarksBB = $request->input('remarksBB');
+                $submitForm5a_rr->remarksC = $request->input('remarksC');
+                $submitForm5a_rr->remarksD = $request->input('remarksD');
+                $submitForm5a_rr->remarksE = $request->input('remarksE');
+                $submitForm5a_rr->remarksF = $request->input('remarksF');
+                $submitForm5a_rr->remarksG = $request->input('remarksG');
+                $submitForm5a_rr->remarksGG = $request->input('remarksGG');
+                $submitForm5a_rr->remarksH = $request->input('remarksH');
+    
+                $submitForm5a_rr->save();
+    
+                return redirect()->back()->with('alert', 'Rate and Remarks Submitted Successfully!');
+            } catch (\Throwable $th) {
+                return "An error occured: " . $th->getMessage();
+            }
         } elseif ($action == 'update') {
-            // Update the data in the database
-            // Example: YourModel::where('id', $id)->update(['input_field' => $input]);
             $update = lnfp_form5a::where('id', 2)
             ->update([
                 'elementsA' => $elementsA,
@@ -246,8 +254,6 @@ class MellpiProForLNFP_barangayController extends Controller
                 'documentSourceH' => $docuSourceH
 
             ]);
-            // return response()->json(['message' => 'Input updated successfully!', 'data' => $input]);
-            // return redirect()->route('MellpiProMonitoringCreate.create');
 
             return redirect()->back() ->with('alert', 'Updated Successfully!');
 
@@ -256,6 +262,85 @@ class MellpiProForLNFP_barangayController extends Controller
         return response()->json(['message' => 'Invalid Action!', 400]);
     }
 
+    public function storeForm5aRateremarks(Request $request) {
+        try {
+            $submitForm5a_rr = new lnfp_form5a_rr;
+
+            $submitForm5a_rr->forThePeriod = $request->input('forTheperiod');
+            $submitForm5a_rr->nameofPnao = $request->input('nameOf');
+            $submitForm5a_rr->address = $request->input('address');
+            $submitForm5a_rr->provDeploy = $request->input('provDev');
+            $submitForm5a_rr->numYearPnao = $request->input('numYr');
+            $submitForm5a_rr->fulltime = $request->input('fulltime');
+            $submitForm5a_rr->profAct = $request->input('profAct');
+            $submitForm5a_rr->bdate = $request->input('bday');
+            $submitForm5a_rr->sex = $request->input('sex');
+            $submitForm5a_rr->dateDesignation = $request->input('dateDesig');
+            $submitForm5a_rr->secondedOffice = $request->input('seconded');
+            $submitForm5a_rr->devActnum1 = $request->input('num1');
+            $submitForm5a_rr->devActnum2 = $request->input('num2');
+            $submitForm5a_rr->devActnum3 = $request->input('num3');
+            $submitForm5a_rr->ratingA = $request->input('ratingA');
+            $submitForm5a_rr->ratingB = $request->input('ratingB');
+            $submitForm5a_rr->ratingBB = $request->input('ratingBB');
+            $submitForm5a_rr->ratingC = $request->input('ratingC');
+            $submitForm5a_rr->ratingD = $request->input('ratingD');
+            $submitForm5a_rr->ratingE = $request->input('ratingE');
+            $submitForm5a_rr->ratingF = $request->input('ratingF');
+            $submitForm5a_rr->ratingG = $request->input('ratingG');
+            $submitForm5a_rr->ratingGG = $request->input('ratingGG');
+            $submitForm5a_rr->ratingH = $request->input('ratingH');
+            $submitForm5a_rr->remarksA = $request->input('remarksA');
+            $submitForm5a_rr->remarksB = $request->input('remarksB');
+            $submitForm5a_rr->remarksBB = $request->input('remarksBB');
+            $submitForm5a_rr->remarksC = $request->input('remarksC');
+            $submitForm5a_rr->remarksD = $request->input('remarksD');
+            $submitForm5a_rr->remarksE = $request->input('remarksE');
+            $submitForm5a_rr->remarksF = $request->input('remarksF');
+            $submitForm5a_rr->remarksG = $request->input('remarksG');
+            $submitForm5a_rr->remarksGG = $request->input('remarksGG');
+            $submitForm5a_rr->remarksH = $request->input('remarksH');
+
+            $submitForm5a_rr->save();
+
+            return redirect()->back()->with('alert', 'Rate and Remarks Submitted Successfully!');
+        } catch (\Throwable $th) {
+            return "An error occured: " . $th->getMessage();
+        }
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    // public function create()
+    // {
+    //     //
+        
+    // }
+
+    // /**
+    //  * Store a newly created resource in storage.
+    //  */
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
+
+    // /**
+    //  * Display the specified resource.
+    //  */
+    // public function show(MellpiProForLNFP $mellpiProForLNFP)
+    // {
+    //     //
+    // }
+
+    // /**
+    //  * Show the form for editing the specified resource.
+    //  */
+    // public function edit(MellpiProForLNFP $mellpiProForLNFP)
+    // {
+    //     //
+    // }
     // /**
     //  * Update the specified resource in storage.
     //  */

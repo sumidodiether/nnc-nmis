@@ -10,6 +10,7 @@ class lnfp_form5a_rr extends Model
     use HasFactory;
 
     protected $fillable = [
+        'forThePeriod',
         'nameofPnao',
         'address',
         'provDeploy',
