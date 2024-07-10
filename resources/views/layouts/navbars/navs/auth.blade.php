@@ -1,11 +1,9 @@
 <!-- Navbar -->
- 
+<nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
   <div class="container-fluid">
-    <div class="navbar-wrapper" style="color:black"> 
-      <!-- <a class="navbar-brand" href="#" style="font-size:35px!important;color:#508D4E;font-size:bolder;"><b>{{ $namePage }}</b></a> -->
-       <p style="font-size:35px!important;color:#508D4E;font-size:bolder;"><b>{{ $namePage }}</b></p>
+  <div class="navbar-wrapper" style="color:black"> 
+      <p style="font-size:35px!important;color:#508D4E;font-size:bolder;"><b>{{ $namePage }}</b></p>
     </div>
- 
     <div class="collapse navbar-collapse justify-content-end" id="navigation">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
@@ -28,4 +26,4 @@
     </div>
   </div>
 </nav>
-<!-- End Navbar -->
+  <!-- End Navbar --> 

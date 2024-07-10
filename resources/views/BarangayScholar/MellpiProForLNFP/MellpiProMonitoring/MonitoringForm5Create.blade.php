@@ -24,7 +24,7 @@
                     </div>
                     @endif
 
-                    <div class="form5">
+                    <div>
                         <form action="{{ route('lguLnfpUpdate') }}" method="POST">
                             @csrf
 
@@ -130,7 +130,7 @@
                             </div>
 
 
-                            <div>
+                            <div class="form5">
                                 <!-- endtablehearder -->
                                 <div class="row" style="display:flex;background-color:#F5F5F5;padding:10px;border-radius:5px;justify-content:center; text-align: center;">
                                     <div class="col-2 justify-content-center">
@@ -278,6 +278,7 @@
                                         <textarea type="text" name="remarksB" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
+                                <br>
                                 <div class="row" style="display:flex">
                                     <div style="display:flex" class="col-2 justify-content-center">
                                         <div>
@@ -605,7 +606,7 @@
                                         <textarea type="text" name="remarksG" placeholder="Your remarks" class="inputRemarks"></textarea>
                                     </div>
                                 </div>
-
+                                <br>
                                 <div class="row" style="display:flex">
                                     <div style="display:flex" class="col-2 justify-content-center">
                                         <div>
