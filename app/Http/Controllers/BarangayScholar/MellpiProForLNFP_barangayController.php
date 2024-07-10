@@ -309,6 +309,13 @@ class MellpiProForLNFP_barangayController extends Controller
         }
     }
 
+    //Form 6 Radial Diagram
+    public function radialForm6() {
+        return view('BarangayScholar/MellpiProForLNFP/MellpiProRadialDiagram.RadialForm6Index');
+    }
+    public function radialForm6Create() {
+        return view('BarangayScholar/MellpiProForLNFP/MellpiProRadialDiagram.RadialForm6Create');
+    }
     /**
      * Show the form for creating a new resource.
      */
