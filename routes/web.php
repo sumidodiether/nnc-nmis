@@ -59,7 +59,8 @@ use App\Http\Controllers\BarangayScholar\MellpiProForLNFP_barangayController;
 
 
 use App\Http\Controllers\FormController;
-use App\Http\Controllers\FormSubmissionController; 
+use App\Http\Controllers\FormSubmissionController;
+use Faker\Guesser\Name;
 
 use function PHPSTORM_META\map;
 
@@ -92,7 +93,7 @@ Route::middleware('auth')->group(function () {
  
     // Forms samples
     Route::resource('forms', FormController::class);
-Route::post('forms/{form}/submissions', [FormSubmissionController::class, 'store'])->name('form-submissions.store');
+    Route::post('forms/{form}/submissions', [FormSubmissionController::class, 'store'])->name('form-submissions.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -195,18 +196,26 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/profile/{profile}/edit', [ProfileController::class, 'edit'])->name('CAprofile.edit'); 
         Route::PUT('/profile/password', [ProfileController::class, 'password'])->name('CAprofile.password');
 
-        // forms Creator 
+        // forms Creator A
        Route::get('/formsb', [FormsBuilderController::class, 'index'])->name('formsb.index');
        Route::POST('/formsb', [FormsBuilderController::class, 'store'])->name('formsb.store');
        Route::get('/formsb/create', [FormsBuilderController::class, 'create'])->name('formsb.create');
        Route::get('/formsb/{id}', [FormsBuilderController::class, 'update'])->name('formsb.update');
        Route::get('/formsb/{id}/edit', [FormsBuilderController::class, 'edit'])->name('formsb.edit');
        Route::DELETE('/formsb/{id}', [FormsBuilderController::class, 'destroy'])->name('formsb.destroy');
+    
+       // forms Creator B
+       Route::get('/formsb/{id}/formslist', [FormsBuilderController::class, 'formIndex'])->name('formsb.formList');
+       Route::get('/formsb/{id}/createForms', [FormsBuilderController::class, 'createForms'])->name('formsb.createForms');
+       Route::POST('/formsb/{id}storeForm', [FormsBuilderController::class, 'storeFormB'])->name('formsb.storeFormB');
+       Route::DELETE('/formsb/{id}/formslist/{idb}', [FormsBuilderController::class, 'destroyFormB'])->name('formsb.destroyFormB');
        
-       Route::get('/formsb/{id}/formsbindex', [FormsBuilderController::class, 'formIndex'])->name('formsb.formIndex');
-       Route::get('/formsb/createForms', [FormsBuilderController::class, 'createForms'])->name('formsb.createForms');
-
-
+       // forms Creator C
+       Route::get('/formsb/{id}/formslist/{idb}', [FormsBuilderController::class, 'ViewFields'])->name('formsb.fieldList');
+       Route::get('/formsb/{id}/formslist/{idb}/createFormFields', [FormsBuilderController::class, 'createFormsFields'])->name('formsb.createFormsFields');
+       
+       Route::POST('/formsb/{id}storeForm/{idb}/formC', [FormsBuilderController::class, 'storeFormC'])->name('formsb.storeFormC');
+       Route::DELETE('/formsb/{id}/formslist/{idb}', [FormsBuilderController::class, 'destroyFormB'])->name('formsb.destroyFormB');
     });
 
     Route::prefix('CentralOfficer')->middleware(['auth', 'CentralOfficer'])->group(function () {
@@ -331,11 +340,12 @@ Route::group(['middleware' => 'auth'], function () {
         
           //LGUProfileController
           Route::get('/lguprofile', [BSLGUprofileController::class, 'index'])->name('BSLGUprofile.index');
-          Route::POST('/lguprofile', [BSLGUprofileController::class, 'store'])->name('BSLGUprofile.store');
+        //   Route::POST('/lguprofile', [BSLGUprofileController::class, 'storeDraft'])->name('BSLGUprofile.storeDraft');
+          Route::POST('/lguprofile', [BSLGUprofileController::class, 'storeSubmit'])->name('BSLGUprofilest.storeSubmit');
           Route::get('/lguprofile/create', [BSLGUprofileController::class, 'create'])->name('BSLGUprofile.create');
           Route::put('/lguprofile/{id}', [BSLGUprofileController::class, 'update'])->name('BSLGUprofile.update');
           Route::get('/lguprofile/{id}/edit', [BSLGUprofileController::class, 'edit'])->name('BSLGUprofile.edit');
-          Route::DELETE('/lguprofile/{id}', [BSLGUprofileController::class, 'destroy'])->name('BSLGUprofile.destroy');  
+          Route::get('/lguprofile/{id}/delete', [BSLGUprofileController::class, 'destroy'])->name('BSLGUprofile.destroy');  
          
         //VisionMissionController
         Route::get('/visionmission', [VisionMissionController::class, 'index'])->name('visionmission.index');
@@ -411,6 +421,9 @@ Route::group(['middleware' => 'auth'], function () {
           Route::get('/lguform5Index', [MellpiProForLNFP_barangayController::class, 'monitoringForm5'])->name('MellpiProMonitoringIndex.index');
           Route::get('/lguform5Create', [MellpiProForLNFP_barangayController::class, 'monitoringForm5create'])->name(('MellpiProMonitoringCreate.create'));
           Route::post('/lguLnfpUpdate', [MellpiProForLNFP_barangayController::class, 'editForm5a'])->name('lguLnfpUpdate');
+          Route::put('/lguLnfpUpdate', [MellpiProForLNFP_barangayController::class, 'editForm5a'])->name('lguLnfpUpdateRemarks');
+          Route::delete('/lguLnfpDelete/{id}', [MellpiProForLNFP_barangayController::class, 'deleteForm5arr'])->name('lguLnfpDeleteForm5a');
+          Route::get('/lguLnfpEdit/{id}', [MellpiProForLNFP_barangayController::class, 'monitoringForm5edit'])->name('lguLnfpEdit');
           //Form 6 Radial Diagram
           Route::get('/lguform6Index', [MellpiProForLNFP_barangayController::class, 'radialForm6'])->name('MellpiProRadialIndex.index');
           Route::get('lguform6Create', [MellpiProForLNFP_barangayController::class, 'radialForm6Create'])->name('MellpiProRadialCreate.create');

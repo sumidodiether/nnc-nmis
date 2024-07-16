@@ -23,12 +23,12 @@
         </li>
       </ul>
     </nav> --}}
-    <div class="copyright" id="copyright">
+    <div class="copyright" id="copyright" style="color:white;font-weight:bold">
       &copy;
       <script>
         document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
       </script>, {{__(" Designed by")}}
-      <a href="https://www.moodlearning.com" target="_blank">{{__(" moodLearning")}}</a>
+      <a href="https://www.moodlearning.com" target="_blank" style="color:white">{{__(" moodLearning Inc.")}}</a>
       <!-- <a href="https://www.creative-tim.com" target="_blank">{{__(" Creative Tim ")}}</a>&
       <a href="https://www.updivision.com" target="_blank">{{__(" Updivision")}}</a> -->
     </div>

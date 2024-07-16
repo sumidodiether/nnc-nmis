@@ -3,69 +3,161 @@
 namespace App\Http\Controllers\CentralAdmin;
 
 use App\Http\Controllers\Controller;
-use App\Models\FormBuilder;
+use App\Models\FormBuilderA;
+use App\Models\FormBuilderB;
+use App\Models\FormBuilderC;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 
 
 class FormsBuilderController extends Controller
 {
     public function index() {
-        $forms = FormBuilder::get();
+        $forms = FormBuilderA::get();
         return view('CentralAdmin.FormsA.index', ['forms' => $forms]);
     }
 
     public function formIndex(Request $request) {
- 
         // $forms = FormBuilder::get($request->id);
-        $forms = FormBuilder::where('id', $request->id)->get();
-        
-        return view('CentralAdmin.FormsA.indexForms', ['forms' => $forms]);
+        $formsA = FormBuilderA::where('id', $request->id)->first();
+        $formsB = FormBuilderB::where('formbuilderA_id', $request->id)->get();
+        //dd($request->id);
+        return view('CentralAdmin.FormsA.indexB', ['formsB' => $formsB, 'formsA' => $formsA]);
     }
 
-
+    public function ViewFields($id, $idb) { 
+        // dd($id, $idb);  
+        $formsA = FormBuilderA::where('id', $id)->first();
+        $formsB = FormBuilderB::where('formbuilderA_id', $id)->where('id', $idb)->first(); 
+        $formsC = FormBuilderC::where('formbuilderB_id', $idb)->get(); 
+       
+        return view('CentralAdmin.FormsA.indexC', ['formsA' => $formsA, 'formsB' => $formsB, 'formsC' => $formsC, ]);
+    }
 
     public function create() {
         
         return view('CentralAdmin.FormsA.createA');
     }
 
-    // for Creating forms
-    public function createForms() {
+    // for Creating forms Title
+    public function createForms(Request $request) {
         
-        return view('CentralAdmin.FormsA.createA');
+        $formsA = FormBuilderA::where('id', $request->id)->first();
+        return view('CentralAdmin.FormsA.createB', ['formsA' => $formsA]);
     }
+
+    // for Creating forms Title
+    public function createFormsFields($id , $idb) {
+       
+        $formsA = FormBuilderA::where('id', $id)->first();
+        $formsB = FormBuilderB::where('formbuilderA_id', $id)->where('id', $idb)->first(); 
+        $formsC = FormBuilderC::where('formbuilderB_id', $idb)->get(); 
+        
+        return view('CentralAdmin.FormsA.createC', ['formsA' => $formsA, 'formsB' => $formsB]);
+    }
+
 
     public function store(Request $request) {
-         
+    //dd($request);
         $request->validate([
-            'formname' =>  'required|string|max:255',
-            'status' =>  'required|string|max:100',
-            'datecreated' => 'required|date',
-            'lastupdate' => 'required|date',
+            'formAname' =>  'required|string|max:255',
+            'status' =>  'required|string|max:100', 
         ]);
 
-        FormBuilder::create([
-            'formname' =>  $request->formname,
-            'status' =>  $request->status,
-            'datecreated' => $request->datecreated,
-            'lastupdate' => $request->lastupdate,
+        FormBuilderA::create([
+            'formAname' =>  $request->formAname,
+            'status' =>  $request->status, 
         ]);
 
 
-        return redirect('CentralAdmin/formsb')->with('status','Form Created Successfully');
+        return redirect('CentralAdmin/formsb')->with('success','Form Created Successfully!');
     }
 
+    public function storeFormB(Request $request) {
+       //dd($request);
+        $request->validate([
+            'formBname' =>  'required|string|max:255',
+            'formbuilderA_id' =>  'required|integer',
+            'status' =>  'required|string|max:100', 
+        ]);
+
+        FormBuilderB::create([
+            'formBname' =>  $request->formBname,
+            'formbuilderA_id' =>  $request->formbuilderA_id,
+            'status' =>  $request->status, 
+        ]);
+
+    
+     return redirect()->route('formsb.formList', ['id' => $request->id])
+     ->with('success', 'Form Created Successfully!');
+
+    }
+
+    public function storeFormC(Request $request, $id, $idb) {
+        //dd($request->all());
+        
+         $rules = [
+            'formbuilderA_id' =>  'required|integer',
+            'formbuilderB_id' =>  'required|integer',
+            'fields' => 'required|array',
+            'fields.*.label' => 'required|string|max:255',
+            'fields.*.name' => 'required|string|max:255',
+            'fields.*.type' => 'required|string|max:255',
+            'status' =>  'required|integer',
+         ];
+                 
+        $message = [
+            'required' => 'The field is required.',
+            'integer' => 'The field must be an integer.',
+            'string' => 'The field must be a string.',
+            'date' => 'The field must be a valid date.',
+            'max' => 'The field may not be greater than :max characters.',
+        ]; 
+        $validator = Validator::make($request->all() , $rules, $message );
+
+        if($validator->fails()){
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput()->with('error', 'Something went wrong! Please try again.');
+        }else {
+
+            $form = FormBuilderC::create($request->all());
+           
+            foreach ($request->fields as $field) {
+               $form->fields()->create($field);
+           }
+        
+        }
+
+       
+      return redirect()->route('formsb.fieldList', ['id' => $request->id , 'idb' => $request->idb])
+      ->with('success', 'Form Created Successfully!');
+ 
+    }
+ 
     public function edit(Request $request){
     
-        $forms = FormBuilder::find($request->id);
+        $forms = FormBuilderA::find($request->id);
         return view('CentralAdmin.FormsA.editA', ['forms' => $forms]);
 
     }
 
     public function destroy(Request $request) {
-        $FB = FormBuilder::find($request->id);
+        $FB = FormBuilderA::find($request->id);
         $FB->delete();
-        return redirect('CentralAdmin/formsb')->with('status','Form deleted Successfully');
+        return redirect('CentralAdmin/formsb')->with('error','Form deleted Successfully');
+    } 
+
+    public function destroyFormB($id ,$idb) {
+
+        //dd($id,$idb);
+        // inside FormBuilder
+        $FormTitle = FormBuilderB::find($idb);
+        $FormTitle->delete();
+
+        return redirect()->route('formsb.formList', ['id' => $id])
+        ->with('success', 'Form Deleted Successfully!');
+
     }
 }

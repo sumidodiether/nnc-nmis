@@ -2268,7 +2268,8 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 
 .navbar.bg-white .input-group .form-control,
 .navbar.bg-white .input-group.no-border .form-control {
-    color: #888;
+    color: white;
+    /* color: gray; */
 }
 
 .navbar.bg-white .input-group .form-control::-moz-placeholder,
@@ -2488,12 +2489,12 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .navbar.bg-white:not(.navbar-transparent) a:not(.dropdown-item):not(.btn) {
-    color: #888;
+    color:  white ;
 }
 
 .navbar.bg-white:not(.navbar-transparent) a:not(.dropdown-item):not(.btn).disabled {
     opacity: .5;
-    color: #888;
+    color: white;
 }
 
 .navbar.bg-white:not(.navbar-transparent) .button-bar {
@@ -2504,8 +2505,9 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 .navbar.bg-white:not(.navbar-transparent) .nav-item .nav-link:not(.btn):focus,
 .navbar.bg-white:not(.navbar-transparent) .nav-item .nav-link:not(.btn):hover,
 .navbar.bg-white:not(.navbar-transparent) .nav-item .nav-link:not(.btn):active {
-    background-color: rgba(222, 222, 222, 0.8);
-    color: #888;
+    background-color: white;
+    color: #02932A;
+    
 }
 
 .navbar.bg-white:not(.navbar-transparent) .logo-container {
@@ -3101,7 +3103,7 @@ Created using IcoMoon - icomoon.io
     text-transform: none;
     /* Better Font Rendering */
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: white;
 }
 
 
@@ -4916,10 +4918,10 @@ Created using IcoMoon - icomoon.io
     }
     .navbar.bg-white .dropdown-menu .dropdown-item:focus,
     .navbar.bg-white .dropdown-menu .dropdown-item:hover {
-        color: #888;
+        color: white;
     }
     .navbar.bg-white:not(.navbar-transparent) .navbar-toggler-bar {
-        background-color: #888;
+        background-color:white ;
     }
     .wrapper {
         transition: all 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
@@ -4949,7 +4951,8 @@ Created using IcoMoon - icomoon.io
     }
     .navbar-nav .nav-link i.fa,
     .navbar-nav .nav-link i.now-ui-icons {
-        opacity: .5;
+        opacity: 1;
+        -webkit-text-stroke-width: 1px;
     }
     .sidebar,
     .bootstrap-navbar {

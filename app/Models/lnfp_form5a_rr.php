@@ -44,6 +44,7 @@ class lnfp_form5a_rr extends Model
         'remarksG',
         'remarksGG',
         'remarksH',
+        'status',
     ];
 
     protected $guarded = ['id'];

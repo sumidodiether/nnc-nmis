@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\lnfp_form5a;
 use App\Models\lnfp_form5a_rr;
 use App\Models\sampleUpdateForm5a;
+use Illuminate\Support\Facades\DB;
 
 class MellpiProForLNFP_barangayController extends Controller
 {
@@ -31,7 +32,16 @@ class MellpiProForLNFP_barangayController extends Controller
     public function monitoringForm5()
     {
         //
-        return view('BarangayScholar/MellpiProForLNFP/MellpiProMonitoring.MonitoringForm5Index');
+        $form5a_rr = lnfp_form5a_rr::get();
+
+        return view('BarangayScholar/MellpiProForLNFP/MellpiProMonitoring.MonitoringForm5Index', ['form5a_rr' => $form5a_rr]);
+    }
+    public function monitoringForm5edit(Request $request){
+        $form5a = lnfp_form5a::get();
+
+        $lguLnfpForm5 = DB::table('lnfp_form5a_rr')->where('id', $request->id)->first();
+
+        return view('BarangayScholar/MellpiProForLNFP/MellpiProMonitoring.MonitoringForm5Edit', ['form5a' => $form5a, 'lguLnfpForm5' => $lguLnfpForm5]);
     }
     public function monitoringForm5create()
     {
@@ -40,7 +50,8 @@ class MellpiProForLNFP_barangayController extends Controller
 
         return view('BarangayScholar/MellpiProForLNFP/MellpiProMonitoring.MonitoringForm5Create', ['form5a' => $form5a]);
     }
-    public function editForm5a(Request $request) {
+    public function editForm5a(Request $request)
+    {
         $elementsA = $request->input('elementsA');
         $performanceA1 = $request->input('performanceA1');
         $performanceA2 = $request->input('performanceA2');
@@ -122,13 +133,50 @@ class MellpiProForLNFP_barangayController extends Controller
         $performanceH5 = $request->input('performanceH5');
         $docuSourceH = $request->input('docuSourceH');
 
+        $forTheperiod = $request->input('forTheperiod');
+        $nameOf = $request->input('nameOf');
+        $address = $request->input('address');
+        $provDev = $request->input('provDev');
+        $numYear = $request->input('numYr');
+        $fulltime = $request->input('fulltime');
+        $profAct = $request->input('profAct');
+        $bday = $request->input('bday');
+        $sex = $request->input('sex');
+        $dateDesig = $request->input('dateDesig');
+        $seconded = $request->input('seconded');
+        $num1 = $request->input('num1');
+        $num2 = $request->input('num2');
+        $num3 = $request->input('num3');
+        $ratingA = $request->input('ratingA');
+        $ratingB = $request->input('ratingB');
+        $ratingBB = $request->input('ratingBB');
+        $ratingC = $request->input('ratingC');
+        $ratingD = $request->input('ratingD');
+        $ratingE = $request->input('ratingE');
+        $ratingF = $request->input('ratingF');
+        $ratingG = $request->input('ratingG');
+        $ratingGG = $request->input('ratingGG');
+        $ratingH = $request->input('ratingH');
+        $remarksA = $request->input('remarksA');
+        $remarksB = $request->input('remarksB');
+        $remarksBB = $request->input('remarksBB');
+        $remarksC = $request->input('remarksC');
+        $remarksD = $request->input('remarksD');
+        $remarksE = $request->input('remarksE');
+        $remarksF = $request->input('remarksF');
+        $remarksG = $request->input('remarksG');
+        $remarksGG = $request->input('remarksGG');
+        $remarksH = $request->input('remarksH');
+        $statusSubmit = 2;
+        $statusDraft = 1;
+
         $action = $request->input('action');
 
 
         if ($action == 'submit') {
             try {
                 $submitForm5a_rr = new lnfp_form5a_rr;
-    
+
                 $submitForm5a_rr->forThePeriod = $request->input('forTheperiod');
                 $submitForm5a_rr->nameofPnao = $request->input('nameOf');
                 $submitForm5a_rr->address = $request->input('address');
@@ -163,157 +211,202 @@ class MellpiProForLNFP_barangayController extends Controller
                 $submitForm5a_rr->remarksG = $request->input('remarksG');
                 $submitForm5a_rr->remarksGG = $request->input('remarksGG');
                 $submitForm5a_rr->remarksH = $request->input('remarksH');
-    
+                $submitForm5a_rr->status = 2;
+
                 $submitForm5a_rr->save();
-    
-                return redirect()->back()->with('alert', 'Rate and Remarks Submitted Successfully!');
+
+                // return redirect()->back()->with('alert', 'Rate and Remarks Submitted Successfully!');
+                return redirect()->route('MellpiProMonitoringIndex.index')->with('alert', 'Rate and Remarks Submitted Successfully!');
+            } catch (\Throwable $th) {
+                return "An error occured: " . $th->getMessage();
+            }
+        } elseif ($action == 'draft') {
+            try {
+                $submitForm5a_rr = new lnfp_form5a_rr;
+
+                $submitForm5a_rr->forThePeriod = $request->input('forTheperiod');
+                $submitForm5a_rr->nameofPnao = $request->input('nameOf');
+                $submitForm5a_rr->address = $request->input('address');
+                $submitForm5a_rr->provDeploy = $request->input('provDev');
+                $submitForm5a_rr->numYearPnao = $request->input('numYr');
+                $submitForm5a_rr->fulltime = $request->input('fulltime');
+                $submitForm5a_rr->profAct = $request->input('profAct');
+                $submitForm5a_rr->bdate = $request->input('bday');
+                $submitForm5a_rr->sex = $request->input('sex');
+                $submitForm5a_rr->dateDesignation = $request->input('dateDesig');
+                $submitForm5a_rr->secondedOffice = $request->input('seconded');
+                $submitForm5a_rr->devActnum1 = $request->input('num1');
+                $submitForm5a_rr->devActnum2 = $request->input('num2');
+                $submitForm5a_rr->devActnum3 = $request->input('num3');
+                $submitForm5a_rr->ratingA = $request->input('ratingA');
+                $submitForm5a_rr->ratingB = $request->input('ratingB');
+                $submitForm5a_rr->ratingBB = $request->input('ratingBB');
+                $submitForm5a_rr->ratingC = $request->input('ratingC');
+                $submitForm5a_rr->ratingD = $request->input('ratingD');
+                $submitForm5a_rr->ratingE = $request->input('ratingE');
+                $submitForm5a_rr->ratingF = $request->input('ratingF');
+                $submitForm5a_rr->ratingG = $request->input('ratingG');
+                $submitForm5a_rr->ratingGG = $request->input('ratingGG');
+                $submitForm5a_rr->ratingH = $request->input('ratingH');
+                $submitForm5a_rr->remarksA = $request->input('remarksA');
+                $submitForm5a_rr->remarksB = $request->input('remarksB');
+                $submitForm5a_rr->remarksBB = $request->input('remarksBB');
+                $submitForm5a_rr->remarksC = $request->input('remarksC');
+                $submitForm5a_rr->remarksD = $request->input('remarksD');
+                $submitForm5a_rr->remarksE = $request->input('remarksE');
+                $submitForm5a_rr->remarksF = $request->input('remarksF');
+                $submitForm5a_rr->remarksG = $request->input('remarksG');
+                $submitForm5a_rr->remarksGG = $request->input('remarksGG');
+                $submitForm5a_rr->remarksH = $request->input('remarksH');
+                $submitForm5a_rr->status = 1;
+
+                $submitForm5a_rr->save();
+
+                // return redirect()->back()->with('alert', 'Rate and Remarks Submitted Successfully!');
+                return redirect()->route('MellpiProMonitoringIndex.index')->with('alert', 'Rate and Remarks Submitted Successfully!');
             } catch (\Throwable $th) {
                 return "An error occured: " . $th->getMessage();
             }
         } elseif ($action == 'update') {
             $update = lnfp_form5a::where('id', 2)
+                ->update([
+                    'elementsA' => $elementsA,
+                    'performanceA1' => $performanceA1,
+                    'performanceA2' => $performanceA2,
+                    'performanceA3' => $performanceA3,
+                    'performanceA4' => $performanceA4,
+                    'performanceA5' => $performanceA5,
+                    'documentSourceA' => $docuSourceA,
+
+                    'elementsB' => $elementsB,
+                    'performanceB1' => $performanceB1,
+                    'performanceB2' => $performanceB2,
+                    'performanceB3' => $performanceB3,
+                    'performanceB4' => $performanceB4,
+                    'performanceB5' => $performanceB5,
+                    'documentSourceB' => $docuSourceB,
+
+                    'elementsBB' => $elementsBB,
+                    'performanceBB1' => $performanceBB1,
+                    'performanceBB2' => $performanceBB2,
+                    'performanceBB3' => $performanceBB3,
+                    'performanceBB4' => $performanceBB4,
+                    'performanceBB5' => $performanceBB5,
+                    'documentSourceBB' => $docuSourceBB,
+
+                    'elementsC' => $elementsC,
+                    'performanceC1' => $performanceC1,
+                    'performanceC2' => $performanceC2,
+                    'performancec3' => $performanceC3,
+                    'performanceC4' => $performanceC4,
+                    'performanceC5' => $performanceC5,
+                    'documentSourceC' => $docuSourceC,
+
+                    'elementsD' => $elementsD,
+                    'performanceD1' => $performanceD1,
+                    'performanceD2' => $performanceD2,
+                    'performanceD3' => $performanceD3,
+                    'performanceD4' => $performanceD4,
+                    'performanceD5' => $performanceD5,
+                    'documentSourceD' => $docuSourceD,
+
+                    'elementsE' => $elementsE,
+                    'performanceE1' => $performanceE1,
+                    'performanceE2' => $performanceE2,
+                    'performanceE3' => $performanceE3,
+                    'performanceE4' => $performanceE4,
+                    'performanceE5' => $performanceE5,
+                    'documentSourceE' => $docuSourceE,
+
+                    'elementsF' => $elementsF,
+                    'performanceF1' => $performanceF1,
+                    'performanceF2' => $performanceF2,
+                    'performanceF3' => $performanceF3,
+                    'performanceF4' => $performanceF4,
+                    'performanceF5' => $performanceF5,
+                    'documentSourceF' => $docuSourceF,
+
+                    'elementsG' => $elementsG,
+                    'performanceG1' => $performanceG1,
+                    'performanceG2' => $performanceG2,
+                    'performanceG3' => $performanceG3,
+                    'performanceG4' => $performanceG4,
+                    'performanceG5' => $performanceG5,
+                    'documentSourceG' => $docuSourceG,
+
+                    'elementsGG' => $elementsGG,
+                    'performanceGG1' => $performanceGG1,
+                    'performanceGG2' => $performanceGG2,
+                    'performanceGG3' => $performanceGG3,
+                    'performanceGG4' => $performanceGG4,
+                    'performanceGG5' => $performanceGG5,
+                    'documentSourceGG' => $docuSourceGG,
+
+                    'elementsH' => $elementsH,
+                    'performanceH1' => $performanceH1,
+                    'performanceH2' => $performanceH2,
+                    'performanceH3' => $performanceH3,
+                    'performanceH4' => $performanceH4,
+                    'performanceH5' => $performanceH5,
+                    'documentSourceH' => $docuSourceH
+
+                ]);
+
+            return redirect()->back()->with('alert', 'Updated Successfully!');
+        } elseif ($action == 'updateResponse') {
+            # code...
+            $updateResponse = lnfp_form5a_rr::where('id', 19)
             ->update([
-                'elementsA' => $elementsA,
-                'performanceA1' => $performanceA1,
-                'performanceA2' => $performanceA2,
-                'performanceA3' => $performanceA3,
-                'performanceA4' => $performanceA4,
-                'performanceA5' => $performanceA5,
-                'documentSourceA' => $docuSourceA,
-
-                'elementsB' => $elementsB,
-                'performanceB1' => $performanceB1,
-                'performanceB2' => $performanceB2,
-                'performanceB3' => $performanceB3,
-                'performanceB4' => $performanceB4,
-                'performanceB5' => $performanceB5,
-                'documentSourceB' => $docuSourceB,
-
-                'elementsBB' => $elementsBB,
-                'performanceBB1' => $performanceBB1,
-                'performanceBB2' => $performanceBB2,
-                'performanceBB3' => $performanceBB3,
-                'performanceBB4' => $performanceBB4,
-                'performanceBB5' => $performanceBB5,
-                'documentSourceBB' => $docuSourceBB,
-
-                'elementsC' => $elementsC,
-                'performanceC1' => $performanceC1,
-                'performanceC2' => $performanceC2,
-                'performancec3' => $performanceC3,
-                'performanceC4' => $performanceC4,
-                'performanceC5' => $performanceC5,
-                'documentSourceC' => $docuSourceC,
-
-                'elementsD' => $elementsD,
-                'performanceD1' => $performanceD1,
-                'performanceD2' => $performanceD2,
-                'performanceD3' => $performanceD3,
-                'performanceD4' => $performanceD4,
-                'performanceD5' => $performanceD5,
-                'documentSourceD' => $docuSourceD,
-
-                'elementsE' => $elementsE,
-                'performanceE1' => $performanceE1,
-                'performanceE2' => $performanceE2,
-                'performanceE3' => $performanceE3,
-                'performanceE4' => $performanceE4,
-                'performanceE5' => $performanceE5,
-                'documentSourceE' => $docuSourceE,
-
-                'elementsF' => $elementsF,
-                'performanceF1' => $performanceF1,
-                'performanceF2' => $performanceF2,
-                'performanceF3' => $performanceF3,
-                'performanceF4' => $performanceF4,
-                'performanceF5' => $performanceF5,
-                'documentSourceF' => $docuSourceF,
-
-                'elementsG' => $elementsG,
-                'performanceG1' => $performanceG1,
-                'performanceG2' => $performanceG2,
-                'performanceG3' => $performanceG3,
-                'performanceG4' => $performanceG4,
-                'performanceG5' => $performanceG5,
-                'documentSourceG' => $docuSourceG,
-
-                'elementsGG' => $elementsGG,
-                'performanceGG1' => $performanceGG1,
-                'performanceGG2' => $performanceGG2,
-                'performanceGG3' => $performanceGG3,
-                'performanceGG4' => $performanceGG4,
-                'performanceGG5' => $performanceGG5,
-                'documentSourceGG' => $docuSourceGG,
-
-                'elementsH' => $elementsH,
-                'performanceH1' => $performanceH1,
-                'performanceH2' => $performanceH2,
-                'performanceH3' => $performanceH3,
-                'performanceH4' => $performanceH4,
-                'performanceH5' => $performanceH5,
-                'documentSourceH' => $docuSourceH
+                'forThePeriod' => $forTheperiod,
+                'nameofPnao' => $nameOf,
+                'address' => $address,
+                'provDeploy' => $provDev,
+                'numYearPnao' => $numYear,
+                'fulltime' => $fulltime,
+                'profAct' => $profAct,
+                'bdate' => $bday,
+                'sex' => $sex,
+                'dateDesignation' => $dateDesig,
+                'secondedOffice' => $seconded,
+                'devActnum1' => $num1,
+                'devActnum2' => $num2,
+                'devActnum3' => $num3,
+                'ratingA' => $ratingA,
+                'ratingB' => $ratingB,
+                'ratingBB' => $ratingBB,
+                'ratingC' => $ratingC,
+                'ratingD' => $ratingD,
+                'ratingE' => $ratingE,
+                'ratingF' => $ratingF,
+                'ratingG' => $ratingG,
+                'ratingGG' => $ratingGG,
+                'ratingH' => $ratingH,
+                'remarksA' => $remarksA,
+                'remarksB' => $remarksB,
+                'remarksBB' => $remarksBB,
+                'remarksC' => $remarksC,
+                'remarksD' => $remarksD,
+                'remarksE' => $remarksE,
+                'remarksF' => $remarksF,
+                'remarksG' => $remarksG,
+                'remarksGG' => $remarksGG,
+                'remarksH' => $remarksH,
+                'status' => $statusSubmit
 
             ]);
-
-            return redirect()->back() ->with('alert', 'Updated Successfully!');
-
+            return redirect()->route('MellpiProMonitoringIndex.index')->with('alert', 'Responses Updated Successfully!');
         }
 
         return response()->json(['message' => 'Invalid Action!', 400]);
     }
 
-    public function storeForm5aRateremarks(Request $request) {
-        try {
-            $submitForm5a_rr = new lnfp_form5a_rr;
-
-            $submitForm5a_rr->forThePeriod = $request->input('forTheperiod');
-            $submitForm5a_rr->nameofPnao = $request->input('nameOf');
-            $submitForm5a_rr->address = $request->input('address');
-            $submitForm5a_rr->provDeploy = $request->input('provDev');
-            $submitForm5a_rr->numYearPnao = $request->input('numYr');
-            $submitForm5a_rr->fulltime = $request->input('fulltime');
-            $submitForm5a_rr->profAct = $request->input('profAct');
-            $submitForm5a_rr->bdate = $request->input('bday');
-            $submitForm5a_rr->sex = $request->input('sex');
-            $submitForm5a_rr->dateDesignation = $request->input('dateDesig');
-            $submitForm5a_rr->secondedOffice = $request->input('seconded');
-            $submitForm5a_rr->devActnum1 = $request->input('num1');
-            $submitForm5a_rr->devActnum2 = $request->input('num2');
-            $submitForm5a_rr->devActnum3 = $request->input('num3');
-            $submitForm5a_rr->ratingA = $request->input('ratingA');
-            $submitForm5a_rr->ratingB = $request->input('ratingB');
-            $submitForm5a_rr->ratingBB = $request->input('ratingBB');
-            $submitForm5a_rr->ratingC = $request->input('ratingC');
-            $submitForm5a_rr->ratingD = $request->input('ratingD');
-            $submitForm5a_rr->ratingE = $request->input('ratingE');
-            $submitForm5a_rr->ratingF = $request->input('ratingF');
-            $submitForm5a_rr->ratingG = $request->input('ratingG');
-            $submitForm5a_rr->ratingGG = $request->input('ratingGG');
-            $submitForm5a_rr->ratingH = $request->input('ratingH');
-            $submitForm5a_rr->remarksA = $request->input('remarksA');
-            $submitForm5a_rr->remarksB = $request->input('remarksB');
-            $submitForm5a_rr->remarksBB = $request->input('remarksBB');
-            $submitForm5a_rr->remarksC = $request->input('remarksC');
-            $submitForm5a_rr->remarksD = $request->input('remarksD');
-            $submitForm5a_rr->remarksE = $request->input('remarksE');
-            $submitForm5a_rr->remarksF = $request->input('remarksF');
-            $submitForm5a_rr->remarksG = $request->input('remarksG');
-            $submitForm5a_rr->remarksGG = $request->input('remarksGG');
-            $submitForm5a_rr->remarksH = $request->input('remarksH');
-
-            $submitForm5a_rr->save();
-
-            return redirect()->back()->with('alert', 'Rate and Remarks Submitted Successfully!');
-        } catch (\Throwable $th) {
-            return "An error occured: " . $th->getMessage();
-        }
-    }
-
     //Form 6 Radial Diagram
-    public function radialForm6() {
+    public function radialForm6()
+    {
         return view('BarangayScholar/MellpiProForLNFP/MellpiProRadialDiagram.RadialForm6Index');
     }
-    public function radialForm6Create() {
+    public function radialForm6Create()
+    {
         return view('BarangayScholar/MellpiProForLNFP/MellpiProRadialDiagram.RadialForm6Create');
     }
     /**
@@ -322,7 +415,7 @@ class MellpiProForLNFP_barangayController extends Controller
     // public function create()
     // {
     //     //
-        
+
     // }
 
     // /**
@@ -356,11 +449,22 @@ class MellpiProForLNFP_barangayController extends Controller
     //     //
     // }
 
-    // /**
-    //  * Remove the specified resource from storage.
-    //  */
-    // public function destroy(MellpiProForLNFP $mellpiProForLNFP)
-    // {
-    //     //
-    // }
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function deleteForm5arr(Request $request)
+    {
+        //
+        $deleted = DB::table('lnfp_form5a_rr')->where('id', $request->id)->delete();
+
+        if ($deleted) {
+            // Redirect back with success message if record was deleted
+            return redirect()->back()->with('alert', 'Deleted Successfully!');
+        } else {
+            // Redirect back with error message if record not found
+            return redirect()->back()->with('alert', 'Record not found!');
+        }
+
+        return redirect()->back()->with('alert', 'Deleted Successfully!');
+    }
 }

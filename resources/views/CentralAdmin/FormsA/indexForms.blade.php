@@ -7,12 +7,10 @@
 
 @section('content')
  
-<div class="content">
-    <div class="row-12">
-        <div class="col flex">
-            <div class="card">
+<div class="content" style="margin-top:50px;padding:2%">
+<div class="card" style="border-radius:10px;padding-left:2rem!important;padding-right:1rem!important">
                 <div class="card-header">
-                <h5 class="title"> Form</h5>
+                <h5 class="title">Form/{{$forms->formname}}</h5>
                     <div class="content" style="margin:30px">
                             @if(session('status'))
                                 <div class="row alert alert-success">{{session('status')}}</div>
@@ -26,7 +24,6 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="colspan=1">Id</th>
                                         <th scope="col">Form name</th>
                                         <th scope="col">Date Created</th>
                                         <th scope="col">Last Update</th>
@@ -35,21 +32,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-
+ 
                                     @foreach($forms as $form)
                                     <tr>
-                                        <th scope="rowspan=1">{{$form->id}}</th>
-                                        <td>{{$form->formname}}</td>
-                                        <td>{{$form->datecreated}}</td>
-                                        <td>{{$form->lastupdate}}</td>
-                                        <td>{{$form->status}}</td>
+                                        <td>{{$forms->formname}}</td>
+                                        <td>{{$forms->datecreated}}</td>
+                                        <td>{{$forms->lastupdate}}</td>
+                                        <td>{{$forms->status}}</td>
                                         <td class="d-flex">
                                            
-                                            <a href="{{route('formsb.edit', $form->id)}}" style="margin-right: 10px"
+                                            <a href="{{route('formsb.edit', $forms->id)}}" style="margin-right: 10px"
                                                 class="btn btn-primary">Edit</a>
 
-                                            <form action="{{ route('formsb.destroy', $form->id) }}"
+                                            <form action="{{ route('formsb.destroy', $forms->id) }}"
                                                 method="POST"
                                                 onsubmit="return confirm('Are you sure you want to delete data?');">
 
@@ -68,7 +63,5 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 </div>
 @endsection

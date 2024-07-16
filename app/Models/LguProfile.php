@@ -219,6 +219,7 @@ class LguProfile extends Model
         'municipal_id',
         'province_id',
         'region_id',
+        'user_id'
 
     ];
 

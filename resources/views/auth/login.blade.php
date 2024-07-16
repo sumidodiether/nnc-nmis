@@ -1,5 +1,5 @@
 @extends('layouts.app', [
-    'namePage' => 'Login page',
+    'namePage' => 'NMIS',
     'class' => 'login-page sidebar-mini ',
     'activePage' => 'login',
     'backgroundImage' => asset('assets') . "/img/background1.png",
@@ -80,6 +80,7 @@
         </div>
         </div>
     </div>
+    @include('layouts.footer')
 @endsection
 
 @push('js')

@@ -50,9 +50,7 @@
          @include('layouts.page_template.crud_alert_message')
 
          <div style="padding:25px">
-            <form action="{{route('BSLGUprofile.update', $lguProfile->id)}}" id="lgu-profile-form" method="POST">
-                @csrf
-                @method('PUT')
+            <div>
 
                 <input type="hidden" name="status" id="status" value="{{$lguProfile->status}}">
                 <input type="hidden" name="user_id" id="user_id" value="{{ $lguProfile->user_id }}">
@@ -1393,53 +1391,12 @@
                     Submit
                     </button>
                 </div> -->
-            </form>
+            </div>
         </div>
     </div>
 </div>
 </div>
 
-
-<!-- Modal Submit -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h5>Are you sure want to submit this form?</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="submit" id="lgu-submit" class="btn btn-primary">Yes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Draft -->
-<div class="modal fade" id="exampleModalCenterDraft" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h5>Save as Draft?</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-        <button type="submit" id="lgu-draft" class="btn btn-primary">Yes</button>
-      </div>
-    </div>
-  </div>
-</div>
+ 
 
 @endsection

@@ -14,3 +14,91 @@
     margin-bottom: 0px;
     margin-top: auto;
 }
+input.inputHeader {
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+}
+input.inputHeader:focus {
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+}
+.inputHeaderPeriod {
+    display: block;
+    width: 20%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+.inputHeaderPeriod:focus {
+    display: block;
+    width: 20%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+.imgLogo {
+    width: 10%;
+    height: 13%;
+}
+
+.tab {
+    text-align: center;
+    font-size: 11px;
+    border: 1px solid green;
+}
+
+.tab.active {
+    border-top: 1px solid green;
+}
+.mainHeader {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+thead th {
+    background-color: #f2f2f2;
+}
+
+.form6Input {
+    outline: none;
+    width: 100%;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+}
+.form6InputS {
+    outline: none;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+}

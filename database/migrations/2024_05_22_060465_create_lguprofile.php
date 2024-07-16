@@ -219,9 +219,11 @@ return new class extends Migration
             $table->date('dateUpdates');
 
             $table->integer('barangay_id')->unsigned(); 
+            $table->integer('user_id')->unsigned(); 
             $table->integer('municipal_id')->unsigned(); 
             $table->integer('province_id')->unsigned(); 
             $table->integer('region_id')->unsigned(); 
+            $table->foreign('user_id')->references('id')->on('regions'); 
             $table->foreign('region_id')->references('id')->on('regions'); 
             $table->foreign('province_id')->references('id')->on('provinces'); 
             $table->foreign('municipal_id')->references('id')->on('municipals');

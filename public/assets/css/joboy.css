@@ -2,3 +2,32 @@
   .main-panel > .content {
     width: auto;
   }
+
+  #badge-pending{
+
+    padding: 5px 5px 5px !important;
+
+  }
+
+
+  #badge-draft{
+
+    padding: 5px 5px 5px !important;
+
+  }
+
+.btn-edit {
+    border-radius: 20px !important;
+}
+
+
+
+  /* Ryan */
+  /* formBuilderCSS */
+ .formRow { 
+    border-left: 6px solid lightblue;
+    padding-top:3px; 
+    padding-bottom:3px;
+    width:100% 
+    
+  } 

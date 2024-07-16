@@ -1,5 +1,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/joboy.css') }}">
+<script src="{{ asset('assets') }}/js/joboy.js"></script>
 
 <style>
 .form-section {
@@ -46,10 +47,10 @@
         @endif
 
         <div>
-            <form action="{{ route('visionmission.store') }}" method="POST">
+            <form action="{{ route('visionmission.store') }}" method="POST" id="lgu-profile-form">
                 @csrf
 
-                <input type="hidden" name="status" value="1">
+                <input type="hidden" name="status" value="" id="status">
                 <input type="hidden" name="dateCreated" value="05/19/2024">
                 <input type="hidden" name="dateUpdates" value="05/19/2024">
                 <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
@@ -258,13 +259,60 @@
 
 
                 <div class="row" style="margin-top:30px;margin-right:20px;justify-content: flex-end">
-                <button type="submit" class="btn btn-primary">Save Draft</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenterDraft">
+                    Draft
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Submit
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+</div>
+
+
+<!-- Modal Submit-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Are you sure want to submit this form?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="submit" id="lgu-submit" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Draft -->
+<div class="modal fade" id="exampleModalCenterDraft" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Save as Draft?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="submit" id="lgu-draft" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 @endsection

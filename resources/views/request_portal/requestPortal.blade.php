@@ -2,9 +2,7 @@
 
 
 @extends('layouts.app', [
-    'namePage' => 'Mellpi Pro',
-    'activePage' => 'mellpi_pro',
-    'activeNav' => '',
+    'namePage' => 'NMIS',  
     'backgroundImage' => asset('assets') . "/img/background1.png",
 ])
 
@@ -32,6 +30,14 @@
                             <input type="email" class="form-control" id="email" placeholder="Enter your email">
                         </div>
                         <div class="form-group">
+                            <label for="email" class="text-dark">LGU/Agency: </label>
+                            <input type="text" class="form-control" id="lgu" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="text-dark">Request data: Dropdown</label>
+                            <input type="text" class="form-control" id="lgu" placeholder="Dropdown">
+                        </div>
+                        <div class="form-group">
                             <label for="message"class="text-dark">Request Message</label>
                             <textarea class="form-control" id="message" rows="5" placeholder="Enter your request"></textarea>
                         </div>
@@ -44,6 +50,8 @@
         </div>
     </div>
 </div>
+
+@include('layouts.footer')
 
 @endsection
 

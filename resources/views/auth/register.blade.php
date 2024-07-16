@@ -4,7 +4,7 @@
 </head>
 
 @extends('layouts.app', [
-'namePage' => 'Register page',
+'namePage' => 'NMIS',
 'activePage' => 'register',
 'backgroundImage' => asset('assets') . "/img/background1.png",
 ])
@@ -203,6 +203,7 @@
         </div> <!-- Closing tag for row -->
     </div> <!-- Closing tag for container -->
 </div> <!-- Closing tag for content -->
+@include('layouts.footer')
 @endsection
 
 @push('js')

@@ -150,7 +150,7 @@
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
  color: black;
   /* background:#EFFAD3; */
-  background:#FEFFD2;
+  background:#FDDE55;
   
   font-size: 44.44px
 }
@@ -167,6 +167,10 @@
   top: 22%;
 }
 
+.hidden {
+  /* display: none; */
+  visibility: visible;
+}
 </style>
 
 @section('content')
@@ -179,26 +183,21 @@
                       <div class="row justify-content-center">
                           <div class="col-lg-5 col-md-9">
                             <!--<img class="rounded-circle bg-white p-3" src="{{ asset('assets/img/logo.png') }}" alt="">-->
-
-
                             <nav class="menu">
                               <!-- Replace the input element with the image -->
-                              <label for="menu-toggler">
-                                  <img class="rounded-circle bg-white p-3" src="{{ asset('assets/img/logo.png') }}" alt="">
+                              <label for="menu-toggler" >
+                                  <img id="click-image" style="cursor: pointer;" class="rounded-circle bg-white p-3" src="{{ asset('assets/img/logo.png') }}" alt="Clickable">
                               </label>
                               <!-- Keep the checkbox input for toggling functionality -->
-                              <input checked="checked" class="menu-toggler" type="checkbox" id="menu-toggler">
-                              <!-- Add your menu items here -->
-                              <!-- Example: -->
-                          
-                          
-                              <ul>
+                              <input checked="checked" style="width: 350px; height:350px"class="menu-toggler" type="checkbox" id="menu-toggler">
+
+                              <ul  class="hidden">
                                 <li class="menu-item">                                  
-                                  <a class="nmis-icon" href="">
+                                  <a class="nmis-icon" href="#">
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Demographics.png') }}" alt="">
                                     <div class="navigation-titles" style="position: relative;right: 200%;bottom: 40%;">
                                       <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: right;">Dashboard</h6>
-                                      <p class="nav-text1" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                      <p class="nav-text1" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
                                     </div>
                                   </a>
                                 </li>
@@ -207,7 +206,7 @@
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Test Passed.png') }}" alt="">
                                     <div class="navigation-titles" style="position: relative;left: 110%;bottom: 37%;">
                                       <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: left;">Resources</h6>
-                                      <p class="nav-text1" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                      <p class="nav-text1" style="margin-top: 0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
                                     </div>
                                   </a>
                                 </li>
@@ -216,7 +215,7 @@
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/People.png') }}" alt="">
                                     <div class="navigation-titles" style="position: relative;left: 110%;bottom: 37%;">
                                       <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: left;">Operation Timbang Plus</h6>
-                                      <p class="nav-text1" style="margin-top:0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                      <p class="nav-text1" style="margin-top:0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
                                     </div>
                                   </a>
                                 </li>
@@ -225,14 +224,12 @@
                                     <img class="icon-nmis" src="{{ asset('assets/img/nmicon/Profile.png') }}" alt="">
                                     <div class="navigation-titles" style="position: relative;right: 200%;bottom: 40%;">
                                       <h6 class="nav-title" style="width: 17rem; font-size: 30px; text-align: right;">LGU Performance</h6>
-                                      <p class="nav-text1" style="margin-top:0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing at in tellus integer feugiat scelerisque.</p>
+                                      <p class="nav-text1" style="margin-top:0;margin-bottom: 1rem;line-height: 1;font-weight:bold;font-size: 18px;width: 17rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod .</p>
                                     </div>
                                   </a>
                                 </li>
                               </ul>
                             </nav>
-
-
                           </div>
                       </div>
                   </div>
@@ -240,10 +237,10 @@
           </div>
       </div>
       <div class="col-md-4 ml-auto mr-auto">
+        
       </div>
     </div>
   </div>
-
 @endsection
 
 @section('additional-content')
@@ -263,26 +260,26 @@
 @endsection
 
 @section('footer')
-<div class="footer bg-footer">
+<div class="footer"  style="background-color:#02932A">
     <div class="container-fluid p-4">
         <div class="row">
             <div class="col-md-4">
-                <h4 class="text-light">REPUBLIC OF THE PHILIPPINES</h4>
+                <h4 class="text-light" style="font-weight: bold">REPUBLIC OF THE PHILIPPINES</h4>
                 <p class="footer-text text-light">All content is in the public domain unless otherwise stated.</p>
             </div>
             <div class="col-md-3">
-                <h4 class="text-light">ABOUT GOVPH</h4>
+                <h4 class="text-light" style="font-weight: bold">ABOUT GOVPH</h4>
                 <p class="footer-text text-light w-75">Learn more about the Philippine government, its structure, how government works and the people behind it.</p>
             </div>
             <div class="col-md-3">
-                <h4 class="text-light">GOV.PH</h4>
+                <h4 class="text-light" style="font-weight: bold">GOV.PH</h4>
                 <ul class="gov-ul-links list-unstyled text-light">
                     <li><a href="#">Open Data Portal</a></li>
                     <li><a href="#">Official Gazette</a></li>
                 </ul>
             </div>
             <div class="col-md-2">
-                <h4 class="text-light">GOV.PH</h4>
+                <h4 class="text-light" style="font-weight: bold">GOV.PH</h4>
                 <ul class="list-unstyled text-light">
                     <li><a href="#">Office of the President</a></li>
                     <li><a href="#">Office of the Vice President</a></li>
@@ -293,8 +290,12 @@
                     <li><a href="#">Sandiganbayan</a></li>
                 </ul>
             </div>
+  
         </div>
     </div>
+     
+@include('layouts.footer')
+
 </div>
 @endsection
 
@@ -303,5 +304,6 @@
     $(document).ready(function() {
       demo.checkFullPageBackgroundImage();
     });
+
   </script>
 @endpush

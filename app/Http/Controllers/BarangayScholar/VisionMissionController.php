@@ -28,6 +28,7 @@ class VisionMissionController extends Controller
      */
     public function create()
     {
+        $action = 'create';
         $location = new LocationController;
         $prov = $location->getLocationDataProvince(auth()->user()->Region);
         $mun = $location->getLocationDataMuni(auth()->user()->Province);
@@ -37,7 +38,7 @@ class VisionMissionController extends Controller
         $years = range(date('Y'), 1900);
 
 
-        return view('BarangayScholar.VisionMission.create', compact('prov', 'mun', 'city', 'brgy', 'years'));
+        return view('BarangayScholar.VisionMission.create', compact('prov', 'mun', 'city', 'brgy', 'years', 'action'));
     }
 
     /**
@@ -119,6 +120,7 @@ class VisionMissionController extends Controller
      */
     public function edit(Request $request)
     {
+        $action = 'edit';
         $vmbarangay = DB::table('mplgubrgyvisionmissions')->where('id', $request->id)->first();
         return view('BarangayScholar.VisionMission.edit', ['vmbarangay' => $vmbarangay ])->with('success', 'Created successfully!');
  

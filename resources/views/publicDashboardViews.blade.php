@@ -1,6 +1,5 @@
 @extends('layouts.app', [
-    'namePage' => 'Mellpi Pro',
-    'activePage' => 'mellpi_pro',
+    'namePage' => 'NMIS',  
     'backgroundImage' => asset('assets') . "/img/background1.png",
 ])
 

@@ -30,14 +30,19 @@
                     <div>
                         <form action="{{ route('lguLnfpUpdate') }}" method="POST">
                             @csrf
+                            @method('PUT')
+
+                            @if($lguLnfpForm5)
+                            <input type="hidden" value="{{ $lguLnfpForm5->status }}" name="statForm">
 
                             @foreach ($form5a as $form5a)
-                            <!-- <input type="hidden" value="2" name="statForm"> -->
                             <center><img src="https://nnc-nmis.moodlearners.com/assets/img/logo.png" alt="" class="imgLogo"></center><br>
                             <center>
                                 <h5 class="title">{{__("Mellpi Pro Form 5a: Provincial Nutrition Action Officer Monitoring")}}</h5>
                                 <label for="period">For the period: </label>
                                 <select name="forTheperiod" id="forTheperiod" class="inputHeaderPeriod">
+                                    <!-- <option selected>Select</option> -->
+                                    <option selected>{{ $lguLnfpForm5->forThePeriod }}</option>
                                     <?php
                                     $currentYear = date('Y');
                                     $startYear = 1900;
@@ -46,64 +51,63 @@
                                         echo "<option value=\"$year\">$year</option>";
                                     }
                                     ?>
-                                    <option selected><?php echo $currentYear ?></option>
                                 </select>
                             </center><br>
                             <div class="formHeader">
                                 <div class="form-group col-md-6">
                                     <div class="form-group col-md-12">
                                         <label for="nameOf">Name of PNAO: </label>
-                                        <input class="inputHeader" type="text" name="nameOf" id="nameOf">
+                                        <input class="inputHeader" type="text" name="nameOf" id="nameOf" value="{{ $lguLnfpForm5->nameofPnao }}">
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="address">address: </label>
-                                        <input class="inputHeader" type="text" name="address" id="address">
+                                        <input class="inputHeader" type="text" name="address" id="address" value="{{ $lguLnfpForm5->address }}">
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="provDep">Province of Deployment: </label>
-                                        <input class="inputHeader" type="text" name="provDev" id="provDev">
+                                        <input class="inputHeader" type="text" name="provDev" id="provDev" value="{{ $lguLnfpForm5->provDeploy }}">
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="numYr">Number of Years PNAO: </label>
-                                        <input class="inputHeader" type="number" name="numYr" id="numYr" placeholder="0">
+                                        <input class="inputHeader" type="number" name="numYr" id="numYr" placeholder="0" value="{{ $lguLnfpForm5->numYearPnao }}">
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="fulltime">Full time: </label>
-                                        <select class="form-control" name="fulltime" id="fulltime">
-                                            <option Selected>Select</option>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
+                                        <select class="form-control" name="fulltime" id="fulltime" value="{{ $lguLnfpForm5->fulltime }}">
+                                            <!-- <option value="">{{ $lguLnfpForm5->fulltime }}</option> -->
+                                            <option value="Yes" {{ old('fulltime', $lguLnfpForm5->fulltime) == 'Yes' ? 'selected' : '' }}>Yes</option>
+                                            <option value="No" {{ old('fulltime', $lguLnfpForm5->fulltime) == 'No' ? 'selected' : '' }}>No</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="profAct">With continuing professional Activities?: </label>
-                                        <select class="form-control" name="profAct" id="profAct">
-                                            <option Selected>Select</option>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
+                                        <select class="form-control" name="profAct" id="profAct" value="{{ $lguLnfpForm5->profAct }}">
+                                            <!-- <option Selected>Select</option> -->
+                                            <option value="Yes" {{ old('profAct', $lguLnfpForm5->profAct) == 'Yes' ? 'selected' : '' }}>Yes</option>
+                                            <option value="No" {{ old('profAct', $lguLnfpForm5->profAct) == 'No' ? 'selected' : '' }}>No</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <div class="form-group col-md-12">
                                         <label for="bday">Birthday: </label>
-                                        <input class="form-control" type="date" name="bday" id="bday">
+                                        <input class="form-control" type="date" name="bday" id="bday" value="{{ $lguLnfpForm5->bdate }}">
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="sex">Sex: </label>
-                                        <select class="form-control" name="sex" id="sex">
-                                            <option selected>Select</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
+                                        <select class="form-control" name="sex" id="sex" value="{{ $lguLnfpForm5->sex }}">
+                                            <!-- <option selected>Select</option> -->
+                                            <option value="Male" {{ old('sex', $lguLnfpForm5->sex) == 'Male' ? 'selected' : '' }}>Male</option>
+                                            <option value="Female" {{ old('sex', $lguLnfpForm5->sex) == 'Female' ? 'selected' : '' }}>Female</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="dateDesig">Date of Designation: </label>
-                                        <input class="form-control" type="date" name="dateDesig" id="dateDesig">
+                                        <input class="form-control" type="date" name="dateDesig" id="dateDesig" value="{{ $lguLnfpForm5->dateDesignation }}">
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="seconded">Seconded from the Office of: </label>
-                                        <input class="inputHeader" type="text" name="seconded" id="seconded">
+                                        <input class="inputHeader" type="text" name="seconded" id="seconded" value="{{ $lguLnfpForm5->secondedOffice }}">
                                     </div>
                                 </div>
                             </div>
@@ -112,15 +116,15 @@
                                 <label>Capacity development activities attended in the previous year: </label>
                                 <div class="form-group col-md-12">
                                     <label for="devAct">1</label>
-                                    <input class="inputHeader" type="text" id="devAct" name="num1">
+                                    <input class="inputHeader" type="text" id="devAct" name="num1" value="{{ $lguLnfpForm5->devActnum1 }}">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="devAct">2</label>
-                                    <input class="inputHeader" type="text" id="devAct" name="num2">
+                                    <input class="inputHeader" type="text" id="devAct" name="num2" value="{{ $lguLnfpForm5->devActnum2 }}">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="devAct">3</label>
-                                    <input class="inputHeader" type="text" id="devAct" name="num3">
+                                    <input class="inputHeader" type="text" id="devAct" name="num3" value="{{ $lguLnfpForm5->devActnum3 }}">
                                 </div>
                             </div>
                             <div>
@@ -217,16 +221,17 @@
                                     </div>
                                     <div class="col-1" name="ratingSelect">
                                         <select id="loadProvince1" class="form-control" name="ratingA">
-                                            <option value="">Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            <!-- <option>Select</option> -->
+                                            <option {{ old('ratingA', $lguLnfpForm5->ratingA) == '' ? 'selected' : '' }}></option>
+                                            <option value="1" {{ old('ratingA', $lguLnfpForm5->ratingA) == 1 ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('ratingA', $lguLnfpForm5->ratingA) == 2 ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('ratingA', $lguLnfpForm5->ratingA) == 3 ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('ratingA', $lguLnfpForm5->ratingA) == 4 ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('ratingA', $lguLnfpForm5->ratingA) == 5 ? 'selected' : '' }}>5</option>
                                         </select>
                                     </div>
                                     <div class="col-1" name="remarksTextarea">
-                                        <textarea type="text" name="remarksA" placeholder="Your remarks" class="inputRemarks"></textarea>
+                                        <textarea type="text" name="remarksA" placeholder="Your remarks" class="inputRemarks">{{ $lguLnfpForm5->remarksA }}</textarea>
                                     </div>
                                 </div>
 
@@ -272,16 +277,17 @@
                                     </div>
                                     <div class="col-1" name="ratingSelect">
                                         <select id="loadProvince1" class="form-control" name="ratingB">
-                                            <option value="">Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            <!-- <option>Select</option> -->
+                                            <option {{ old('ratingB', $lguLnfpForm5->ratingB) == '' ? 'selected' : '' }}></option>
+                                            <option value="1" {{ old('ratingB', $lguLnfpForm5->ratingB) == 1 ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('ratingB', $lguLnfpForm5->ratingB) == 2 ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('ratingB', $lguLnfpForm5->ratingB) == 3 ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('ratingB', $lguLnfpForm5->ratingB) == 4 ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('ratingB', $lguLnfpForm5->ratingB) == 5 ? 'selected' : '' }}>5</option>
                                         </select>
                                     </div>
                                     <div class="col-1" name="remarksTextarea">
-                                        <textarea type="text" name="remarksB" placeholder="Your remarks" class="inputRemarks"></textarea>
+                                        <textarea type="text" name="remarksB" placeholder="Your remarks" class="inputRemarks">{{ $lguLnfpForm5->remarksB }}</textarea>
                                     </div>
                                 </div>
                                 <br>
@@ -325,16 +331,17 @@
                                     </div>
                                     <div class="col-1" name="ratingSelect">
                                         <select id="loadProvince1" class="form-control" name="ratingBB">
-                                            <option value="">Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            <!-- <option>Select</option> -->
+                                            <option {{ old('ratingBB', $lguLnfpForm5->ratingBB) == '' ? 'selected' : '' }}></option>
+                                            <option value="1" {{ old('ratingBB', $lguLnfpForm5->ratingBB) == 1 ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('ratingBB', $lguLnfpForm5->ratingBB) == 2 ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('ratingBB', $lguLnfpForm5->ratingBB) == 3 ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('ratingBB', $lguLnfpForm5->ratingBB) == 4 ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('ratingBB', $lguLnfpForm5->ratingBB) == 5 ? 'selected' : '' }}>5</option>
                                         </select>
                                     </div>
                                     <div class="col-1" name="remarksTextarea">
-                                        <textarea type="text" name="remarksBB" placeholder="Your remarks" class="inputRemarks"></textarea>
+                                        <textarea type="text" name="remarksBB" placeholder="Your remarks" class="inputRemarks">{{ $lguLnfpForm5->remarksBB }}</textarea>
                                     </div>
                                 </div>
 
@@ -380,16 +387,17 @@
                                     </div>
                                     <div class="col-1" name="ratingSelect">
                                         <select id="loadProvince1" class="form-control" name="ratingC">
-                                            <option value="">Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            <!-- <option>Select</option> -->
+                                            <option {{ old('ratingC', $lguLnfpForm5->ratingC) == '' ? 'selected' : '' }}></option>
+                                            <option value="1" {{ old('ratingC', $lguLnfpForm5->ratingC) == 1 ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('ratingC', $lguLnfpForm5->ratingC) == 2 ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('ratingC', $lguLnfpForm5->ratingC) == 3 ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('ratingC', $lguLnfpForm5->ratingC) == 4 ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('ratingC', $lguLnfpForm5->ratingC) == 5 ? 'selected' : '' }}>5</option>
                                         </select>
                                     </div>
                                     <div class="col-1" name="remarksTextarea">
-                                        <textarea type="text" name="remarksC" placeholder="Your remarks" class="inputRemarks"></textarea>
+                                        <textarea type="text" name="remarksC" placeholder="Your remarks" class="inputRemarks">{{ $lguLnfpForm5->remarksC }}</textarea>
                                     </div>
                                 </div>
 
@@ -435,16 +443,17 @@
                                     </div>
                                     <div class="col-1" name="ratingSelect">
                                         <select id="loadProvince1" class="form-control" name="ratingD">
-                                            <option value="">Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            <!-- <option>Select</option> -->
+                                            <option {{ old('ratingD', $lguLnfpForm5->ratingD) == '' ? 'selected' : '' }}></option>
+                                            <option value="1" {{ old('ratingD', $lguLnfpForm5->ratingD) == 1 ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('ratingD', $lguLnfpForm5->ratingD) == 2 ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('ratingD', $lguLnfpForm5->ratingD) == 3 ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('ratingD', $lguLnfpForm5->ratingD) == 4 ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('ratingD', $lguLnfpForm5->ratingD) == 5 ? 'selected' : '' }}>5</option>
                                         </select>
                                     </div>
                                     <div class="col-1" name="remarksTextarea">
-                                        <textarea type="text" name="remarksD" placeholder="Your remarks" class="inputRemarks"></textarea>
+                                        <textarea type="text" name="remarksD" placeholder="Your remarks" class="inputRemarks">{{ $lguLnfpForm5->remarksD }}</textarea>
                                     </div>
                                 </div>
 
@@ -490,16 +499,17 @@
                                     </div>
                                     <div class="col-1" name="ratingSelect">
                                         <select id="loadProvince1" class="form-control" name="ratingE">
-                                            <option value="">Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            <!-- <option>Select</option> -->
+                                            <option {{ old('ratingE', $lguLnfpForm5->ratingE) == '' ? 'selected' : '' }}></option>
+                                            <option value="1" {{ old('ratingE', $lguLnfpForm5->ratingE) == 1 ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('ratingE', $lguLnfpForm5->ratingE) == 2 ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('ratingE', $lguLnfpForm5->ratingE) == 3 ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('ratingE', $lguLnfpForm5->ratingE) == 4 ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('ratingE', $lguLnfpForm5->ratingE) == 5 ? 'selected' : '' }}>5</option>
                                         </select>
                                     </div>
                                     <div class="col-1" name="remarksTextarea">
-                                        <textarea type="text" name="remarksE" placeholder="Your remarks" class="inputRemarks"></textarea>
+                                        <textarea type="text" name="remarksE" placeholder="Your remarks" class="inputRemarks">{{ $lguLnfpForm5->remarksE }}</textarea>
                                     </div>
                                 </div>
 
@@ -545,16 +555,17 @@
                                     </div>
                                     <div class="col-1" name="ratingSelect">
                                         <select id="loadProvince1" class="form-control" name="ratingF">
-                                            <option value="">Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            <!-- <option>Select</option> -->
+                                            <option {{ old('ratingF', $lguLnfpForm5->ratingF) == '' ? 'selected' : '' }}></option>
+                                            <option value="1" {{ old('ratingF', $lguLnfpForm5->ratingF) == 1 ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('ratingF', $lguLnfpForm5->ratingF) == 2 ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('ratingF', $lguLnfpForm5->ratingF) == 3 ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('ratingF', $lguLnfpForm5->ratingF) == 4 ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('ratingF', $lguLnfpForm5->ratingF) == 5 ? 'selected' : '' }}>5</option>
                                         </select>
                                     </div>
                                     <div class="col-1" name="remarksTextarea">
-                                        <textarea type="text" name="remarksF" placeholder="Your remarks" class="inputRemarks"></textarea>
+                                        <textarea type="text" name="remarksF" placeholder="Your remarks" class="inputRemarks">{{ $lguLnfpForm5->remarksF }}</textarea>
                                     </div>
                                 </div>
 
@@ -600,16 +611,17 @@
                                     </div>
                                     <div class="col-1" name="ratingSelect">
                                         <select id="loadProvince1" class="form-control" name="ratingG">
-                                            <option value="">Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            <!-- <option>Select</option> -->
+                                            <option {{ old('ratingG', $lguLnfpForm5->ratingG) == '' ? 'selected' : '' }}></option>
+                                            <option value="1" {{ old('ratingG', $lguLnfpForm5->ratingG) == 1 ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('ratingG', $lguLnfpForm5->ratingG) == 2 ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('ratingG', $lguLnfpForm5->ratingG) == 3 ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('ratingG', $lguLnfpForm5->ratingG) == 4 ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('ratingG', $lguLnfpForm5->ratingG) == 5 ? 'selected' : '' }}>5</option>
                                         </select>
                                     </div>
                                     <div class="col-1" name="remarksTextarea">
-                                        <textarea type="text" name="remarksG" placeholder="Your remarks" class="inputRemarks"></textarea>
+                                        <textarea type="text" name="remarksG" placeholder="Your remarks" class="inputRemarks">{{ $lguLnfpForm5->remarksG }}</textarea>
                                     </div>
                                 </div>
                                 <br>
@@ -654,16 +666,17 @@
                                     </div>
                                     <div class="col-1" name="ratingSelect">
                                         <select id="loadProvince1" class="form-control" name="ratingGG">
-                                            <option value="">Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            <!-- <option>Select</option> -->
+                                            <option {{ old('ratingGG', $lguLnfpForm5->ratingGG) == '' ? 'selected' : '' }}></option>
+                                            <option value="1" {{ old('ratingGG', $lguLnfpForm5->ratingGG) == 1 ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('ratingGG', $lguLnfpForm5->ratingGG) == 2 ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('ratingGG', $lguLnfpForm5->ratingGG) == 3 ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('ratingGG', $lguLnfpForm5->ratingGG) == 4 ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('ratingGG', $lguLnfpForm5->ratingGG) == 5 ? 'selected' : '' }}>5</option>
                                         </select>
                                     </div>
                                     <div class="col-1" name="remarksTextarea">
-                                        <textarea type="text" name="remarksGG" placeholder="Your remarks" class="inputRemarks"></textarea>
+                                        <textarea type="text" name="remarksGG" placeholder="Your remarks" class="inputRemarks">{{ $lguLnfpForm5->remarksGG }}</textarea>
                                     </div>
                                 </div>
 
@@ -709,16 +722,17 @@
                                     </div>
                                     <div class="col-1" name="ratingSelect">
                                         <select id="loadProvince1" class="form-control" name="ratingH">
-                                            <option value="">Select</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                            <!-- <option>Select</option> -->
+                                            <option {{ old('ratingH', $lguLnfpForm5->ratingH) == '' ? 'selected' : '' }}></option>
+                                            <option value="1" {{ old('ratingH', $lguLnfpForm5->ratingH) == 1 ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('ratingH', $lguLnfpForm5->ratingH) == 2 ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('ratingH', $lguLnfpForm5->ratingH) == 3 ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('ratingH', $lguLnfpForm5->ratingH) == 4 ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('ratingH', $lguLnfpForm5->ratingH) == 5 ? 'selected' : '' }}>5</option>
                                         </select>
                                     </div>
                                     <div class="col-1" name="remarksTextarea">
-                                        <textarea type="text" name="remarksH" placeholder="Your remarks" class="inputRemarks"></textarea>
+                                        <textarea type="text" name="remarksH" placeholder="Your remarks" class="inputRemarks">{{ $lguLnfpForm5->remarksH }}</textarea>
                                     </div>
                                 </div>
 
@@ -726,19 +740,24 @@
 
                             <div class="row" style="margin-top:30px;margin-right:20px;justify-content: flex-end">
                                 <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                                <!-- <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenterDraft">
+                                    Draft
+                                </button> -->
+                                <button type="submit" name="action" value="submit" class="btn btn-primary" hidden>Submit</button>
                                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalDraft">
                                     Draft
                                 </button>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalSubmit">
-                                    Submit
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalUpdate">
+                                Submit
                                 </button>
-                                <!-- <button type="submit" name="action" value="submit" class="btn btn-primary">Submit</button> -->
+                                <!-- <button type="submit" class="btn btn-info" data-toggle="modal" data-target="#exampleModalUpdate">Update</button> -->
                             </div>
                             @endforeach
+                            @endif
 
 
                             <!-- Modal Submit -->
-                            <div class="modal fade" id="exampleModalSubmit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal fade" id="exampleModalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -748,11 +767,11 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <h5>Are you sure want to submit?</h5>
+                                            <h5>Are you sure you want to submit?</h5>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                            <button type="submit" id="lgu-draft" class="btn btn-primary" name="action" value="submit">Yes</button>
+                                            <button type="submit" id="lgu-draft" class="btn btn-primary" name="action" value="updateResponse">Yes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -773,7 +792,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                            <button type="submit" id="lgu-draft" class="btn btn-primary" name="action" value="draft">Yes</button>
+                                            <button type="submit" id="lgu-draft" class="btn btn-primary" name="action" value="SaveDraft">Yes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -801,6 +820,7 @@
     });
 </script>
 <script src="{{ asset('assets/js/autoGenerateInput.js') }}"></script>
+
 <!-- Modal Draft -->
 <div class="modal fade" id="exampleModalCenterDraft" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -821,4 +841,5 @@
         </div>
     </div>
 </div>
+
 @endsection

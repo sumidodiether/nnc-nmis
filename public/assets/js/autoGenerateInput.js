@@ -474,36 +474,96 @@ function IfYesMoreThanOneDCNPC() {
 
 
 //LNFP Form
+// function toggleReadonly() {
+//     var textareas = document.querySelectorAll('.performance, .elements');
+//     var button2 = document.getElementById('saveForm');
+//     var labels = document.querySelectorAll('.labelsForm');
+//     var button = document.getElementById('editForm');
+//     var anyReadonly = Array.from(textareas).some(textarea => textarea.hasAttribute('readonly'));
+
+//     textareas.forEach(function(textarea) {
+//         if (anyReadonly) {
+//             textarea.removeAttribute('readonly');
+//         } else {
+//             textarea.setAttribute('readonly', true);
+//         }
+//     });
+
+//     if (anyReadonly) {
+//         button.setAttribute('hidden', true);
+//         button2.removeAttribute('hidden');
+//         labels.forEach(function(label) {
+//             label.removeAttribute('hidden');
+//         });
+//         button.textContent = "Save All"; // Optional: change button text
+//     } else {
+//         button.removeAttribute('hidden');
+//         button2.setAttribute('hidden', true);
+//         labels.forEach(function(label) {
+//             label.setAttribute('hidden', true);
+//         });
+//         button.textContent = "Edit Contents"; // Optional: change button text back
+//     }
+// }
+
 function toggleReadonly() {
     var textareas = document.querySelectorAll('.performance, .elements');
     var button2 = document.getElementById('saveForm');
-    var cancelButton = document.getElementById('cancelForm');
-    // var button2 = document.getElementsByName('action')
+    var labels = document.querySelectorAll('.labelsForm');
+    var ratings = document.querySelectorAll('[name="ratingSelect"]');
+    var remarks = document.querySelectorAll('[name="remarksTextarea"]');
     var button = document.getElementById('editForm');
+    var labelRating = document.getElementById('labelRating');
+    var labelRemark = document.getElementById('labelRemark');
     var anyReadonly = Array.from(textareas).some(textarea => textarea.hasAttribute('readonly'));
 
     textareas.forEach(function(textarea) {
         if (anyReadonly) {
             textarea.removeAttribute('readonly');
-            button.setAttribute('hidden', true);
-            button2.removeAttribute('hidden');
-
-            // cancelButton.removeAttribute('hidden');
-;        } else {
+            textarea.removeAttribute('hidden');
+            
+        } else {
             textarea.setAttribute('readonly', true);
-            button.removeAttribute('hidden');
-            button2.setAttribute('hidden', true);
-
-            // cancelButton.setAttribute('hidden', true);
+            textarea.setAttribute('hidden', true);
+            
         }
     });
 
     if (anyReadonly) {
+        button.setAttribute('hidden', true);
+        button2.removeAttribute('hidden');
+        labels.forEach(function(label) {
+            label.setAttribute('hidden', true);
+        });
+        ratings.forEach(function(rating) {
+            rating.setAttribute('hidden', true);
+        });
+        remarks.forEach(function(remark) {
+            remark.setAttribute('hidden', true);
+        });
+        labelRating.setAttribute('hidden', true);
+        labelRemark.setAttribute('hidden', true);
         button.textContent = "Save All"; // Optional: change button text
     } else {
+        button.removeAttribute('hidden');
+        button2.setAttribute('hidden', true);
+        labels.forEach(function(label) {
+            label.removeAttribute('hidden');
+            
+        });
+        ratings.forEach(function(rating) {
+            rating.removeAttribute('hidden');
+        });
+        remarks.forEach(function(remark) {
+            remark.removeAttribute('hidden');
+        });
+        labelRating.removeAttribute('hidden');
+        labelRemark.removeAttribute('hidden');
         button.textContent = "Edit Contents"; // Optional: change button text back
     }
 }
+
+
 
 // function cancelForm() {
 //     var cancel = document.getElementById('cancelForm');

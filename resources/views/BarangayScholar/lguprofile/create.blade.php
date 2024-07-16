@@ -29,8 +29,8 @@
 
 @extends('layouts.BSapp', [
 'class' => 'sidebar-mini ',
-'namePage' => ' Mellpi Pro for LGU',
-'activePage' => 'profile',
+'namePage' => ' Mellpi Pro for LGU Profile',
+'activePage' => 'LGUPROFILE',
 'activeNav' => '',
 ])
 
@@ -40,23 +40,23 @@
     <div class="card" style="border-radius:10px;padding-left:2rem!important;padding-right:1rem!important">
         <div style="display:flex;align-items:center">
             <a href="{{route('BSLGUprofile.index')}}" style="margin-right:15px"><i class="now-ui-icons arrows-1_minimal-left" style="font-size:18px!important;font-weight:bolder!important"></i></a>
-            <h4 style="margin-top:18px">FORM B: BARANGAY PROFILE SHEET</h4>
+            <h4 style="margin-top:18px;font-weight:bold">MELLPI PRO FORM B: BARANGAY PROFILE SHEET</h4>
         </div>
 
         <!-- alerts -->
         @include('layouts.page_template.crud_alert_message')
 
         <div style="padding:25px">
-            <form action="{{ route('BSLGUprofile.store') }}" method="POST">
+            <form action="{{ route('BSLGUprofilest.storeSubmit') }}" id="lgu-profile-form" method="POST">
                 @csrf
 
-                <input type="hidden" name="status" value="1">
+                <input type="hidden" name="status" id="status">
                 <input type="hidden" name="dateCreated" value="05/19/2024">
                 <input type="hidden" name="dateUpdates" value="05/19/2024">
 
                 @include('layouts.page_template.location_header')
 
-                <!-- Update create  -->
+                 <!-- Update create  -->
                  <!-- -added error message  per variable -->
                  <!-- -added value old for history data  -->
                  <!-- -added placeholder sample -->
@@ -76,16 +76,17 @@
                         </div>
                        
 
-
                         <div class="form-group">
-                            <label for="householdWater">No. of household with access to safe
-                                water:<span style="color:red">*</span></label>
-                            <input type="number" min="1" max="1000" class="form-control" id="householdWater" name="householdWater" 
-                            placeholder="ex. 100"  
-                            value="{{ old('householdWater') }}">
-                            @error('totalPopulation')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            <div class="form-group">
+                                <label for="householdWater">No. of household with access to safe
+                                    water:<span style="color:red">*</span></label>
+                                <input type="number" min="1" max="1000" class="form-control" id="householdWater" name="householdWater" 
+                                placeholder="ex. 100"  
+                                value="{{ old('householdWater') }}">
+                                @error('totalPopulation')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="form-group">
@@ -169,7 +170,7 @@
                         </div>
                         <div class="form-group">
                             <label for="breastfeeding">Percent of Lactating mothers exclusively
-                                breastfeeding until the 5th month(%):<span style="color:red">*</span></label>
+                                breastfeeding u ntil the 5th month(%):<span style="color:red">*</span></label>
                             <input type="number" class="form-control" id="breastfeeding" name="breastfeeding"
                             placeholder="ex. 100 " value="{{ old('breastfeeding') }}">
                             @error('breastfeeding')
@@ -180,7 +181,7 @@
                         <div class="form-group">
                             <label for="terrain">Terrain:<span style="color:red">*</span></label>
                             <textarea class="form-control" id="terrain" height="800px" style="max-height:380px;height:300px;border: 1px solid lightgray;border-radius:5px" name="terrain"
-                            value="{{ old('terrain') }}"></textarea>
+                            >{{ old('terrain') }}</textarea>
                             @error('terrain')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -190,7 +191,7 @@
                         <div class="form-group">
                             <label for="hazards">Hazard:<span style="color:red">*</span></label>
                             <textarea class="form-control" id="hazards" height="800px" style="max-height:380px;height:300px;border: 1px solid lightgray;border-radius:5px" name="hazards"
-                            value="{{ old('hazards') }}"></textarea>
+                            >{{ old('hazards') }}</textarea>
                             @error('hazards')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -198,7 +199,7 @@
                         <div class="form-group" style="max-height:800px">
                             <label for="affectedLGU">LGU/Households affected:<span style="color:red">*</span></label>
                             <textarea class="form-control" id="affectedLGU" style="max-height:380px;height:300px;border: 1px solid lightgray;border-radius:5px" name="affectedLGU"
-                            value="{{ old('affectedLGU') }}"></textarea>
+                            >{{ old('affectedLGU') }}</textarea>
                             @error('affectedLGU')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -264,35 +265,36 @@
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="populationB" value="{{ old('populationB') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('populationB')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1"
                                      name="populationC" value="{{ old('populationC') }}" placeholder="ex. 100">
-                                     @error('populationA')
+                            @error('populationC')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="populationD" value="{{ old('populationD') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                            
+                            @error('populationD')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="populationE" value="{{ old('populationE') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('populationE')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                      name="populationF" value="{{ old('populationF') }}" placeholder="ex. 100" >
-                                     @error('populationA')
+                                     @error('populationF')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -304,42 +306,42 @@
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="actualA" value="{{ old('actualA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('actualA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="actualB" value="{{ old('actualB') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('actualB')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="actualC"  value="{{ old('actualC') }}" placeholder="ex. 100" >
-                                    @error('populationA')
+                                    @error('actualC')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1"
                                      name="actualD" value="{{ old('actualD') }}" placeholder="ex. 100">
-                                     @error('populationA')
+                                     @error('actualD')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="actualE" value="{{ old('actualE') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('actualE')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="actualF" value="{{ old('actualF') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('actualF')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -369,21 +371,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psnormalAAA" value="{{ old('psnormalAAA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psnormalAAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1"
                                      name="psnormalBAA" value="{{ old('psnormalBAA') }}" placeholder="ex. 100">
-                                     @error('populationA')
+                                     @error('psnormalBAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psnormalCAA" value="{{ old('psnormalCAA') }}" placeholder="ex. 100" >
-                                    @error('populationA')
+                                    @error('psnormalCAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror 
                                 </div>
@@ -395,21 +397,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psunderweightAAA" value="{{ old('psunderweightAAA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psunderweightAAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psunderweightBAA" value="{{ old('psunderweightBAA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psunderweightBAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psunderweightCAA" value="{{ old('psunderweightCAA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psunderweightCAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -421,21 +423,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1"  
                                     name="pssevereUnderweightAAA" value="{{ old('pssevereUnderweightAAA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('pssevereUnderweightAAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="pssevereUnderweightBAA" value="{{ old('pssevereUnderweightBAA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('pssevereUnderweightBAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="pssevereUnderweightCAA" value="{{ old('pssevereUnderweightCAA') }}" placeholder="ex. 100">  
-                                    @error('populationA')
+                                    @error('pssevereUnderweightCAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -447,21 +449,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psoverweightAAA" value="{{ old('psoverweightAAA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psoverweightAAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psoverweightBAA" value="{{ old('psoverweightBAA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psoverweightBAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psoverweightCAA" value="{{ old('psoverweightCAA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psoverweightCAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -477,21 +479,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psnormalABA" value="{{ old('psnormalABA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psnormalABA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psnormalBBA"  value="{{ old('psnormalBBA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('populapsnormalBBAtionA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psnormalCCA" value="{{ old('psnormalCCA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psnormalCCA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -503,21 +505,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="pswastedABA" value="{{ old('pswastedABA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('pswastedABA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="pswastedBBA" value="{{ old('pswastedBBA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('pswastedBBA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="pswastedCCA" value="{{ old('pswastedCCA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('pswastedCCA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -530,21 +532,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psseverelyWastedABA" value="{{ old('psseverelyWastedABA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psseverelyWastedABA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psseverelyWastedBBA" value="{{ old('psseverelyWastedBBA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psseverelyWastedBBA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psseverelyWastedCCA" value="{{ old('psseverelyWastedCCA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psseverelyWastedCCA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -557,21 +559,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psoverweightABA" value="{{ old('psoverweightABA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psoverweightABA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psoverweightBBA" value="{{ old('psoverweightBBA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psoverweightBBA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psoverweightCCA" value="{{ old('psoverweightCCA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psoverweightCCA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -583,21 +585,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psobeseABA" value="{{ old('psobeseABA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psobeseABA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psobeseBBA" value="{{ old('psobeseBBA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psobeseBBA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psobeseCCA" value="{{ old('psobeseCCA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psobeseCCA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -613,21 +615,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psnormalAAB" value="{{ old('psnormalAAB') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psnormalAAB')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psnormalBBB" value="{{ old('psnormalBBB') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psnormalBBB')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psnormalCCC" value="{{ old('psnormalCCC') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psnormalCCC')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -640,21 +642,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psstuntedAAB" value="{{ old('psstuntedAAB') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psstuntedAAB')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psstuntedBBB" value="{{ old('psstuntedBBB') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psstuntedBBB')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="psstuntedCCC" value="{{ old('psstuntedCCC') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('psstuntedCCC')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -666,21 +668,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="pssevereStuntedAAB" value="{{ old('pssevereStuntedAAB') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('pssevereStuntedAAB')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="pssevereStuntedBBB" value="{{ old('pssevereStuntedBBB') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('pssevereStuntedBBB')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="pssevereStuntedCCC"  value="{{ old('pssevereStuntedCCC') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('pssevereStuntedCCC')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -692,21 +694,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="pstallAAB" value="{{ old('pstallAAB') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('pstallAAB')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="pstallBBB" value="{{ old('pstallBBB') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('pstallBBB')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="pstallCCC" value="{{ old('pstallCCC') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('pstallCCC')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -725,21 +727,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scnormalABA" value="{{ old('scnormalABA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('scnormalABA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scnormalBBA" value="{{ old('scnormalBBA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('scnormalBBA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1"
                                      name="scnormalCCA" value="{{ old('scnormalCCA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('scnormalCCA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -751,21 +753,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1"
                                      name="scwastedABA" value="{{ old('scwastedABA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('scwastedABA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scwastedBBA" value="{{ old('scwastedBBA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('scwastedBBA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scwastedCCA" value="{{ old('scwastedCCA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('scwastedCCA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -777,21 +779,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scseverelyWastedABA"  value="{{ old('scseverelyWastedABA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('scseverelyWastedABA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scseverelyWastedBBA" value="{{ old('scseverelyWastedBBA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('scseverelyWastedBBA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scseverelyWastedCCA" value="{{ old('scseverelyWastedCCA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('scseverelyWastedCCA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -804,21 +806,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scoverweightABA" value="{{ old('scoverweightABA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('scoverweightABA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scoverweightBBA" value="{{ old('scoverweightBBA') }}" placeholder="ex. 100">
-                                    @error('populationA')
+                                    @error('scoverweightBBA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scoverweightCCA" value="{{ old('scoverweightCCA') }}" placeholder="ex. 100" >
-                                    @error('populationA')
+                                    @error('scoverweightCCA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -830,21 +832,21 @@
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scobeseABA" value="{{ old('scobeseABA') }}" placeholder="ex. 100" >
-                                    @error('populationA')
+                                    @error('scobeseABA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scobeseBBA" value="{{ old('scobeseBBA') }}" placeholder="ex. 100" >
-                                    @error('populationA')
+                                    @error('scobeseBBA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="number" class="form-control" id="exampleFormControlInput1" 
                                     name="scobeseCCA" value="{{ old('scobeseCCA') }}" placeholder="ex. 100" >
-                                    @error('populationA')
+                                    @error('scobeseCCA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -862,21 +864,21 @@
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1" 
                                         name="pwnormalAAA" value="{{ old('pwnormalAAA') }}" placeholder="ex. 100">
-                                        @error('populationA')
+                                        @error('pwnormalAAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1" 
                                         name="pwnormalBAA" value="{{ old('pwnormalBAA') }}" placeholder="ex. 100">
-                                        @error('populationA')
+                                        @error('pwnormalBAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1" 
                                         name="pwnormalCAA" value="{{ old('pwnormalCAA') }}" placeholder="ex. 100">
-                                        @error('populationA')
+                                        @error('pwnormalCAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
@@ -888,21 +890,21 @@
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1" 
                                         name="pwnutritionllyatriskAAA" value="{{ old('pwnutritionllyatriskAAA') }}" placeholder="ex. 100">
-                                        @error('populationA')
+                                        @error('pwnutritionllyatriskAAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1" 
                                         name="pwnutritionllyatriskBAA" value="{{ old('pwnutritionllyatriskBAA') }}" placeholder="ex. 100">
-                                        @error('populationA')
+                                        @error('pwnutritionllyatriskBAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1" 
                                         name="pwnutritionllyatriskCAA" value="{{ old('pwnutritionllyatriskCAA') }}" placeholder="ex. 100">  
-                            @error('populationA')
+                            @error('pwnutritionllyatriskCAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
@@ -914,21 +916,21 @@
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1" 
                                         name="pwoverweightAAA"  value="{{ old('pwoverweightAAA') }}" placeholder="ex. 100">  
-                            @error('populationA')
+                            @error('pwoverweightAAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1" 
                                         name="pwoverweightBAA" value="{{ old('pwoverweightBAA') }}" placeholder="ex. 100"> 
-                            @error('populationA')
+                            @error('pwoverweightBAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1" 
                                         name="pwoverweightCAA" value="{{ old('pwoverweightCAA') }}" placeholder="ex. 100"> 
-                            @error('populationA')
+                            @error('pwoverweightCAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
@@ -941,21 +943,21 @@
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1" 
                                         name="pwobeseAAA" value="{{ old('pwobeseAAA') }}" placeholder="ex. 100">  
-                            @error('populationA')
+                            @error('pwobeseAAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1" 
                                         name="pwobeseBAA" value="{{ old('pwobeseBAA') }}" placeholder="ex. 100"> 
-                            @error('populationA')
+                            @error('pwobeseBAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
                                     <div class="form-group col" style="margin-left:10px">
                                         <input type="number" class="form-control" id="exampleFormControlInput1"
                                          name="pwobeseCAA" value="{{ old('pwobeseCAA') }}" placeholder="ex. 100">  
-                            @error('populationA')
+                            @error('pwobeseCAA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                     </div>
@@ -971,7 +973,7 @@
                                     <label for="exampleFormControlInput1"><b>Land use Classification</b></label>
                                 </div>
                                 <div class="form-group col">
-                                    <label for="exampleFormControlInput1">land Area</label>
+                                    <label for="exampleFormControlInput1">land Area (sqm?)</label>
                                 </div>
                                 <div class="form-group col">
                                     <label for="exampleFormControlInput1">Remarks</label>
@@ -983,15 +985,17 @@
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="landAreaResidential" value="{{ old('pwobeseCAA') }}">  
-                            @error('populationA')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                                    name="landAreaResidential" value="{{ old('pwobeseCAA') }}"
+                                    placeholder="ex.1000">  
+                                    @error('pwobeseCAA')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    placeholder="Your remarks"
                                     name="remarksResidential" value="{{ old('remarksResidential') }}">  
-                            @error('populationA')
+                            @error('remarksResidential')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -1002,15 +1006,17 @@
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    placeholder="ex.1000"
                                     name="landAreaCommercial" value="{{ old('landAreaCommercial') }}"> 
-                            @error('populationA')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                                    @error('landAreaCommercial')
+                                    <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="remarksCommercial" value="{{ old('landAreaCommercial') }}" >  
-                            @error('populationA')
+                                    name="remarksCommercial" value="{{ old('landAreaCommercial') }}" 
+                                    placeholder="Your remarks">  
+                            @error('landAreaCommercial')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -1021,15 +1027,16 @@
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    placeholder="ex.1000"  
                                     name="landAreaIndustrial" value="{{ old('landAreaIndustrial') }}">  
-                            @error('populationA')
+                            @error('landAreaIndustrial')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="textarea" class="form-control" id="exampleFormControlInput1" 
                                     name="remarksIndustrial" value="{{ old('remarksIndustrial') }}">  
-                            @error('populationA')
+                            @error('remarksIndustrial')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -1040,15 +1047,16 @@
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="textarea" class="form-control" id="exampleFormControlInput1" 
+                                    placeholder="ex.1000"
                                     name="landAreaAgricultural" value="{{ old('landAreaAgricultural') }}" >  
-                            @error('populationA')
+                            @error('landAreaAgricultural')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="textarea" class="form-control" id="exampleFormControlInput1"
-                                     name="remarksAgricultural" value="{{ old('remarksAgricultural') }}">  
-                            @error('populationA')
+                                     name="remarksAgricultural" value="{{ old('remarksAgricultural') }}" placeholder="Your remarks">  
+                            @error('remarksAgricultural')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -1060,15 +1068,15 @@
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="textarea" class="form-control" id="exampleFormControlInput1" 
-                                    name="landAreaFLMLNP" value="{{ old('landAreaFLMLNP') }}">
-                             @error('populationA')
+                                    name="landAreaFLMLNP" value="{{ old('landAreaFLMLNP') }}" placeholder="ex.1000">
+                             @error('landAreaFLMLNP')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
                                 <div class="form-group col" style="margin-left:10px">
                                     <input type="textArea" class="form-control" id="exampleFormControlInput1" 
-                                    name="remarksFLMLNP" value="{{ old('remarksFLMLNP') }}">  
-                            @error('populationA')
+                                    name="remarksFLMLNP" value="{{ old('remarksFLMLNP') }}" placeholder="Your remarks"> 
+                            @error('remarksFLMLNP')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 </div>
@@ -1118,35 +1126,39 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="Isource">
                             <option value="">Choose...</option> 
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>  @error('populationA')
+                                <option value="NGA" <?php echo ( old('Isource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
+                                <option value="LGU" <?php echo ( old('Isource') == 'LGU' ? 'selected':'' )  ?>  >LGU</option>
+                                <option value="NGO" <?php echo ( old('Isource') == 'NGO' ? 'selected':'' )  ?> >NGO</option>
+                                <option value="Private" <?php echo ( old('Isource') == 'Private' ? 'selected':'' )  ?> >Private</option>
+                            </select> 
+                             @error('Isource')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="Iavailreceived">
                             <option value="">Choose...</option> 
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>  @error('populationA')
+                                <option value="YES" <?php echo ( old('Iavailreceived') == 'YES' ? 'selected':'' )  ?> >YES</option>
+                                <option value="NO" <?php echo ( old('Iavailreceived') == 'NO' ? 'selected':'' )  ?> >NO</option>
+                            </select>  @error('Iavailreceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('Idatereceived') }}" name="Idatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('Idatereceived') }}" name="Idatereceived">  
+                            @error('Idatereceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('Ivolumepax') }}" name="Ivolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('Ivolumepax') }}" name="Ivolumepax"> 
+                             @error('Ivolumepax')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('Iremarks') }}" name="Iremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('Iremarks') }}" name="Iremarks"> 
+                             @error('Iremarks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1186,9 +1198,9 @@
                             <select id="loadProvince1" class="form-control" name="IIAsource">
                             <option value="">Choose...</option> 
                                 <option value="NGA" <?php echo ( old('IIAsource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
+                                <option value="LGU"  <?php echo ( old('IIAsource') == 'LGU' ? 'selected':'' )  ?> >LGU</option>
+                                <option value="NGO"  <?php echo ( old('IIAsource') == 'NGO' ? 'selected':'' )  ?> >NGO</option>
+                                <option value="Private"  <?php echo ( old('IIAsource') == 'Private' ? 'selected':'' )  ?> >Private</option>
                             </select>  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -1196,24 +1208,31 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIAavailreceived">
                             <option value="">Choose...</option> 
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>  @error('populationA')
+                                <option value="Yes" <?php echo ( old('IIAavailreceived') == 'Yes' ? 'selected':'' )  ?> >Yes</option>
+                                <option value="No"  <?php echo ( old('IIAavailreceived') == 'No' ? 'selected':'' )  ?> >No</option>
+                            </select> 
+                             @error('IIAavailreceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIAdatereceived') }}" name="IIAdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1"
+                             value="{{ old('IIAdatereceived') }}" name="IIAdatereceived">
+                               @error('IIAdatereceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIAvolumepax') }}" name="IIAvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIAvolumepax') }}" name="IIAvolumepax">  
+                            @error('IIAvolumepax')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIAremarks') }}" name="IIAremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIAremarks') }}" name="IIAremarks"> 
+                             @error('IIAremarks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1227,37 +1246,47 @@
                             <label for="exampleFormControlInput1">Dietary Supplementation</label>
                         </div>
                         <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIBsource">
+                            <select id="loadProvince1" class="form-control" name="IIBsource" >
                             <option value="">Choose...</option> 
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
+                                <option value="NGA" <?php echo ( old('IIBsource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
+                                <option value="LGU"  <?php echo ( old('IIBsource') == 'LGU' ? 'selected':'' )  ?> >LGU</option>
+                                <option value="NGO"  <?php echo ( old('IIBsource') == 'NGO' ? 'selected':'' )  ?> >NGO</option>
+                                <option value="Private"  <?php echo ( old('IIBsource') == 'Private' ? 'selected':'' )  ?> >Private</option>
                                 <option value="Private">Private</option>
-                            </select>  @error('populationA')
+                            </select>  
+                            @error('IIBsource')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <select id="loadProvince1" class="form-control" name="IIBavailreceived">
+                            <select id="loadProvince1" class="form-control" name="IIBavailreceived" >
                             <option value="">Choose...</option> 
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>  @error('populationA')
+                            <option value="Yes" <?php echo ( old('IIBavailreceived') == 'Yes' ? 'selected':'' )  ?> >Yes</option>
+                            <option value="No"  <?php echo ( old('IIBavailreceived') == 'No' ? 'selected':'' )  ?> >No</option>
+                            </select>  
+
+                            @error('IIBavailreceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIBdatereceived') }}" name="IIBdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIBdatereceived') }}" name="IIBdatereceived"  >   
+                            @error('IIBdatereceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIBvolumepax') }}"  name="IIBvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                             value="{{ old('IIBvolumepax') }}"  name="IIBvolumepax">  
+                             @error('IIBvolumepax')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIBremarks') }}" name="IIBremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIBremarks') }}" name="IIBremarks"> 
+                             @error('IIBremarks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1296,35 +1325,43 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIAsource">
                             <option value="">Choose...</option> 
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>  @error('populationA')
+                                <option value="NGA" <?php echo ( old('IIIAsource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
+                                <option value="LGU"  <?php echo ( old('IIIAsource') == 'LGU' ? 'selected':'' )  ?> >LGU</option>
+                                <option value="NGO"  <?php echo ( old('IIIAsource') == 'NGO' ? 'selected':'' )  ?> >NGO</option>
+                                <option value="Private"  <?php echo ( old('IIIAsource') == 'Private' ? 'selected':'' )  ?> >Private</option>
+                            </select>  
+                              @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIAavailreceived">
                             <option value="">Choose...</option> 
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>  @error('populationA')
+                            <option value="Yes" <?php echo ( old('IIIAavailreceived') == 'Yes' ? 'selected':'' )  ?> >Yes</option>
+                            <option value="No"  <?php echo ( old('IIIAavailreceived') == 'No' ? 'selected':'' )  ?> >No</option>
+                            </select> 
+                             @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIAdatereceived') }}"  name="IIIAdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIIAdatereceived') }}"  name="IIIAdatereceived"> 
+                             @error('IIIAdatereceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIAvolumepax') }}" name="IIIAvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIIAvolumepax') }}" name="IIIAvolumepax"> 
+                             @error('IIIAvolumepax')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIAremarks') }}" name="IIIAremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                             value="{{ old('IIIAremarks') }}" name="IIIAremarks"> 
+                              @error('IIIAremarks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1340,35 +1377,43 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIBsource">
                             <option value="">Choose...</option> 
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>  @error('populationA')
+                            <option value="NGA" <?php echo ( old('IIIBsource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
+                                <option value="LGU"  <?php echo ( old('IIIBsource') == 'LGU' ? 'selected':'' )  ?> >LGU</option>
+                                <option value="NGO"  <?php echo ( old('IIIBsource') == 'NGO' ? 'selected':'' )  ?> >NGO</option>
+                                <option value="Private"  <?php echo ( old('IIIBsource') == 'Private' ? 'selected':'' )  ?> >Private</option>
+                            </select>  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIBavailreceived">
-                            <option value="">Choose...</option> 
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>  @error('populationA')
+                            <option value="">Choose...</option>   
+                            <option value="Yes" <?php echo ( old('IIIBavailreceived') == 'Yes' ? 'selected':'' )  ?> >Yes</option>
+                            <option value="No"  <?php echo ( old('IIIBavailreceived') == 'No' ? 'selected':'' )  ?> >No</option>
+                            </select>  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIBdatereceived') }}" name="IIIBdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1"
+                             value="{{ old('IIIBdatereceived') }}" name="IIIBdatereceived"> 
+                               @error('IIIBdatereceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIBvolumepax') }}" name="IIIBvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIIBvolumepax') }}" name="IIIBvolumepax"> 
+                             @error('IIIBvolumepax')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIBremarks') }}" name="IIIBremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                             value="{{ old('IIIBremarks') }}" name="IIIBremarks">  
+                             @error('IIIBremarks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1384,35 +1429,42 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIICsource">
                             <option value="">Choose...</option> 
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>  @error('populationA')
+                                <option value="NGA" <?php echo ( old('IIICsource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
+                                <option value="LGU"  <?php echo ( old('IIICsource') == 'LGU' ? 'selected':'' )  ?> >LGU</option>
+                                <option value="NGO"  <?php echo ( old('IIICsource') == 'NGO' ? 'selected':'' )  ?> >NGO</option>
+                                <option value="Private"  <?php echo ( old('IIICsource') == 'Private' ? 'selected':'' )  ?> >Private</option>
+                            </select>   
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIICavailreceived">
                             <option value="">Choose...</option> 
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
+                            <option value="Yes" <?php echo ( old('IIICavailreceived') == 'Yes' ? 'selected':'' )  ?> >Yes</option>
+                            <option value="No"  <?php echo ( old('IIICavailreceived') == 'No' ? 'selected':'' )  ?> >No</option>
                             </select>  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIICdatereceived') }}" name="IIICdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIICdatereceived') }}" name="IIICdatereceived"> 
+                             @error('IIICdatereceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIICvolumepax') }}" name="IIICvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIICvolumepax') }}" name="IIICvolumepax">  
+                            @error('IIICvolumepax')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIICremarks') }}" name="IIICremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIICremarks') }}" name="IIICremarks"> 
+                             @error('IIICremarks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1428,35 +1480,43 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIDsource">
                             <option value="">Choose...</option>  
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>  @error('populationA')
+                                <option value="NGA" <?php echo ( old('IIIDsource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
+                                <option value="LGU"  <?php echo ( old('IIIDsource') == 'LGU' ? 'selected':'' )  ?> >LGU</option>
+                                <option value="NGO"  <?php echo ( old('IIIDsource') == 'NGO' ? 'selected':'' )  ?> >NGO</option>
+                                <option value="Private"  <?php echo ( old('IIIDsource') == 'Private' ? 'selected':'' )  ?> >Private</option>
+                            </select>  
+                             @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIDavailreceived">
                             <option value="">Choose...</option> 
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>  @error('populationA')
+                            <option value="Yes" <?php echo ( old('IIIDavailreceived') == 'Yes' ? 'selected':'' )  ?> >Yes</option>
+                            <option value="No"  <?php echo ( old('IIIDavailreceived') == 'No' ? 'selected':'' )  ?> >No</option>
+                            </select>  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIDdatereceived') }}" name="IIIDdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1
+                            " value="{{ old('IIIDdatereceived') }}" name="IIIDdatereceived"> 
+                             @error('IIIDdatereceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIDvolumepax') }}" name="IIIDvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIIDvolumepax') }}" name="IIIDvolumepax"> 
+                            @error('IIIDvolumepax')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIDremarks') }}" name="IIIDremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIIDremarks') }}" name="IIIDremarks">  
+                            @error('IIIDremarks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1472,35 +1532,43 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIEsource">
                             <option value="">Choose...</option> 
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>  @error('populationA')
+                                <option value="NGA" <?php echo ( old('IIIEsource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
+                                <option value="LGU"  <?php echo ( old('IIIEsource') == 'LGU' ? 'selected':'' )  ?> >LGU</option>
+                                <option value="NGO"  <?php echo ( old('IIIEsource') == 'NGO' ? 'selected':'' )  ?> >NGO</option>
+                                <option value="Private"  <?php echo ( old('IIIEsource') == 'Private' ? 'selected':'' )  ?> >Private</option>
+                            </select> 
+                             @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIEavailreceived">
                             <option value="">Choose...</option> 
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>  @error('populationA')
+                            <option value="Yes" <?php echo ( old('IIIEavailreceived') == 'Yes' ? 'selected':'' )  ?> >Yes</option>
+                            <option value="No"  <?php echo ( old('IIIEavailreceived') == 'No' ? 'selected':'' )  ?> >No</option>
+                            </select>  
+                             @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIEdatereceived') }}"  name="IIIEdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIIEdatereceived') }}"  name="IIIEdatereceived"> 
+                             @error('IIIEdatereceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIEvolumepax') }}" name="IIIEvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                             value="{{ old('IIIEvolumepax') }}" name="IIIEvolumepax"> 
+                              @error('IIIEvolumepax')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIEremarks') }}" name="IIIEremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                             value="{{ old('IIIEremarks') }}" name="IIIEremarks"> 
+                              @error('IIIEremarks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1516,35 +1584,43 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIFsource">                            <option value="">Choose...</option>
                             <option value="">Choose...</option> 
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>  @error('populationA')
+                                <option value="NGA" <?php echo ( old('IIIFsource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
+                                <option value="LGU"  <?php echo ( old('IIIFsource') == 'LGU' ? 'selected':'' )  ?> >LGU</option>
+                                <option value="NGO"  <?php echo ( old('IIIFsource') == 'NGO' ? 'selected':'' )  ?> >NGO</option>
+                                <option value="Private"  <?php echo ( old('IIIFsource') == 'Private' ? 'selected':'' )  ?> >Private</option>
+                            </select>  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IIIFavailreceived">
                             <option value="">Choose...</option> 
-                                <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>  @error('populationA')
+                            <option value="Yes" <?php echo ( old('IIIFavailreceived') == 'Yes' ? 'selected':'' )  ?> >Yes</option>
+                            <option value="No"  <?php echo ( old('IIIFavailreceived') == 'No' ? 'selected':'' )  ?> >No</option>
+                            </select>  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIFdatereceived') }}" name="IIIFdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIIFdatereceived') }}" name="IIIFdatereceived">  
+                            @error('IIIFdatereceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIFvolumepax') }}" name="IIIFvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIIFvolumepax') }}" name="IIIFvolumepax"> 
+                             @error('IIIFvolumepax')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IIIFremarks') }}" name="IIIFremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IIIFremarks') }}" name="IIIFremarks"> 
+                             @error('IIIFremarks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1584,35 +1660,42 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IVAsource">
                             <option value="">Choose...</option> 
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
-                            </select>  @error('populationA')
+                                <option value="NGA" <?php echo ( old('IVAsource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
+                                <option value="LGU"  <?php echo ( old('IVAsource') == 'LGU' ? 'selected':'' )  ?> >LGU</option>
+                                <option value="NGO"  <?php echo ( old('IVAsource') == 'NGO' ? 'selected':'' )  ?> >NGO</option>
+                                <option value="Private"  <?php echo ( old('IVAsource') == 'Private' ? 'selected':'' )  ?> >Private</option>
+                            </select>  
+                            @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="IVAavailreceived">
                             <option value="">Choose...</option> 
-                            <option value="YES">YES</option>
-                                <option value="NO">NO</option>
+                            <option value="Yes" <?php echo ( old('IVAavailreceived') == 'Yes' ? 'selected':'' )  ?> >Yes</option>
+                            <option value="No"  <?php echo ( old('IVAavailreceived') == 'No' ? 'selected':'' )  ?> >No</option>
                             </select>  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('IVAdatereceived') }}" name="IVAdatereceived">  @error('populationA')
+                            <input type="date" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IVAdatereceived') }}" name="IVAdatereceived"> 
+                             @error('IVAdatereceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IVAvolumepax') }}" name="IVAvolumepax">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IVAvolumepax') }}" name="IVAvolumepax"> 
+                             @error('IVAvolumepax')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('IVAremarks') }}" name="IVAremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1" 
+                            value="{{ old('IVAremarks') }}" name="IVAremarks">  
+                            @error('IVAremarks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1652,10 +1735,10 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="VAsource">
                             <option value="">Choose...</option>
-                                <option value="NGA">NGA</option>
-                                <option value="LGU">LGU</option>
-                                <option value="NGO">NGO</option>
-                                <option value="Private">Private</option>
+                                <option value="NGA" <?php echo ( old('VAsource') == 'NGA' ? 'selected':'' )  ?> >NGA</option>
+                                <option value="LGU"  <?php echo ( old('VAsource') == 'LGU' ? 'selected':'' )  ?> >LGU</option>
+                                <option value="NGO"  <?php echo ( old('VAsource') == 'NGO' ? 'selected':'' )  ?> >NGO</option>
+                                <option value="Private"  <?php echo ( old('VAsource') == 'Private' ? 'selected':'' )  ?> >Private</option>
                             </select>  @error('populationA')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -1663,24 +1746,31 @@
                         <div class="col">
                             <select id="loadProvince1" class="form-control" name="VAavailreceived">
                             <option value="">Choose...</option>
-                            <option value="YES">YES</option>
-                                <option value="NO">NO</option>
-                            </select>  @error('populationA')
+                                <option value="Yes" <?php echo ( old('VAavailreceived') == 'Yes' ? 'selected':'' )  ?> >Yes</option>
+                                <option value="No"  <?php echo ( old('VAavailreceived') == 'No' ? 'selected':'' )  ?> >No</option>
+                            </select> 
+                            @error('populationA')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <input type="date" class="form-control" id="exampleFormControlInput1"
+                             value="{{ old('VAdatereceived') }}" name="VAdatereceived">
+                               @error('VAdatereceived')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="date" class="form-control" id="exampleFormControlInput1" value="{{ old('VAdatereceived') }}" name="VAdatereceived">  @error('populationA')
+                            <input type="text" class="form-control" id="e xampleFormControlInput1" 
+                            value="{{ old('VAvolumepax') }}" name="VAvolumepax"> 
+                             @error('VAvolumepax')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('VAvolumepax') }}" name="VAvolumepax">  @error('populationA')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="col">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="{{ old('VAremarks') }}" name="VAremarks">  @error('populationA')
+                            <input type="text" class="form-control" id="exampleFormControlInput1"
+                              value="{{ old('VAremarks') }}" name="VAremarks">  
+                              @error('VAremarks')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -1688,13 +1778,63 @@
                 </div>
 
                 <div class="row" style="margin-top:30px;margin-right:20px;justify-content: flex-end">
-                    <button type="submit" class="btn btn-warning ">Save as draft</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <!-- <button type="submit" class="btn btn-warning ">Save as draft</button> -->
+                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenterDraft">
+                    Draft
+                    </button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Submit
+                    </button>
+
                 </div>
             </form>
         </div>
     </div>
 </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Are you sure want to submit this form?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="submit" id="lgu-submit" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenterDraft" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Save as Draft?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="submit" id="lgu-draft" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 @endsection

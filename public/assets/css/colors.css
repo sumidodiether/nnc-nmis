@@ -5,3 +5,16 @@
     padding-right: 13px; 
     background-color:#F7DB6A!important;
 }
+
+.bold-icon {
+    position: relative;
+}
+
+.bold-icon::before { 
+    -webkit-text-stroke-width: 1px;
+}
+
+/* icons */
+/* .navbar-nav .nav-link i.now-ui-icons {
+    opacity: 1;
+} */
